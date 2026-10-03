@@ -15,6 +15,33 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
+import torch.distributed as dist
+from torch.autograd import Function
+
+class CopyToTP(Function):
+    @staticmethod
+    def forward(ctx,x,tp_group):
+        ctx.tp_group=tp_group
+        return x
+
+    @staticmethod
+    def backward(ctx,grad_output):
+        result=grad_output.contiguous().clone()
+        dist.all_reduce(result,op=dist.ReduceOp.SUM,group=ctx.tp_group)
+        return result,None
+
+class SumFromTP(Function):
+    @staticmethod
+    def forward(ctx,x,tp_group):
+        result=x.contiguous().clone()
+        dist.all_reduce(result,op=dist.ReduceOp.SUM,group=tp_group)
+        return result
+    
+    @staticmethod
+    def backward(ctx,grad_output):
+        return grad_output,None
+
+
 class LayerNorm(nn.Module):
     """ LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False """
 
