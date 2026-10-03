@@ -41,6 +41,45 @@ class SumFromTP(Function):
     def backward(ctx,grad_output):
         return grad_output,None
 
+class ColumnParallelLinear(nn.Linear):
+    def __init__(self,in_features,out_features,bias=True,tp_group=None):
+        tp_size=dist.get_world_size(group=tp_group)
+        assert out_features%tp_size==0
+        local_out_features=out_features//tp_size
+
+        super().__init__(in_features,local_out_features,bias=bias)
+
+        self.tp_group=tp_group
+        self.tp_size=tp_size
+        self.tp_rank=dist.get_rank(group=tp_group)
+        self.global_out_features=out_features
+
+
+    def forward(self,x):
+        x=CopyToTP.apply(x,self.tp_group)
+        return F.Linear(x,self.weight,self.bias)
+        
+class RowParallelLinear(nn.Linear):
+    def __init__(self, in_features, out_features, bias = True,tp_group=None):
+        tp_size=dist.get_world_size(group=tp_group)
+        assert in_features%tp_size==0
+        local_in_features=in_features//tp_size
+
+        super().__init__(local_in_features, out_features, bias=False)
+
+        self.tp_group=tp_group
+        self.tp_size=tp_size
+        self.tp_rank=dist.get_rank(group=tp_group)
+        self.global_in_features=in_features
+        if bias:
+           self.bias=nn.Parameter(self.weight.new_zeros((out_features,)))
+
+    def forward(self,x):
+        local_output=F.linear(x,self.weight,None)
+        output=SumFromTP(local_output,self.tp_group)
+        return output+self.bias if self.bias is not None else output
+
+
 
 class LayerNorm(nn.Module):
     """ LayerNorm but with an optional bias. PyTorch doesn't support simply bias=False """
