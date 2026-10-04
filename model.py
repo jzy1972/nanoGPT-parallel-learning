@@ -94,10 +94,10 @@ class LayerNorm(nn.Module):
 
 class CausalSelfAttention(nn.Module):
 
-    def __init__(self, config,tp_group=tp_group):
+    def __init__(self, config,tp_group=None):
         super().__init__()
         assert config.n_embd % config.n_head == 0
-        tp_size=dist.get_world_size(tp_group=tp_group)
+        tp_size=dist.get_world_size(group=tp_group)
         assert config.n_head%tp_size==0
         self.head_dim=config.n_embd//config.n_head
         self.local_n_head=config.n_head//tp_size
