@@ -26,7 +26,7 @@ import numpy as np
 import torch
 from torch.nn.parallel import DistributedDataParallel as DDP
 import torch.distributed as dist
-
+from torch.distributed.fsdp.sharded_grad_scaler import ShardedGradScaler
 from model import GPTConfig, GPT,ColumnParallelLinear,RowParallelLinear,tp_rng_tracker
 
 def build_parallel_groups(tp_size):
@@ -103,6 +103,21 @@ def clip_grad_norm_tp(model,max_norm,tp_group):
 
     return total_norm
 
+@torch.no_grad
+def has_nonfinite_grad(model):
+    params=list(model.parameters())
+    flag=torch.zeros((),dtype=torch.int32,device=params[0].device)
+
+    for param in params:
+        if param.grad is None:
+            continue
+
+        bad=(~torch.isfinite(param.grad)).any()
+        flag=torch.maximum(flag,bad.to(dtype=flag.dtype))
+
+    dist.all_reduce(flag,op=dist.ReduceOp.MAX,group=dist.group.WORLD,)
+
+    return flag.item()!=0
     
 # -----------------------------------------------------------------------------
 # default config values designed to train a gpt2 (124M) on OpenWebText
@@ -294,7 +309,7 @@ tp_rng_tracker.add(
 )
 
 # initialize a GradScaler. If enabled=False scaler is a no-op
-scaler = torch.cuda.amp.GradScaler(enabled=(dtype == 'float16'))
+scaler = ShardedGradScaler(device="cuda",enabled=(dtype == 'float16'),process_group=dist.group.WORLD,)
 
 # optimizer
 optimizer = model.configure_optimizers(weight_decay, learning_rate, (beta1, beta2), device_type)
@@ -407,14 +422,20 @@ while True:
         # backward pass, with gradient scaling if training in fp16
         scaler.scale(loss).backward()
     # clip the gradient
-    if grad_clip != 0.0:
-        scaler.unscale_(optimizer)
+    scaler.unscale_(optimizer)
+    found_nonfinite=has_nonfinite_grad(raw_model)
+
+    if not found_nonfinite and grad_clip!=0.0:
         grad_norm=clip_grad_norm_tp(raw_model,grad_clip,tp_group)
-    # step the optimizer and scaler if training in fp16
-    scaler.step(optimizer)
+
+    if scaler.is_enabled():
+        scaler.step(optimizer)
+    elif not found_nonfinite:
+        optimizer.step()
+
     scaler.update()
-    # flush the gradients as soon as we can, no need for this memory anymore
     optimizer.zero_grad(set_to_none=True)
+
 
     # timing and logging
     t1 = time.time()
