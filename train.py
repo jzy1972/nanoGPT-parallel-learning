@@ -27,7 +27,7 @@ import torch
 from torch.nn.parallel import DistributedDataParallel as DDP
 import torch.distributed as dist
 
-from model import GPTConfig, GPT,ColumnParallelLinear,RowParallelLinear
+from model import GPTConfig, GPT,ColumnParallelLinear,RowParallelLinear,tp_rng_tracker
 
 def build_parallel_groups(tp_size):
     world_rank=dist.get_rank()
@@ -77,6 +77,33 @@ def sync_tp_replicated_parameters(model,tp_group,tp_src_rank):
     for param in model.parameters():
         if not param.tp_sharded:
             dist.broadcast(param,src=tp_src_rank,group=tp_group)
+
+@torch.no_grad()
+def clip_grad_norm_tp(model,max_norm,tp_group):
+    tp_rank=dist.get_rank(group=tp_group)
+    params=list(model.parameters())
+
+    sq_norm=torch.zeros((),device=params[0].device,dtype=torch.float32)
+
+    for param in params:
+        if param.grad is None:
+            continue
+
+        if param.tp_sharded or tp_rank==0:
+            grad=param.grad.detach().float()
+            sq_norm+=grad.square().sum()
+    dist.all_reduce(sq_norm,op=dist.ReduceOp.SUM,group=tp_group)
+
+    total_norm=sq_norm.sqrt()
+    clip_coef=(max_norm/(total_norm+1e-6)).clamp(max=1.0)
+
+    for param in params:
+        if param.grad is not None:
+            param.grad.mul_(clip_coef)
+
+    return total_norm
+
+    
 # -----------------------------------------------------------------------------
 # default config values designed to train a gpt2 (124M) on OpenWebText
 # I/O
@@ -121,7 +148,7 @@ tp_size = 0
 # system
 device = 'cuda' # examples: 'cpu', 'cuda', 'cuda:0', 'cuda:1' etc., or try 'mps' on macbooks
 dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16' # 'float32', 'bfloat16', or 'float16', the latter will auto implement a GradScaler
-compile = True # use PyTorch 2.0 to compile the model to be faster
+compile = False # use PyTorch 2.0 to compile the model to be faster
 # -----------------------------------------------------------------------------
 config_keys = [k for k,v in globals().items() if not k.startswith('_') and isinstance(v, (int, float, bool, str))]
 exec(open('configurator.py').read()) # overrides from command line or config file
@@ -259,6 +286,13 @@ model.to(device)
 mark_tp_parameters(model)
 sync_tp_replicated_parameters(model,tp_group,tp_src_rank)
 
+dropout_seed=3000
+torch.cuda.manual_seed(dropout_seed+dp_rank)
+tp_rng_tracker.add(
+    "attention",
+    dropout_seed + dp_size + world_rank,
+)
+
 # initialize a GradScaler. If enabled=False scaler is a no-op
 scaler = torch.cuda.amp.GradScaler(enabled=(dtype == 'float16'))
 
@@ -375,7 +409,7 @@ while True:
     # clip the gradient
     if grad_clip != 0.0:
         scaler.unscale_(optimizer)
-        torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
+        grad_norm=clip_grad_norm_tp(raw_model,grad_clip,tp_group)
     # step the optimizer and scaler if training in fp16
     scaler.step(optimizer)
     scaler.update()
