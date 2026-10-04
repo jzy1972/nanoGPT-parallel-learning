@@ -196,6 +196,7 @@ if master_process:
 
 if master_process:
     os.makedirs(out_dir, exist_ok=True)
+dist.barrier()
 torch.manual_seed(1337 + seed_offset)
 torch.backends.cuda.matmul.allow_tf32 = True # allow tf32 on matmul
 torch.backends.cudnn.allow_tf32 = True # allow tf32 on cudnn
@@ -265,8 +266,12 @@ if init_from == 'scratch':
 elif init_from == 'resume':
     print(f"Resuming training from {out_dir}")
     # resume training from a checkpoint.
-    ckpt_path = os.path.join(out_dir, 'ckpt.pt')
-    checkpoint = torch.load(ckpt_path, map_location=device)
+    ckpt_path = os.path.join(out_dir, f"ckpt{tp_rank:03d}.pt")
+    checkpoint = torch.load(ckpt_path, map_location="cpu",weights_only=True,)
+    assert checkpoint["tp_size"] == tp_size
+    assert checkpoint["dp_size"] == dp_size
+    assert checkpoint["tp_rank"] == tp_rank
+    assert checkpoint["dtype"] == dtype
     checkpoint_model_args = checkpoint['model_args']
     # force these config attributes to be equal otherwise we can't even resume training
     # the rest of the attributes (e.g. dropout) can stay as desired from command line
@@ -315,6 +320,7 @@ scaler = ShardedGradScaler(device="cuda",enabled=(dtype == 'float16'),process_gr
 optimizer = model.configure_optimizers(weight_decay, learning_rate, (beta1, beta2), device_type)
 if init_from == 'resume':
     optimizer.load_state_dict(checkpoint['optimizer'])
+    scaler.load_state_dict(checkpoint['scaler'])
 checkpoint = None # free up memory
 
 # compile the model
@@ -394,19 +400,36 @@ while True:
                     "lr": lr,
                     "mfu": running_mfu*100, # convert to percentage
                     })
-            if losses['val'] < best_val_loss or always_save_checkpoint:
-                best_val_loss = losses['val']
-                if iter_num > 0:
+            control=torch.zeros(2,dtype=torch.float64,device=device)
+
+            if master_process:
+                improved=losses["val"]<best_val_loss
+                control[0]=min(best_val_loss,losses["val"])
+                contro[1]=int(iter_num>0 and (improved or always_save_checkpoint))
+
+            dist.broadcast(control,src=0,group=dist.group.WORLD)
+
+            best_val_loss=control[0].item()
+            should_save=bool(control[1],item())
+
+            if should_save:
+                if dp_rank==0:
                     checkpoint = {
-                        'model': raw_model.state_dict(),
-                        'optimizer': optimizer.state_dict(),
-                        'model_args': model_args,
-                        'iter_num': iter_num,
-                        'best_val_loss': best_val_loss,
-                        'config': config,
-                        }
-                    print(f"saving checkpoint to {out_dir}")
-                    torch.save(checkpoint, os.path.join(out_dir, 'ckpt.pt'))
+                     "model": raw_model.state_dict(),
+                     "optimizer": optimizer.state_dict(),
+                     "scaler": scaler.state_dict(),
+                     "model_args": model_args,
+                     "iter_num": iter_num,
+                     "best_val_loss": best_val_loss,
+                     "config": config,
+                     "tp_size": tp_size,
+                     "dp_size": dp_size,
+                     "tp_rank": tp_rank,
+                     "dtype": dtype,
+                    }
+
+                    ckpt_path=os.path.join(out_dir,f"ckpt_tp{tp_rank:03d}.pt")
+                    torch.save(checkpoint,ckpt_path)
         
     if iter_num == 0 and eval_only:
         break
