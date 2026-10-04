@@ -27,7 +27,7 @@ import torch
 from torch.nn.parallel import DistributedDataParallel as DDP
 import torch.distributed as dist
 
-from model import GPTConfig, GPT
+from model import GPTConfig, GPT,ColumnParallelLinear,RowParallelLinear
 
 def build_parallel_groups(tp_size):
     world_rank=dist.get_rank()
@@ -58,6 +58,25 @@ def build_parallel_groups(tp_size):
 
     return tp_group,dp_group
 
+
+def mark_tp_parameters(model):
+    for param in model.parameters():
+        param.tp_sharded=False
+
+    for module in model.modules():
+        if isinstance(module,ColumnParallelLinear):
+            module.weight.tp_sharded=True
+
+            if module.bias is not None:
+                module.bias.tp_sharded=True
+        elif isinstance(module,RowParallelLinear):
+            module.weight.tp_sharded=True
+
+@torch.no_grad()
+def sync_tp_replicated_parameters(model,tp_group,tp_src_rank):
+    for param in model.parameters():
+        if not param.tp_sharded:
+            dist.broadcast(param,src=tp_src_rank,group=tp_group)
 # -----------------------------------------------------------------------------
 # default config values designed to train a gpt2 (124M) on OpenWebText
 # I/O
@@ -237,6 +256,8 @@ if block_size < model.config.block_size:
     model.crop_block_size(block_size)
     model_args['block_size'] = block_size # so that the checkpoint will have the right value
 model.to(device)
+mark_tp_parameters(model)
+sync_tp_replicated_parameters(model,tp_group,tp_src_rank)
 
 # initialize a GradScaler. If enabled=False scaler is a no-op
 scaler = torch.cuda.amp.GradScaler(enabled=(dtype == 'float16'))
