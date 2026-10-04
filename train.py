@@ -333,13 +333,19 @@ def estimate_loss():
     out = {}
     model.eval()
     for split in ['train', 'val']:
-        losses = torch.zeros(eval_iters)
+        losses = torch.zeros(eval_iters,device=device)
         for k in range(eval_iters):
             X, Y = get_batch(split,for_eval=True)
             with ctx:
                 logits, loss = model(X, Y)
-            losses[k] = loss.item()
-        out[split] = losses.mean()
+            losses[k] = loss.detach()
+        mean_loss = losses.mean()
+
+        dist.all_reduce(mean_loss,op=dist.ReduceOp.SUM,group=dp_group)
+
+        mean_loss/=dp_size
+        out[split] = mean_loss.item()
+
     model.train()
     return out
 
