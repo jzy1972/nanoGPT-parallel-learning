@@ -238,6 +238,44 @@ def get_batch(split,for_eval=False):
 
     return x, y
 
+def capture_runtime_state(X, Y, iter_num):
+    tp_states = {}
+    for name, rng_state in tp_rng_tracker.states.items():
+        tp_states[name] = rng_state.clone()
+
+    return {
+        "world_rank": world_rank,
+        "tp_size": tp_size,
+        "dp_size": dp_size,
+        "iter_num": iter_num,
+        "cpu_rng": torch.get_rng_state(),
+        "cuda_rng": torch.cuda.get_rng_state(),
+        "tp_rng": tp_states,
+        "train_generator": train_data_generator.get_state(),
+        "eval_generator": eval_data_generator.get_state(),
+        "X": X.detach().cpu(),
+        "Y": Y.detach().cpu(),
+    }
+
+def restore_runtime_state(runtime_state):
+    torch.set_rng_state(runtime_state["cpu_rng"])
+    torch.cuda.set_rng_state(runtime_state["cuda_rng"])
+
+    tp_rng_tracker.states = {}
+    for name, rng_state in runtime_state["tp_rng"].items():
+        tp_rng_tracker.states[name] = rng_state.clone()
+
+    train_data_generator.set_state(
+        runtime_state["train_generator"]
+    )
+    eval_data_generator.set_state(
+        runtime_state["eval_generator"]
+    )
+
+    X = runtime_state["X"].to(device)
+    Y = runtime_state["Y"].to(device)
+    return X, Y
+
 # init these up here, can override if init_from='resume' (i.e. from a checkpoint)
 iter_num = 0
 best_val_loss = 1e9
@@ -375,20 +413,43 @@ if wandb_log and master_process:
     wandb.init(project=wandb_project, name=wandb_run_name, config=config)
 
 # training loop
-X, Y = get_batch('train') # fetch the very first batch
+if init_from == "resume":
+    runtime_path = os.path.join(
+        out_dir, f"runtime_rank{world_rank:03d}.pt"
+    )
+    runtime_state = torch.load(
+        runtime_path, map_location="cpu", weights_only=True
+    )
+
+    assert runtime_state["world_rank"] == world_rank
+    assert runtime_state["tp_size"] == tp_size
+    assert runtime_state["dp_size"] == dp_size
+    assert runtime_state["iter_num"] == iter_num
+    assert runtime_state["X"].shape == (batch_size, block_size)
+    assert runtime_state["Y"].shape == (batch_size, block_size)
+
+    X, Y = restore_runtime_state(runtime_state)
+    runtime_state = None
+else:
+    X, Y = get_batch("train")
+
 t0 = time.time()
 local_iter_num = 0 # number of iterations in the lifetime of this process
 raw_model = model.module if ddp else model # unwrap DDP container if needed
 running_mfu = -1.0
 while True:
-
+    skip_eval_this_iter = (
+      init_from == "resume"
+      and local_iter_num == 0
+      and not eval_only
+    )
     # determine and set the learning rate for this iteration
     lr = get_lr(iter_num) if decay_lr else learning_rate
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
 
     # evaluate the loss on train/val sets and write checkpoints
-    if iter_num % eval_interval == 0:
+    if (iter_num % eval_interval == 0 or eval_only) and not skip_eval_this_iter:
         losses = estimate_loss()
         if master_process:
             print(f"step {iter_num}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
@@ -400,39 +461,46 @@ while True:
                     "lr": lr,
                     "mfu": running_mfu*100, # convert to percentage
                     })
-            control=torch.zeros(2,dtype=torch.float64,device=device)
+        control=torch.zeros(2,dtype=torch.float64,device=device)
 
-            if master_process:
-                improved=losses["val"]<best_val_loss
-                control[0]=min(best_val_loss,losses["val"])
-                contro[1]=int(iter_num>0 and (improved or always_save_checkpoint))
+        if master_process:
+            improved=losses["val"]<best_val_loss
+            control[0]=min(best_val_loss,losses["val"])
+            contro[1]=int(iter_num>0 and (improved or always_save_checkpoint))
 
-            dist.broadcast(control,src=0,group=dist.group.WORLD)
+        dist.broadcast(control,src=0,group=dist.group.WORLD)
 
-            best_val_loss=control[0].item()
-            should_save=bool(control[1],item())
+        best_val_loss=control[0].item()
+        should_save=bool(control[1].item())
 
-            if should_save:
-                if dp_rank==0:
-                    checkpoint = {
-                     "model": raw_model.state_dict(),
-                     "optimizer": optimizer.state_dict(),
-                     "scaler": scaler.state_dict(),
-                     "model_args": model_args,
-                     "iter_num": iter_num,
-                     "best_val_loss": best_val_loss,
-                     "config": config,
-                     "tp_size": tp_size,
-                     "dp_size": dp_size,
-                     "tp_rank": tp_rank,
-                     "dtype": dtype,
-                    }
+        if should_save:
+            if dp_rank==0:
+                checkpoint = {
+                    "model": raw_model.state_dict(),
+                    "optimizer": optimizer.state_dict(),
+                    "scaler": scaler.state_dict(),
+                    "model_args": model_args,
+                    "iter_num": iter_num,
+                    "best_val_loss": best_val_loss,
+                    "config": config,
+                    "tp_size": tp_size,
+                    "dp_size": dp_size,
+                    "tp_rank": tp_rank,
+                    "dtype": dtype,
+                }
 
-                    ckpt_path=os.path.join(out_dir,f"ckpt_tp{tp_rank:03d}.pt")
-                    torch.save(checkpoint,ckpt_path)
-        
-    if iter_num == 0 and eval_only:
-        break
+                ckpt_path=os.path.join(out_dir,f"ckpt_tp{tp_rank:03d}.pt")
+                torch.save(checkpoint,ckpt_path)
+            runtime_state = capture_runtime_state(X, Y, iter_num)
+
+            runtime_path = os.path.join(
+                out_dir, f"runtime_rank{world_rank:03d}.pt"
+            )
+            torch.save(runtime_state, runtime_path)
+
+            dist.barrier()
+    if eval_only:
+       break    
 
     # forward backward update, with optional gradient accumulation to simulate larger batch size
     # and using the GradScaler if data type is float16
