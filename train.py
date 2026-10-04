@@ -26,8 +26,38 @@ import numpy as np
 import torch
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.distributed import init_process_group, destroy_process_group
+import torch.distributed as dist
 
 from model import GPTConfig, GPT
+
+def build_parallel_groups(tp_size):
+    world_rank=dist.get_rank()
+    world_size=dist.get_world_size()
+
+    assert tp_size>0
+    assert world_size%tp_size==0
+    dp_size=world_size//tp_size
+
+    tp_group=None
+    dp_group=None
+
+    #创建tp组
+    for d in range(dp_size):
+        ranks=[d*tp_size+t for t in range(tp_size)]
+        group=dist.new_group(ranks=ranks)
+
+        if world_rank in ranks:
+            tp_group=group
+
+    #创建dp组
+    for t in range(tp_size):
+        ranks=[d*tp_size+t for d in range(dp_size)]
+        group=dist.new_group(ranks=ranks)
+
+        if world_rank in ranks:
+            dp_group=group
+
+    return tp_group,dp_group
 
 # -----------------------------------------------------------------------------
 # default config values designed to train a gpt2 (124M) on OpenWebText
