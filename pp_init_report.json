@@ -1,0 +1,327 @@
+{
+  "status": "passed",
+  "scope": "PP_DP_and_tied_weight_initialization",
+  "real_cases": [
+    {
+      "pp_size": 1,
+      "dp_size": 4,
+      "status": "passed",
+      "ranks": [
+        {
+          "world_rank": 0,
+          "pp_rank": 0,
+          "dp_rank": 0,
+          "pp_members": [
+            0
+          ],
+          "dp_members": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "tied_members": null,
+          "layer_range": [
+            0,
+            5
+          ],
+          "prev_rank": null,
+          "next_rank": null
+        },
+        {
+          "world_rank": 1,
+          "pp_rank": 0,
+          "dp_rank": 1,
+          "pp_members": [
+            1
+          ],
+          "dp_members": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "tied_members": null,
+          "layer_range": [
+            0,
+            5
+          ],
+          "prev_rank": null,
+          "next_rank": null
+        },
+        {
+          "world_rank": 2,
+          "pp_rank": 0,
+          "dp_rank": 2,
+          "pp_members": [
+            2
+          ],
+          "dp_members": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "tied_members": null,
+          "layer_range": [
+            0,
+            5
+          ],
+          "prev_rank": null,
+          "next_rank": null
+        },
+        {
+          "world_rank": 3,
+          "pp_rank": 0,
+          "dp_rank": 3,
+          "pp_members": [
+            3
+          ],
+          "dp_members": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "tied_members": null,
+          "layer_range": [
+            0,
+            5
+          ],
+          "prev_rank": null,
+          "next_rank": null
+        }
+      ]
+    },
+    {
+      "pp_size": 2,
+      "dp_size": 2,
+      "status": "passed",
+      "ranks": [
+        {
+          "world_rank": 0,
+          "pp_rank": 0,
+          "dp_rank": 0,
+          "pp_members": [
+            0,
+            1
+          ],
+          "dp_members": [
+            0,
+            2
+          ],
+          "tied_members": [
+            0,
+            1
+          ],
+          "layer_range": [
+            0,
+            2
+          ],
+          "prev_rank": null,
+          "next_rank": 1
+        },
+        {
+          "world_rank": 1,
+          "pp_rank": 1,
+          "dp_rank": 0,
+          "pp_members": [
+            0,
+            1
+          ],
+          "dp_members": [
+            1,
+            3
+          ],
+          "tied_members": [
+            0,
+            1
+          ],
+          "layer_range": [
+            2,
+            5
+          ],
+          "prev_rank": 0,
+          "next_rank": null
+        },
+        {
+          "world_rank": 2,
+          "pp_rank": 0,
+          "dp_rank": 1,
+          "pp_members": [
+            2,
+            3
+          ],
+          "dp_members": [
+            0,
+            2
+          ],
+          "tied_members": [
+            2,
+            3
+          ],
+          "layer_range": [
+            0,
+            2
+          ],
+          "prev_rank": null,
+          "next_rank": 3
+        },
+        {
+          "world_rank": 3,
+          "pp_rank": 1,
+          "dp_rank": 1,
+          "pp_members": [
+            2,
+            3
+          ],
+          "dp_members": [
+            1,
+            3
+          ],
+          "tied_members": [
+            2,
+            3
+          ],
+          "layer_range": [
+            2,
+            5
+          ],
+          "prev_rank": 2,
+          "next_rank": null
+        }
+      ]
+    },
+    {
+      "pp_size": 4,
+      "dp_size": 1,
+      "status": "passed",
+      "ranks": [
+        {
+          "world_rank": 0,
+          "pp_rank": 0,
+          "dp_rank": 0,
+          "pp_members": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "dp_members": [
+            0
+          ],
+          "tied_members": [
+            0,
+            3
+          ],
+          "layer_range": [
+            0,
+            1
+          ],
+          "prev_rank": null,
+          "next_rank": 1
+        },
+        {
+          "world_rank": 1,
+          "pp_rank": 1,
+          "dp_rank": 0,
+          "pp_members": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "dp_members": [
+            1
+          ],
+          "tied_members": null,
+          "layer_range": [
+            1,
+            2
+          ],
+          "prev_rank": 0,
+          "next_rank": 2
+        },
+        {
+          "world_rank": 2,
+          "pp_rank": 2,
+          "dp_rank": 0,
+          "pp_members": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "dp_members": [
+            2
+          ],
+          "tied_members": null,
+          "layer_range": [
+            2,
+            3
+          ],
+          "prev_rank": 1,
+          "next_rank": 3
+        },
+        {
+          "world_rank": 3,
+          "pp_rank": 3,
+          "dp_rank": 0,
+          "pp_members": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "dp_members": [
+            3
+          ],
+          "tied_members": [
+            0,
+            3
+          ],
+          "layer_range": [
+            3,
+            5
+          ],
+          "prev_rank": 2,
+          "next_rank": null
+        }
+      ]
+    }
+  ],
+  "not_checked": [
+    "train_pp.main execution",
+    "torchrun/env rendezvous",
+    "CUDA/NCCL",
+    "activation transfer and pipeline backward schedule",
+    "DP and tied-weight gradient synchronization",
+    "optimizer updates"
+  ],
+  "source_sha256": {
+    "parallel_utils.py": "6ca9e06fd51557c7b9b06f0061aad0a32b0a97d85465b74216db22c2a064a957",
+    "train_pp.py": "0170e95f746554b3ab4b4d4974155abdfffd1af4df33461986e36cd49a705bc6",
+    "model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
+    "model_pp.py": "750d5bf218a754357c5c380baefdf98b8e6db16f0169ea80c657e55815487b7c"
+  },
+  "main_sync_call_static_check": "present; control flow not executed",
+  "logical_mapping": {
+    "topologies": 24,
+    "rank_layouts": 210,
+    "mode": "simulated",
+    "status": "passed"
+  },
+  "torch_version": "2.12.1+cpu",
+  "device": "cpu",
+  "backend": "gloo",
+  "dtype": "float64",
+  "model_config": {
+    "n_layer": 5,
+    "n_head": 4,
+    "n_embd": 32,
+    "vocab_size": 64,
+    "block_size": 16,
+    "dropout": 0.0,
+    "bias": true
+  }
+}
