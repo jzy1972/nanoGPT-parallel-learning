@@ -1,0 +1,261 @@
+{
+  "status": "passed",
+  "scope": "single_process_stage_model_eval",
+  "torch_version": "2.12.1+cpu",
+  "device": "cpu",
+  "dtype": "float64",
+  "config": {
+    "n_layer": 5,
+    "n_embd": 32,
+    "n_head": 4,
+    "vocab_size": 64,
+    "block_size": 16,
+    "seq_len": 8,
+    "batch_size": 2,
+    "dropout": 0.1,
+    "mode": "eval"
+  },
+  "source_sha256": {
+    "model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
+    "model_pp.py": "750d5bf218a754357c5c380baefdf98b8e6db16f0169ea80c657e55815487b7c",
+    "parallel_utils.py": "472b0db529a1ff5fff0ac7d44f88a62525ac82987e21092459c8f1fc2d29b3c1"
+  },
+  "not_checked": [
+    "distributed communication",
+    "pipeline backward schedule",
+    "data parallel synchronization",
+    "cross-stage tied gradient synchronization"
+  ],
+  "cases": [
+    {
+      "bias": true,
+      "pp_size": 1,
+      "stage_layer_ranges": [
+        [
+          0,
+          5
+        ]
+      ],
+      "max_logits_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "rtol": 1e-09,
+      "atol": 1e-10,
+      "status": "passed"
+    },
+    {
+      "bias": true,
+      "pp_size": 2,
+      "stage_layer_ranges": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "max_logits_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "rtol": 1e-09,
+      "atol": 1e-10,
+      "status": "passed"
+    },
+    {
+      "bias": true,
+      "pp_size": 3,
+      "stage_layer_ranges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "max_logits_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "rtol": 1e-09,
+      "atol": 1e-10,
+      "status": "passed"
+    },
+    {
+      "bias": true,
+      "pp_size": 4,
+      "stage_layer_ranges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "max_logits_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "rtol": 1e-09,
+      "atol": 1e-10,
+      "status": "passed"
+    },
+    {
+      "bias": true,
+      "pp_size": 5,
+      "stage_layer_ranges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "max_logits_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "rtol": 1e-09,
+      "atol": 1e-10,
+      "status": "passed"
+    },
+    {
+      "bias": false,
+      "pp_size": 1,
+      "stage_layer_ranges": [
+        [
+          0,
+          5
+        ]
+      ],
+      "max_logits_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "rtol": 1e-09,
+      "atol": 1e-10,
+      "status": "passed"
+    },
+    {
+      "bias": false,
+      "pp_size": 2,
+      "stage_layer_ranges": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "max_logits_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "rtol": 1e-09,
+      "atol": 1e-10,
+      "status": "passed"
+    },
+    {
+      "bias": false,
+      "pp_size": 3,
+      "stage_layer_ranges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "max_logits_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "rtol": 1e-09,
+      "atol": 1e-10,
+      "status": "passed"
+    },
+    {
+      "bias": false,
+      "pp_size": 4,
+      "stage_layer_ranges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "max_logits_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "rtol": 1e-09,
+      "atol": 1e-10,
+      "status": "passed"
+    },
+    {
+      "bias": false,
+      "pp_size": 5,
+      "stage_layer_ranges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "max_logits_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "rtol": 1e-09,
+      "atol": 1e-10,
+      "status": "passed"
+    }
+  ]
+}
