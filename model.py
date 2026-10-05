@@ -18,6 +18,34 @@ from torch.nn import functional as F
 import torch.distributed as dist
 from torch.autograd import Function
 
+from contextlib import contextmanager
+
+class CudaRNGTracker:
+    def __init__(self):
+        self.states={}
+
+    def add(self,name,seed):
+        assert name not in self.states
+
+        original_state=torch.cuda.get_rng_state()
+        torch.cuda.manual_seed(seed)
+        self.states[name]=torch.cuda.get_rng_state()
+        torch.cuda.set_rng_state(original_state)
+
+    @contextmanager
+    def fork(self,name):
+        original_state=torch.cuda.get_rng_state()
+        torch.cuda.set_rng_state(self.states[name])
+
+        try:
+            yield
+        finally:
+            self.states[name]=torch.cuda.get_rng_state()
+            torch.cuda.set_rng_state(original_state)
+
+tp_rng_tracker=CudaRNGTracker()
+
+
 class CopyToTP(Function):
     @staticmethod
     def forward(ctx,x,tp_group):
@@ -57,7 +85,7 @@ class ColumnParallelLinear(nn.Linear):
 
     def forward(self,x):
         x=CopyToTP.apply(x,self.tp_group)
-        return F.Linear(x,self.weight,self.bias)
+        return F.linear(x,self.weight,self.bias)
         
 class RowParallelLinear(nn.Linear):
     def __init__(self, in_features, out_features, bias = True,tp_group=None):
@@ -76,7 +104,7 @@ class RowParallelLinear(nn.Linear):
 
     def forward(self,x):
         local_output=F.linear(x,self.weight,None)
-        output=SumFromTP(local_output,self.tp_group)
+        output=SumFromTP.apply(local_output,self.tp_group)
         return output+self.bias if self.bias is not None else output
 
 
@@ -130,16 +158,19 @@ class CausalSelfAttention(nn.Module):
         v = v.view(B, T, self.local_n_head, self.head_dim).transpose(1, 2) # (B, nh, T, hs)
 
         # causal self-attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -> (B, nh, T, T)
-        if self.flash:
-            # efficient attention using Flash Attention CUDA kernels
-            y = torch.nn.functional.scaled_dot_product_attention(q, k, v, attn_mask=None, dropout_p=self.dropout if self.training else 0, is_causal=True)
-        else:
-            # manual implementation of attention
-            att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(k.size(-1)))
-            att = att.masked_fill(self.bias[:,:,:T,:T] == 0, float('-inf'))
-            att = F.softmax(att, dim=-1)
-            att = self.attn_dropout(att)
-            y = att @ v # (B, nh, T, T) x (B, nh, T, hs) -> (B, nh, T, hs)
+        with tp_rng_tracker.fork("attention"):
+            if self.flash:
+                # efficient attention using Flash Attention CUDA kernels
+                y = torch.nn.functional.scaled_dot_product_attention(q, k, v, attn_mask=None, dropout_p=self.dropout if self.training else 0, is_causal=True)
+            else:
+                # manual implementation of attention
+                att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(k.size(-1)))
+                att = att.masked_fill(self.bias[:,:,:T,:T] == 0, float('-inf'))
+                att = F.softmax(att, dim=-1)
+                att = self.attn_dropout(att)
+                y = att @ v # (B, nh, T, T) x (B, nh, T, hs) -> (B, nh, T, hs)
+
+        
         y = y.transpose(1, 2).contiguous().view(B, T, self.local_n_embd) # re-assemble all head outputs side by side
 
         # output projection
@@ -193,6 +224,7 @@ class GPT(nn.Module):
         assert config.vocab_size is not None
         assert config.block_size is not None
         self.config = config
+        self.tp_group=tp_group
 
         self.transformer = nn.ModuleDict(dict(
             wte = nn.Embedding(config.vocab_size, config.n_embd),
@@ -262,6 +294,27 @@ class GPT(nn.Module):
             loss = None
 
         return logits, loss
+
+    def load_dense_state_dict(self,dense_state_dict):
+        tp_rank = dist.get_rank(group = self.tp_group)
+        tp_size = dist.get_world_size(group = self.tp_group)
+
+        expected_state = self.state_dict()
+        assert set(expected_state) == set(dense_state_dict)
+
+        local_state={}
+
+        for name,tensor in dense_state_dict.items():
+            local_tensor = shard_dense_tensor(name, tensor, tp_rank, tp_size)
+
+            assert local_tensor.shape == expected_state[name].shape, (
+               f"{name}: 切分得到 {local_tensor.shape}, "
+               f"模型需要 {expected_state[name].shape}"
+            )
+
+            local_state[name] = local_tensor
+
+        self.load_state_dict(local_state, strict=True)
 
     def crop_block_size(self, block_size):
         # model surgery to decrease the block size if necessary
@@ -399,3 +452,33 @@ class GPT(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1)
 
         return idx
+
+def shard_dense_tensor(name,tensor,tp_rank,tp_size):
+    assert tp_size>0
+    assert 0<=tp_rank<tp_size
+
+    if name.endswith(("attn.c_attn.weight","attn.c_attn.bias")):
+        assert tensor.shape[0] % 3 == 0
+        n_embd = tensor.shape[0] // 3
+        assert n_embd % tp_size == 0
+
+        q, k, v = tensor.split(n_embd,dim=0)
+
+        local_size = n_embd // tp_size
+        start = tp_rank * local_size
+        end = start + local_size
+
+        return torch.cat([q[start : end], k[start : end], v[start : end]], dim=0,)
+
+    elif name.endswith(("mlp.c_fc.weight","mlp.c_fc.bias")):
+        assert tensor.shape[0] % tp_size == 0
+
+        return tensor.chunk(tp_size, dim=0)[tp_rank]
+
+    elif name.endswith(("attn.c_proj.weight","mlp.c_proj.weight")):
+        assert tensor.shape[1] % tp_size == 0
+
+        return tensor.chunk(tp_size, dim=1)[tp_rank]
+
+    else:
+        return tensor

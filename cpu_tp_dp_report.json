@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "device": "cpu",
+  "precision": "double",
+  "tp_size": 2,
+  "dp_size": 2,
+  "world_size": 4,
+  "dropout": 0.0,
+  "attention": "sdpa",
+  "grad_accum": 2,
+  "steps": 2,
+  "clip_norm": 0.01,
+  "check_overflow": true,
+  "threads_per_worker": 1,
+  "stages": [
+    "TP/DP group mapping",
+    "Dense weight loading, QKV layout and replicated parameters",
+    "step 0: forward / loss / accumulated backward",
+    "step 0: all parameter gradients vs global dense batch",
+    "step 0: global nonfinite-gradient consensus",
+    "step 0: TP gradient clipping",
+    "step 0: AdamW update and optimizer moments",
+    "step 1: forward / loss / accumulated backward",
+    "step 1: all parameter gradients vs global dense batch",
+    "step 1: global nonfinite-gradient consensus",
+    "step 1: TP gradient clipping",
+    "step 1: AdamW update and optimizer moments"
+  ],
+  "scope": "Model/group math; CPU mode substitutes CUDA RNG tracking only at dropout=0."
+}

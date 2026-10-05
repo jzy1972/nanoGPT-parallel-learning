@@ -304,7 +304,7 @@ if init_from == 'scratch':
 elif init_from == 'resume':
     print(f"Resuming training from {out_dir}")
     # resume training from a checkpoint.
-    ckpt_path = os.path.join(out_dir, f"ckpt{tp_rank:03d}.pt")
+    ckpt_path = os.path.join(out_dir, f"ckpt_tp{tp_rank:03d}.pt")
     checkpoint = torch.load(ckpt_path, map_location="cpu",weights_only=True,)
     assert checkpoint["tp_size"] == tp_size
     assert checkpoint["dp_size"] == dp_size
@@ -466,7 +466,7 @@ while True:
         if master_process:
             improved=losses["val"]<best_val_loss
             control[0]=min(best_val_loss,losses["val"])
-            contro[1]=int(iter_num>0 and (improved or always_save_checkpoint))
+            control[1]=int(iter_num>0 and (improved or always_save_checkpoint))
 
         dist.broadcast(control,src=0,group=dist.group.WORLD)
 
