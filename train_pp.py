@@ -98,7 +98,10 @@ def parse_args():
     parser.add_argument("--max-iters",type=int,default=1000,)
 
     parser.add_argument("--log-interval",type=int,default=10)
-    
+
+    parser.add_argument("--eval-interval", type=int, default=0)
+    parser.add_argument("--eval-iters", type=int, default=20)
+
     parser.add_argument("--local-rank", "--local_rank", type=int, default=None)
 
     args=parser.parse_args()
@@ -107,6 +110,55 @@ def parse_args():
         parser.error("需要满足 1 <= pp_size <= n_layer")
 
     return args
+
+@torch.no_grad()
+def forward_eval_microbatch(
+    stage,
+    token_ids,
+    parallel,
+    micro_batch_size,
+    seq_length,
+    device,
+    activation_dtype=torch.float32,
+):
+    if stage.is_first:
+        assert token_ids is not None
+        assert token_ids.shape == (micro_batch_size, seq_length)
+
+        stage_input = token_ids
+    else:
+        stage_input = recv_forward(
+            shape=(
+                micro_batch_size,
+                seq_length,
+                stage.config.n_embd,
+            ),
+            dtype=activation_dtype,
+            device=device,
+            src_rank=parallel["prev_rank"],
+            pp_group=parallel["pp_group"],
+            requires_grad=False,
+        )
+
+    stage_output = stage(stage_input)
+
+    if stage.is_last:
+        return stage_output
+
+    assert stage_output.shape == (
+        micro_batch_size,
+        seq_length,
+        stage.config.n_embd,
+    )
+    assert stage_output.dtype == activation_dtype
+
+    send_forward(
+        tensor=stage_output,
+        dst_rank=parallel["next_rank"],
+        pp_group=parallel["pp_group"],
+    )
+
+    return None
 
 def forward_microbatch(
     stage,
@@ -546,6 +598,116 @@ def train_pp_step(
         "grad_norm": update_result["grad_norm"],
     }
 
+@torch.no_grad()
+def evaluate_pp(
+    stage,
+    parallel,
+    data_path,
+    batch_size,
+    seq_length,
+    micro_batch_size,
+    eval_iters,
+    device,
+    generator,
+    activation_dtype=torch.float32,
+):
+    if batch_size <= 0:
+        raise ValueError("batch_size 必须大于 0")
+
+    if micro_batch_size <= 0:
+        raise ValueError("micro_batch_size 必须大于 0")
+
+    if eval_iters <= 0:
+        raise ValueError("eval_iters 必须大于 0")
+
+    if not 1 <= seq_length <= stage.config.block_size:
+        raise ValueError("seq_length 超出模型支持的范围")
+
+    was_training = stage.training
+    stage.eval()
+
+    try:
+        # stats[0]：loss 总和
+        # stats[1]：有效 token 总数
+        stats = torch.zeros(
+            2,
+            dtype=torch.float64,
+            device=device,
+        )
+
+        for _ in range(eval_iters):
+            token_ids, targets = get_pp_batch(
+                stage=stage,
+                parallel=parallel,
+                data_path=data_path,
+                batch_size=batch_size,
+                seq_length=seq_length,
+                device=device,
+                generator=generator,
+            )
+
+            for start in range(0, batch_size, micro_batch_size):
+                end = min(start + micro_batch_size, batch_size)
+                current_batch_size = end - start
+
+                micro_tokens = (
+                    token_ids[start:end]
+                    if stage.is_first
+                    else None
+                )
+
+                logits = forward_eval_microbatch(
+                    stage=stage,
+                    token_ids=micro_tokens,
+                    parallel=parallel,
+                    micro_batch_size=current_batch_size,
+                    seq_length=seq_length,
+                    device=device,
+                    activation_dtype=activation_dtype,
+                )
+
+                if stage.is_last:
+                    micro_targets = targets[start:end]
+
+                    loss_sum = F.cross_entropy(
+                        logits.reshape(-1, logits.size(-1)),
+                        micro_targets.reshape(-1),
+                        ignore_index=-1,
+                        reduction="sum",
+                    )
+
+                    valid_tokens = (micro_targets != -1).sum()
+
+                    stats[0].add_(
+                        loss_sum.to(dtype=torch.float64)
+                    )
+                    stats[1].add_(
+                        valid_tokens.to(dtype=torch.float64)
+                    )
+
+        # 各条流水线的最后阶段之间汇总统计量
+        if stage.is_last:
+            dist.all_reduce(
+                stats,
+                op=dist.ReduceOp.SUM,
+                group=parallel["dp_group"],
+            )
+
+        # 每条流水线内部，让所有阶段拿到汇总结果
+        dist.broadcast(
+            stats,
+            src=parallel["pp_last_rank"],
+            group=parallel["pp_group"],
+        )
+
+        if stats[1].item() == 0:
+            raise ValueError("整个评估过程没有有效标签")
+
+        return (stats[0] / stats[1]).item()
+
+    finally:
+        stage.train(was_training)
+
 def main():
     args=parse_args()
 
@@ -593,6 +755,29 @@ def main():
 
         data_bytes = os.path.getsize(train_data_path)
         token_bytes = np.dtype(np.uint16).itemsize
+
+        if args.eval_interval < 0:
+            raise ValueError("eval_interval 不能小于 0")
+
+        if args.eval_iters <= 0:
+            raise ValueError("eval_iters 必须大于 0")
+
+        val_data_path = None
+
+        if args.eval_interval > 0:
+            val_data_path = os.path.abspath(
+                os.path.join(args.data_dir, "val.bin")
+            )
+
+            val_bytes = os.path.getsize(val_data_path)
+
+            if val_bytes % token_bytes != 0:
+               raise ValueError("val.bin 的大小不符合 uint16 格式")
+
+            if val_bytes // token_bytes <= args.seq_length:
+               raise ValueError(
+                "val.bin 的 token 数必须大于 seq_length"
+               )
 
         if data_bytes % token_bytes != 0:
             raise ValueError("train.bin 的大小不符合 uint16 格式")
@@ -647,6 +832,11 @@ def main():
             args.seed + 10_000 + parallel["dp_rank"]
         )
 
+        eval_data_generator = torch.Generator(device="cpu")
+        eval_data_generator.manual_seed(
+            args.seed + 20_000 + parallel["dp_rank"]
+        )
+
         stage.train()
 
         for iter_num in range(args.max_iters):
@@ -673,6 +863,34 @@ def main():
                grad_clip=args.grad_clip,
                activation_dtype=torch.float32,
             )
+            should_eval = (
+                args.eval_interval > 0
+                and (
+                    (iter_num + 1) % args.eval_interval == 0
+                    or iter_num + 1 == args.max_iters
+                )
+            )
+
+            if should_eval:
+                val_loss = evaluate_pp(
+                    stage=stage,
+                    parallel=parallel,
+                    data_path=val_data_path,
+                    batch_size=args.batch_size,
+                    seq_length=args.seq_length,
+                    micro_batch_size=args.micro_batch_size,
+                    eval_iters=args.eval_iters,
+                    device=device,
+                    generator=eval_data_generator,
+                    activation_dtype=torch.float32,
+                )
+
+                if parallel["world_rank"] == 0:
+                    print(
+                        f"eval after iter {iter_num}: "
+                        f"val_loss={val_loss:.6f}",
+                        flush=True,
+                    )
 
             should_log = (
                iter_num % args.log_interval == 0

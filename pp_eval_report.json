@@ -1,0 +1,1263 @@
+{
+  "status": "passed",
+  "scope": "PP_DP_evaluation_helpers_and_actual_training_main",
+  "requested_cases": [
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      4,
+      1
+    ]
+  ],
+  "completed_cases": [
+    {
+      "status": "passed",
+      "pp_size": 1,
+      "dp_size": 4,
+      "models": [
+        {
+          "status": "passed",
+          "bias": true,
+          "dropout": 0.0,
+          "trials": [
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "was_training": true,
+              "expected_loss": 4.161515509483167,
+              "valid_tokens": 480,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.159224033461352,
+              "valid_tokens": 480,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 5,
+              "was_training": true,
+              "expected_loss": 4.167219722902252,
+              "valid_tokens": 480,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.14328681200116,
+              "valid_tokens": 90,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.144229522888285,
+              "valid_tokens": 72,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.157676275432065,
+              "valid_tokens": 288,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_batch",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.146719463754506,
+              "valid_tokens": 80,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "all_empty",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": null,
+              "valid_tokens": 0,
+              "expected_exception": "all_empty_value_error",
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "injected_sampler_error",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.14328681200116,
+              "valid_tokens": 90,
+              "expected_exception": "sampler_error",
+              "data_calls": 2,
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "status": "passed",
+          "bias": true,
+          "dropout": 0.2,
+          "trials": [
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "was_training": true,
+              "expected_loss": 4.161515509483167,
+              "valid_tokens": 480,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.159224033461352,
+              "valid_tokens": 480,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 5,
+              "was_training": true,
+              "expected_loss": 4.167219722902252,
+              "valid_tokens": 480,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.14328681200116,
+              "valid_tokens": 90,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.144229522888285,
+              "valid_tokens": 72,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.157676275432065,
+              "valid_tokens": 288,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_batch",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.146719463754506,
+              "valid_tokens": 80,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "all_empty",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": null,
+              "valid_tokens": 0,
+              "expected_exception": "all_empty_value_error",
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "injected_sampler_error",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.14328681200116,
+              "valid_tokens": 90,
+              "expected_exception": "sampler_error",
+              "data_calls": 2,
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "dropout": 0.0,
+          "trials": [
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "was_training": true,
+              "expected_loss": 4.155758668350918,
+              "valid_tokens": 480,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.163462711521769,
+              "valid_tokens": 480,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 5,
+              "was_training": true,
+              "expected_loss": 4.174100114920343,
+              "valid_tokens": 480,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.173570889017828,
+              "valid_tokens": 90,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.173138111268279,
+              "valid_tokens": 72,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.161992058437161,
+              "valid_tokens": 288,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_batch",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.177708658781723,
+              "valid_tokens": 80,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "all_empty",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": null,
+              "valid_tokens": 0,
+              "expected_exception": "all_empty_value_error",
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "injected_sampler_error",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.173570889017828,
+              "valid_tokens": 90,
+              "expected_exception": "sampler_error",
+              "data_calls": 2,
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "dropout": 0.2,
+          "trials": [
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "was_training": true,
+              "expected_loss": 4.155758668350918,
+              "valid_tokens": 480,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.163462711521769,
+              "valid_tokens": 480,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 5,
+              "was_training": true,
+              "expected_loss": 4.174100114920343,
+              "valid_tokens": 480,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.173570889017828,
+              "valid_tokens": 90,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.173138111268279,
+              "valid_tokens": 72,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.161992058437161,
+              "valid_tokens": 288,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_batch",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.177708658781723,
+              "valid_tokens": 80,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "all_empty",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": null,
+              "valid_tokens": 0,
+              "expected_exception": "all_empty_value_error",
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "injected_sampler_error",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.173570889017828,
+              "valid_tokens": 90,
+              "expected_exception": "sampler_error",
+              "data_calls": 2,
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "status": "passed",
+      "pp_size": 2,
+      "dp_size": 2,
+      "models": [
+        {
+          "status": "passed",
+          "bias": true,
+          "dropout": 0.0,
+          "trials": [
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "was_training": true,
+              "expected_loss": 4.164023463588405,
+              "valid_tokens": 240,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.157902274109963,
+              "valid_tokens": 240,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 5,
+              "was_training": true,
+              "expected_loss": 4.167347366215493,
+              "valid_tokens": 240,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.153311395901794,
+              "valid_tokens": 27,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.138305464315428,
+              "valid_tokens": 15,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.173682325704098,
+              "valid_tokens": 144,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_batch",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.169886658388854,
+              "valid_tokens": 24,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "all_empty",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": null,
+              "valid_tokens": 0,
+              "expected_exception": "all_empty_value_error",
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "injected_sampler_error",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.153311395901794,
+              "valid_tokens": 27,
+              "expected_exception": "sampler_error",
+              "data_calls": 2,
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "status": "passed",
+          "bias": true,
+          "dropout": 0.2,
+          "trials": [
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "was_training": true,
+              "expected_loss": 4.164023463588405,
+              "valid_tokens": 240,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.157902274109963,
+              "valid_tokens": 240,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 5,
+              "was_training": true,
+              "expected_loss": 4.167347366215493,
+              "valid_tokens": 240,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.153311395901794,
+              "valid_tokens": 27,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.138305464315428,
+              "valid_tokens": 15,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.173682325704098,
+              "valid_tokens": 144,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_batch",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.169886658388854,
+              "valid_tokens": 24,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "all_empty",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": null,
+              "valid_tokens": 0,
+              "expected_exception": "all_empty_value_error",
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "injected_sampler_error",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.153311395901794,
+              "valid_tokens": 27,
+              "expected_exception": "sampler_error",
+              "data_calls": 2,
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "dropout": 0.0,
+          "trials": [
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "was_training": true,
+              "expected_loss": 4.153814603283345,
+              "valid_tokens": 240,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.172006908801783,
+              "valid_tokens": 240,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 5,
+              "was_training": true,
+              "expected_loss": 4.171681378746515,
+              "valid_tokens": 240,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.1879334484892485,
+              "valid_tokens": 27,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.173192294931125,
+              "valid_tokens": 15,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.17951646165431,
+              "valid_tokens": 144,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_batch",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.208734789018433,
+              "valid_tokens": 24,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "all_empty",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": null,
+              "valid_tokens": 0,
+              "expected_exception": "all_empty_value_error",
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "injected_sampler_error",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.1879334484892485,
+              "valid_tokens": 27,
+              "expected_exception": "sampler_error",
+              "data_calls": 2,
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "dropout": 0.2,
+          "trials": [
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "was_training": true,
+              "expected_loss": 4.153814603283345,
+              "valid_tokens": 240,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.172006908801783,
+              "valid_tokens": 240,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 5,
+              "was_training": true,
+              "expected_loss": 4.171681378746515,
+              "valid_tokens": 240,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.1879334484892485,
+              "valid_tokens": 27,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.173192294931125,
+              "valid_tokens": 15,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.17951646165431,
+              "valid_tokens": 144,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_batch",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.208734789018433,
+              "valid_tokens": 24,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "all_empty",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": null,
+              "valid_tokens": 0,
+              "expected_exception": "all_empty_value_error",
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "injected_sampler_error",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.1879334484892485,
+              "valid_tokens": 27,
+              "expected_exception": "sampler_error",
+              "data_calls": 2,
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "status": "passed",
+      "pp_size": 4,
+      "dp_size": 1,
+      "models": [
+        {
+          "status": "passed",
+          "bias": true,
+          "dropout": 0.0,
+          "trials": [
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "was_training": true,
+              "expected_loss": 4.1677493653488,
+              "valid_tokens": 120,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.157333283295698,
+              "valid_tokens": 120,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 5,
+              "was_training": true,
+              "expected_loss": 4.162975732157364,
+              "valid_tokens": 120,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.1443996237817124,
+              "valid_tokens": 9,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.158311156683315,
+              "valid_tokens": 72,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_batch",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.140257973577072,
+              "valid_tokens": 8,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "all_empty",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": null,
+              "valid_tokens": 0,
+              "expected_exception": "all_empty_value_error",
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "injected_sampler_error",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.1443996237817124,
+              "valid_tokens": 9,
+              "expected_exception": "sampler_error",
+              "data_calls": 2,
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "status": "passed",
+          "bias": true,
+          "dropout": 0.2,
+          "trials": [
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "was_training": true,
+              "expected_loss": 4.1677493653488,
+              "valid_tokens": 120,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.157333283295698,
+              "valid_tokens": 120,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 5,
+              "was_training": true,
+              "expected_loss": 4.162975732157364,
+              "valid_tokens": 120,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.1443996237817124,
+              "valid_tokens": 9,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.158311156683315,
+              "valid_tokens": 72,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_batch",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.140257973577072,
+              "valid_tokens": 8,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "all_empty",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": null,
+              "valid_tokens": 0,
+              "expected_exception": "all_empty_value_error",
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "injected_sampler_error",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.1443996237817124,
+              "valid_tokens": 9,
+              "expected_exception": "sampler_error",
+              "data_calls": 2,
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "dropout": 0.0,
+          "trials": [
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "was_training": true,
+              "expected_loss": 4.160614127503025,
+              "valid_tokens": 120,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.165027615875047,
+              "valid_tokens": 120,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 5,
+              "was_training": true,
+              "expected_loss": 4.170872734065941,
+              "valid_tokens": 120,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.169687300057047,
+              "valid_tokens": 9,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.174451601548608,
+              "valid_tokens": 72,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_batch",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.159177562608148,
+              "valid_tokens": 8,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "all_empty",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": null,
+              "valid_tokens": 0,
+              "expected_exception": "all_empty_value_error",
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "injected_sampler_error",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.169687300057047,
+              "valid_tokens": 9,
+              "expected_exception": "sampler_error",
+              "data_calls": 2,
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "dropout": 0.2,
+          "trials": [
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "was_training": true,
+              "expected_loss": 4.160614127503025,
+              "valid_tokens": 120,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.165027615875047,
+              "valid_tokens": 120,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 5,
+              "was_training": true,
+              "expected_loss": 4.170872734065941,
+              "valid_tokens": 120,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.169687300057047,
+              "valid_tokens": 9,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": 4.174451601548608,
+              "valid_tokens": 72,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "one_empty_batch",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.159177562608148,
+              "valid_tokens": 8,
+              "expected_exception": null,
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "all_empty",
+              "micro_batch_size": 2,
+              "was_training": false,
+              "expected_loss": null,
+              "valid_tokens": 0,
+              "expected_exception": "all_empty_value_error",
+              "data_calls": 3,
+              "status": "passed"
+            },
+            {
+              "pattern": "injected_sampler_error",
+              "micro_batch_size": 2,
+              "was_training": true,
+              "expected_loss": 4.169687300057047,
+              "valid_tokens": 9,
+              "expected_exception": "sampler_error",
+              "data_calls": 2,
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "actual_main": {
+    "status": "passed",
+    "training": {
+      "status": "passed",
+      "pp_size": 2,
+      "dp_size": 2,
+      "dtype": "float32",
+      "bias": true,
+      "grad_clip": 0.01,
+      "steps": [
+        {
+          "iter": 0,
+          "loss": 4.1579508781433105,
+          "norm": 2.1696269512176514
+        },
+        {
+          "iter": 1,
+          "loss": 4.175129413604736,
+          "norm": 1.8048499822616577
+        },
+        {
+          "iter": 2,
+          "loss": 4.166262626647949,
+          "norm": 1.7865065336227417
+        }
+      ],
+      "actual_rank0_training_logs": [
+        "iter 0: loss=4.157951, grad_norm=2.169627, stepped=True",
+        "iter 1: loss=4.175129, grad_norm=1.804850, stepped=True",
+        "iter 2: loss=4.166263, grad_norm=1.786506, stepped=True"
+      ],
+      "launch": "spawn workers setting env:// environment; call actual train_pp.main",
+      "torchrun_cli_checked": false,
+      "group_destroyed": true
+    },
+    "evaluations": [
+      {
+        "after_iter": 1,
+        "loss": 4.161118854085604,
+        "valid_tokens": 240
+      },
+      {
+        "after_iter": 2,
+        "loss": 4.154938569664955,
+        "valid_tokens": 240
+      }
+    ],
+    "actual_rank0_eval_logs": [
+      "eval after iter 1: val_loss=4.161119",
+      "eval after iter 2: val_loss=4.154939"
+    ],
+    "eval_interval": 2,
+    "eval_iters": 3,
+    "eval_and_train_generators_independent": true,
+    "parameters_gradients_optimizer_and_rng_preserved": true
+  },
+  "not_checked": [
+    "CUDA/NCCL",
+    "AMP",
+    "nonzero-dropout training equivalence",
+    "checkpoint/resume",
+    "LR schedule",
+    "real corpus",
+    "torchrun CLI",
+    "performance"
+  ],
+  "source_sha256": {
+    "model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
+    "model_pp.py": "750d5bf218a754357c5c380baefdf98b8e6db16f0169ea80c657e55815487b7c",
+    "parallel_utils.py": "f0f73fb2b5735baeb4820e38af3073385a08f45f4e2058042703c59a70b185fb",
+    "train_pp.py": "4b391b04634713490ab74840608874d98fb43f9a98f9556db1ea514025e94796",
+    "checker:verify_pp_microbatch.py": "bc100252d205ef49b80a9f48c6cadaaa78b4d8e9bc630d3dd3d794a38a0e8c79",
+    "checker:verify_pp_grad_sync.py": "abef578c6269ab666304e8a972a3cf66ae2e5c729ac1051378ff3d20fd3cf9bb",
+    "checker:verify_pp_optimizer.py": "d287bf3c361015be7011df3656f628ada445dc231fed0df216ca48fca8e0d464",
+    "checker:verify_pp_training.py": "5bbf96c71737d11a3b53eec6a20a9d52da5cd5d7088e03588bb797f23cb975aa",
+    "checker:verify_pp_eval.py": "08db5be8f6c152bda64813d801425299561ed4001d554d4746e475beae8dea90"
+  },
+  "torch_version": "2.12.1+cpu",
+  "backend": "gloo",
+  "device": "cpu",
+  "threads": 1,
+  "helper_dtype": "float64",
+  "main_dtype": "float32",
+  "helper_dropouts": [
+    0.0,
+    0.2
+  ],
+  "main_dropout": 0.0,
+  "micro_batch_sizes": [
+    1,
+    2,
+    5
+  ],
+  "batch_size": 5,
+  "seq_len": 8,
+  "eval_iters": 3,
+  "eval_interval": 2,
+  "steps": 3
+}
