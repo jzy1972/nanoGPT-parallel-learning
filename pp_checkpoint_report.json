@@ -1,0 +1,548 @@
+{
+  "status": "passed",
+  "scope": "PP_DP_checkpoint_save_load_and_actual_main_resume",
+  "requested_cases": [
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      4,
+      1
+    ]
+  ],
+  "completed_cases": [
+    {
+      "status": "passed",
+      "pp_size": 1,
+      "dp_size": 4,
+      "models": [
+        {
+          "status": "passed",
+          "bias": true,
+          "dropout": 0.0,
+          "warmup_steps": 2,
+          "resume_steps": 2,
+          "dense_reference": true,
+          "exact_resume": true,
+          "failure_cases": [
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: reject duplicate step directory",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: reject live gradients on one rank",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / missing_manifest",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / missing_rng_file",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / manifest_topology",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / manifest_training_config",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / manifest_model_config",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / manifest_completed_iters",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / manifest_version",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / stage_rank",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / stage_optimizer_order",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / stage_optimizer_lr",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / stage_model_shape",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / stage_model_dtype",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / rng_rank",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / rng_dtype",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / rng_broken_file",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: all-rank rejection / rng_invalid_length",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: single-rank write failure consensus",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=1, DP=4, bias=True, dropout=0.0: reject incomplete save",
+              "all_ranks_rejected": true
+            }
+          ]
+        },
+        {
+          "status": "passed",
+          "bias": true,
+          "dropout": 0.2,
+          "warmup_steps": 2,
+          "resume_steps": 2,
+          "dense_reference": false,
+          "exact_resume": true,
+          "failure_cases": []
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "dropout": 0.0,
+          "warmup_steps": 2,
+          "resume_steps": 2,
+          "dense_reference": true,
+          "exact_resume": true,
+          "failure_cases": []
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "dropout": 0.2,
+          "warmup_steps": 2,
+          "resume_steps": 2,
+          "dense_reference": false,
+          "exact_resume": true,
+          "failure_cases": []
+        }
+      ]
+    },
+    {
+      "status": "passed",
+      "pp_size": 2,
+      "dp_size": 2,
+      "models": [
+        {
+          "status": "passed",
+          "bias": true,
+          "dropout": 0.0,
+          "warmup_steps": 2,
+          "resume_steps": 2,
+          "dense_reference": true,
+          "exact_resume": true,
+          "failure_cases": [
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: reject duplicate step directory",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: reject live gradients on one rank",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / missing_manifest",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / missing_rng_file",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / manifest_topology",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / manifest_training_config",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / manifest_model_config",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / manifest_completed_iters",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / manifest_version",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / stage_rank",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / stage_optimizer_order",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / stage_optimizer_lr",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / stage_model_shape",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / stage_model_dtype",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / rng_rank",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / rng_dtype",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / rng_broken_file",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: all-rank rejection / rng_invalid_length",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: single-rank write failure consensus",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=2, DP=2, bias=True, dropout=0.0: reject incomplete save",
+              "all_ranks_rejected": true
+            }
+          ]
+        },
+        {
+          "status": "passed",
+          "bias": true,
+          "dropout": 0.2,
+          "warmup_steps": 2,
+          "resume_steps": 2,
+          "dense_reference": false,
+          "exact_resume": true,
+          "failure_cases": []
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "dropout": 0.0,
+          "warmup_steps": 2,
+          "resume_steps": 2,
+          "dense_reference": true,
+          "exact_resume": true,
+          "failure_cases": []
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "dropout": 0.2,
+          "warmup_steps": 2,
+          "resume_steps": 2,
+          "dense_reference": false,
+          "exact_resume": true,
+          "failure_cases": []
+        }
+      ]
+    },
+    {
+      "status": "passed",
+      "pp_size": 4,
+      "dp_size": 1,
+      "models": [
+        {
+          "status": "passed",
+          "bias": true,
+          "dropout": 0.0,
+          "warmup_steps": 2,
+          "resume_steps": 2,
+          "dense_reference": true,
+          "exact_resume": true,
+          "failure_cases": [
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: reject duplicate step directory",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: reject live gradients on one rank",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / missing_manifest",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / missing_rng_file",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / manifest_topology",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / manifest_training_config",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / manifest_model_config",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / manifest_completed_iters",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / manifest_version",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / stage_rank",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / stage_optimizer_order",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / stage_optimizer_lr",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / stage_model_shape",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / stage_model_dtype",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / rng_rank",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / rng_dtype",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / rng_broken_file",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: all-rank rejection / rng_invalid_length",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: single-rank write failure consensus",
+              "all_ranks_rejected": true
+            },
+            {
+              "status": "passed",
+              "case": "PP=4, DP=1, bias=True, dropout=0.0: reject incomplete save",
+              "all_ranks_rejected": true
+            }
+          ]
+        },
+        {
+          "status": "passed",
+          "bias": true,
+          "dropout": 0.2,
+          "warmup_steps": 2,
+          "resume_steps": 2,
+          "dense_reference": false,
+          "exact_resume": true,
+          "failure_cases": []
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "dropout": 0.0,
+          "warmup_steps": 2,
+          "resume_steps": 2,
+          "dense_reference": true,
+          "exact_resume": true,
+          "failure_cases": []
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "dropout": 0.2,
+          "warmup_steps": 2,
+          "resume_steps": 2,
+          "dense_reference": false,
+          "exact_resume": true,
+          "failure_cases": []
+        }
+      ]
+    }
+  ],
+  "actual_main": {
+    "status": "passed",
+    "pp_size": 2,
+    "dp_size": 2,
+    "bias": true,
+    "dropout": 0.2,
+    "dtype": "float32",
+    "total_iters": 4,
+    "checkpoint_boundary": 2,
+    "exact_resume": true,
+    "continuous_iters": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "resumed_iters": [
+      2,
+      3
+    ],
+    "eval_completed_iters": [
+      2,
+      4
+    ],
+    "saved_completed_iters": [
+      2,
+      4
+    ]
+  },
+  "not_checked": [
+    "CUDA/NCCL",
+    "AMP",
+    "different PP/DP topology resume",
+    "LR schedule",
+    "torchrun CLI",
+    "power-loss durability",
+    "real corpus",
+    "performance"
+  ],
+  "source_sha256": {
+    "model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
+    "model_pp.py": "750d5bf218a754357c5c380baefdf98b8e6db16f0169ea80c657e55815487b7c",
+    "parallel_utils.py": "f0f73fb2b5735baeb4820e38af3073385a08f45f4e2058042703c59a70b185fb",
+    "train_pp.py": "990b6fcda48525b380a81e8a218c797c1fb18fe1eb8df1b56190914ea1b60505",
+    "checker:verify_pp_microbatch.py": "bc100252d205ef49b80a9f48c6cadaaa78b4d8e9bc630d3dd3d794a38a0e8c79",
+    "checker:verify_pp_grad_sync.py": "abef578c6269ab666304e8a972a3cf66ae2e5c729ac1051378ff3d20fd3cf9bb",
+    "checker:verify_pp_optimizer.py": "d287bf3c361015be7011df3656f628ada445dc231fed0df216ca48fca8e0d464",
+    "checker:verify_pp_training.py": "5bbf96c71737d11a3b53eec6a20a9d52da5cd5d7088e03588bb797f23cb975aa",
+    "checkpoint_pp.py": "36fbfd1d44eaea9b5e37cc1cf8cc2446d9b311c3a1023e3cc482ad8d2a508c56",
+    "checker:verify_pp_checkpoint.py": "ee5ec635bfc4f064eb6ec73553f3e0a67ea830bec7e9c1ddc2d4feec2d2c6d99"
+  },
+  "torch_version": "2.12.1+cpu",
+  "backend": "gloo",
+  "device": "cpu",
+  "threads": 1,
+  "helper_dtype": "float64",
+  "main_dtype": "float32",
+  "dropouts": [
+    0.0,
+    0.2
+  ],
+  "warmup_steps": 2,
+  "resume_steps": 2,
+  "batch_size": 5,
+  "seq_len": 8,
+  "micro_batch_size": 2,
+  "eval_interval": 2,
+  "eval_iters": 2,
+  "seed": 1337,
+  "learning_rate": 0.0006,
+  "weight_decay": 0.1,
+  "betas": [
+    0.9,
+    0.95
+  ],
+  "grad_clip": 0.01,
+  "timeout": 120,
+  "model_dimensions": {
+    "n_layer": 5,
+    "n_head": 4,
+    "n_embd": 32,
+    "vocab_size": 64,
+    "block_size": 16
+  }
+}

@@ -4,6 +4,8 @@ import os
 import torch
 import numpy as np
 
+from checkpoint_pp import save_pp_checkpoint, load_pp_checkpoint
+
 import math
 
 from model import GPTConfig
@@ -82,6 +84,11 @@ def parse_args():
     parser.add_argument("--block-size", type=int, default=1024)
     parser.add_argument("--dropout", type=float, default=0.0)
     parser.add_argument("--no-bias", action="store_true")
+
+    parser.add_argument("--resume",type=str,default=None,)
+
+    parser.add_argument("--out-dir", type=str, default="out-pp")
+    parser.add_argument("--save-interval", type=int, default=0)
 
     parser.add_argument("--data-dir", type=str, required=True)
 
@@ -762,6 +769,9 @@ def main():
         if args.eval_iters <= 0:
             raise ValueError("eval_iters 必须大于 0")
 
+        if args.save_interval < 0:
+            raise ValueError("save_interval 不能小于 0")
+
         val_data_path = None
 
         if args.eval_interval > 0:
@@ -837,9 +847,45 @@ def main():
             args.seed + 20_000 + parallel["dp_rank"]
         )
 
+        training_config = {
+            "batch_size": args.batch_size,
+            "seq_length": args.seq_length,
+            "micro_batch_size": args.micro_batch_size,
+            "grad_clip": args.grad_clip,
+            "eval_interval": args.eval_interval,
+            "eval_iters":args.eval_iters,
+        }
+
+        start_iter = 0
+
+        if args.resume is not None:
+            start_iter = load_pp_checkpoint(
+               stage=stage,
+               optimizer=optimizer,
+               parallel=parallel,
+               checkpoint_dir=args.resume,
+               train_data_generator=train_data_generator,
+               eval_data_generator=eval_data_generator,
+               training_config=training_config,
+               device=device,
+            )
+
+        if parallel["world_rank"] == 0:
+            print(
+               f"resumed checkpoint: {args.resume}; "
+               f"completed_iters={start_iter}",
+               flush=True,
+            )
+
+        if args.max_iters < start_iter:
+            raise ValueError(
+               f"max_iters={args.max_iters} "
+               f"小于已经完成的迭代数 {start_iter}"
+            )
+
         stage.train()
 
-        for iter_num in range(args.max_iters):
+        for iter_num in range(start_iter,args.max_iters):
             token_ids, targets = get_pp_batch(
                stage=stage,
                parallel=parallel,
@@ -889,6 +935,33 @@ def main():
                     print(
                         f"eval after iter {iter_num}: "
                         f"val_loss={val_loss:.6f}",
+                        flush=True,
+                    )
+
+            should_save = (
+                args.save_interval > 0
+                and (
+                    (iter_num + 1) % args.save_interval == 0
+                    or iter_num + 1 == args.max_iters
+                )
+            )
+
+            if should_save:
+                checkpoint_path = save_pp_checkpoint(
+                    stage=stage,
+                    optimizer=optimizer,
+                    parallel=parallel,
+                    checkpoint_root=args.out_dir,
+                    completed_iters=iter_num + 1,
+                    train_data_generator=train_data_generator,
+                    eval_data_generator=eval_data_generator,
+                    training_config=training_config,
+                    device=device,
+                )
+
+                if parallel["world_rank"] == 0:
+                    print(
+                        f"saved checkpoint: {checkpoint_path}",
                         flush=True,
                     )
 
