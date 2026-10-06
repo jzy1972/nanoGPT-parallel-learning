@@ -1,0 +1,5760 @@
+{
+  "status": "passed",
+  "scope": "GPipe_schedule_and_local_accumulated_gradients",
+  "requested_cases": [
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      4,
+      1
+    ]
+  ],
+  "completed_cases": [
+    {
+      "pp_size": 1,
+      "dp_size": 4,
+      "status": "passed",
+      "models": [
+        {
+          "bias": true,
+          "status": "passed",
+          "trials": [
+            {
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 1.942890293094024e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.942890293094024e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.153724751647964,
+                      "returned_loss": 4.153724751647963,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.193613902498741,
+                      "returned_loss": 4.19361390249874,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.179697897539449,
+                      "returned_loss": 4.179697897539448,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.158325417542047,
+                      "returned_loss": 4.158325417542046,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.6653345369377348e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.1810480261116565,
+                      "returned_loss": 4.181048026111656,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.208069644887681,
+                      "returned_loss": 4.20806964488768,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.6653345369377348e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.124761017329702,
+                      "returned_loss": 4.124761017329701,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.161981578614438,
+                      "returned_loss": 4.161981578614437,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "pattern": "empty_microbatch",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 2.220446049250313e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.220446049250313e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.148923323790678,
+                      "returned_loss": 4.148923323790678,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.1927327507167185,
+                      "returned_loss": 4.192732750716719,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.6653345369377348e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.152578777786893,
+                      "returned_loss": 4.152578777786893,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.160318996119224,
+                      "returned_loss": 4.160318996119224,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.6653345369377348e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.1879466443276465,
+                      "returned_loss": 4.1879466443276465,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.197234026490382,
+                      "returned_loss": 4.197234026490381,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.1228799617703125,
+                      "returned_loss": 4.1228799617703125,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.149149063713228,
+                      "returned_loss": 4.149149063713228,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 1.1102230246251565e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 8.326672684688674e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.153724751647964,
+                      "returned_loss": 4.153724751647963,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.193613902498741,
+                      "returned_loss": 4.19361390249874,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 8.326672684688674e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.179697897539449,
+                      "returned_loss": 4.179697897539448,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.158325417542047,
+                      "returned_loss": 4.158325417542047,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 8.326672684688674e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.1810480261116565,
+                      "returned_loss": 4.1810480261116565,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.208069644887681,
+                      "returned_loss": 4.208069644887681,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.124761017329702,
+                      "returned_loss": 4.124761017329701,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.161981578614438,
+                      "returned_loss": 4.161981578614437,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "pattern": "empty_microbatch",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 1.1102230246251565e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.120493979786343,
+                      "returned_loss": 4.1204939797863425,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.182677296582753,
+                      "returned_loss": 4.182677296582752,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.172153626626792,
+                      "returned_loss": 4.172153626626791,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.172495698834467,
+                      "returned_loss": 4.172495698834467,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.182986937876783,
+                      "returned_loss": 4.182986937876783,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.193978286434843,
+                      "returned_loss": 4.193978286434843,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.131921661889506,
+                      "returned_loss": 4.131921661889507,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.144628509374296,
+                      "returned_loss": 4.144628509374295,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.153724751647964,
+                      "returned_loss": 4.153724751647964,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.193613902498741,
+                      "returned_loss": 4.193613902498741,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.179697897539449,
+                      "returned_loss": 4.179697897539449,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.158325417542047,
+                      "returned_loss": 4.158325417542047,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.1810480261116565,
+                      "returned_loss": 4.1810480261116565,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.208069644887681,
+                      "returned_loss": 4.208069644887681,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.124761017329702,
+                      "returned_loss": 4.124761017329702,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.161981578614438,
+                      "returned_loss": 4.161981578614438,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "bias": false,
+          "status": "passed",
+          "trials": [
+            {
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 6.938893903907228e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.140395078590038,
+                      "returned_loss": 4.140395078590038,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.160808425038445,
+                      "returned_loss": 4.160808425038445,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.166340235137852,
+                      "returned_loss": 4.166340235137851,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.129678782397685,
+                      "returned_loss": 4.129678782397685,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.17090347464019,
+                      "returned_loss": 4.17090347464019,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.185460537551657,
+                      "returned_loss": 4.185460537551657,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 6.591949208711867e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.155845475452875,
+                      "returned_loss": 4.155845475452875,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.14536372623996,
+                      "returned_loss": 4.14536372623996,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "pattern": "empty_microbatch",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 6.938893903907228e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.140370147494565,
+                      "returned_loss": 4.140370147494565,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.162760677245105,
+                      "returned_loss": 4.162760677245105,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.178201205630147,
+                      "returned_loss": 4.178201205630147,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.1297996878449865,
+                      "returned_loss": 4.1297996878449865,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.173510170249369,
+                      "returned_loss": 4.173510170249369,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.174967680781662,
+                      "returned_loss": 4.174967680781662,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.160009998846419,
+                      "returned_loss": 4.160009998846419,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.149642219560561,
+                      "returned_loss": 4.149642219560562,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.140395078590038,
+                      "returned_loss": 4.140395078590039,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.160808425038445,
+                      "returned_loss": 4.160808425038445,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.166340235137852,
+                      "returned_loss": 4.166340235137851,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.129678782397685,
+                      "returned_loss": 4.129678782397685,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.17090347464019,
+                      "returned_loss": 4.17090347464019,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.185460537551657,
+                      "returned_loss": 4.1854605375516565,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.163336342344337e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.155845475452875,
+                      "returned_loss": 4.155845475452875,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.14536372623996,
+                      "returned_loss": 4.1453637262399585,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "pattern": "empty_microbatch",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 6.245004513516506e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.141191879009487,
+                      "returned_loss": 4.141191879009487,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.172614333208391,
+                      "returned_loss": 4.17261433320839,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.178568557414876,
+                      "returned_loss": 4.178568557414875,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.139085807152704,
+                      "returned_loss": 4.139085807152704,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.1701376606218545,
+                      "returned_loss": 4.1701376606218545,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.1791613209333915,
+                      "returned_loss": 4.1791613209333915,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 6.245004513516506e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.148022063653376,
+                      "returned_loss": 4.148022063653376,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.159602077804737,
+                      "returned_loss": 4.1596020778047365,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.140395078590038,
+                      "returned_loss": 4.140395078590038,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.160808425038445,
+                      "returned_loss": 4.160808425038445,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.166340235137852,
+                      "returned_loss": 4.166340235137852,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.129678782397685,
+                      "returned_loss": 4.129678782397685,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.17090347464019,
+                      "returned_loss": 4.17090347464019,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.185460537551657,
+                      "returned_loss": 4.185460537551657,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.155845475452875,
+                      "returned_loss": 4.155845475452875,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.14536372623996,
+                      "returned_loss": 4.14536372623996,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pp_size": 2,
+      "dp_size": 2,
+      "status": "passed",
+      "models": [
+        {
+          "bias": true,
+          "status": "passed",
+          "trials": [
+            {
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 1.942890293094024e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.153724751647964,
+                      "returned_loss": 4.153724751647963,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.193613902498741,
+                      "returned_loss": 4.19361390249874,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.179697897539449,
+                      "returned_loss": 4.179697897539448,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.158325417542047,
+                      "returned_loss": 4.158325417542046,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "pattern": "empty_microbatch",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 2.220446049250313e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 2.220446049250313e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.148923323790678,
+                      "returned_loss": 4.148923323790678,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.1927327507167185,
+                      "returned_loss": 4.192732750716719,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.152578777786893,
+                      "returned_loss": 4.152578777786893,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.160318996119224,
+                      "returned_loss": 4.160318996119224,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 8.326672684688674e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.153724751647964,
+                      "returned_loss": 4.153724751647963,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.193613902498741,
+                      "returned_loss": 4.19361390249874,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 8.326672684688674e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.179697897539449,
+                      "returned_loss": 4.179697897539448,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.158325417542047,
+                      "returned_loss": 4.158325417542047,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "pattern": "empty_microbatch",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 1.1102230246251565e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 8.326672684688674e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.120493979786343,
+                      "returned_loss": 4.1204939797863425,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.182677296582753,
+                      "returned_loss": 4.182677296582752,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.172153626626792,
+                      "returned_loss": 4.172153626626791,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.172495698834467,
+                      "returned_loss": 4.172495698834467,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.153724751647964,
+                      "returned_loss": 4.153724751647964,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.193613902498741,
+                      "returned_loss": 4.193613902498741,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.179697897539449,
+                      "returned_loss": 4.179697897539449,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.158325417542047,
+                      "returned_loss": 4.158325417542047,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "bias": false,
+          "status": "passed",
+          "trials": [
+            {
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 6.938893903907228e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.140395078590038,
+                      "returned_loss": 4.140395078590038,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.160808425038445,
+                      "returned_loss": 4.160808425038445,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.166340235137852,
+                      "returned_loss": 4.166340235137851,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.129678782397685,
+                      "returned_loss": 4.129678782397685,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "pattern": "empty_microbatch",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 6.938893903907228e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.140370147494565,
+                      "returned_loss": 4.140370147494565,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.162760677245105,
+                      "returned_loss": 4.162760677245105,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.178201205630147,
+                      "returned_loss": 4.178201205630147,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.1297996878449865,
+                      "returned_loss": 4.1297996878449865,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 4.85722573273506e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 4.85722573273506e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.140395078590038,
+                      "returned_loss": 4.140395078590039,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.160808425038445,
+                      "returned_loss": 4.160808425038445,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 4.163336342344337e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.166340235137852,
+                      "returned_loss": 4.166340235137851,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.129678782397685,
+                      "returned_loss": 4.129678782397685,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "pattern": "empty_microbatch",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.141191879009487,
+                      "returned_loss": 4.141191879009487,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.172614333208391,
+                      "returned_loss": 4.17261433320839,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.178568557414876,
+                      "returned_loss": 4.178568557414875,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.139085807152704,
+                      "returned_loss": 4.139085807152704,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.140395078590038,
+                      "returned_loss": 4.140395078590038,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.160808425038445,
+                      "returned_loss": 4.160808425038445,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.166340235137852,
+                      "returned_loss": 4.166340235137852,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.129678782397685,
+                      "returned_loss": 4.129678782397685,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pp_size": 4,
+      "dp_size": 1,
+      "status": "passed",
+      "models": [
+        {
+          "bias": true,
+          "status": "passed",
+          "trials": [
+            {
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 1.942890293094024e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.153724751647964,
+                      "returned_loss": 4.153724751647963,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.193613902498741,
+                      "returned_loss": 4.19361390249874,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "pattern": "empty_microbatch",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 2.220446049250313e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 2.220446049250313e-16,
+                  "losses": [
+                    {
+                      "reference_loss": 4.148923323790678,
+                      "returned_loss": 4.148923323790678,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.1927327507167185,
+                      "returned_loss": 4.192732750716719,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 8.326672684688674e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.153724751647964,
+                      "returned_loss": 4.153724751647963,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.193613902498741,
+                      "returned_loss": 4.19361390249874,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "pattern": "empty_microbatch",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 1.1102230246251565e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 8.326672684688674e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.120493979786343,
+                      "returned_loss": 4.1204939797863425,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.182677296582753,
+                      "returned_loss": 4.182677296582752,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.153724751647964,
+                      "returned_loss": 4.153724751647964,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.193613902498741,
+                      "returned_loss": 4.193613902498741,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "bias": false,
+          "status": "passed",
+          "trials": [
+            {
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 6.938893903907228e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.140395078590038,
+                      "returned_loss": 4.140395078590038,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.160808425038445,
+                      "returned_loss": 4.160808425038445,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "pattern": "empty_microbatch",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.140370147494565,
+                      "returned_loss": 4.140370147494565,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.162760677245105,
+                      "returned_loss": 4.162760677245105,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "F",
+                          3
+                        ],
+                        [
+                          "F",
+                          4
+                        ],
+                        [
+                          "B",
+                          4
+                        ],
+                        [
+                          "B",
+                          3
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 4.85722573273506e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 4.85722573273506e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.140395078590038,
+                      "returned_loss": 4.140395078590039,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.160808425038445,
+                      "returned_loss": 4.160808425038445,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "pattern": "empty_microbatch",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "losses": [
+                    {
+                      "reference_loss": 4.141191879009487,
+                      "returned_loss": 4.141191879009487,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.172614333208391,
+                      "returned_loss": 4.17261433320839,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "F",
+                          1
+                        ],
+                        [
+                          "F",
+                          2
+                        ],
+                        [
+                          "B",
+                          2
+                        ],
+                        [
+                          "B",
+                          1
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "pattern": "unequal_valid",
+              "scheduled_calls_without_zeroing": 2,
+              "status": "passed",
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 0.0,
+                  "losses": [
+                    {
+                      "reference_loss": 4.140395078590038,
+                      "returned_loss": 4.140395078590038,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    },
+                    {
+                      "reference_loss": 4.160808425038445,
+                      "returned_loss": 4.160808425038445,
+                      "events": [
+                        [
+                          "F",
+                          0
+                        ],
+                        [
+                          "B",
+                          0
+                        ]
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "not_checked": [
+    "train_pp.main",
+    "CUDA/NCCL",
+    "torchrun/env rendezvous",
+    "AMP",
+    "DP gradient averaging",
+    "training tied-weight gradient synchronization",
+    "optimizer updates",
+    "gradient clipping",
+    "dataset loading",
+    "checkpoint"
+  ],
+  "source_sha256": {
+    "model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
+    "model_pp.py": "750d5bf218a754357c5c380baefdf98b8e6db16f0169ea80c657e55815487b7c",
+    "parallel_utils.py": "a8459f3be3790fac016a852298a69bdf688de7ab19890ceaa5820dcd7227eecc",
+    "train_pp.py": "c930435c9ae54d25efc229bee0991f8f2d29b8a1d6f5ab7a48d4ac935763ec0e",
+    "checker:verify_pp_microbatch.py": "bc100252d205ef49b80a9f48c6cadaaa78b4d8e9bc630d3dd3d794a38a0e8c79",
+    "checker:verify_pp_gpipe.py": "822991b94cce58fe12ad5572ac93ca99cb652dc7cc543f778e92409c9750d099"
+  },
+  "torch_version": "2.12.1+cpu",
+  "device": "cpu",
+  "backend": "gloo",
+  "dtype": "float64",
+  "model_config": {
+    "n_layer": 5,
+    "n_head": 4,
+    "n_embd": 32,
+    "vocab_size": 64,
+    "block_size": 16,
+    "dropout": 0.0
+  },
+  "batch_size": 5,
+  "seq_len": 8,
+  "biases": [
+    true,
+    false
+  ],
+  "micro_batch_sizes": [
+    1,
+    2,
+    5
+  ]
+}

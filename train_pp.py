@@ -143,11 +143,16 @@ def backward_microbatch(
         assert targets is not None
         assert targets.shape==stage_output.shape[:2]
 
-        loss=F.cross_entropy(
+        valid_count=(targets!=-1).sum()
+
+        loss_sum=F.cross_entropy(
             stage_output.reshape(-1,stage_output.size(-1)),
             targets.reshape(-1),
             ignore_index=-1,
+            reduction="sum",
         )
+
+        loss=loss_sum/valid_count.clamp_min(1)
 
         (loss*loss_weight).backward()
 
@@ -171,6 +176,86 @@ def backward_microbatch(
 
     return loss.detach() if loss is not None else None
 
+
+def gpipe_forward_backward(
+    stage,
+    token_ids,
+    targets,
+    parallel,
+    batch_size,
+    seq_length,
+    micro_batch_size,
+    device,
+    activation_dtype=torch.float32,
+):
+    assert batch_size > 0
+    assert micro_batch_size > 0
+    assert 0 < seq_length <= stage.config.block_size
+
+    if stage.is_first:
+        assert token_ids is not None
+        assert token_ids.shape == (batch_size, seq_length)
+
+    if stage.is_last:
+        assert targets is not None
+        assert targets.shape == (batch_size, seq_length)
+
+        total_valid = (targets != -1).sum().item()
+        assert total_valid > 0
+
+    cache = []
+    batch_loss = None
+
+    for start in range(0, batch_size, micro_batch_size):
+        end = min(start + micro_batch_size, batch_size)
+
+        micro_tokens = (
+            token_ids[start:end] if stage.is_first else None
+        )
+
+        stage_input, stage_output = forward_microbatch(
+            stage=stage,
+            token_ids=micro_tokens,
+            parallel=parallel,
+            micro_batch_size=end - start,
+            seq_length=seq_length,
+            device=device,
+            activation_dtype=activation_dtype,
+        )
+
+        cache.append((stage_input, stage_output, start, end))
+
+    while cache:
+        stage_input, stage_output, start, end = cache.pop()
+
+        if stage.is_last:
+            micro_targets = targets[start:end]
+            micro_valid = (micro_targets != -1).sum().item()
+            loss_weight = micro_valid / total_valid
+        else:
+            micro_targets = None
+            loss_weight = 1.0
+
+        loss = backward_microbatch(
+            stage=stage,
+            stage_input=stage_input,
+            stage_output=stage_output,
+            parallel=parallel,
+            targets=micro_targets,
+            loss_weight=loss_weight,
+        )
+
+        if stage.is_last:
+            weighted_loss = loss * loss_weight
+            batch_loss = (
+                weighted_loss
+                if batch_loss is None
+                else batch_loss + weighted_loss
+            )
+
+        del stage_input, stage_output
+
+    return batch_loss
 
 def main():
     args=parse_args()
