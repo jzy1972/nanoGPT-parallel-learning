@@ -1,0 +1,2607 @@
+{
+  "status": "passed",
+  "scope": "PP_DP_valid_token_weighting_and_tied_gradient_sync",
+  "requested_cases": [
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      4,
+      1
+    ]
+  ],
+  "completed_cases": [
+    {
+      "pp_size": 1,
+      "dp_size": 4,
+      "status": "passed",
+      "models": [
+        {
+          "bias": true,
+          "status": "passed",
+          "trials": [
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                39,
+                39,
+                39,
+                39
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.161271143260677,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.165084528102192
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.174433296664653
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.182466168208165
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.123100580067698
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                1,
+                11,
+                21,
+                31
+              ],
+              "expected_grad_weights": [
+                0.0625,
+                0.6875,
+                1.3125,
+                1.9375
+              ],
+              "global_reference_loss": 4.155108629895035,
+              "max_gradient_error": 9.71445146547012e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 9.71445146547012e-17,
+                  "returned_local_loss": 3.945516086620396
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 9.71445146547012e-17,
+                  "returned_local_loss": 4.176646064526249
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 9.71445146547012e-17,
+                  "returned_local_loss": 4.196398967223726
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 9.71445146547012e-17,
+                  "returned_local_loss": 4.126256490489511
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                32,
+                32,
+                32,
+                32
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.153082176918883,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.148923323790678
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.152578777786893
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.1879466443276465
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.1228799617703125
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                0,
+                40,
+                40,
+                40
+              ],
+              "expected_grad_weights": [
+                0.0,
+                1.3333333333333333,
+                1.3333333333333333,
+                1.3333333333333333
+              ],
+              "global_reference_loss": 4.159882181194508,
+              "max_gradient_error": 1.3877787807814457e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "returned_local_loss": 0.0
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "returned_local_loss": 4.175404978008391
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "returned_local_loss": 4.178196411355133
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "returned_local_loss": 4.12604515422
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                39,
+                39,
+                39,
+                39
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.161271143260677,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.165084528102192
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.174433296664653
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.182466168208165
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.123100580067698
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                1,
+                11,
+                21,
+                31
+              ],
+              "expected_grad_weights": [
+                0.0625,
+                0.6875,
+                1.3125,
+                1.9375
+              ],
+              "global_reference_loss": 4.155108629895035,
+              "max_gradient_error": 1.1102230246251565e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 3.945516086620396
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 4.176646064526249
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 4.196398967223726
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 4.126256490489511
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                24,
+                24,
+                24,
+                24
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.151889051544856,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.1204939797863425
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.172153626626791
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.182986937876783
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.131921661889507
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                0,
+                40,
+                40,
+                40
+              ],
+              "expected_grad_weights": [
+                0.0,
+                1.3333333333333333,
+                1.3333333333333333,
+                1.3333333333333333
+              ],
+              "global_reference_loss": 4.159882181194508,
+              "max_gradient_error": 1.3877787807814457e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "returned_local_loss": 0.0
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "returned_local_loss": 4.175404978008391
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "returned_local_loss": 4.178196411355132
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "returned_local_loss": 4.12604515422
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                39,
+                39,
+                39,
+                39
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.161271143260677,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.165084528102192
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.174433296664653
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.182466168208165
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.123100580067698
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                1,
+                11,
+                21,
+                31
+              ],
+              "expected_grad_weights": [
+                0.0625,
+                0.6875,
+                1.3125,
+                1.9375
+              ],
+              "global_reference_loss": 4.155108629895035,
+              "max_gradient_error": 1.1102230246251565e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 3.945516086620396
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 4.176646064526249
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 4.196398967223727
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 4.126256490489512
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                0,
+                40,
+                40,
+                40
+              ],
+              "expected_grad_weights": [
+                0.0,
+                1.3333333333333333,
+                1.3333333333333333,
+                1.3333333333333333
+              ],
+              "global_reference_loss": 4.159882181194508,
+              "max_gradient_error": 1.3877787807814457e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "returned_local_loss": 0.0
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "returned_local_loss": 4.175404978008391
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "returned_local_loss": 4.178196411355133
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 1.3877787807814457e-16,
+                  "returned_local_loss": 4.12604515422
+                }
+              ]
+            }
+          ],
+          "globally_ignored_batch": {
+            "status": "passed",
+            "micro_batch_size": 1,
+            "expected_exception": "ValueError",
+            "rejected_by": [
+              "get_dp_grad_weight",
+              "sync_stage_gradients"
+            ],
+            "all_ranks_agreed": true
+          }
+        },
+        {
+          "bias": false,
+          "status": "passed",
+          "trials": [
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                39,
+                39,
+                39,
+                39
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.162249391583259,
+              "max_gradient_error": 2.7755575615628914e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.141623963363362
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.169486875244209
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.1734547312455454
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.164431996479921
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                1,
+                11,
+                21,
+                31
+              ],
+              "expected_grad_weights": [
+                0.0625,
+                0.6875,
+                1.3125,
+                1.9375
+              ],
+              "global_reference_loss": 4.181151701088138,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.1892660405850695
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.218422116825025
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.169212357559929
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.175752904362
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                32,
+                32,
+                32,
+                32
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.1630228805551255,
+              "max_gradient_error": 2.7755575615628914e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.140370147494565
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.178201205630147
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.173510170249369
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.160009998846419
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                0,
+                40,
+                40,
+                40
+              ],
+              "expected_grad_weights": [
+                0.0,
+                1.3333333333333333,
+                1.3333333333333333,
+                1.3333333333333333
+              ],
+              "global_reference_loss": 4.171381154134707,
+              "max_gradient_error": 4.5102810375396984e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.5102810375396984e-17,
+                  "returned_local_loss": 0.0
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.5102810375396984e-17,
+                  "returned_local_loss": 4.172513320270111
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.5102810375396984e-17,
+                  "returned_local_loss": 4.173346471666299
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.5102810375396984e-17,
+                  "returned_local_loss": 4.16828367046771
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                39,
+                39,
+                39,
+                39
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.162249391583259,
+              "max_gradient_error": 2.7755575615628914e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.1416239633633625
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.169486875244209
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.1734547312455454
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.164431996479922
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                1,
+                11,
+                21,
+                31
+              ],
+              "expected_grad_weights": [
+                0.0625,
+                0.6875,
+                1.3125,
+                1.9375
+              ],
+              "global_reference_loss": 4.181151701088138,
+              "max_gradient_error": 4.85722573273506e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.85722573273506e-17,
+                  "returned_local_loss": 4.1892660405850695
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.85722573273506e-17,
+                  "returned_local_loss": 4.2184221168250255
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.85722573273506e-17,
+                  "returned_local_loss": 4.169212357559928
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.85722573273506e-17,
+                  "returned_local_loss": 4.175752904362
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                24,
+                24,
+                24,
+                24
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.159480040174898,
+              "max_gradient_error": 2.7755575615628914e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.141191879009487
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.178568557414875
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.1701376606218545
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.148022063653376
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                0,
+                40,
+                40,
+                40
+              ],
+              "expected_grad_weights": [
+                0.0,
+                1.3333333333333333,
+                1.3333333333333333,
+                1.3333333333333333
+              ],
+              "global_reference_loss": 4.171381154134707,
+              "max_gradient_error": 4.5102810375396984e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.5102810375396984e-17,
+                  "returned_local_loss": 0.0
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.5102810375396984e-17,
+                  "returned_local_loss": 4.172513320270111
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.5102810375396984e-17,
+                  "returned_local_loss": 4.173346471666299
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 4.5102810375396984e-17,
+                  "returned_local_loss": 4.16828367046771
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                39,
+                39,
+                39,
+                39
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.162249391583259,
+              "max_gradient_error": 2.0816681711721685e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.0816681711721685e-17,
+                  "returned_local_loss": 4.1416239633633625
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.0816681711721685e-17,
+                  "returned_local_loss": 4.169486875244209
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.0816681711721685e-17,
+                  "returned_local_loss": 4.1734547312455454
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 2.0816681711721685e-17,
+                  "returned_local_loss": 4.164431996479921
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                1,
+                11,
+                21,
+                31
+              ],
+              "expected_grad_weights": [
+                0.0625,
+                0.6875,
+                1.3125,
+                1.9375
+              ],
+              "global_reference_loss": 4.181151701088138,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.1892660405850695
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.218422116825025
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.169212357559929
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.175752904361999
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                0,
+                40,
+                40,
+                40
+              ],
+              "expected_grad_weights": [
+                0.0,
+                1.3333333333333333,
+                1.3333333333333333,
+                1.3333333333333333
+              ],
+              "global_reference_loss": 4.171381154134707,
+              "max_gradient_error": 3.8163916471489756e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 0,
+                  "dp_rank": 0,
+                  "pp_rank": 0,
+                  "max_gradient_error": 3.8163916471489756e-17,
+                  "returned_local_loss": 0.0
+                },
+                {
+                  "world_rank": 1,
+                  "dp_rank": 1,
+                  "pp_rank": 0,
+                  "max_gradient_error": 3.8163916471489756e-17,
+                  "returned_local_loss": 4.172513320270111
+                },
+                {
+                  "world_rank": 2,
+                  "dp_rank": 2,
+                  "pp_rank": 0,
+                  "max_gradient_error": 3.8163916471489756e-17,
+                  "returned_local_loss": 4.173346471666299
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 3,
+                  "pp_rank": 0,
+                  "max_gradient_error": 3.8163916471489756e-17,
+                  "returned_local_loss": 4.16828367046771
+                }
+              ]
+            }
+          ],
+          "globally_ignored_batch": {
+            "status": "passed",
+            "micro_batch_size": 1,
+            "expected_exception": "ValueError",
+            "rejected_by": [
+              "get_dp_grad_weight",
+              "sync_stage_gradients"
+            ],
+            "all_ranks_agreed": true
+          }
+        }
+      ]
+    },
+    {
+      "pp_size": 2,
+      "dp_size": 2,
+      "status": "passed",
+      "models": [
+        {
+          "bias": true,
+          "status": "passed",
+          "trials": [
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                39,
+                39
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.169758912383423,
+              "max_gradient_error": 8.326672684688674e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 8.326672684688674e-17,
+                  "returned_local_loss": 4.165084528102192
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 8.326672684688674e-17,
+                  "returned_local_loss": 4.174433296664653
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                1,
+                21
+              ],
+              "expected_grad_weights": [
+                0.09090909090909091,
+                1.9090909090909092
+              ],
+              "global_reference_loss": 4.180974406883891,
+              "max_gradient_error": 2.498001805406602e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.5265566588595902e-16,
+                  "returned_local_loss": 3.945516086620396
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.5265566588595902e-16,
+                  "returned_local_loss": 4.192186707848819
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                32,
+                32
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.150751050788785,
+              "max_gradient_error": 8.326672684688674e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "returned_local_loss": 4.148923323790678
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "returned_local_loss": 4.152578777786893
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                0,
+                40
+              ],
+              "expected_grad_weights": [
+                0.0,
+                2.0
+              ],
+              "global_reference_loss": 4.175404978008391,
+              "max_gradient_error": 8.326672684688674e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 0.0
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.175404978008391
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                39,
+                39
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.169758912383423,
+              "max_gradient_error": 5.898059818321144e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.898059818321144e-17,
+                  "returned_local_loss": 4.165084528102192
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.898059818321144e-17,
+                  "returned_local_loss": 4.174433296664653
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                1,
+                21
+              ],
+              "expected_grad_weights": [
+                0.09090909090909091,
+                1.9090909090909092
+              ],
+              "global_reference_loss": 4.180974406883891,
+              "max_gradient_error": 2.498001805406602e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.6653345369377348e-16,
+                  "returned_local_loss": 3.945516086620396
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.6653345369377348e-16,
+                  "returned_local_loss": 4.192186707848819
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                24,
+                24
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.146323803206568,
+              "max_gradient_error": 8.326672684688674e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.1204939797863425
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.172153626626791
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                0,
+                40
+              ],
+              "expected_grad_weights": [
+                0.0,
+                2.0
+              ],
+              "global_reference_loss": 4.175404978008391,
+              "max_gradient_error": 8.326672684688674e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "returned_local_loss": 0.0
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "returned_local_loss": 4.175404978008391
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                39,
+                39
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.169758912383423,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.165084528102192
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.174433296664653
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                1,
+                21
+              ],
+              "expected_grad_weights": [
+                0.09090909090909091,
+                1.9090909090909092
+              ],
+              "global_reference_loss": 4.180974406883891,
+              "max_gradient_error": 2.7755575615628914e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.942890293094024e-16,
+                  "returned_local_loss": 3.945516086620396
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.942890293094024e-16,
+                  "returned_local_loss": 4.192186707848819
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                0,
+                40
+              ],
+              "expected_grad_weights": [
+                0.0,
+                2.0
+              ],
+              "global_reference_loss": 4.175404978008391,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 0.0
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.175404978008391
+                }
+              ]
+            }
+          ],
+          "globally_ignored_batch": {
+            "status": "passed",
+            "micro_batch_size": 1,
+            "expected_exception": "ValueError",
+            "rejected_by": [
+              "get_dp_grad_weight",
+              "sync_stage_gradients"
+            ],
+            "all_ranks_agreed": true
+          }
+        },
+        {
+          "bias": false,
+          "status": "passed",
+          "trials": [
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                39,
+                39
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.155555419303785,
+              "max_gradient_error": 3.469446951953614e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 3.469446951953614e-17,
+                  "returned_local_loss": 4.141623963363362
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 3.469446951953614e-17,
+                  "returned_local_loss": 4.169486875244209
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                1,
+                21
+              ],
+              "expected_grad_weights": [
+                0.09090909090909091,
+                1.9090909090909092
+              ],
+              "global_reference_loss": 4.196473941883704,
+              "max_gradient_error": 1.1102230246251565e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 8.326672684688674e-17,
+                  "returned_local_loss": 4.1892660405850695
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 8.326672684688674e-17,
+                  "returned_local_loss": 4.196817175278876
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                32,
+                32
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.159285676562355,
+              "max_gradient_error": 4.163336342344337e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 4.163336342344337e-17,
+                  "returned_local_loss": 4.140370147494565
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 4.163336342344337e-17,
+                  "returned_local_loss": 4.178201205630147
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                0,
+                40
+              ],
+              "expected_grad_weights": [
+                0.0,
+                2.0
+              ],
+              "global_reference_loss": 4.172513320270111,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 0.0
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.172513320270111
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                39,
+                39
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.155555419303785,
+              "max_gradient_error": 3.469446951953614e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 3.469446951953614e-17,
+                  "returned_local_loss": 4.1416239633633625
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 3.469446951953614e-17,
+                  "returned_local_loss": 4.169486875244209
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                1,
+                21
+              ],
+              "expected_grad_weights": [
+                0.09090909090909091,
+                1.9090909090909092
+              ],
+              "global_reference_loss": 4.196473941883704,
+              "max_gradient_error": 1.1102230246251565e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 4.1892660405850695
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 4.196817175278876
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                24,
+                24
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.159880218212181,
+              "max_gradient_error": 4.163336342344337e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 4.163336342344337e-17,
+                  "returned_local_loss": 4.141191879009487
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 4.163336342344337e-17,
+                  "returned_local_loss": 4.178568557414875
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                0,
+                40
+              ],
+              "expected_grad_weights": [
+                0.0,
+                2.0
+              ],
+              "global_reference_loss": 4.172513320270111,
+              "max_gradient_error": 4.163336342344337e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 4.163336342344337e-17,
+                  "returned_local_loss": 0.0
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 4.163336342344337e-17,
+                  "returned_local_loss": 4.172513320270111
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                39,
+                39
+              ],
+              "expected_grad_weights": [
+                1.0,
+                1.0
+              ],
+              "global_reference_loss": 4.155555419303785,
+              "max_gradient_error": 3.469446951953614e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 3.469446951953614e-17,
+                  "returned_local_loss": 4.1416239633633625
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 3.469446951953614e-17,
+                  "returned_local_loss": 4.169486875244209
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                1,
+                21
+              ],
+              "expected_grad_weights": [
+                0.09090909090909091,
+                1.9090909090909092
+              ],
+              "global_reference_loss": 4.196473941883704,
+              "max_gradient_error": 1.1102230246251565e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 4.1892660405850695
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 4.196817175278876
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                0,
+                40
+              ],
+              "expected_grad_weights": [
+                0.0,
+                2.0
+              ],
+              "global_reference_loss": 4.172513320270111,
+              "max_gradient_error": 2.7755575615628914e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 1,
+                  "dp_rank": 0,
+                  "pp_rank": 1,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 0.0
+                },
+                {
+                  "world_rank": 3,
+                  "dp_rank": 1,
+                  "pp_rank": 1,
+                  "max_gradient_error": 2.7755575615628914e-17,
+                  "returned_local_loss": 4.172513320270111
+                }
+              ]
+            }
+          ],
+          "globally_ignored_batch": {
+            "status": "passed",
+            "micro_batch_size": 1,
+            "expected_exception": "ValueError",
+            "rejected_by": [
+              "get_dp_grad_weight",
+              "sync_stage_gradients"
+            ],
+            "all_ranks_agreed": true
+          }
+        }
+      ]
+    },
+    {
+      "pp_size": 4,
+      "dp_size": 1,
+      "status": "passed",
+      "models": [
+        {
+          "bias": true,
+          "status": "passed",
+          "trials": [
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                39
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.165084528102192,
+              "max_gradient_error": 1.6653345369377348e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 8.326672684688674e-17,
+                  "returned_local_loss": 4.165084528102192
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 3.945516086620396,
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 0.0,
+                  "returned_local_loss": 3.945516086620396
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                32
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.148923323790678,
+              "max_gradient_error": 1.1102230246251565e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 1.1102230246251565e-16,
+                  "returned_local_loss": 4.148923323790678
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                39
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.165084528102192,
+              "max_gradient_error": 8.673617379884035e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 8.326672684688674e-17,
+                  "returned_local_loss": 4.165084528102192
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 3.945516086620396,
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 0.0,
+                  "returned_local_loss": 3.945516086620396
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                24
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.120493979786343,
+              "max_gradient_error": 1.1102230246251565e-16,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.1204939797863425
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                39
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.165084528102192,
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 0.0,
+                  "returned_local_loss": 4.165084528102192
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 3.945516086620396,
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 0.0,
+                  "returned_local_loss": 3.945516086620396
+                }
+              ]
+            }
+          ],
+          "globally_ignored_batch": {
+            "status": "passed",
+            "micro_batch_size": 1,
+            "expected_exception": "ValueError",
+            "rejected_by": [
+              "get_dp_grad_weight",
+              "sync_stage_gradients"
+            ],
+            "all_ranks_agreed": true
+          }
+        },
+        {
+          "bias": false,
+          "status": "passed",
+          "trials": [
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                39
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.1416239633633625,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.141623963363362
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.1892660405850695,
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 0.0,
+                  "returned_local_loss": 4.1892660405850695
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 1,
+              "microbatch_sizes": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                32
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.140370147494565,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.140370147494565
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                39
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.1416239633633625,
+              "max_gradient_error": 6.938893903907228e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 6.938893903907228e-17,
+                  "returned_local_loss": 4.1416239633633625
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.1892660405850695,
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 0.0,
+                  "returned_local_loss": 4.1892660405850695
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "empty_microbatch",
+              "micro_batch_size": 2,
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "valid_labels_per_dp_replica": [
+                24
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.141191879009487,
+              "max_gradient_error": 5.551115123125783e-17,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 5.551115123125783e-17,
+                  "returned_local_loss": 4.141191879009487
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "equal_valid",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                39
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.1416239633633625,
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 0.0,
+                  "returned_local_loss": 4.1416239633633625
+                }
+              ]
+            },
+            {
+              "status": "passed",
+              "pattern": "unequal_valid",
+              "micro_batch_size": 5,
+              "microbatch_sizes": [
+                5
+              ],
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "expected_grad_weights": [
+                1.0
+              ],
+              "global_reference_loss": 4.1892660405850695,
+              "max_gradient_error": 0.0,
+              "pipeline_losses": [
+                {
+                  "world_rank": 3,
+                  "dp_rank": 0,
+                  "pp_rank": 3,
+                  "max_gradient_error": 0.0,
+                  "returned_local_loss": 4.1892660405850695
+                }
+              ]
+            }
+          ],
+          "globally_ignored_batch": {
+            "status": "passed",
+            "micro_batch_size": 1,
+            "expected_exception": "ValueError",
+            "rejected_by": [
+              "get_dp_grad_weight",
+              "sync_stage_gradients"
+            ],
+            "all_ranks_agreed": true
+          }
+        }
+      ]
+    }
+  ],
+  "not_checked": [
+    "train_pp.main",
+    "torchrun/env rendezvous",
+    "CUDA/NCCL",
+    "AMP",
+    "optimizer updates",
+    "gradient clipping",
+    "nonfinite consensus",
+    "dataset loading",
+    "checkpoint",
+    "multiple batches per sync"
+  ],
+  "source_sha256": {
+    "model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
+    "model_pp.py": "750d5bf218a754357c5c380baefdf98b8e6db16f0169ea80c657e55815487b7c",
+    "parallel_utils.py": "c937ace80dafffc23ef083ffe49b06e6466e69b9b317af4df5fb8b24f8875308",
+    "train_pp.py": "ac72fa7583373c3142aab9424c067ea58a3355a5a3d3a4924f86d805e0f39146",
+    "checker:verify_pp_microbatch.py": "bc100252d205ef49b80a9f48c6cadaaa78b4d8e9bc630d3dd3d794a38a0e8c79",
+    "checker:verify_pp_grad_sync.py": "abef578c6269ab666304e8a972a3cf66ae2e5c729ac1051378ff3d20fd3cf9bb"
+  },
+  "torch_version": "2.12.1+cpu",
+  "device": "cpu",
+  "backend": "gloo",
+  "dtype": "float64",
+  "seed": 1337,
+  "threads": 1,
+  "timeout_seconds": 120,
+  "model_config": {
+    "n_layer": 5,
+    "n_head": 4,
+    "n_embd": 32,
+    "vocab_size": 64,
+    "block_size": 16,
+    "dropout": 0.0
+  },
+  "batch_size": 5,
+  "seq_len": 8,
+  "biases": [
+    true,
+    false
+  ],
+  "micro_batch_sizes": [
+    1,
+    2,
+    5
+  ]
+}

@@ -16,6 +16,9 @@ from parallel_utils import(
     recv_forward,
     send_backward,
     recv_backward,
+    get_dp_grad_weight,
+    sync_dp_gradients,
+    sync_tied_weight_gradients,
 )
 
 def setup_parallel(pp_size):
@@ -200,7 +203,7 @@ def gpipe_forward_backward(
         assert targets is not None
         assert targets.shape == (batch_size, seq_length)
 
-        total_valid = (targets != -1).sum().item()
+        total_valid = max(1, (targets != -1).sum().item())
         assert total_valid > 0
 
     cache = []
@@ -256,6 +259,28 @@ def gpipe_forward_backward(
         del stage_input, stage_output
 
     return batch_loss
+
+def sync_stage_gradients(stage, targets, parallel, device):
+    grad_weight = get_dp_grad_weight(
+        stage=stage,
+        targets=targets,
+        parallel=parallel,
+        device=device,
+    )
+
+    sync_dp_gradients(
+        stage=stage,
+        dp_group=parallel["dp_group"],
+        dp_size=parallel["dp_size"],
+        grad_weight=grad_weight,
+    )
+
+    sync_tied_weight_gradients(
+        stage=stage,
+        tied_group=parallel["tied_group"],
+    )
+
+    return grad_weight
 
 def main():
     args=parse_args()

@@ -142,3 +142,102 @@ def recv_backward(stage_output,src_rank,pp_group):
     )
 
     return grad_output
+
+@torch.no_grad()
+def get_dp_grad_weight(stage, targets, parallel, device):
+    stats = torch.empty(
+        2,
+        dtype=torch.float64,
+        device=device,
+    )
+
+    if stage.is_last:
+        assert targets is not None
+
+        local_valid = (targets != -1).sum().to(
+            device=device,
+            dtype=torch.int64,
+        )
+
+        global_valid = local_valid.clone()
+
+        dist.all_reduce(
+            global_valid,
+            op=dist.ReduceOp.SUM,
+            group=parallel["dp_group"],
+        )
+
+        stats[0] = (
+            parallel["dp_size"]
+            * local_valid.to(torch.float64)
+            / global_valid.clamp_min(1).to(torch.float64)
+        )
+
+        stats[1] = global_valid.to(torch.float64)
+
+    dist.broadcast(
+        stats,
+        src=parallel["pp_last_rank"],
+        group=parallel["pp_group"],
+    )
+
+    if stats[1].item() == 0:
+        raise ValueError("整个全局 batch 没有有效标签")
+
+    return stats[0].item()
+
+@torch.no_grad()
+def sync_tied_weight_gradients(stage, tied_group):
+    if stage.pp_size == 1:
+        assert (
+            stage.transformer["wte"].weight
+            is stage.lm_head.weight
+        )
+        return
+
+    if not (stage.is_first or stage.is_last):
+        return
+
+    assert tied_group is not None
+
+    if stage.is_first:
+        weight = stage.transformer["wte"].weight
+    else:
+        weight = stage.lm_head.weight
+
+    assert weight.grad is not None
+
+    dist.all_reduce(
+        weight.grad,
+        op=dist.ReduceOp.SUM,
+        group=tied_group,
+    )
+
+@torch.no_grad()
+def sync_dp_gradients(
+    stage,
+    dp_group,
+    dp_size,
+    grad_weight=1.0,
+):
+    assert dp_size > 0
+    assert dist.get_world_size(group=dp_group) == dp_size
+
+    for name, param in stage.named_parameters():
+        if not param.requires_grad:
+            continue
+
+        if param.grad is None:
+            raise RuntimeError(f"参数 {name} 缺少梯度")
+
+        grad = param.grad
+        grad.mul_(grad_weight)
+
+        if dp_size > 1:
+            dist.all_reduce(
+                grad,
+                op=dist.ReduceOp.SUM,
+                group=dp_group,
+            )
+            grad.div_(dp_size)
+
