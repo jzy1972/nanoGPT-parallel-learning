@@ -2,6 +2,7 @@ import torch.distributed as dist
 import argparse
 import os
 import torch
+import numpy as np
 
 import math
 
@@ -82,6 +83,22 @@ def parse_args():
     parser.add_argument("--dropout", type=float, default=0.0)
     parser.add_argument("--no-bias", action="store_true")
 
+    parser.add_argument("--data-dir", type=str, required=True)
+
+    parser.add_argument("--batch-size", type=int, default=8)
+    parser.add_argument("--seq-length", type=int, default=128)
+    parser.add_argument("--micro-batch-size", type=int, default=2)
+
+    parser.add_argument("--learning-rate", type=float, default=6e-4)
+    parser.add_argument("--weight-decay", type=float, default=0.1)
+    parser.add_argument("--beta1", type=float, default=0.9)
+    parser.add_argument("--beta2", type=float, default=0.95)
+    parser.add_argument("--grad-clip", type=float, default=1.0)
+
+    parser.add_argument("--max-iters",type=int,default=1000,)
+
+    parser.add_argument("--log-interval",type=int,default=10)
+    
     parser.add_argument("--local-rank", "--local_rank", type=int, default=None)
 
     args=parser.parse_args()
@@ -330,7 +347,204 @@ def step_stage_optimizer(
         ),
     }
 
+def build_stage_optimizer(
+    stage,
+    learning_rate,
+    weight_decay,
+    beta1,
+    beta2,
+):
+    params = [
+        param
+        for param in stage.parameters()
+        if param.requires_grad
+    ]
 
+    decay_params = [
+        param for param in params
+        if param.dim() >= 2
+    ]
+
+    no_decay_params = [
+        param for param in params
+        if param.dim() < 2
+    ]
+
+    param_groups = [
+        {
+            "params": decay_params,
+            "weight_decay": weight_decay,
+        },
+        {
+            "params": no_decay_params,
+            "weight_decay": 0.0,
+        },
+    ]
+
+    return torch.optim.AdamW(
+        param_groups,
+        lr=learning_rate,
+        betas=(beta1, beta2),
+        foreach=False,
+        fused=False,
+    )
+
+def get_pp_batch(
+    stage,
+    parallel,
+    data_path,
+    batch_size,
+    seq_length,
+    device,
+    generator,
+):
+    token_ids = None
+
+    if stage.is_first:
+        data = np.memmap(
+            data_path,
+            dtype=np.uint16,
+            mode="r",
+        )
+
+        indices = torch.randint(
+            len(data) - seq_length,
+            (batch_size,),
+            generator=generator,
+            device="cpu",
+        ).tolist()
+
+        token_ids = torch.stack([
+            torch.from_numpy(
+                data[i:i + seq_length].astype(np.int64)
+            )
+            for i in indices
+        ])
+
+        targets = torch.stack([
+            torch.from_numpy(
+                data[i + 1:i + 1 + seq_length].astype(np.int64)
+            )
+            for i in indices
+        ])
+
+        token_ids = token_ids.to(device)
+        targets = targets.to(device)
+
+    else:
+        targets = torch.empty(
+            (batch_size, seq_length),
+            dtype=torch.long,
+            device=device,
+        )
+
+    dist.broadcast(
+        targets,
+        src=parallel["pp_first_rank"],
+        group=parallel["pp_group"],
+    )
+
+    return (
+        token_ids,
+        targets if stage.is_last else None,
+    )
+
+@torch.no_grad()
+def aggregate_pp_loss(
+    stage,
+    local_loss,
+    grad_weight,
+    parallel,
+    device,
+):
+    global_loss = torch.zeros(
+        (),
+        dtype=torch.float64,
+        device=device,
+    )
+
+    if stage.is_last:
+        assert local_loss is not None
+
+        # 没有有效标签的 DP 副本贡献为 0
+        if grad_weight > 0:
+            global_loss.copy_(
+                local_loss.detach().to(
+                    device=device,
+                    dtype=torch.float64,
+                )
+            )
+            global_loss.mul_(grad_weight)
+
+        dist.all_reduce(
+            global_loss,
+            op=dist.ReduceOp.SUM,
+            group=parallel["dp_group"],
+        )
+
+        global_loss.div_(parallel["dp_size"])
+
+    dist.broadcast(
+        global_loss,
+        src=parallel["pp_last_rank"],
+        group=parallel["pp_group"],
+    )
+
+    return global_loss.item()
+
+def train_pp_step(
+    stage,
+    optimizer,
+    parallel,
+    token_ids,
+    targets,
+    batch_size,
+    seq_length,
+    micro_batch_size,
+    device,
+    grad_clip,
+    activation_dtype=torch.float32,
+):
+    local_loss = gpipe_forward_backward(
+        stage=stage,
+        token_ids=token_ids,
+        targets=targets,
+        parallel=parallel,
+        batch_size=batch_size,
+        seq_length=seq_length,
+        micro_batch_size=micro_batch_size,
+        device=device,
+        activation_dtype=activation_dtype,
+    )
+
+    grad_weight = sync_stage_gradients(
+        stage=stage,
+        targets=targets,
+        parallel=parallel,
+        device=device,
+    )
+
+    update_result = step_stage_optimizer(
+        stage=stage,
+        optimizer=optimizer,
+        parallel=parallel,
+        device=device,
+        grad_clip=grad_clip,
+    )
+
+    global_loss = aggregate_pp_loss(
+        stage=stage,
+        local_loss=local_loss,
+        grad_weight=grad_weight,
+        parallel=parallel,
+        device=device,
+    )
+
+    return {
+        "loss": global_loss,
+        "stepped": update_result["stepped"],
+        "grad_norm": update_result["grad_norm"],
+    }
 
 def main():
     args=parse_args()
@@ -355,11 +569,45 @@ def main():
     )
 
     try:
-        if args.device_type=="cuda":
+        # 所有设备、所有进程都执行这些检查
+        if args.batch_size <= 0:
+            raise ValueError("batch_size 必须大于 0")
+
+        if args.micro_batch_size <= 0:
+            raise ValueError("micro_batch_size 必须大于 0")
+
+        if not 1 <= args.seq_length <= args.block_size:
+            raise ValueError(
+                "seq_length 必须在 1 到 block_size 之间"
+            )
+
+        if args.max_iters <= 0:
+            raise ValueError("max_iters 必须大于 0")
+
+        if args.log_interval <= 0:
+            raise ValueError("log_interval 必须大于 0")
+
+        train_data_path = os.path.abspath(
+            os.path.join(args.data_dir, "train.bin")
+        )
+
+        data_bytes = os.path.getsize(train_data_path)
+        token_bytes = np.dtype(np.uint16).itemsize
+
+        if data_bytes % token_bytes != 0:
+            raise ValueError("train.bin 的大小不符合 uint16 格式")
+
+        if data_bytes // token_bytes <= args.seq_length:
+            raise ValueError(
+                "train.bin 的 token 数必须大于 seq_length"
+            )
+
+        # 通信后端根据设备选择
+        if args.device_type == "cuda":
             dist.init_process_group(
                 backend="nccl",
                 init_method="env://",
-                device_id=device
+                device_id=device,
             )
         else:
             dist.init_process_group(
@@ -367,7 +615,7 @@ def main():
                 init_method="env://",
             )
 
-        parallel=setup_parallel(args.pp_size)
+        parallel = setup_parallel(args.pp_size)
 
         torch.manual_seed(args.seed+parallel["pp_rank"])
 
@@ -383,6 +631,70 @@ def main():
             tied_group=parallel["tied_group"],
             src_rank=parallel["pp_first_rank"],
         )
+
+        optimizer = build_stage_optimizer(
+            stage=stage,
+            learning_rate=args.learning_rate,
+            weight_decay=args.weight_decay,
+            beta1=args.beta1,
+            beta2=args.beta2,
+        )
+
+        optimizer.zero_grad(set_to_none=True)
+
+        train_data_generator = torch.Generator(device="cpu")
+        train_data_generator.manual_seed(
+            args.seed + 10_000 + parallel["dp_rank"]
+        )
+
+        stage.train()
+
+        for iter_num in range(args.max_iters):
+            token_ids, targets = get_pp_batch(
+               stage=stage,
+               parallel=parallel,
+               data_path=train_data_path,
+               batch_size=args.batch_size,
+               seq_length=args.seq_length,
+               device=device,
+               generator=train_data_generator,
+            )
+
+            result = train_pp_step(
+               stage=stage,
+               optimizer=optimizer,
+               parallel=parallel,
+               token_ids=token_ids,
+               targets=targets,
+               batch_size=args.batch_size,
+               seq_length=args.seq_length,
+               micro_batch_size=args.micro_batch_size,
+               device=device,
+               grad_clip=args.grad_clip,
+               activation_dtype=torch.float32,
+            )
+
+            should_log = (
+               iter_num % args.log_interval == 0
+               or iter_num == args.max_iters - 1
+            )
+
+            if parallel["world_rank"] == 0 and should_log:
+               grad_norm = result["grad_norm"]
+
+               norm_text = (
+                  f"{grad_norm:.6f}"
+                  if grad_norm is not None
+                  else "n/a"
+                )
+
+               print(
+                  f"iter {iter_num}: "
+                  f"loss={result['loss']:.6f}, "
+                  f"grad_norm={norm_text}, "
+                  f"stepped={result['stepped']}",
+                  flush=True,
+                )
 
         print(
             f"rank={parallel['world_rank']} "

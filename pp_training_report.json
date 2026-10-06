@@ -1,0 +1,833 @@
+{
+  "status": "passed",
+  "scope": "PP_DP_training_factory_data_loss_step_and_actual_main",
+  "requested_cases": [
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      4,
+      1
+    ]
+  ],
+  "completed_cases": [
+    {
+      "status": "passed",
+      "pp_size": 1,
+      "dp_size": 4,
+      "data": {
+        "status": "passed",
+        "batches": [
+          {
+            "batch": 0,
+            "minimal_file": false
+          },
+          {
+            "batch": 1,
+            "minimal_file": false
+          },
+          {
+            "batch": 2,
+            "minimal_file": false
+          },
+          {
+            "batch": 3,
+            "minimal_file": true
+          }
+        ],
+        "source_only_sampling": true,
+        "pp_endpoint_roles": true,
+        "independent_generator_state": true
+      },
+      "loss": {
+        "status": "passed",
+        "cases": [
+          {
+            "counts": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "expected_global_loss": 1.375
+          },
+          {
+            "counts": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "expected_global_loss": 1.5
+          },
+          {
+            "counts": [
+              0,
+              2,
+              3,
+              4
+            ],
+            "expected_global_loss": 1.5555555555555556
+          }
+        ]
+      },
+      "models": [
+        {
+          "status": "passed",
+          "bias": true,
+          "grad_clip": 0.0,
+          "steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "global_loss": 4.147687598595912,
+              "parameter_error": 8.014422459012849e-16,
+              "optimizer_moment_error": 6.938893903907228e-18
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "global_loss": 4.181893236650755,
+              "parameter_error": 1.100987299706765e-15,
+              "optimizer_moment_error": 1.734723475976807e-17
+            },
+            {
+              "status": "passed",
+              "event": 2,
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 5,
+              "global_loss": 4.188789274837356,
+              "parameter_error": 1.4649497223561878e-15,
+              "optimizer_moment_error": 2.0816681711721685e-17
+            }
+          ],
+          "nonfinite_skip": {
+            "status": "passed",
+            "injected_rank": 3
+          },
+          "recovery": {
+            "status": "passed",
+            "event": 5,
+            "pattern": "equal_valid",
+            "micro_batch_size": 5,
+            "global_loss": 4.170503279136128,
+            "parameter_error": 1.8175631091153956e-15,
+            "optimizer_moment_error": 2.0816681711721685e-17
+          }
+        },
+        {
+          "status": "passed",
+          "bias": true,
+          "grad_clip": 0.01,
+          "steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "global_loss": 4.147687598595912,
+              "parameter_error": 6.271025365656158e-16,
+              "optimizer_moment_error": 5.421010862427522e-20
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "global_loss": 4.18190702650351,
+              "parameter_error": 6.279698983036042e-16,
+              "optimizer_moment_error": 6.776263578034403e-20
+            },
+            {
+              "status": "passed",
+              "event": 2,
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 5,
+              "global_loss": 4.188658336886378,
+              "parameter_error": 6.279698983036042e-16,
+              "optimizer_moment_error": 1.0842021724855044e-19
+            }
+          ],
+          "nonfinite_skip": {
+            "status": "passed",
+            "injected_rank": 3
+          },
+          "recovery": {
+            "status": "passed",
+            "event": 5,
+            "pattern": "equal_valid",
+            "micro_batch_size": 5,
+            "global_loss": 4.170395419464038,
+            "parameter_error": 6.279698983036042e-16,
+            "optimizer_moment_error": 1.1689054672109345e-19
+          }
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "grad_clip": 0.0,
+          "steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "global_loss": 4.154124721340935,
+              "parameter_error": 2.983724378680108e-16,
+              "optimizer_moment_error": 2.6020852139652106e-18
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "global_loss": 4.188226490581409,
+              "parameter_error": 2.983724378680108e-16,
+              "optimizer_moment_error": 6.938893903907228e-18
+            },
+            {
+              "status": "passed",
+              "event": 2,
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 5,
+              "global_loss": 4.186692720881504,
+              "parameter_error": 2.979387569990166e-16,
+              "optimizer_moment_error": 7.806255641895632e-18
+            }
+          ],
+          "nonfinite_skip": {
+            "status": "passed",
+            "injected_rank": 3
+          },
+          "recovery": {
+            "status": "passed",
+            "event": 5,
+            "pattern": "equal_valid",
+            "micro_batch_size": 5,
+            "global_loss": 4.178681308807056,
+            "parameter_error": 2.981555974335137e-16,
+            "optimizer_moment_error": 7.806255641895632e-18
+          }
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "grad_clip": 0.01,
+          "steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "global_loss": 4.154124721340935,
+              "parameter_error": 4.77048955893622e-16,
+              "optimizer_moment_error": 3.3881317890172014e-20
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "global_loss": 4.188226986062827,
+              "parameter_error": 4.77048955893622e-16,
+              "optimizer_moment_error": 6.776263578034403e-20
+            },
+            {
+              "status": "passed",
+              "event": 2,
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 5,
+              "global_loss": 4.186739078358626,
+              "parameter_error": 4.77048955893622e-16,
+              "optimizer_moment_error": 1.0842021724855044e-19
+            }
+          ],
+          "nonfinite_skip": {
+            "status": "passed",
+            "injected_rank": 3
+          },
+          "recovery": {
+            "status": "passed",
+            "event": 5,
+            "pattern": "equal_valid",
+            "micro_batch_size": 5,
+            "global_loss": 4.178724064296924,
+            "parameter_error": 4.77048955893622e-16,
+            "optimizer_moment_error": 8.131516293641283e-20
+          }
+        }
+      ]
+    },
+    {
+      "status": "passed",
+      "pp_size": 2,
+      "dp_size": 2,
+      "data": {
+        "status": "passed",
+        "batches": [
+          {
+            "batch": 0,
+            "minimal_file": false
+          },
+          {
+            "batch": 1,
+            "minimal_file": false
+          },
+          {
+            "batch": 2,
+            "minimal_file": false
+          },
+          {
+            "batch": 3,
+            "minimal_file": true
+          }
+        ],
+        "source_only_sampling": true,
+        "pp_endpoint_roles": true,
+        "independent_generator_state": true
+      },
+      "loss": {
+        "status": "passed",
+        "cases": [
+          {
+            "counts": [
+              1,
+              1
+            ],
+            "expected_global_loss": 1.125
+          },
+          {
+            "counts": [
+              1,
+              2
+            ],
+            "expected_global_loss": 1.1666666666666667
+          },
+          {
+            "counts": [
+              0,
+              2
+            ],
+            "expected_global_loss": 1.25
+          }
+        ]
+      },
+      "models": [
+        {
+          "status": "passed",
+          "bias": true,
+          "grad_clip": 0.0,
+          "steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "global_loss": 4.138398364904965,
+              "parameter_error": 5.021896216867146e-16,
+              "optimizer_moment_error": 6.938893903907228e-18
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "global_loss": 4.143790242882222,
+              "parameter_error": 1.0132248461087419e-15,
+              "optimizer_moment_error": 2.6020852139652106e-17
+            },
+            {
+              "status": "passed",
+              "event": 2,
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 5,
+              "global_loss": 4.187207285485437,
+              "parameter_error": 1.4872586708545926e-15,
+              "optimizer_moment_error": 3.642919299551295e-17
+            }
+          ],
+          "nonfinite_skip": {
+            "status": "passed",
+            "injected_rank": 3
+          },
+          "recovery": {
+            "status": "passed",
+            "event": 5,
+            "pattern": "equal_valid",
+            "micro_batch_size": 5,
+            "global_loss": 4.180161433768467,
+            "parameter_error": 1.875391814218902e-15,
+            "optimizer_moment_error": 3.2959746043559335e-17
+          }
+        },
+        {
+          "status": "passed",
+          "bias": true,
+          "grad_clip": 0.01,
+          "steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "global_loss": 4.138398364904965,
+              "parameter_error": 4.3156667475785504e-16,
+              "optimizer_moment_error": 2.710505431213761e-20
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "global_loss": 4.1437996368131245,
+              "parameter_error": 4.324882466044677e-16,
+              "optimizer_moment_error": 8.809142651444724e-20
+            },
+            {
+              "status": "passed",
+              "event": 2,
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 5,
+              "global_loss": 4.188295341062336,
+              "parameter_error": 4.3259666682171627e-16,
+              "optimizer_moment_error": 1.1519648082658485e-19
+            }
+          ],
+          "nonfinite_skip": {
+            "status": "passed",
+            "injected_rank": 3
+          },
+          "recovery": {
+            "status": "passed",
+            "event": 5,
+            "pattern": "equal_valid",
+            "micro_batch_size": 5,
+            "global_loss": 4.179840845652647,
+            "parameter_error": 4.3259666682171627e-16,
+            "optimizer_moment_error": 1.2197274440461925e-19
+          }
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "grad_clip": 0.0,
+          "steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "global_loss": 4.145579283111034,
+              "parameter_error": 1.7694179454963432e-16,
+              "optimizer_moment_error": 3.469446951953614e-18
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "global_loss": 4.166371224548367,
+              "parameter_error": 1.8041124150158794e-16,
+              "optimizer_moment_error": 6.310056643865636e-17
+            },
+            {
+              "status": "passed",
+              "event": 2,
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 5,
+              "global_loss": 4.199521856232866,
+              "parameter_error": 1.7694179454963432e-16,
+              "optimizer_moment_error": 5.984795992119984e-17
+            }
+          ],
+          "nonfinite_skip": {
+            "status": "passed",
+            "injected_rank": 3
+          },
+          "recovery": {
+            "status": "passed",
+            "event": 5,
+            "pattern": "equal_valid",
+            "micro_batch_size": 5,
+            "global_loss": 4.167615890779818,
+            "parameter_error": 1.734723475976807e-16,
+            "optimizer_moment_error": 4.683753385137379e-17
+          }
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "grad_clip": 0.01,
+          "steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "global_loss": 4.145579283111034,
+              "parameter_error": 2.896988204881268e-16,
+              "optimizer_moment_error": 2.710505431213761e-20
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "global_loss": 4.166368094870198,
+              "parameter_error": 2.905661822261152e-16,
+              "optimizer_moment_error": 6.776263578034403e-20
+            },
+            {
+              "status": "passed",
+              "event": 2,
+              "pattern": "one_empty_replica",
+              "micro_batch_size": 5,
+              "global_loss": 4.199861737056436,
+              "parameter_error": 2.905661822261152e-16,
+              "optimizer_moment_error": 6.776263578034403e-20
+            }
+          ],
+          "nonfinite_skip": {
+            "status": "passed",
+            "injected_rank": 3
+          },
+          "recovery": {
+            "status": "passed",
+            "event": 5,
+            "pattern": "equal_valid",
+            "micro_batch_size": 5,
+            "global_loss": 4.166959745096692,
+            "parameter_error": 2.888314587501384e-16,
+            "optimizer_moment_error": 8.809142651444724e-20
+          }
+        }
+      ]
+    },
+    {
+      "status": "passed",
+      "pp_size": 4,
+      "dp_size": 1,
+      "data": {
+        "status": "passed",
+        "batches": [
+          {
+            "batch": 0,
+            "minimal_file": false
+          },
+          {
+            "batch": 1,
+            "minimal_file": false
+          },
+          {
+            "batch": 2,
+            "minimal_file": false
+          },
+          {
+            "batch": 3,
+            "minimal_file": true
+          }
+        ],
+        "source_only_sampling": true,
+        "pp_endpoint_roles": true,
+        "independent_generator_state": true
+      },
+      "loss": {
+        "status": "passed",
+        "cases": [
+          {
+            "counts": [
+              1
+            ],
+            "expected_global_loss": 1.0
+          },
+          {
+            "counts": [
+              1
+            ],
+            "expected_global_loss": 1.0
+          }
+        ]
+      },
+      "models": [
+        {
+          "status": "passed",
+          "bias": true,
+          "grad_clip": 0.0,
+          "steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "global_loss": 4.150016393776405,
+              "parameter_error": 6.821262203351093e-16,
+              "optimizer_moment_error": 1.0408340855860843e-17
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "global_loss": 4.186466284263501,
+              "parameter_error": 4.345646813269993e-15,
+              "optimizer_moment_error": 6.938893903907228e-16
+            },
+            {
+              "status": "passed",
+              "event": 2,
+              "pattern": "equal_valid",
+              "micro_batch_size": 5,
+              "global_loss": 4.176034371427121,
+              "parameter_error": 7.361924327691839e-15,
+              "optimizer_moment_error": 6.661338147750939e-16
+            }
+          ],
+          "nonfinite_skip": {
+            "status": "passed",
+            "injected_rank": 3
+          },
+          "recovery": {
+            "status": "passed",
+            "event": 5,
+            "pattern": "equal_valid",
+            "micro_batch_size": 5,
+            "global_loss": 4.188659046427576,
+            "parameter_error": 9.372275228287619e-15,
+            "optimizer_moment_error": 6.38378239159465e-16
+          }
+        },
+        {
+          "status": "passed",
+          "bias": true,
+          "grad_clip": 0.01,
+          "steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "global_loss": 4.150016393776405,
+              "parameter_error": 6.062858548538941e-16,
+              "optimizer_moment_error": 5.421010862427522e-20
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "global_loss": 4.1865033226485275,
+              "parameter_error": 6.062858548538941e-16,
+              "optimizer_moment_error": 6.776263578034403e-20
+            },
+            {
+              "status": "passed",
+              "event": 2,
+              "pattern": "equal_valid",
+              "micro_batch_size": 5,
+              "global_loss": 4.177241042840914,
+              "parameter_error": 6.054184931159057e-16,
+              "optimizer_moment_error": 1.7448878713438587e-19
+            }
+          ],
+          "nonfinite_skip": {
+            "status": "passed",
+            "injected_rank": 3
+          },
+          "recovery": {
+            "status": "passed",
+            "event": 5,
+            "pattern": "equal_valid",
+            "micro_batch_size": 5,
+            "global_loss": 4.191117007984441,
+            "parameter_error": 6.049848122469115e-16,
+            "optimizer_moment_error": 1.5415999640028266e-19
+          }
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "grad_clip": 0.0,
+          "steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "global_loss": 4.142229804722048,
+              "parameter_error": 7.578573185673676e-16,
+              "optimizer_moment_error": 5.204170427930421e-18
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "global_loss": 4.236610060972381,
+              "parameter_error": 1.0074406586735307e-15,
+              "optimizer_moment_error": 1.6653345369377348e-16
+            },
+            {
+              "status": "passed",
+              "event": 2,
+              "pattern": "equal_valid",
+              "micro_batch_size": 5,
+              "global_loss": 4.173910843143113,
+              "parameter_error": 1.0117774673634727e-15,
+              "optimizer_moment_error": 1.6653345369377348e-16
+            }
+          ],
+          "nonfinite_skip": {
+            "status": "passed",
+            "injected_rank": 3
+          },
+          "recovery": {
+            "status": "passed",
+            "event": 5,
+            "pattern": "equal_valid",
+            "micro_batch_size": 5,
+            "global_loss": 4.154485672276654,
+            "parameter_error": 1.0138374514911952e-15,
+            "optimizer_moment_error": 1.3877787807814457e-16
+          }
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "grad_clip": 0.01,
+          "steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "pattern": "sampled_uint16",
+              "micro_batch_size": 1,
+              "global_loss": 4.142229804722048,
+              "parameter_error": 3.37403716077489e-16,
+              "optimizer_moment_error": 4.0657581468206416e-20
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "pattern": "unequal_valid",
+              "micro_batch_size": 2,
+              "global_loss": 4.236561788263678,
+              "parameter_error": 3.382710778154774e-16,
+              "optimizer_moment_error": 8.131516293641283e-20
+            },
+            {
+              "status": "passed",
+              "event": 2,
+              "pattern": "equal_valid",
+              "micro_batch_size": 5,
+              "global_loss": 4.1733754114264405,
+              "parameter_error": 3.391384395534658e-16,
+              "optimizer_moment_error": 1.2874900798265365e-19
+            }
+          ],
+          "nonfinite_skip": {
+            "status": "passed",
+            "injected_rank": 3
+          },
+          "recovery": {
+            "status": "passed",
+            "event": 5,
+            "pattern": "equal_valid",
+            "micro_batch_size": 5,
+            "global_loss": 4.156388680742074,
+            "parameter_error": 3.391384395534658e-16,
+            "optimizer_moment_error": 1.1858461261560205e-19
+          }
+        }
+      ]
+    }
+  ],
+  "actual_main": {
+    "status": "passed",
+    "pp_size": 2,
+    "dp_size": 2,
+    "dtype": "float32",
+    "bias": true,
+    "grad_clip": 0.01,
+    "steps": [
+      {
+        "iter": 0,
+        "loss": 4.1579508781433105,
+        "norm": 2.1696269512176514
+      },
+      {
+        "iter": 1,
+        "loss": 4.175129413604736,
+        "norm": 1.8048499822616577
+      },
+      {
+        "iter": 2,
+        "loss": 4.166262626647949,
+        "norm": 1.7865065336227417
+      }
+    ],
+    "actual_rank0_training_logs": [
+      "iter 0: loss=4.157951, grad_norm=2.169627, stepped=True",
+      "iter 1: loss=4.175129, grad_norm=1.804850, stepped=True",
+      "iter 2: loss=4.166263, grad_norm=1.786506, stepped=True"
+    ],
+    "launch": "spawn workers setting env:// environment; call actual train_pp.main",
+    "torchrun_cli_checked": false,
+    "group_destroyed": true
+  },
+  "not_checked": [
+    "CUDA/NCCL",
+    "AMP",
+    "nonzero dropout equivalence",
+    "LR schedule",
+    "evaluation",
+    "checkpoint/resume",
+    "real corpus",
+    "torchrun CLI",
+    "performance"
+  ],
+  "source_sha256": {
+    "model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
+    "model_pp.py": "750d5bf218a754357c5c380baefdf98b8e6db16f0169ea80c657e55815487b7c",
+    "parallel_utils.py": "f0f73fb2b5735baeb4820e38af3073385a08f45f4e2058042703c59a70b185fb",
+    "train_pp.py": "9cfff8e7bbf6a0722df7c76dbbdf37741137b63a3a952fce617974feedb0eb10",
+    "checker:verify_pp_microbatch.py": "bc100252d205ef49b80a9f48c6cadaaa78b4d8e9bc630d3dd3d794a38a0e8c79",
+    "checker:verify_pp_grad_sync.py": "abef578c6269ab666304e8a972a3cf66ae2e5c729ac1051378ff3d20fd3cf9bb",
+    "checker:verify_pp_optimizer.py": "d287bf3c361015be7011df3656f628ada445dc231fed0df216ca48fca8e0d464",
+    "checker:verify_pp_training.py": "5bbf96c71737d11a3b53eec6a20a9d52da5cd5d7088e03588bb797f23cb975aa"
+  },
+  "torch_version": "2.12.1+cpu",
+  "device": "cpu",
+  "backend": "gloo",
+  "seed": 1337,
+  "threads": 1,
+  "helper_dtype": "float64",
+  "main_dtype": "float32",
+  "micro_batch_sizes": [
+    1,
+    2,
+    5
+  ],
+  "grad_clip_modes": [
+    0.0,
+    0.01
+  ],
+  "steps": 3,
+  "batch_size": 5,
+  "seq_len": 8,
+  "model_config": {
+    "n_layer": 5,
+    "n_head": 4,
+    "n_embd": 32,
+    "vocab_size": 64,
+    "block_size": 16,
+    "dropout": 0.0
+  }
+}
