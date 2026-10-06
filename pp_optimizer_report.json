@@ -1,0 +1,1320 @@
+{
+  "status": "passed",
+  "scope": "PP_global_clipping_nonfinite_consensus_and_optimizer_step",
+  "requested_cases": [
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      4,
+      1
+    ]
+  ],
+  "completed_cases": [
+    {
+      "pp_size": 1,
+      "dp_size": 4,
+      "status": "passed",
+      "models": [
+        {
+          "status": "passed",
+          "bias": true,
+          "grad_clip": 0.0,
+          "synthetic_clipping": [
+            {
+              "threshold": 0.01,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            },
+            {
+              "threshold": 10.0,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            }
+          ],
+          "normal_steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "micro_batch_size": 1,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1,
+                11,
+                21,
+                31
+              ],
+              "global_loss": 4.155108629895035,
+              "pre_clipping_norm": null,
+              "max_parameter_error": 1.2406902687184544e-15,
+              "max_optimizer_state_error": 9.540979117872439e-18
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "micro_batch_size": 2,
+              "pattern": "one_empty_replica",
+              "valid_labels_per_dp_replica": [
+                0,
+                40,
+                40,
+                40
+              ],
+              "global_loss": 4.162983855099513,
+              "pre_clipping_norm": null,
+              "max_parameter_error": 1.9589234669893392e-15,
+              "max_optimizer_state_error": 2.2985086056692694e-17
+            }
+          ],
+          "skipped_steps": [
+            {
+              "status": "passed",
+              "kind": "nan",
+              "injected_rank": 3,
+              "injected_parameter": "lm_head.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "posinf",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "neginf",
+              "injected_rank": 2,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            }
+          ],
+          "recovery_step": {
+            "status": "passed",
+            "event": 5,
+            "micro_batch_size": 5,
+            "pattern": "equal_valid",
+            "valid_labels_per_dp_replica": [
+              39,
+              39,
+              39,
+              39
+            ],
+            "global_loss": 4.176828536379901,
+            "pre_clipping_norm": null,
+            "max_parameter_error": 2.4509515640225767e-15,
+            "max_optimizer_state_error": 3.122502256758253e-17
+          },
+          "zero_gradient_step": {
+            "status": "passed",
+            "stepped": true,
+            "zero_gradient_keeps_optimizer_step": true
+          },
+          "successful_optimizer_steps": 4
+        },
+        {
+          "status": "passed",
+          "bias": true,
+          "grad_clip": 0.01,
+          "synthetic_clipping": [
+            {
+              "threshold": 0.01,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            },
+            {
+              "threshold": 10.0,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            }
+          ],
+          "normal_steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "micro_batch_size": 1,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1,
+                11,
+                21,
+                31
+              ],
+              "global_loss": 4.155108629895035,
+              "pre_clipping_norm": 2.1422830416240712,
+              "max_parameter_error": 5.017687654262915e-16,
+              "max_optimizer_state_error": 5.421010862427522e-20
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "micro_batch_size": 2,
+              "pattern": "one_empty_replica",
+              "valid_labels_per_dp_replica": [
+                0,
+                40,
+                40,
+                40
+              ],
+              "global_loss": 4.16297379398256,
+              "pre_clipping_norm": 1.4364986649140332,
+              "max_parameter_error": 5.017687654262915e-16,
+              "max_optimizer_state_error": 8.131516293641283e-20
+            }
+          ],
+          "skipped_steps": [
+            {
+              "status": "passed",
+              "kind": "nan",
+              "injected_rank": 3,
+              "injected_parameter": "lm_head.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "posinf",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "neginf",
+              "injected_rank": 2,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "norm_overflow",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            }
+          ],
+          "recovery_step": {
+            "status": "passed",
+            "event": 6,
+            "micro_batch_size": 5,
+            "pattern": "equal_valid",
+            "valid_labels_per_dp_replica": [
+              39,
+              39,
+              39,
+              39
+            ],
+            "global_loss": 4.160942409068256,
+            "pre_clipping_norm": 0.9782927664892938,
+            "max_parameter_error": 5.017687654262915e-16,
+            "max_optimizer_state_error": 1.0842021724855044e-19
+          },
+          "zero_gradient_step": {
+            "status": "passed",
+            "stepped": true,
+            "zero_gradient_keeps_optimizer_step": true
+          },
+          "successful_optimizer_steps": 4
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "grad_clip": 0.0,
+          "synthetic_clipping": [
+            {
+              "threshold": 0.01,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            },
+            {
+              "threshold": 10.0,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            }
+          ],
+          "normal_steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "micro_batch_size": 1,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1,
+                11,
+                21,
+                31
+              ],
+              "global_loss": 4.181151701088138,
+              "pre_clipping_norm": null,
+              "max_parameter_error": 1.2080614286702485e-14,
+              "max_optimizer_state_error": 6.938893903907228e-18
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "micro_batch_size": 2,
+              "pattern": "one_empty_replica",
+              "valid_labels_per_dp_replica": [
+                0,
+                40,
+                40,
+                40
+              ],
+              "global_loss": 4.1731057294952905,
+              "pre_clipping_norm": null,
+              "max_parameter_error": 1.2080614286702485e-14,
+              "max_optimizer_state_error": 5.453536927602087e-17
+            }
+          ],
+          "skipped_steps": [
+            {
+              "status": "passed",
+              "kind": "nan",
+              "injected_rank": 3,
+              "injected_parameter": "lm_head.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "posinf",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "neginf",
+              "injected_rank": 2,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            }
+          ],
+          "recovery_step": {
+            "status": "passed",
+            "event": 5,
+            "micro_batch_size": 5,
+            "pattern": "equal_valid",
+            "valid_labels_per_dp_replica": [
+              39,
+              39,
+              39,
+              39
+            ],
+            "global_loss": 4.18147249339641,
+            "pre_clipping_norm": null,
+            "max_parameter_error": 1.2070205945846624e-14,
+            "max_optimizer_state_error": 6.906367838732663e-17
+          },
+          "zero_gradient_step": {
+            "status": "passed",
+            "stepped": true,
+            "zero_gradient_keeps_optimizer_step": true
+          },
+          "successful_optimizer_steps": 4
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "grad_clip": 0.01,
+          "synthetic_clipping": [
+            {
+              "threshold": 0.01,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            },
+            {
+              "threshold": 10.0,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            }
+          ],
+          "normal_steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "micro_batch_size": 1,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1,
+                11,
+                21,
+                31
+              ],
+              "global_loss": 4.181151701088138,
+              "pre_clipping_norm": 1.3727189152749855,
+              "max_parameter_error": 2.0322285521068295e-15,
+              "max_optimizer_state_error": 4.0657581468206416e-20
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "micro_batch_size": 2,
+              "pattern": "one_empty_replica",
+              "valid_labels_per_dp_replica": [
+                0,
+                40,
+                40,
+                40
+              ],
+              "global_loss": 4.173098069703839,
+              "pre_clipping_norm": 0.9161667433453315,
+              "max_parameter_error": 2.033095913844818e-15,
+              "max_optimizer_state_error": 2.439454888092385e-19
+            }
+          ],
+          "skipped_steps": [
+            {
+              "status": "passed",
+              "kind": "nan",
+              "injected_rank": 3,
+              "injected_parameter": "lm_head.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "posinf",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "neginf",
+              "injected_rank": 2,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "norm_overflow",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            }
+          ],
+          "recovery_step": {
+            "status": "passed",
+            "event": 6,
+            "micro_batch_size": 5,
+            "pattern": "equal_valid",
+            "valid_labels_per_dp_replica": [
+              39,
+              39,
+              39,
+              39
+            ],
+            "global_loss": 4.1741209030075055,
+            "pre_clipping_norm": 0.8228991076108051,
+            "max_parameter_error": 2.033095913844818e-15,
+            "max_optimizer_state_error": 3.2526065174565133e-19
+          },
+          "zero_gradient_step": {
+            "status": "passed",
+            "stepped": true,
+            "zero_gradient_keeps_optimizer_step": true
+          },
+          "successful_optimizer_steps": 4
+        }
+      ]
+    },
+    {
+      "pp_size": 2,
+      "dp_size": 2,
+      "status": "passed",
+      "models": [
+        {
+          "status": "passed",
+          "bias": true,
+          "grad_clip": 0.0,
+          "synthetic_clipping": [
+            {
+              "threshold": 0.01,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            },
+            {
+              "threshold": 10.0,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            }
+          ],
+          "normal_steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "micro_batch_size": 1,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1,
+                21
+              ],
+              "global_loss": 4.180974406883891,
+              "pre_clipping_norm": null,
+              "max_parameter_error": 1.4498469941256643e-15,
+              "max_optimizer_state_error": 2.7755575615628914e-17
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "micro_batch_size": 2,
+              "pattern": "one_empty_replica",
+              "valid_labels_per_dp_replica": [
+                0,
+                40
+              ],
+              "global_loss": 4.150388780062733,
+              "pre_clipping_norm": null,
+              "max_parameter_error": 2.425625016656335e-15,
+              "max_optimizer_state_error": 2.7755575615628914e-17
+            }
+          ],
+          "skipped_steps": [
+            {
+              "status": "passed",
+              "kind": "nan",
+              "injected_rank": 3,
+              "injected_parameter": "lm_head.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "posinf",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "neginf",
+              "injected_rank": 1,
+              "injected_parameter": "transformer.h.2.ln_1.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            }
+          ],
+          "recovery_step": {
+            "status": "passed",
+            "event": 5,
+            "micro_batch_size": 5,
+            "pattern": "equal_valid",
+            "valid_labels_per_dp_replica": [
+              39,
+              39
+            ],
+            "global_loss": 4.18531524591979,
+            "pre_clipping_norm": null,
+            "max_parameter_error": 2.9973319865672865e-15,
+            "max_optimizer_state_error": 2.7755575615628914e-17
+          },
+          "zero_gradient_step": {
+            "status": "passed",
+            "stepped": true,
+            "zero_gradient_keeps_optimizer_step": true
+          },
+          "successful_optimizer_steps": 4
+        },
+        {
+          "status": "passed",
+          "bias": true,
+          "grad_clip": 0.01,
+          "synthetic_clipping": [
+            {
+              "threshold": 0.01,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            },
+            {
+              "threshold": 10.0,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            }
+          ],
+          "normal_steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "micro_batch_size": 1,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1,
+                21
+              ],
+              "global_loss": 4.180974406883891,
+              "pre_clipping_norm": 2.9322298597134333,
+              "max_parameter_error": 1.8650445771095647e-15,
+              "max_optimizer_state_error": 8.131516293641283e-20
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "micro_batch_size": 2,
+              "pattern": "one_empty_replica",
+              "valid_labels_per_dp_replica": [
+                0,
+                40
+              ],
+              "global_loss": 4.150386128085848,
+              "pre_clipping_norm": 2.149497527015773,
+              "max_parameter_error": 1.865695098413056e-15,
+              "max_optimizer_state_error": 1.9142944607947188e-19
+            }
+          ],
+          "skipped_steps": [
+            {
+              "status": "passed",
+              "kind": "nan",
+              "injected_rank": 3,
+              "injected_parameter": "lm_head.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "posinf",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "neginf",
+              "injected_rank": 1,
+              "injected_parameter": "transformer.h.2.ln_1.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "norm_overflow",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            }
+          ],
+          "recovery_step": {
+            "status": "passed",
+            "event": 6,
+            "micro_batch_size": 5,
+            "pattern": "equal_valid",
+            "valid_labels_per_dp_replica": [
+              39,
+              39
+            ],
+            "global_loss": 4.1567603177660155,
+            "pre_clipping_norm": 1.3561383001319551,
+            "max_parameter_error": 1.8665624601510444e-15,
+            "max_optimizer_state_error": 2.1429933565533799e-19
+          },
+          "zero_gradient_step": {
+            "status": "passed",
+            "stepped": true,
+            "zero_gradient_keeps_optimizer_step": true
+          },
+          "successful_optimizer_steps": 4
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "grad_clip": 0.0,
+          "synthetic_clipping": [
+            {
+              "threshold": 0.01,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            },
+            {
+              "threshold": 10.0,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            }
+          ],
+          "normal_steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "micro_batch_size": 1,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1,
+                21
+              ],
+              "global_loss": 4.196473941883704,
+              "pre_clipping_norm": null,
+              "max_parameter_error": 6.990935608186533e-16,
+              "max_optimizer_state_error": 1.0408340855860843e-17
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "micro_batch_size": 2,
+              "pattern": "one_empty_replica",
+              "valid_labels_per_dp_replica": [
+                0,
+                40
+              ],
+              "global_loss": 4.165199557797638,
+              "pre_clipping_norm": null,
+              "max_parameter_error": 7.008282842946301e-16,
+              "max_optimizer_state_error": 1.214306433183765e-17
+            }
+          ],
+          "skipped_steps": [
+            {
+              "status": "passed",
+              "kind": "nan",
+              "injected_rank": 3,
+              "injected_parameter": "lm_head.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "posinf",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "neginf",
+              "injected_rank": 1,
+              "injected_parameter": "transformer.h.2.ln_1.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            }
+          ],
+          "recovery_step": {
+            "status": "passed",
+            "event": 5,
+            "micro_batch_size": 5,
+            "pattern": "equal_valid",
+            "valid_labels_per_dp_replica": [
+              39,
+              39
+            ],
+            "global_loss": 4.162387690518217,
+            "pre_clipping_norm": null,
+            "max_parameter_error": 7.008282842946301e-16,
+            "max_optimizer_state_error": 1.0408340855860843e-17
+          },
+          "zero_gradient_step": {
+            "status": "passed",
+            "stepped": true,
+            "zero_gradient_keeps_optimizer_step": true
+          },
+          "successful_optimizer_steps": 4
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "grad_clip": 0.01,
+          "synthetic_clipping": [
+            {
+              "threshold": 0.01,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            },
+            {
+              "threshold": 10.0,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            }
+          ],
+          "normal_steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "micro_batch_size": 1,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1,
+                21
+              ],
+              "global_loss": 4.196473941883704,
+              "pre_clipping_norm": 2.1139019063417135,
+              "max_parameter_error": 6.965456857133123e-16,
+              "max_optimizer_state_error": 5.421010862427522e-20
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "micro_batch_size": 2,
+              "pattern": "one_empty_replica",
+              "valid_labels_per_dp_replica": [
+                0,
+                40
+              ],
+              "global_loss": 4.165198351578833,
+              "pre_clipping_norm": 1.5211180935270576,
+              "max_parameter_error": 6.977925182116707e-16,
+              "max_optimizer_state_error": 8.131516293641283e-20
+            }
+          ],
+          "skipped_steps": [
+            {
+              "status": "passed",
+              "kind": "nan",
+              "injected_rank": 3,
+              "injected_parameter": "lm_head.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "posinf",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "neginf",
+              "injected_rank": 1,
+              "injected_parameter": "transformer.h.2.ln_1.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "norm_overflow",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            }
+          ],
+          "recovery_step": {
+            "status": "passed",
+            "event": 6,
+            "micro_batch_size": 5,
+            "pattern": "equal_valid",
+            "valid_labels_per_dp_replica": [
+              39,
+              39
+            ],
+            "global_loss": 4.188026433048989,
+            "pre_clipping_norm": 1.129491936187702,
+            "max_parameter_error": 6.982261990806649e-16,
+            "max_optimizer_state_error": 8.809142651444724e-20
+          },
+          "zero_gradient_step": {
+            "status": "passed",
+            "stepped": true,
+            "zero_gradient_keeps_optimizer_step": true
+          },
+          "successful_optimizer_steps": 4
+        }
+      ]
+    },
+    {
+      "pp_size": 4,
+      "dp_size": 1,
+      "status": "passed",
+      "models": [
+        {
+          "status": "passed",
+          "bias": true,
+          "grad_clip": 0.0,
+          "synthetic_clipping": [
+            {
+              "threshold": 0.01,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            },
+            {
+              "threshold": 10.0,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            }
+          ],
+          "normal_steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "micro_batch_size": 1,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "global_loss": 3.945516086620396,
+              "pre_clipping_norm": null,
+              "max_parameter_error": 0.0,
+              "max_optimizer_state_error": 0.0
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "micro_batch_size": 2,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "global_loss": 4.072945786676582,
+              "pre_clipping_norm": null,
+              "max_parameter_error": 0.0,
+              "max_optimizer_state_error": 0.0
+            }
+          ],
+          "skipped_steps": [
+            {
+              "status": "passed",
+              "kind": "nan",
+              "injected_rank": 3,
+              "injected_parameter": "lm_head.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "posinf",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "neginf",
+              "injected_rank": 2,
+              "injected_parameter": "transformer.h.2.ln_1.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            }
+          ],
+          "recovery_step": {
+            "status": "passed",
+            "event": 5,
+            "micro_batch_size": 5,
+            "pattern": "equal_valid",
+            "valid_labels_per_dp_replica": [
+              39
+            ],
+            "global_loss": 4.170397203842598,
+            "pre_clipping_norm": null,
+            "max_parameter_error": 0.0,
+            "max_optimizer_state_error": 0.0
+          },
+          "zero_gradient_step": {
+            "status": "passed",
+            "stepped": true,
+            "zero_gradient_keeps_optimizer_step": true
+          },
+          "successful_optimizer_steps": 4
+        },
+        {
+          "status": "passed",
+          "bias": true,
+          "grad_clip": 0.01,
+          "synthetic_clipping": [
+            {
+              "threshold": 0.01,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            },
+            {
+              "threshold": 10.0,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            }
+          ],
+          "normal_steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "micro_batch_size": 1,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "global_loss": 3.945516086620396,
+              "pre_clipping_norm": 11.972544042560777,
+              "max_parameter_error": 1.1102230246251565e-16,
+              "max_optimizer_state_error": 2.710505431213761e-20
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "micro_batch_size": 2,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "global_loss": 4.072964582179913,
+              "pre_clipping_norm": 10.98458582055432,
+              "max_parameter_error": 2.220446049250313e-16,
+              "max_optimizer_state_error": 4.0657581468206416e-20
+            }
+          ],
+          "skipped_steps": [
+            {
+              "status": "passed",
+              "kind": "nan",
+              "injected_rank": 3,
+              "injected_parameter": "lm_head.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "posinf",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "neginf",
+              "injected_rank": 2,
+              "injected_parameter": "transformer.h.2.ln_1.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "norm_overflow",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            }
+          ],
+          "recovery_step": {
+            "status": "passed",
+            "event": 6,
+            "micro_batch_size": 5,
+            "pattern": "equal_valid",
+            "valid_labels_per_dp_replica": [
+              39
+            ],
+            "global_loss": 4.145021496824473,
+            "pre_clipping_norm": 1.9298752839534303,
+            "max_parameter_error": 2.220446049250313e-16,
+            "max_optimizer_state_error": 6.776263578034403e-20
+          },
+          "zero_gradient_step": {
+            "status": "passed",
+            "stepped": true,
+            "zero_gradient_keeps_optimizer_step": true
+          },
+          "successful_optimizer_steps": 4
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "grad_clip": 0.0,
+          "synthetic_clipping": [
+            {
+              "threshold": 0.01,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            },
+            {
+              "threshold": 10.0,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            }
+          ],
+          "normal_steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "micro_batch_size": 1,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "global_loss": 4.1892660405850695,
+              "pre_clipping_norm": null,
+              "max_parameter_error": 0.0,
+              "max_optimizer_state_error": 0.0
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "micro_batch_size": 2,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "global_loss": 4.265037114871014,
+              "pre_clipping_norm": null,
+              "max_parameter_error": 0.0,
+              "max_optimizer_state_error": 0.0
+            }
+          ],
+          "skipped_steps": [
+            {
+              "status": "passed",
+              "kind": "nan",
+              "injected_rank": 3,
+              "injected_parameter": "lm_head.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "posinf",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "neginf",
+              "injected_rank": 2,
+              "injected_parameter": "transformer.h.2.ln_1.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            }
+          ],
+          "recovery_step": {
+            "status": "passed",
+            "event": 5,
+            "micro_batch_size": 5,
+            "pattern": "equal_valid",
+            "valid_labels_per_dp_replica": [
+              39
+            ],
+            "global_loss": 4.153760557245761,
+            "pre_clipping_norm": null,
+            "max_parameter_error": 0.0,
+            "max_optimizer_state_error": 0.0
+          },
+          "zero_gradient_step": {
+            "status": "passed",
+            "stepped": true,
+            "zero_gradient_keeps_optimizer_step": true
+          },
+          "successful_optimizer_steps": 4
+        },
+        {
+          "status": "passed",
+          "bias": false,
+          "grad_clip": 0.01,
+          "synthetic_clipping": [
+            {
+              "threshold": 0.01,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            },
+            {
+              "threshold": 10.0,
+              "pre_clipping_norm": 5.0,
+              "status": "passed"
+            }
+          ],
+          "normal_steps": [
+            {
+              "status": "passed",
+              "event": 0,
+              "micro_batch_size": 1,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "global_loss": 4.1892660405850695,
+              "pre_clipping_norm": 11.542244068582454,
+              "max_parameter_error": 0.0,
+              "max_optimizer_state_error": 0.0
+            },
+            {
+              "status": "passed",
+              "event": 1,
+              "micro_batch_size": 2,
+              "pattern": "unequal_valid",
+              "valid_labels_per_dp_replica": [
+                1
+              ],
+              "global_loss": 4.265343832198532,
+              "pre_clipping_norm": 8.41594530021857,
+              "max_parameter_error": 1.3877787807814457e-17,
+              "max_optimizer_state_error": 5.421010862427522e-20
+            }
+          ],
+          "skipped_steps": [
+            {
+              "status": "passed",
+              "kind": "nan",
+              "injected_rank": 3,
+              "injected_parameter": "lm_head.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "posinf",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "neginf",
+              "injected_rank": 2,
+              "injected_parameter": "transformer.h.2.ln_1.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            },
+            {
+              "status": "passed",
+              "kind": "norm_overflow",
+              "injected_rank": 0,
+              "injected_parameter": "transformer.wpe.weight",
+              "all_ranks_skipped": true,
+              "model_and_optimizer_unchanged": true,
+              "gradients_cleared_to_none": true
+            }
+          ],
+          "recovery_step": {
+            "status": "passed",
+            "event": 6,
+            "micro_batch_size": 5,
+            "pattern": "equal_valid",
+            "valid_labels_per_dp_replica": [
+              39
+            ],
+            "global_loss": 4.14901267829946,
+            "pre_clipping_norm": 1.7330117367381712,
+            "max_parameter_error": 1.3877787807814457e-17,
+            "max_optimizer_state_error": 5.421010862427522e-20
+          },
+          "zero_gradient_step": {
+            "status": "passed",
+            "stepped": true,
+            "zero_gradient_keeps_optimizer_step": true
+          },
+          "successful_optimizer_steps": 4
+        }
+      ]
+    }
+  ],
+  "not_checked": [
+    "train_pp.main",
+    "production optimizer creation",
+    "torchrun/env rendezvous",
+    "CUDA/NCCL",
+    "AMP",
+    "dataset loading",
+    "checkpoint",
+    "performance"
+  ],
+  "source_sha256": {
+    "model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
+    "model_pp.py": "750d5bf218a754357c5c380baefdf98b8e6db16f0169ea80c657e55815487b7c",
+    "parallel_utils.py": "f0f73fb2b5735baeb4820e38af3073385a08f45f4e2058042703c59a70b185fb",
+    "train_pp.py": "960589de1a399ac6e24e46eb39a2a01216c7fae74e65c08b07e083eac92f9f23",
+    "checker:verify_pp_microbatch.py": "bc100252d205ef49b80a9f48c6cadaaa78b4d8e9bc630d3dd3d794a38a0e8c79",
+    "checker:verify_pp_grad_sync.py": "abef578c6269ab666304e8a972a3cf66ae2e5c729ac1051378ff3d20fd3cf9bb",
+    "checker:verify_pp_optimizer.py": "d287bf3c361015be7011df3656f628ada445dc231fed0df216ca48fca8e0d464"
+  },
+  "torch_version": "2.12.1+cpu",
+  "device": "cpu",
+  "backend": "gloo",
+  "dtype": "float64",
+  "seed": 1337,
+  "threads": 1,
+  "timeout_seconds": 120,
+  "model_config": {
+    "n_layer": 5,
+    "n_head": 4,
+    "n_embd": 32,
+    "vocab_size": 64,
+    "block_size": 16,
+    "dropout": 0.0
+  },
+  "batch_size": 5,
+  "seq_len": 8,
+  "biases": [
+    true,
+    false
+  ],
+  "micro_batch_sizes": [
+    1,
+    2,
+    5
+  ],
+  "grad_clip_modes": [
+    0.0,
+    0.01
+  ],
+  "warmup_steps": 2,
+  "optimizer": {
+    "name": "AdamW",
+    "learning_rate": 0.0006,
+    "weight_decay": 0.1,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "foreach": false,
+    "fused": false
+  }
+}

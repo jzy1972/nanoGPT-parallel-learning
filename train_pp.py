@@ -3,6 +3,8 @@ import argparse
 import os
 import torch
 
+import math
+
 from model import GPTConfig
 from model_pp import GPTStage
 
@@ -19,6 +21,8 @@ from parallel_utils import(
     get_dp_grad_weight,
     sync_dp_gradients,
     sync_tied_weight_gradients,
+    global_has_nonfinite_gradients,
+    clip_stage_gradients,
 )
 
 def setup_parallel(pp_size):
@@ -281,6 +285,52 @@ def sync_stage_gradients(stage, targets, parallel, device):
     )
 
     return grad_weight
+
+def step_stage_optimizer(
+        stage,
+        optimizer,
+        parallel,
+        device,
+        grad_clip,
+):
+    grad_clip=float(grad_clip)
+
+    if not math.isfinite(grad_clip) or grad_clip<0:
+        raise ValueError(f"grad_clip必须是有限的正数")
+
+    grad_norm=None
+
+    if grad_clip>0:
+        grad_norm=clip_stage_gradients(
+            stage=stage,
+            max_norm=grad_clip,
+            parallel=parallel,
+            device=device,
+        )
+
+        can_step=grad_norm is not None
+
+    else:
+        can_step=not global_has_nonfinite_gradients(
+            stage=stage,
+            device=device
+        )
+
+    if can_step:
+        optimizer.step()
+
+    optimizer.zero_grad(set_to_none=True)
+
+    return{
+        "stepped": can_step,
+        "grad_norm": (
+            grad_norm.item()
+            if grad_norm is not None
+            else None
+        ),
+    }
+
+
 
 def main():
     args=parse_args()

@@ -1,6 +1,8 @@
 import torch.distributed as dist
 import torch
 
+import math
+
 def get_stage_layer_range(n_layer,pp_size,pp_rank):
     assert 1<=pp_size<=n_layer
     assert 0<=pp_rank<pp_size
@@ -240,4 +242,78 @@ def sync_dp_gradients(
                 group=dp_group,
             )
             grad.div_(dp_size)
+
+@torch.no_grad()
+def global_has_nonfinite_gradients(stage,device):
+    flag=torch.zeros((),dtype=torch.int32,device=device,)
+
+    for param in stage.parameters():
+        if param.grad is None:
+            continue
+
+        param_bad=(~torch.isfinite(param.grad)).any().to(dtype=torch.int32)
+
+        flag=torch.maximum(flag,param_bad)
+
+
+    dist.all_reduce(flag,op=dist.ReduceOp.MAX,)
+
+    return bool(flag.item())
+
+@torch.no_grad()
+def clip_stage_gradients(stage,max_norm,parallel,device):
+    max_norm=float(max_norm)
+
+    if not math.isfinite(max_norm) or max_norm<=0:
+        raise ValueError(f"max_norm必须是正的有限数")
+
+    if global_has_nonfinite_gradients(stage,device):
+        return None
+
+    local_squared_norm=torch.zeros(
+        (),
+        dtype=torch.float64,
+        device=device,
+    )
+
+    for name,param in stage.named_parameters():
+        if param.grad is None:
+            continue
+
+        if(
+            stage.pp_size>1
+            and stage.is_last
+            and name=="lm_head.weight"
+        ):
+            continue
+
+        grad=param.grad.detach().to(dtype=torch.float64)
+
+        local_squared_norm.add_(grad.square().sum())
+
+    dist.all_reduce(
+        local_squared_norm,
+        op=dist.ReduceOp.SUM,
+        group=parallel["pp_group"],
+    )
+
+    total_norm=local_squared_norm.sqrt()
+
+    norm_bad=(~torch.isfinite(total_norm)).any().to(dtype=torch.int32)
+
+    dist.all_reduce(norm_bad,op=dist.ReduceOp.MAX)
+
+    if norm_bad.item():
+        return None
+
+    coefficient = (
+        max_norm / (total_norm + 1e-6)
+    ).clamp(max=1.0)
+
+    for param in stage.parameters():
+        if param.grad is not None:
+            param.grad.mul_(coefficient)
+
+    return total_norm
+
 
