@@ -84,4 +84,61 @@ def sync_tied_weights(stage,tied_group,src_rank):
 
     dist.broadcast(weight.detach(),src=src_rank,group=tied_group)
 
+def send_forward(tensor,dst_rank,pp_group):
+    assert dst_rank is not None
 
+    dist.send(
+        tensor.detach().contiguous(),
+        dst=dst_rank,
+        group=pp_group
+    )
+
+def recv_forward(
+    shape,
+    dtype,
+    device,
+    src_rank,
+    pp_group,
+    requires_grad=True,
+):
+    assert src_rank is not None
+
+    tensor = torch.empty(
+        shape,
+        dtype=dtype,
+        device=device,
+    )
+
+    dist.recv(
+        tensor=tensor,
+        src=src_rank,
+        group=pp_group,
+    )
+
+    tensor.requires_grad_(requires_grad)
+    return tensor
+
+def send_backward(grad_input,dst_rank,pp_group):
+    assert dst_rank is not None
+
+    dist.send(
+        tensor=grad_input.detach().contiguous(),
+        dst=dst_rank,
+        group=pp_group,
+    )
+
+def recv_backward(stage_output,src_rank,pp_group):
+    assert src_rank is not None
+
+    grad_output=torch.empty_like(
+        stage_output,
+        memory_format=torch.contiguous_format,
+    )
+
+    dist.recv(
+        tensor=grad_output,
+        src=src_rank,
+        group=pp_group,
+    )
+
+    return grad_output

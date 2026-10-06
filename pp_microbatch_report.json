@@ -1,0 +1,164 @@
+{
+  "status": "passed",
+  "scope": "one_microbatch_PP_forward_backward_communication",
+  "requested_cases": [
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      4,
+      1
+    ]
+  ],
+  "completed_cases": [
+    {
+      "pp_size": 1,
+      "dp_size": 4,
+      "status": "passed",
+      "models": [
+        {
+          "bias": true,
+          "checks": [
+            {
+              "loss_weight": 1.0,
+              "status": "passed"
+            },
+            {
+              "loss_weight": 0.37,
+              "status": "passed"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "bias": false,
+          "checks": [
+            {
+              "loss_weight": 1.0,
+              "status": "passed"
+            },
+            {
+              "loss_weight": 0.37,
+              "status": "passed"
+            }
+          ],
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "pp_size": 2,
+      "dp_size": 2,
+      "status": "passed",
+      "models": [
+        {
+          "bias": true,
+          "checks": [
+            {
+              "loss_weight": 1.0,
+              "status": "passed"
+            },
+            {
+              "loss_weight": 0.37,
+              "status": "passed"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "bias": false,
+          "checks": [
+            {
+              "loss_weight": 1.0,
+              "status": "passed"
+            },
+            {
+              "loss_weight": 0.37,
+              "status": "passed"
+            }
+          ],
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "pp_size": 4,
+      "dp_size": 1,
+      "status": "passed",
+      "models": [
+        {
+          "bias": true,
+          "checks": [
+            {
+              "loss_weight": 1.0,
+              "status": "passed"
+            },
+            {
+              "loss_weight": 0.37,
+              "status": "passed"
+            }
+          ],
+          "status": "passed"
+        },
+        {
+          "bias": false,
+          "checks": [
+            {
+              "loss_weight": 1.0,
+              "status": "passed"
+            },
+            {
+              "loss_weight": 0.37,
+              "status": "passed"
+            }
+          ],
+          "status": "passed"
+        }
+      ]
+    }
+  ],
+  "not_checked": [
+    "train_pp.main",
+    "torchrun/env rendezvous",
+    "CUDA/NCCL",
+    "multiple-microbatch GPipe schedule",
+    "DP gradient averaging",
+    "training tied-weight gradient synchronization",
+    "optimizer updates",
+    "AMP",
+    "gradient clipping",
+    "dataset loading",
+    "checkpoint"
+  ],
+  "source_sha256": {
+    "model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
+    "model_pp.py": "750d5bf218a754357c5c380baefdf98b8e6db16f0169ea80c657e55815487b7c",
+    "parallel_utils.py": "a8459f3be3790fac016a852298a69bdf688de7ab19890ceaa5820dcd7227eecc",
+    "train_pp.py": "79f530a4341c0da608e9af6ce3f62edb124bc291007294c4221b5ac097ea8264"
+  },
+  "torch_version": "2.12.1+cpu",
+  "device": "cpu",
+  "backend": "gloo",
+  "dtype": "float64",
+  "model_config": {
+    "n_layer": 5,
+    "n_head": 4,
+    "n_embd": 32,
+    "vocab_size": 64,
+    "block_size": 16,
+    "dropout": 0.0
+  },
+  "biases": [
+    true,
+    false
+  ],
+  "loss_weights": [
+    1.0,
+    0.37
+  ]
+}
