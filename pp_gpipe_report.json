@@ -5729,8 +5729,8 @@
   "source_sha256": {
     "model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
     "model_pp.py": "750d5bf218a754357c5c380baefdf98b8e6db16f0169ea80c657e55815487b7c",
-    "parallel_utils.py": "a8459f3be3790fac016a852298a69bdf688de7ab19890ceaa5820dcd7227eecc",
-    "train_pp.py": "c930435c9ae54d25efc229bee0991f8f2d29b8a1d6f5ab7a48d4ac935763ec0e",
+    "parallel_utils.py": "f685b5bdc8b985d73beccb0b9309e8e61713371863f34d3f783c5f32bb76a5b5",
+    "train_pp.py": "70c25e5db04567011415a6ac8b4e913f932984554d1a3e8cf2b388e9baf81e94",
     "checker:verify_pp_microbatch.py": "bc100252d205ef49b80a9f48c6cadaaa78b4d8e9bc630d3dd3d794a38a0e8c79",
     "checker:verify_pp_gpipe.py": "822991b94cce58fe12ad5572ac93ca99cb652dc7cc543f778e92409c9750d099"
   },
