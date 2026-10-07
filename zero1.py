@@ -2,6 +2,8 @@ import math
 import torch
 import torch.distributed as dist
 
+
+
 def build_parameter_partition(model, dp_size):
     if dp_size <= 0:
         raise ValueError("dp_size 必须大于 0")
@@ -234,3 +236,5 @@ class Zero1Optimizer:
                     )
 
         return float(total_norm.item())
+
+
