@@ -43,6 +43,9 @@ def parse_args():
     parser.add_argument("--beta1", type=float, default=0.9)
     parser.add_argument("--beta2", type=float, default=0.95)
 
+    parser.add_argument("--eval-interval", type=int, default=0)
+    parser.add_argument("--eval-iters", type=int, default=20)
+
     parser.add_argument(
         "--data-dir",
         type=str,
@@ -77,6 +80,12 @@ def parse_args():
 
     if not math.isfinite(args.grad_clip) or args.grad_clip < 0:
         parser.error("grad_clip 必须是有限的非负数")
+
+    if args.eval_interval < 0:
+        raise ValueError("eval_interval 必须大于等于 0")
+
+    if args.eval_iters <= 0:
+        raise ValueError("eval_iters 必须大于 0")
 
     return args
 
@@ -200,6 +209,81 @@ def train_zero_step(
         "stepped": stepped,
     }
 
+@torch.no_grad()
+def estimate_zero_loss(
+    model,
+    data_path,
+    batch_size,
+    seq_length,
+    micro_batch_size,
+    eval_iters,
+    device,
+    dp_group,
+    seed,
+):
+    if batch_size <= 0 or seq_length <= 0:
+        raise ValueError("batch_size、seq_length 必须大于 0")
+
+    if micro_batch_size <= 0 or eval_iters <= 0:
+        raise ValueError("micro_batch_size、eval_iters 必须大于 0")
+
+    dp_rank = dist.get_rank(group=dp_group)
+
+    # 评估使用独立的数据生成器
+    generator = torch.Generator(device="cpu")
+    generator.manual_seed(seed + dp_rank)
+
+    # 取出 DDP 内部的完整模型
+    raw_model = model.module if isinstance(model, DDP) else model
+    was_training = raw_model.training
+
+    # totals[0]：loss 总和
+    # totals[1]：参与评估的 token 总数
+    totals = torch.zeros(
+        2,
+        dtype=torch.float64,
+        device=device,
+    )
+
+    try:
+        raw_model.eval()
+
+        for _ in range(eval_iters):
+            x, y = get_zero_batch(
+                data_path=data_path,
+                batch_size=batch_size,
+                seq_length=seq_length,
+                device=device,
+                generator=generator,
+            )
+
+            for start in range(0, batch_size, micro_batch_size):
+                end = min(start + micro_batch_size, batch_size)
+
+                micro_x = x[start:end]
+                micro_y = y[start:end]
+
+                _, loss = raw_model(micro_x, micro_y)
+
+                token_count = micro_y.numel()
+
+                totals[0].add_(
+                    loss.detach().to(dtype=torch.float64)
+                    * token_count
+                )
+
+                totals[1].add_(token_count)
+
+        dist.all_reduce(
+            totals,
+            op=dist.ReduceOp.SUM,
+            group=dp_group,
+        )
+
+        return float((totals[0] / totals[1]).item())
+
+    finally:
+        raw_model.train(was_training)
 
 def main():
     args = parse_args()
@@ -228,6 +312,22 @@ def main():
         raise ValueError(
             "train.bin 的 token 数必须大于 seq_length"
         )
+
+    val_data_path = None
+
+    if args.eval_interval > 0:
+        val_data_path = os.path.abspath(
+        os.path.join(args.data_dir, "val.bin")
+    )
+
+        val_bytes = os.path.getsize(val_data_path)
+        token_bytes = np.dtype(np.uint16).itemsize
+
+        if val_bytes % token_bytes != 0:
+            raise ValueError("val.bin 的大小不符合 uint16 格式")
+
+        if val_bytes // token_bytes <= args.seq_length:
+            raise ValueError("val.bin 的 token 数必须大于 seq_length")
 
     if any(name not in os.environ for name in required_env):
         raise RuntimeError("请通过分布式启动器运行 train_zero.py")
@@ -358,6 +458,40 @@ def main():
                     f"stepped={result['stepped']}",
                     flush=True,
                 )
+
+            completed_iters = iter_num + 1
+
+            should_eval = (
+                    args.eval_interval > 0
+                    and (completed_iters % args.eval_interval == 0 or completed_iters == args.max_iters)
+                )
+
+            if should_eval:
+                eval_losses = {}
+
+                for split, data_path, seed_offset in (
+                    ("train", train_data_path, 20_000),
+                    ("val", val_data_path, 30_000),
+                ):
+                    eval_losses[split] = estimate_zero_loss(
+                    model=model,
+                    data_path=data_path,
+                    batch_size=args.batch_size,
+                    seq_length=args.seq_length,
+                    micro_batch_size=args.micro_batch_size,
+                    eval_iters=args.eval_iters,
+                    device=device,
+                    dp_group=dp_group,
+                    seed=args.seed + seed_offset,
+                    )
+
+                if dist.get_rank() == 0:
+                    print(
+                        f"eval iter {iter_num}: "
+                        f"train loss={eval_losses['train']:.6f}, "
+                        f"val loss={eval_losses['val']:.6f}",
+                        flush=True,
+                    )
 
         dist.barrier()
 
