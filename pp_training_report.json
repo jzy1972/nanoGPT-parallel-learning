@@ -797,7 +797,7 @@
     "model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
     "model_pp.py": "750d5bf218a754357c5c380baefdf98b8e6db16f0169ea80c657e55815487b7c",
     "parallel_utils.py": "f0f73fb2b5735baeb4820e38af3073385a08f45f4e2058042703c59a70b185fb",
-    "train_pp.py": "9cfff8e7bbf6a0722df7c76dbbdf37741137b63a3a952fce617974feedb0eb10",
+    "train_pp.py": "4b391b04634713490ab74840608874d98fb43f9a98f9556db1ea514025e94796",
     "checker:verify_pp_microbatch.py": "bc100252d205ef49b80a9f48c6cadaaa78b4d8e9bc630d3dd3d794a38a0e8c79",
     "checker:verify_pp_grad_sync.py": "abef578c6269ab666304e8a972a3cf66ae2e5c729ac1051378ff3d20fd3cf9bb",
     "checker:verify_pp_optimizer.py": "d287bf3c361015be7011df3656f628ada445dc231fed0df216ca48fca8e0d464",
