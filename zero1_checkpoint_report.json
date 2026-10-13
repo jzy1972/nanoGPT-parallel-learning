@@ -1,0 +1,2832 @@
+{
+  "status": "passed",
+  "timestamp_utc": "2026-10-13T13:11:03.525371+00:00",
+  "project": "D:\\大学\\科研\\nanoGPT",
+  "device": "cpu",
+  "world_size": 4,
+  "threads": 1,
+  "function_dtype": "float64",
+  "main_dtype": "float32",
+  "dropout": 0.25,
+  "group_layouts": [
+    [
+      "WORLD",
+      [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ]
+    ],
+    [
+      "singleton",
+      [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ]
+    ],
+    [
+      "strided",
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    ]
+  ],
+  "function_workers": [
+    {
+      "rank": 0,
+      "status": "passed",
+      "checks": [
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: next data / Dropout / AdamW update and moments",
+        "load rejection: missing complete (all ranks)",
+        "load rejection: missing shard (all ranks)",
+        "load rejection: incomplete (all ranks)",
+        "load rejection: file list (all ranks)",
+        "load rejection: version (all ranks)",
+        "load rejection: stage (all ranks)",
+        "load rejection: size (all ranks)",
+        "load rejection: rank (all ranks)",
+        "load rejection: counter (all ranks)",
+        "load rejection: negative counter (all ranks)",
+        "load rejection: config (all ranks)",
+        "load rejection: layout (all ranks)",
+        "load rejection: fixed args (all ranks)",
+        "load rejection: device type (all ranks)",
+        "load rejection: max_iters before next_iter",
+        "load rejection: changed fixed argument seed",
+        "load rejection: changed fixed argument data_dir",
+        "load rejection: changed fixed argument batch_size",
+        "load rejection: changed fixed argument seq_length",
+        "load rejection: changed fixed argument micro_batch_size",
+        "load rejection: changed fixed argument grad_clip",
+        "load rejection: changed fixed argument learning_rate",
+        "load rejection: changed fixed argument weight_decay",
+        "load rejection: changed fixed argument beta1",
+        "load rejection: changed fixed argument beta2",
+        "save rejection: existing checkpoint",
+        "existing checkpoint preserved",
+        "load rejection: different paths across ranks",
+        "save rejection: different counters across ranks",
+        "save rejection: different paths across ranks",
+        "save rejection: next_iter=-1",
+        "save rejection: next_iter=True",
+        "save rejection: next_iter=1.5",
+        "save rejection: pending gradient on one rank",
+        "pending-gradient save has no completion marker",
+        "save rejection: ordinary shard write exception coordinated",
+        "incomplete write has no completion marker",
+        "healthy save after rejected write",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: files / weights_only load / model / owned moments / independent RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: exact load / new optimizer references / aliases / all RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: next data / Dropout / AdamW update and moments",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: next data / Dropout / AdamW update and moments",
+        "functions singleton, members=[0], GPT, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions singleton, members=[0], GPT, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions singleton, members=[0], GPT, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions singleton, members=[0], GPT, bias=True: next data / Dropout / AdamW update and moments",
+        "functions singleton, members=[0], GPT, bias=False: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions singleton, members=[0], GPT, bias=False: files / weights_only load / model / owned moments / independent RNG",
+        "functions singleton, members=[0], GPT, bias=False: exact load / new optimizer references / aliases / all RNG",
+        "functions singleton, members=[0], GPT, bias=False: next data / Dropout / AdamW update and moments",
+        "functions singleton, members=[0], empty_owner_probe, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions singleton, members=[0], empty_owner_probe, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions singleton, members=[0], empty_owner_probe, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions singleton, members=[0], empty_owner_probe, bias=True: next data / Dropout / AdamW update and moments",
+        "functions strided, members=[0, 2], GPT, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions strided, members=[0, 2], GPT, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions strided, members=[0, 2], GPT, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions strided, members=[0, 2], GPT, bias=True: next data / Dropout / AdamW update and moments",
+        "functions strided, members=[0, 2], GPT, bias=False: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions strided, members=[0, 2], GPT, bias=False: files / weights_only load / model / owned moments / independent RNG",
+        "functions strided, members=[0, 2], GPT, bias=False: exact load / new optimizer references / aliases / all RNG",
+        "functions strided, members=[0, 2], GPT, bias=False: next data / Dropout / AdamW update and moments",
+        "functions strided, members=[0, 2], empty_owner_probe, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions strided, members=[0, 2], empty_owner_probe, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions strided, members=[0, 2], empty_owner_probe, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions strided, members=[0, 2], empty_owner_probe, bias=True: next data / Dropout / AdamW update and moments",
+        "function checks leave project source unchanged"
+      ]
+    },
+    {
+      "rank": 1,
+      "status": "passed",
+      "checks": [
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: next data / Dropout / AdamW update and moments",
+        "load rejection: missing complete (all ranks)",
+        "load rejection: missing shard (all ranks)",
+        "load rejection: incomplete (all ranks)",
+        "load rejection: file list (all ranks)",
+        "load rejection: version (all ranks)",
+        "load rejection: stage (all ranks)",
+        "load rejection: size (all ranks)",
+        "load rejection: rank (all ranks)",
+        "load rejection: counter (all ranks)",
+        "load rejection: negative counter (all ranks)",
+        "load rejection: config (all ranks)",
+        "load rejection: layout (all ranks)",
+        "load rejection: fixed args (all ranks)",
+        "load rejection: device type (all ranks)",
+        "load rejection: max_iters before next_iter",
+        "load rejection: changed fixed argument seed",
+        "load rejection: changed fixed argument data_dir",
+        "load rejection: changed fixed argument batch_size",
+        "load rejection: changed fixed argument seq_length",
+        "load rejection: changed fixed argument micro_batch_size",
+        "load rejection: changed fixed argument grad_clip",
+        "load rejection: changed fixed argument learning_rate",
+        "load rejection: changed fixed argument weight_decay",
+        "load rejection: changed fixed argument beta1",
+        "load rejection: changed fixed argument beta2",
+        "save rejection: existing checkpoint",
+        "existing checkpoint preserved",
+        "load rejection: different paths across ranks",
+        "save rejection: different counters across ranks",
+        "save rejection: different paths across ranks",
+        "save rejection: next_iter=-1",
+        "save rejection: next_iter=True",
+        "save rejection: next_iter=1.5",
+        "save rejection: pending gradient on one rank",
+        "pending-gradient save has no completion marker",
+        "save rejection: ordinary shard write exception coordinated",
+        "incomplete write has no completion marker",
+        "healthy save after rejected write",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: files / weights_only load / model / owned moments / independent RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: exact load / new optimizer references / aliases / all RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: next data / Dropout / AdamW update and moments",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: next data / Dropout / AdamW update and moments",
+        "functions singleton, members=[1], GPT, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions singleton, members=[1], GPT, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions singleton, members=[1], GPT, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions singleton, members=[1], GPT, bias=True: next data / Dropout / AdamW update and moments",
+        "functions singleton, members=[1], GPT, bias=False: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions singleton, members=[1], GPT, bias=False: files / weights_only load / model / owned moments / independent RNG",
+        "functions singleton, members=[1], GPT, bias=False: exact load / new optimizer references / aliases / all RNG",
+        "functions singleton, members=[1], GPT, bias=False: next data / Dropout / AdamW update and moments",
+        "functions singleton, members=[1], empty_owner_probe, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions singleton, members=[1], empty_owner_probe, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions singleton, members=[1], empty_owner_probe, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions singleton, members=[1], empty_owner_probe, bias=True: next data / Dropout / AdamW update and moments",
+        "functions strided, members=[1, 3], GPT, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions strided, members=[1, 3], GPT, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions strided, members=[1, 3], GPT, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions strided, members=[1, 3], GPT, bias=True: next data / Dropout / AdamW update and moments",
+        "functions strided, members=[1, 3], GPT, bias=False: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions strided, members=[1, 3], GPT, bias=False: files / weights_only load / model / owned moments / independent RNG",
+        "functions strided, members=[1, 3], GPT, bias=False: exact load / new optimizer references / aliases / all RNG",
+        "functions strided, members=[1, 3], GPT, bias=False: next data / Dropout / AdamW update and moments",
+        "functions strided, members=[1, 3], empty_owner_probe, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions strided, members=[1, 3], empty_owner_probe, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions strided, members=[1, 3], empty_owner_probe, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions strided, members=[1, 3], empty_owner_probe, bias=True: next data / Dropout / AdamW update and moments",
+        "function checks leave project source unchanged"
+      ]
+    },
+    {
+      "rank": 2,
+      "status": "passed",
+      "checks": [
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: next data / Dropout / AdamW update and moments",
+        "load rejection: missing complete (all ranks)",
+        "load rejection: missing shard (all ranks)",
+        "load rejection: incomplete (all ranks)",
+        "load rejection: file list (all ranks)",
+        "load rejection: version (all ranks)",
+        "load rejection: stage (all ranks)",
+        "load rejection: size (all ranks)",
+        "load rejection: rank (all ranks)",
+        "load rejection: counter (all ranks)",
+        "load rejection: negative counter (all ranks)",
+        "load rejection: config (all ranks)",
+        "load rejection: layout (all ranks)",
+        "load rejection: fixed args (all ranks)",
+        "load rejection: device type (all ranks)",
+        "load rejection: max_iters before next_iter",
+        "load rejection: changed fixed argument seed",
+        "load rejection: changed fixed argument data_dir",
+        "load rejection: changed fixed argument batch_size",
+        "load rejection: changed fixed argument seq_length",
+        "load rejection: changed fixed argument micro_batch_size",
+        "load rejection: changed fixed argument grad_clip",
+        "load rejection: changed fixed argument learning_rate",
+        "load rejection: changed fixed argument weight_decay",
+        "load rejection: changed fixed argument beta1",
+        "load rejection: changed fixed argument beta2",
+        "save rejection: existing checkpoint",
+        "existing checkpoint preserved",
+        "load rejection: different paths across ranks",
+        "save rejection: different counters across ranks",
+        "save rejection: different paths across ranks",
+        "save rejection: next_iter=-1",
+        "save rejection: next_iter=True",
+        "save rejection: next_iter=1.5",
+        "save rejection: pending gradient on one rank",
+        "pending-gradient save has no completion marker",
+        "save rejection: ordinary shard write exception coordinated",
+        "incomplete write has no completion marker",
+        "healthy save after rejected write",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: files / weights_only load / model / owned moments / independent RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: exact load / new optimizer references / aliases / all RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: next data / Dropout / AdamW update and moments",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: next data / Dropout / AdamW update and moments",
+        "functions singleton, members=[2], GPT, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions singleton, members=[2], GPT, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions singleton, members=[2], GPT, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions singleton, members=[2], GPT, bias=True: next data / Dropout / AdamW update and moments",
+        "functions singleton, members=[2], GPT, bias=False: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions singleton, members=[2], GPT, bias=False: files / weights_only load / model / owned moments / independent RNG",
+        "functions singleton, members=[2], GPT, bias=False: exact load / new optimizer references / aliases / all RNG",
+        "functions singleton, members=[2], GPT, bias=False: next data / Dropout / AdamW update and moments",
+        "functions singleton, members=[2], empty_owner_probe, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions singleton, members=[2], empty_owner_probe, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions singleton, members=[2], empty_owner_probe, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions singleton, members=[2], empty_owner_probe, bias=True: next data / Dropout / AdamW update and moments",
+        "functions strided, members=[0, 2], GPT, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions strided, members=[0, 2], GPT, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions strided, members=[0, 2], GPT, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions strided, members=[0, 2], GPT, bias=True: next data / Dropout / AdamW update and moments",
+        "functions strided, members=[0, 2], GPT, bias=False: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions strided, members=[0, 2], GPT, bias=False: files / weights_only load / model / owned moments / independent RNG",
+        "functions strided, members=[0, 2], GPT, bias=False: exact load / new optimizer references / aliases / all RNG",
+        "functions strided, members=[0, 2], GPT, bias=False: next data / Dropout / AdamW update and moments",
+        "functions strided, members=[0, 2], empty_owner_probe, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions strided, members=[0, 2], empty_owner_probe, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions strided, members=[0, 2], empty_owner_probe, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions strided, members=[0, 2], empty_owner_probe, bias=True: next data / Dropout / AdamW update and moments",
+        "function checks leave project source unchanged"
+      ]
+    },
+    {
+      "rank": 3,
+      "status": "passed",
+      "checks": [
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=True: next data / Dropout / AdamW update and moments",
+        "load rejection: missing complete (all ranks)",
+        "load rejection: missing shard (all ranks)",
+        "load rejection: incomplete (all ranks)",
+        "load rejection: file list (all ranks)",
+        "load rejection: version (all ranks)",
+        "load rejection: stage (all ranks)",
+        "load rejection: size (all ranks)",
+        "load rejection: rank (all ranks)",
+        "load rejection: counter (all ranks)",
+        "load rejection: negative counter (all ranks)",
+        "load rejection: config (all ranks)",
+        "load rejection: layout (all ranks)",
+        "load rejection: fixed args (all ranks)",
+        "load rejection: device type (all ranks)",
+        "load rejection: max_iters before next_iter",
+        "load rejection: changed fixed argument seed",
+        "load rejection: changed fixed argument data_dir",
+        "load rejection: changed fixed argument batch_size",
+        "load rejection: changed fixed argument seq_length",
+        "load rejection: changed fixed argument micro_batch_size",
+        "load rejection: changed fixed argument grad_clip",
+        "load rejection: changed fixed argument learning_rate",
+        "load rejection: changed fixed argument weight_decay",
+        "load rejection: changed fixed argument beta1",
+        "load rejection: changed fixed argument beta2",
+        "save rejection: existing checkpoint",
+        "existing checkpoint preserved",
+        "load rejection: different paths across ranks",
+        "save rejection: different counters across ranks",
+        "save rejection: different paths across ranks",
+        "save rejection: next_iter=-1",
+        "save rejection: next_iter=True",
+        "save rejection: next_iter=1.5",
+        "save rejection: pending gradient on one rank",
+        "pending-gradient save has no completion marker",
+        "save rejection: ordinary shard write exception coordinated",
+        "incomplete write has no completion marker",
+        "healthy save after rejected write",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: files / weights_only load / model / owned moments / independent RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: exact load / new optimizer references / aliases / all RNG",
+        "functions WORLD, members=[0, 1, 2, 3], GPT, bias=False: next data / Dropout / AdamW update and moments",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions WORLD, members=[0, 1, 2, 3], empty_owner_probe, bias=True: next data / Dropout / AdamW update and moments",
+        "functions singleton, members=[3], GPT, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions singleton, members=[3], GPT, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions singleton, members=[3], GPT, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions singleton, members=[3], GPT, bias=True: next data / Dropout / AdamW update and moments",
+        "functions singleton, members=[3], GPT, bias=False: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions singleton, members=[3], GPT, bias=False: files / weights_only load / model / owned moments / independent RNG",
+        "functions singleton, members=[3], GPT, bias=False: exact load / new optimizer references / aliases / all RNG",
+        "functions singleton, members=[3], GPT, bias=False: next data / Dropout / AdamW update and moments",
+        "functions singleton, members=[3], empty_owner_probe, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions singleton, members=[3], empty_owner_probe, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions singleton, members=[3], empty_owner_probe, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions singleton, members=[3], empty_owner_probe, bias=True: next data / Dropout / AdamW update and moments",
+        "functions strided, members=[1, 3], GPT, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions strided, members=[1, 3], GPT, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions strided, members=[1, 3], GPT, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions strided, members=[1, 3], GPT, bias=True: next data / Dropout / AdamW update and moments",
+        "functions strided, members=[1, 3], GPT, bias=False: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions strided, members=[1, 3], GPT, bias=False: files / weights_only load / model / owned moments / independent RNG",
+        "functions strided, members=[1, 3], GPT, bias=False: exact load / new optimizer references / aliases / all RNG",
+        "functions strided, members=[1, 3], GPT, bias=False: next data / Dropout / AdamW update and moments",
+        "functions strided, members=[1, 3], empty_owner_probe, bias=True: layout / empty-or-uninitialized state / invalid optimizer metadata",
+        "functions strided, members=[1, 3], empty_owner_probe, bias=True: files / weights_only load / model / owned moments / independent RNG",
+        "functions strided, members=[1, 3], empty_owner_probe, bias=True: exact load / new optimizer references / aliases / all RNG",
+        "functions strided, members=[1, 3], empty_owner_probe, bias=True: next data / Dropout / AdamW update and moments",
+        "function checks leave project source unchanged"
+      ]
+    }
+  ],
+  "actual_main": [
+    {
+      "case": {
+        "name": "bias_True",
+        "bias": true,
+        "seed": 1438,
+        "n_layer": 2,
+        "n_head": 2,
+        "n_embd": 16,
+        "vocab_size": 32,
+        "block_size": 8,
+        "dropout": 0.25,
+        "seq_length": 6,
+        "batch_size": 5,
+        "micro_batch_size": 2,
+        "grad_clip": 0.01,
+        "max_iters": 5,
+        "split_step": 2,
+        "log_interval": 2,
+        "eval_interval": 2,
+        "eval_iters": 2,
+        "checkpoint_interval": 2,
+        "learning_rate": 0.0006,
+        "weight_decay": 0.1,
+        "beta1": 0.9,
+        "beta2": 0.95
+      },
+      "phases": [
+        {
+          "phase": "continuous",
+          "workers": [
+            {
+              "rank": 0,
+              "phase": "continuous",
+              "status": "passed",
+              "checks": [
+                "actual main continuous: DDP / config / shared weights",
+                "actual main continuous: real ZeRO-1 initial layout",
+                "actual main continuous: training batch 0",
+                "actual main continuous, iter=0: train wiring",
+                "actual main continuous, iter=0: live optimizer / cleared gradients",
+                "actual main continuous: training batch 1",
+                "actual main continuous, iter=1: train wiring",
+                "actual main continuous, iter=1: live optimizer / cleared gradients",
+                "actual main continuous, iter=1: train eval wiring",
+                "actual main continuous, iter=1: train eval preserves state",
+                "actual main continuous, iter=1: val eval wiring",
+                "actual main continuous, iter=1: val eval preserves state",
+                "actual main continuous, next_iter=2: save order / wiring",
+                "actual main continuous, next_iter=2: persisted shard / RNG / complete",
+                "actual main continuous: training batch 2",
+                "actual main continuous, iter=2: train wiring",
+                "actual main continuous, iter=2: live optimizer / cleared gradients",
+                "actual main continuous: training batch 3",
+                "actual main continuous, iter=3: train wiring",
+                "actual main continuous, iter=3: live optimizer / cleared gradients",
+                "actual main continuous, iter=3: train eval wiring",
+                "actual main continuous, iter=3: train eval preserves state",
+                "actual main continuous, iter=3: val eval wiring",
+                "actual main continuous, iter=3: val eval preserves state",
+                "actual main continuous, next_iter=4: save order / wiring",
+                "actual main continuous, next_iter=4: persisted shard / RNG / complete",
+                "actual main continuous: training batch 4",
+                "actual main continuous, iter=4: train wiring",
+                "actual main continuous, iter=4: live optimizer / cleared gradients",
+                "actual main continuous, iter=4: train eval wiring",
+                "actual main continuous, iter=4: train eval preserves state",
+                "actual main continuous, iter=4: val eval wiring",
+                "actual main continuous, iter=4: val eval preserves state",
+                "actual main continuous, next_iter=5: save order / wiring",
+                "actual main continuous, next_iter=5: persisted shard / RNG / complete",
+                "actual main continuous: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4780808687210083,
+                  "grad_norm": 0.6762125091716703,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.4664481163024905,
+                  "grad_norm": 0.7141026988488396,
+                  "stepped": true
+                },
+                {
+                  "event": 2,
+                  "loss": 3.4603103160858155,
+                  "grad_norm": 0.7705950664493812,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.4453768849372866,
+                  "grad_norm": 0.8402512655845916,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4572663545608524,
+                  "grad_norm": 0.7488383688479606,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000002"
+                },
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 5,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000005"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.470176953077316
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4632149577140807
+                },
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.463650441169739
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.463702601194382
+                },
+                {
+                  "event": 4,
+                  "split": "train",
+                  "loss": 3.461216151714325
+                },
+                {
+                  "event": 4,
+                  "split": "val",
+                  "loss": 3.4639664828777312
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\n[PASS] actual main continuous: DDP / config / shared weights\n[PASS] actual main continuous: real ZeRO-1 initial layout\nrank=0/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n[PASS] actual main continuous: training batch 0\n[PASS] actual main continuous, iter=0: train wiring\n[PASS] actual main continuous, iter=0: live optimizer / cleared gradients\niter 0: loss=3.478081, grad_norm=0.676213, stepped=True\n[PASS] actual main continuous: training batch 1\n[PASS] actual main continuous, iter=1: train wiring\n[PASS] actual main continuous, iter=1: live optimizer / cleared gradients\n[PASS] actual main continuous, iter=1: train eval wiring\n[PASS] actual main continuous, iter=1: train eval preserves state\n[PASS] actual main continuous, iter=1: val eval wiring\n[PASS] actual main continuous, iter=1: val eval preserves state\neval iter 1: train loss=3.470177, val loss=3.463215\n[PASS] actual main continuous, next_iter=2: save order / wiring\n[PASS] actual main continuous, next_iter=2: persisted shard / RNG / complete\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000002\n[PASS] actual main continuous: training batch 2\n[PASS] actual main continuous, iter=2: train wiring\n[PASS] actual main continuous, iter=2: live optimizer / cleared gradients\niter 2: loss=3.460310, grad_norm=0.770595, stepped=True\n[PASS] actual main continuous: training batch 3\n[PASS] actual main continuous, iter=3: train wiring\n[PASS] actual main continuous, iter=3: live optimizer / cleared gradients\n[PASS] actual main continuous, iter=3: train eval wiring\n[PASS] actual main continuous, iter=3: train eval preserves state\n[PASS] actual main continuous, iter=3: val eval wiring\n[PASS] actual main continuous, iter=3: val eval preserves state\neval iter 3: train loss=3.463650, val loss=3.463703\n[PASS] actual main continuous, next_iter=4: save order / wiring\n[PASS] actual main continuous, next_iter=4: persisted shard / RNG / complete\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000004\n[PASS] actual main continuous: training batch 4\n[PASS] actual main continuous, iter=4: train wiring\n[PASS] actual main continuous, iter=4: live optimizer / cleared gradients\niter 4: loss=3.457266, grad_norm=0.748838, stepped=True\n[PASS] actual main continuous, iter=4: train eval wiring\n[PASS] actual main continuous, iter=4: train eval preserves state\n[PASS] actual main continuous, iter=4: val eval wiring\n[PASS] actual main continuous, iter=4: val eval preserves state\neval iter 4: train loss=3.461216, val loss=3.463966\n[PASS] actual main continuous, next_iter=5: save order / wiring\n[PASS] actual main continuous, next_iter=5: persisted shard / RNG / complete\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000005\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 1,
+              "phase": "continuous",
+              "status": "passed",
+              "checks": [
+                "actual main continuous: DDP / config / shared weights",
+                "actual main continuous: real ZeRO-1 initial layout",
+                "actual main continuous: training batch 0",
+                "actual main continuous, iter=0: train wiring",
+                "actual main continuous, iter=0: live optimizer / cleared gradients",
+                "actual main continuous: training batch 1",
+                "actual main continuous, iter=1: train wiring",
+                "actual main continuous, iter=1: live optimizer / cleared gradients",
+                "actual main continuous, iter=1: train eval wiring",
+                "actual main continuous, iter=1: train eval preserves state",
+                "actual main continuous, iter=1: val eval wiring",
+                "actual main continuous, iter=1: val eval preserves state",
+                "actual main continuous, next_iter=2: save order / wiring",
+                "actual main continuous, next_iter=2: persisted shard / RNG / complete",
+                "actual main continuous: training batch 2",
+                "actual main continuous, iter=2: train wiring",
+                "actual main continuous, iter=2: live optimizer / cleared gradients",
+                "actual main continuous: training batch 3",
+                "actual main continuous, iter=3: train wiring",
+                "actual main continuous, iter=3: live optimizer / cleared gradients",
+                "actual main continuous, iter=3: train eval wiring",
+                "actual main continuous, iter=3: train eval preserves state",
+                "actual main continuous, iter=3: val eval wiring",
+                "actual main continuous, iter=3: val eval preserves state",
+                "actual main continuous, next_iter=4: save order / wiring",
+                "actual main continuous, next_iter=4: persisted shard / RNG / complete",
+                "actual main continuous: training batch 4",
+                "actual main continuous, iter=4: train wiring",
+                "actual main continuous, iter=4: live optimizer / cleared gradients",
+                "actual main continuous, iter=4: train eval wiring",
+                "actual main continuous, iter=4: train eval preserves state",
+                "actual main continuous, iter=4: val eval wiring",
+                "actual main continuous, iter=4: val eval preserves state",
+                "actual main continuous, next_iter=5: save order / wiring",
+                "actual main continuous, next_iter=5: persisted shard / RNG / complete",
+                "actual main continuous: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4780808687210083,
+                  "grad_norm": 0.6762125091716703,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.4664481163024905,
+                  "grad_norm": 0.7141026988488396,
+                  "stepped": true
+                },
+                {
+                  "event": 2,
+                  "loss": 3.4603103160858155,
+                  "grad_norm": 0.7705950664493812,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.4453768849372866,
+                  "grad_norm": 0.8402512655845916,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4572663545608524,
+                  "grad_norm": 0.7488383688479606,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000002"
+                },
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 5,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000005"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.470176953077316
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4632149577140807
+                },
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.463650441169739
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.463702601194382
+                },
+                {
+                  "event": 4,
+                  "split": "train",
+                  "loss": 3.461216151714325
+                },
+                {
+                  "event": 4,
+                  "split": "val",
+                  "loss": 3.4639664828777312
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=1/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 2,
+              "phase": "continuous",
+              "status": "passed",
+              "checks": [
+                "actual main continuous: DDP / config / shared weights",
+                "actual main continuous: real ZeRO-1 initial layout",
+                "actual main continuous: training batch 0",
+                "actual main continuous, iter=0: train wiring",
+                "actual main continuous, iter=0: live optimizer / cleared gradients",
+                "actual main continuous: training batch 1",
+                "actual main continuous, iter=1: train wiring",
+                "actual main continuous, iter=1: live optimizer / cleared gradients",
+                "actual main continuous, iter=1: train eval wiring",
+                "actual main continuous, iter=1: train eval preserves state",
+                "actual main continuous, iter=1: val eval wiring",
+                "actual main continuous, iter=1: val eval preserves state",
+                "actual main continuous, next_iter=2: save order / wiring",
+                "actual main continuous, next_iter=2: persisted shard / RNG / complete",
+                "actual main continuous: training batch 2",
+                "actual main continuous, iter=2: train wiring",
+                "actual main continuous, iter=2: live optimizer / cleared gradients",
+                "actual main continuous: training batch 3",
+                "actual main continuous, iter=3: train wiring",
+                "actual main continuous, iter=3: live optimizer / cleared gradients",
+                "actual main continuous, iter=3: train eval wiring",
+                "actual main continuous, iter=3: train eval preserves state",
+                "actual main continuous, iter=3: val eval wiring",
+                "actual main continuous, iter=3: val eval preserves state",
+                "actual main continuous, next_iter=4: save order / wiring",
+                "actual main continuous, next_iter=4: persisted shard / RNG / complete",
+                "actual main continuous: training batch 4",
+                "actual main continuous, iter=4: train wiring",
+                "actual main continuous, iter=4: live optimizer / cleared gradients",
+                "actual main continuous, iter=4: train eval wiring",
+                "actual main continuous, iter=4: train eval preserves state",
+                "actual main continuous, iter=4: val eval wiring",
+                "actual main continuous, iter=4: val eval preserves state",
+                "actual main continuous, next_iter=5: save order / wiring",
+                "actual main continuous, next_iter=5: persisted shard / RNG / complete",
+                "actual main continuous: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4780808687210083,
+                  "grad_norm": 0.6762125091716703,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.4664481163024905,
+                  "grad_norm": 0.7141026988488396,
+                  "stepped": true
+                },
+                {
+                  "event": 2,
+                  "loss": 3.4603103160858155,
+                  "grad_norm": 0.7705950664493812,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.4453768849372866,
+                  "grad_norm": 0.8402512655845916,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4572663545608524,
+                  "grad_norm": 0.7488383688479606,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000002"
+                },
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 5,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000005"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.470176953077316
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4632149577140807
+                },
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.463650441169739
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.463702601194382
+                },
+                {
+                  "event": 4,
+                  "split": "train",
+                  "loss": 3.461216151714325
+                },
+                {
+                  "event": 4,
+                  "split": "val",
+                  "loss": 3.4639664828777312
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=2/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 3,
+              "phase": "continuous",
+              "status": "passed",
+              "checks": [
+                "actual main continuous: DDP / config / shared weights",
+                "actual main continuous: real ZeRO-1 initial layout",
+                "actual main continuous: training batch 0",
+                "actual main continuous, iter=0: train wiring",
+                "actual main continuous, iter=0: live optimizer / cleared gradients",
+                "actual main continuous: training batch 1",
+                "actual main continuous, iter=1: train wiring",
+                "actual main continuous, iter=1: live optimizer / cleared gradients",
+                "actual main continuous, iter=1: train eval wiring",
+                "actual main continuous, iter=1: train eval preserves state",
+                "actual main continuous, iter=1: val eval wiring",
+                "actual main continuous, iter=1: val eval preserves state",
+                "actual main continuous, next_iter=2: save order / wiring",
+                "actual main continuous, next_iter=2: persisted shard / RNG / complete",
+                "actual main continuous: training batch 2",
+                "actual main continuous, iter=2: train wiring",
+                "actual main continuous, iter=2: live optimizer / cleared gradients",
+                "actual main continuous: training batch 3",
+                "actual main continuous, iter=3: train wiring",
+                "actual main continuous, iter=3: live optimizer / cleared gradients",
+                "actual main continuous, iter=3: train eval wiring",
+                "actual main continuous, iter=3: train eval preserves state",
+                "actual main continuous, iter=3: val eval wiring",
+                "actual main continuous, iter=3: val eval preserves state",
+                "actual main continuous, next_iter=4: save order / wiring",
+                "actual main continuous, next_iter=4: persisted shard / RNG / complete",
+                "actual main continuous: training batch 4",
+                "actual main continuous, iter=4: train wiring",
+                "actual main continuous, iter=4: live optimizer / cleared gradients",
+                "actual main continuous, iter=4: train eval wiring",
+                "actual main continuous, iter=4: train eval preserves state",
+                "actual main continuous, iter=4: val eval wiring",
+                "actual main continuous, iter=4: val eval preserves state",
+                "actual main continuous, next_iter=5: save order / wiring",
+                "actual main continuous, next_iter=5: persisted shard / RNG / complete",
+                "actual main continuous: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4780808687210083,
+                  "grad_norm": 0.6762125091716703,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.4664481163024905,
+                  "grad_norm": 0.7141026988488396,
+                  "stepped": true
+                },
+                {
+                  "event": 2,
+                  "loss": 3.4603103160858155,
+                  "grad_norm": 0.7705950664493812,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.4453768849372866,
+                  "grad_norm": 0.8402512655845916,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4572663545608524,
+                  "grad_norm": 0.7488383688479606,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000002"
+                },
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 5,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\continuous\\out\\iter_00000005"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.470176953077316
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4632149577140807
+                },
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.463650441169739
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.463702601194382
+                },
+                {
+                  "event": 4,
+                  "split": "train",
+                  "loss": 3.461216151714325
+                },
+                {
+                  "event": 4,
+                  "split": "val",
+                  "loss": 3.4639664828777312
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=3/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            }
+          ]
+        },
+        {
+          "phase": "interrupted",
+          "workers": [
+            {
+              "rank": 0,
+              "phase": "interrupted",
+              "status": "passed",
+              "checks": [
+                "actual main interrupted: DDP / config / shared weights",
+                "actual main interrupted: real ZeRO-1 initial layout",
+                "actual main interrupted: training batch 0",
+                "actual main interrupted, iter=0: train wiring",
+                "actual main interrupted, iter=0: live optimizer / cleared gradients",
+                "actual main interrupted: training batch 1",
+                "actual main interrupted, iter=1: train wiring",
+                "actual main interrupted, iter=1: live optimizer / cleared gradients",
+                "actual main interrupted, iter=1: train eval wiring",
+                "actual main interrupted, iter=1: train eval preserves state",
+                "actual main interrupted, iter=1: val eval wiring",
+                "actual main interrupted, iter=1: val eval preserves state",
+                "actual main interrupted, next_iter=2: save order / wiring",
+                "actual main interrupted, next_iter=2: persisted shard / RNG / complete",
+                "actual main interrupted: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4780808687210083,
+                  "grad_norm": 0.6762125091716703,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.4664481163024905,
+                  "grad_norm": 0.7141026988488396,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\interrupted\\out\\iter_00000002"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.470176953077316
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4632149577140807
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\n[PASS] actual main interrupted: DDP / config / shared weights\n[PASS] actual main interrupted: real ZeRO-1 initial layout\nrank=0/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n[PASS] actual main interrupted: training batch 0\n[PASS] actual main interrupted, iter=0: train wiring\n[PASS] actual main interrupted, iter=0: live optimizer / cleared gradients\niter 0: loss=3.478081, grad_norm=0.676213, stepped=True\n[PASS] actual main interrupted: training batch 1\n[PASS] actual main interrupted, iter=1: train wiring\n[PASS] actual main interrupted, iter=1: live optimizer / cleared gradients\niter 1: loss=3.466448, grad_norm=0.714103, stepped=True\n[PASS] actual main interrupted, iter=1: train eval wiring\n[PASS] actual main interrupted, iter=1: train eval preserves state\n[PASS] actual main interrupted, iter=1: val eval wiring\n[PASS] actual main interrupted, iter=1: val eval preserves state\neval iter 1: train loss=3.470177, val loss=3.463215\n[PASS] actual main interrupted, next_iter=2: save order / wiring\n[PASS] actual main interrupted, next_iter=2: persisted shard / RNG / complete\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\interrupted\\out\\iter_00000002\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 1,
+              "phase": "interrupted",
+              "status": "passed",
+              "checks": [
+                "actual main interrupted: DDP / config / shared weights",
+                "actual main interrupted: real ZeRO-1 initial layout",
+                "actual main interrupted: training batch 0",
+                "actual main interrupted, iter=0: train wiring",
+                "actual main interrupted, iter=0: live optimizer / cleared gradients",
+                "actual main interrupted: training batch 1",
+                "actual main interrupted, iter=1: train wiring",
+                "actual main interrupted, iter=1: live optimizer / cleared gradients",
+                "actual main interrupted, iter=1: train eval wiring",
+                "actual main interrupted, iter=1: train eval preserves state",
+                "actual main interrupted, iter=1: val eval wiring",
+                "actual main interrupted, iter=1: val eval preserves state",
+                "actual main interrupted, next_iter=2: save order / wiring",
+                "actual main interrupted, next_iter=2: persisted shard / RNG / complete",
+                "actual main interrupted: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4780808687210083,
+                  "grad_norm": 0.6762125091716703,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.4664481163024905,
+                  "grad_norm": 0.7141026988488396,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\interrupted\\out\\iter_00000002"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.470176953077316
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4632149577140807
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=1/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 2,
+              "phase": "interrupted",
+              "status": "passed",
+              "checks": [
+                "actual main interrupted: DDP / config / shared weights",
+                "actual main interrupted: real ZeRO-1 initial layout",
+                "actual main interrupted: training batch 0",
+                "actual main interrupted, iter=0: train wiring",
+                "actual main interrupted, iter=0: live optimizer / cleared gradients",
+                "actual main interrupted: training batch 1",
+                "actual main interrupted, iter=1: train wiring",
+                "actual main interrupted, iter=1: live optimizer / cleared gradients",
+                "actual main interrupted, iter=1: train eval wiring",
+                "actual main interrupted, iter=1: train eval preserves state",
+                "actual main interrupted, iter=1: val eval wiring",
+                "actual main interrupted, iter=1: val eval preserves state",
+                "actual main interrupted, next_iter=2: save order / wiring",
+                "actual main interrupted, next_iter=2: persisted shard / RNG / complete",
+                "actual main interrupted: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4780808687210083,
+                  "grad_norm": 0.6762125091716703,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.4664481163024905,
+                  "grad_norm": 0.7141026988488396,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\interrupted\\out\\iter_00000002"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.470176953077316
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4632149577140807
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=2/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 3,
+              "phase": "interrupted",
+              "status": "passed",
+              "checks": [
+                "actual main interrupted: DDP / config / shared weights",
+                "actual main interrupted: real ZeRO-1 initial layout",
+                "actual main interrupted: training batch 0",
+                "actual main interrupted, iter=0: train wiring",
+                "actual main interrupted, iter=0: live optimizer / cleared gradients",
+                "actual main interrupted: training batch 1",
+                "actual main interrupted, iter=1: train wiring",
+                "actual main interrupted, iter=1: live optimizer / cleared gradients",
+                "actual main interrupted, iter=1: train eval wiring",
+                "actual main interrupted, iter=1: train eval preserves state",
+                "actual main interrupted, iter=1: val eval wiring",
+                "actual main interrupted, iter=1: val eval preserves state",
+                "actual main interrupted, next_iter=2: save order / wiring",
+                "actual main interrupted, next_iter=2: persisted shard / RNG / complete",
+                "actual main interrupted: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4780808687210083,
+                  "grad_norm": 0.6762125091716703,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.4664481163024905,
+                  "grad_norm": 0.7141026988488396,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\interrupted\\out\\iter_00000002"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.470176953077316
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4632149577140807
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=3/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            }
+          ]
+        },
+        {
+          "phase": "resumed",
+          "workers": [
+            {
+              "rank": 0,
+              "phase": "resumed",
+              "status": "passed",
+              "checks": [
+                "actual main resumed: DDP / config / shared weights",
+                "actual main resumed: real ZeRO-1 initial layout",
+                "actual main resumed: load before training",
+                "actual main resumed: loaded weights / moments / RNG / preserved references",
+                "actual main resumed: training batch 2",
+                "actual main resumed, iter=2: train wiring",
+                "actual main resumed, iter=2: live optimizer / cleared gradients",
+                "actual main resumed: training batch 3",
+                "actual main resumed, iter=3: train wiring",
+                "actual main resumed, iter=3: live optimizer / cleared gradients",
+                "actual main resumed, iter=3: train eval wiring",
+                "actual main resumed, iter=3: train eval preserves state",
+                "actual main resumed, iter=3: val eval wiring",
+                "actual main resumed, iter=3: val eval preserves state",
+                "actual main resumed, next_iter=4: save order / wiring",
+                "actual main resumed, next_iter=4: persisted shard / RNG / complete",
+                "actual main resumed: training batch 4",
+                "actual main resumed, iter=4: train wiring",
+                "actual main resumed, iter=4: live optimizer / cleared gradients",
+                "actual main resumed, iter=4: train eval wiring",
+                "actual main resumed, iter=4: train eval preserves state",
+                "actual main resumed, iter=4: val eval wiring",
+                "actual main resumed, iter=4: val eval preserves state",
+                "actual main resumed, next_iter=5: save order / wiring",
+                "actual main resumed, next_iter=5: persisted shard / RNG / complete",
+                "actual main resumed: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 2,
+                  "loss": 3.4603103160858155,
+                  "grad_norm": 0.7705950665427628,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.4453768849372866,
+                  "grad_norm": 0.8402512683367211,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4572663545608524,
+                  "grad_norm": 0.748838368262051,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\resumed\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 5,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\resumed\\out\\iter_00000005"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.4636504292488097
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.4637025892734528
+                },
+                {
+                  "event": 4,
+                  "split": "train",
+                  "loss": 3.4612161755561828
+                },
+                {
+                  "event": 4,
+                  "split": "val",
+                  "loss": 3.4639664828777312
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\n[PASS] actual main resumed: DDP / config / shared weights\n[PASS] actual main resumed: real ZeRO-1 initial layout\n[PASS] actual main resumed: load before training\n[PASS] actual main resumed: loaded weights / moments / RNG / preserved references\nresumed checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\interrupted\\out\\iter_00000002, next_iter=2\nrank=0/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n[PASS] actual main resumed: training batch 2\n[PASS] actual main resumed, iter=2: train wiring\n[PASS] actual main resumed, iter=2: live optimizer / cleared gradients\niter 2: loss=3.460310, grad_norm=0.770595, stepped=True\n[PASS] actual main resumed: training batch 3\n[PASS] actual main resumed, iter=3: train wiring\n[PASS] actual main resumed, iter=3: live optimizer / cleared gradients\n[PASS] actual main resumed, iter=3: train eval wiring\n[PASS] actual main resumed, iter=3: train eval preserves state\n[PASS] actual main resumed, iter=3: val eval wiring\n[PASS] actual main resumed, iter=3: val eval preserves state\neval iter 3: train loss=3.463650, val loss=3.463703\n[PASS] actual main resumed, next_iter=4: save order / wiring\n[PASS] actual main resumed, next_iter=4: persisted shard / RNG / complete\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\resumed\\out\\iter_00000004\n[PASS] actual main resumed: training batch 4\n[PASS] actual main resumed, iter=4: train wiring\n[PASS] actual main resumed, iter=4: live optimizer / cleared gradients\niter 4: loss=3.457266, grad_norm=0.748838, stepped=True\n[PASS] actual main resumed, iter=4: train eval wiring\n[PASS] actual main resumed, iter=4: train eval preserves state\n[PASS] actual main resumed, iter=4: val eval wiring\n[PASS] actual main resumed, iter=4: val eval preserves state\neval iter 4: train loss=3.461216, val loss=3.463966\n[PASS] actual main resumed, next_iter=5: save order / wiring\n[PASS] actual main resumed, next_iter=5: persisted shard / RNG / complete\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\resumed\\out\\iter_00000005\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 1,
+              "phase": "resumed",
+              "status": "passed",
+              "checks": [
+                "actual main resumed: DDP / config / shared weights",
+                "actual main resumed: real ZeRO-1 initial layout",
+                "actual main resumed: load before training",
+                "actual main resumed: loaded weights / moments / RNG / preserved references",
+                "actual main resumed: training batch 2",
+                "actual main resumed, iter=2: train wiring",
+                "actual main resumed, iter=2: live optimizer / cleared gradients",
+                "actual main resumed: training batch 3",
+                "actual main resumed, iter=3: train wiring",
+                "actual main resumed, iter=3: live optimizer / cleared gradients",
+                "actual main resumed, iter=3: train eval wiring",
+                "actual main resumed, iter=3: train eval preserves state",
+                "actual main resumed, iter=3: val eval wiring",
+                "actual main resumed, iter=3: val eval preserves state",
+                "actual main resumed, next_iter=4: save order / wiring",
+                "actual main resumed, next_iter=4: persisted shard / RNG / complete",
+                "actual main resumed: training batch 4",
+                "actual main resumed, iter=4: train wiring",
+                "actual main resumed, iter=4: live optimizer / cleared gradients",
+                "actual main resumed, iter=4: train eval wiring",
+                "actual main resumed, iter=4: train eval preserves state",
+                "actual main resumed, iter=4: val eval wiring",
+                "actual main resumed, iter=4: val eval preserves state",
+                "actual main resumed, next_iter=5: save order / wiring",
+                "actual main resumed, next_iter=5: persisted shard / RNG / complete",
+                "actual main resumed: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 2,
+                  "loss": 3.4603103160858155,
+                  "grad_norm": 0.7705950665427628,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.4453768849372866,
+                  "grad_norm": 0.8402512683367211,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4572663545608524,
+                  "grad_norm": 0.748838368262051,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\resumed\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 5,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\resumed\\out\\iter_00000005"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.4636504292488097
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.4637025892734528
+                },
+                {
+                  "event": 4,
+                  "split": "train",
+                  "loss": 3.4612161755561828
+                },
+                {
+                  "event": 4,
+                  "split": "val",
+                  "loss": 3.4639664828777312
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=1/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 2,
+              "phase": "resumed",
+              "status": "passed",
+              "checks": [
+                "actual main resumed: DDP / config / shared weights",
+                "actual main resumed: real ZeRO-1 initial layout",
+                "actual main resumed: load before training",
+                "actual main resumed: loaded weights / moments / RNG / preserved references",
+                "actual main resumed: training batch 2",
+                "actual main resumed, iter=2: train wiring",
+                "actual main resumed, iter=2: live optimizer / cleared gradients",
+                "actual main resumed: training batch 3",
+                "actual main resumed, iter=3: train wiring",
+                "actual main resumed, iter=3: live optimizer / cleared gradients",
+                "actual main resumed, iter=3: train eval wiring",
+                "actual main resumed, iter=3: train eval preserves state",
+                "actual main resumed, iter=3: val eval wiring",
+                "actual main resumed, iter=3: val eval preserves state",
+                "actual main resumed, next_iter=4: save order / wiring",
+                "actual main resumed, next_iter=4: persisted shard / RNG / complete",
+                "actual main resumed: training batch 4",
+                "actual main resumed, iter=4: train wiring",
+                "actual main resumed, iter=4: live optimizer / cleared gradients",
+                "actual main resumed, iter=4: train eval wiring",
+                "actual main resumed, iter=4: train eval preserves state",
+                "actual main resumed, iter=4: val eval wiring",
+                "actual main resumed, iter=4: val eval preserves state",
+                "actual main resumed, next_iter=5: save order / wiring",
+                "actual main resumed, next_iter=5: persisted shard / RNG / complete",
+                "actual main resumed: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 2,
+                  "loss": 3.4603103160858155,
+                  "grad_norm": 0.7705950665427628,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.4453768849372866,
+                  "grad_norm": 0.8402512683367211,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4572663545608524,
+                  "grad_norm": 0.748838368262051,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\resumed\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 5,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\resumed\\out\\iter_00000005"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.4636504292488097
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.4637025892734528
+                },
+                {
+                  "event": 4,
+                  "split": "train",
+                  "loss": 3.4612161755561828
+                },
+                {
+                  "event": 4,
+                  "split": "val",
+                  "loss": 3.4639664828777312
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=2/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 3,
+              "phase": "resumed",
+              "status": "passed",
+              "checks": [
+                "actual main resumed: DDP / config / shared weights",
+                "actual main resumed: real ZeRO-1 initial layout",
+                "actual main resumed: load before training",
+                "actual main resumed: loaded weights / moments / RNG / preserved references",
+                "actual main resumed: training batch 2",
+                "actual main resumed, iter=2: train wiring",
+                "actual main resumed, iter=2: live optimizer / cleared gradients",
+                "actual main resumed: training batch 3",
+                "actual main resumed, iter=3: train wiring",
+                "actual main resumed, iter=3: live optimizer / cleared gradients",
+                "actual main resumed, iter=3: train eval wiring",
+                "actual main resumed, iter=3: train eval preserves state",
+                "actual main resumed, iter=3: val eval wiring",
+                "actual main resumed, iter=3: val eval preserves state",
+                "actual main resumed, next_iter=4: save order / wiring",
+                "actual main resumed, next_iter=4: persisted shard / RNG / complete",
+                "actual main resumed: training batch 4",
+                "actual main resumed, iter=4: train wiring",
+                "actual main resumed, iter=4: live optimizer / cleared gradients",
+                "actual main resumed, iter=4: train eval wiring",
+                "actual main resumed, iter=4: train eval preserves state",
+                "actual main resumed, iter=4: val eval wiring",
+                "actual main resumed, iter=4: val eval preserves state",
+                "actual main resumed, next_iter=5: save order / wiring",
+                "actual main resumed, next_iter=5: persisted shard / RNG / complete",
+                "actual main resumed: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 2,
+                  "loss": 3.4603103160858155,
+                  "grad_norm": 0.7705950665427628,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.4453768849372866,
+                  "grad_norm": 0.8402512683367211,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4572663545608524,
+                  "grad_norm": 0.748838368262051,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\resumed\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 5,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\resumed\\out\\iter_00000005"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.4636504292488097
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.4637025892734528
+                },
+                {
+                  "event": 4,
+                  "split": "train",
+                  "loss": 3.4612161755561828
+                },
+                {
+                  "event": 4,
+                  "split": "val",
+                  "loss": 3.4639664828777312
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=3/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            }
+          ]
+        },
+        {
+          "phase": "already_complete",
+          "workers": [
+            {
+              "rank": 0,
+              "phase": "already_complete",
+              "status": "passed",
+              "checks": [
+                "actual main already_complete: DDP / config / shared weights",
+                "actual main already_complete: real ZeRO-1 initial layout",
+                "actual main already_complete: load before training",
+                "actual main already_complete: loaded weights / moments / RNG / preserved references",
+                "actual main already_complete: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [],
+              "saves": [],
+              "evaluations": [],
+              "stdout": "number of parameters: 0.01M\n[PASS] actual main already_complete: DDP / config / shared weights\n[PASS] actual main already_complete: real ZeRO-1 initial layout\n[PASS] actual main already_complete: load before training\n[PASS] actual main already_complete: loaded weights / moments / RNG / preserved references\nresumed checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_True\\interrupted\\out\\iter_00000002, next_iter=2\nrank=0/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 1,
+              "phase": "already_complete",
+              "status": "passed",
+              "checks": [
+                "actual main already_complete: DDP / config / shared weights",
+                "actual main already_complete: real ZeRO-1 initial layout",
+                "actual main already_complete: load before training",
+                "actual main already_complete: loaded weights / moments / RNG / preserved references",
+                "actual main already_complete: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [],
+              "saves": [],
+              "evaluations": [],
+              "stdout": "number of parameters: 0.01M\nrank=1/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 2,
+              "phase": "already_complete",
+              "status": "passed",
+              "checks": [
+                "actual main already_complete: DDP / config / shared weights",
+                "actual main already_complete: real ZeRO-1 initial layout",
+                "actual main already_complete: load before training",
+                "actual main already_complete: loaded weights / moments / RNG / preserved references",
+                "actual main already_complete: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [],
+              "saves": [],
+              "evaluations": [],
+              "stdout": "number of parameters: 0.01M\nrank=2/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 3,
+              "phase": "already_complete",
+              "status": "passed",
+              "checks": [
+                "actual main already_complete: DDP / config / shared weights",
+                "actual main already_complete: real ZeRO-1 initial layout",
+                "actual main already_complete: load before training",
+                "actual main already_complete: loaded weights / moments / RNG / preserved references",
+                "actual main already_complete: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [],
+              "saves": [],
+              "evaluations": [],
+              "stdout": "number of parameters: 0.01M\nrank=3/4, model_numels=7232, owned_numels=1808, partition=[1808, 1808, 1808, 1808]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            }
+          ]
+        }
+      ],
+      "comparison": {
+        "status": "passed",
+        "bias": true,
+        "dropout": 0.25,
+        "total_iterations": 5,
+        "split_next_iter": 2,
+        "already_complete_checked": true,
+        "comparison": "exact serialized reload/data/RNG; tolerance for recomputed FP32 trajectory"
+      }
+    },
+    {
+      "case": {
+        "name": "bias_False",
+        "bias": false,
+        "seed": 1539,
+        "n_layer": 2,
+        "n_head": 2,
+        "n_embd": 16,
+        "vocab_size": 32,
+        "block_size": 8,
+        "dropout": 0.25,
+        "seq_length": 6,
+        "batch_size": 5,
+        "micro_batch_size": 2,
+        "grad_clip": 0.0,
+        "max_iters": 6,
+        "split_step": 2,
+        "log_interval": 2,
+        "eval_interval": 2,
+        "eval_iters": 2,
+        "checkpoint_interval": 2,
+        "learning_rate": 0.0006,
+        "weight_decay": 0.1,
+        "beta1": 0.9,
+        "beta2": 0.95
+      },
+      "phases": [
+        {
+          "phase": "continuous",
+          "workers": [
+            {
+              "rank": 0,
+              "phase": "continuous",
+              "status": "passed",
+              "checks": [
+                "actual main continuous: DDP / config / shared weights",
+                "actual main continuous: real ZeRO-1 initial layout",
+                "actual main continuous: training batch 0",
+                "actual main continuous, iter=0: train wiring",
+                "actual main continuous, iter=0: live optimizer / cleared gradients",
+                "actual main continuous: training batch 1",
+                "actual main continuous, iter=1: train wiring",
+                "actual main continuous, iter=1: live optimizer / cleared gradients",
+                "actual main continuous, iter=1: train eval wiring",
+                "actual main continuous, iter=1: train eval preserves state",
+                "actual main continuous, iter=1: val eval wiring",
+                "actual main continuous, iter=1: val eval preserves state",
+                "actual main continuous, next_iter=2: save order / wiring",
+                "actual main continuous, next_iter=2: persisted shard / RNG / complete",
+                "actual main continuous: training batch 2",
+                "actual main continuous, iter=2: train wiring",
+                "actual main continuous, iter=2: live optimizer / cleared gradients",
+                "actual main continuous: training batch 3",
+                "actual main continuous, iter=3: train wiring",
+                "actual main continuous, iter=3: live optimizer / cleared gradients",
+                "actual main continuous, iter=3: train eval wiring",
+                "actual main continuous, iter=3: train eval preserves state",
+                "actual main continuous, iter=3: val eval wiring",
+                "actual main continuous, iter=3: val eval preserves state",
+                "actual main continuous, next_iter=4: save order / wiring",
+                "actual main continuous, next_iter=4: persisted shard / RNG / complete",
+                "actual main continuous: training batch 4",
+                "actual main continuous, iter=4: train wiring",
+                "actual main continuous, iter=4: live optimizer / cleared gradients",
+                "actual main continuous: training batch 5",
+                "actual main continuous, iter=5: train wiring",
+                "actual main continuous, iter=5: live optimizer / cleared gradients",
+                "actual main continuous, iter=5: train eval wiring",
+                "actual main continuous, iter=5: train eval preserves state",
+                "actual main continuous, iter=5: val eval wiring",
+                "actual main continuous, iter=5: val eval preserves state",
+                "actual main continuous, next_iter=6: save order / wiring",
+                "actual main continuous, next_iter=6: persisted shard / RNG / complete",
+                "actual main continuous: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4573520064353946,
+                  "grad_norm": 0.5953485478802232,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.467231249809265,
+                  "grad_norm": 0.6041121719945104,
+                  "stepped": true
+                },
+                {
+                  "event": 2,
+                  "loss": 3.4608576297760014,
+                  "grad_norm": 0.5741405674741857,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.447502231597901,
+                  "grad_norm": 0.5699462961087035,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4584398269653325,
+                  "grad_norm": 0.5994804380874048,
+                  "stepped": true
+                },
+                {
+                  "event": 5,
+                  "loss": 3.451787638664246,
+                  "grad_norm": 0.6887380901052798,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000002"
+                },
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 6,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000006"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.45827317237854
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4658399760723113
+                },
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.455996924638748
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.4660478115081785
+                },
+                {
+                  "event": 5,
+                  "split": "train",
+                  "loss": 3.4541992485523223
+                },
+                {
+                  "event": 5,
+                  "split": "val",
+                  "loss": 3.46616245508194
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\n[PASS] actual main continuous: DDP / config / shared weights\n[PASS] actual main continuous: real ZeRO-1 initial layout\nrank=0/4, model_numels=6864, owned_numels=1792, partition=[1792, 1792, 1664, 1616]\n[PASS] actual main continuous: training batch 0\n[PASS] actual main continuous, iter=0: train wiring\n[PASS] actual main continuous, iter=0: live optimizer / cleared gradients\niter 0: loss=3.457352, grad_norm=0.595349, stepped=True\n[PASS] actual main continuous: training batch 1\n[PASS] actual main continuous, iter=1: train wiring\n[PASS] actual main continuous, iter=1: live optimizer / cleared gradients\n[PASS] actual main continuous, iter=1: train eval wiring\n[PASS] actual main continuous, iter=1: train eval preserves state\n[PASS] actual main continuous, iter=1: val eval wiring\n[PASS] actual main continuous, iter=1: val eval preserves state\neval iter 1: train loss=3.458273, val loss=3.465840\n[PASS] actual main continuous, next_iter=2: save order / wiring\n[PASS] actual main continuous, next_iter=2: persisted shard / RNG / complete\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000002\n[PASS] actual main continuous: training batch 2\n[PASS] actual main continuous, iter=2: train wiring\n[PASS] actual main continuous, iter=2: live optimizer / cleared gradients\niter 2: loss=3.460858, grad_norm=0.574141, stepped=True\n[PASS] actual main continuous: training batch 3\n[PASS] actual main continuous, iter=3: train wiring\n[PASS] actual main continuous, iter=3: live optimizer / cleared gradients\n[PASS] actual main continuous, iter=3: train eval wiring\n[PASS] actual main continuous, iter=3: train eval preserves state\n[PASS] actual main continuous, iter=3: val eval wiring\n[PASS] actual main continuous, iter=3: val eval preserves state\neval iter 3: train loss=3.455997, val loss=3.466048\n[PASS] actual main continuous, next_iter=4: save order / wiring\n[PASS] actual main continuous, next_iter=4: persisted shard / RNG / complete\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000004\n[PASS] actual main continuous: training batch 4\n[PASS] actual main continuous, iter=4: train wiring\n[PASS] actual main continuous, iter=4: live optimizer / cleared gradients\niter 4: loss=3.458440, grad_norm=0.599480, stepped=True\n[PASS] actual main continuous: training batch 5\n[PASS] actual main continuous, iter=5: train wiring\n[PASS] actual main continuous, iter=5: live optimizer / cleared gradients\niter 5: loss=3.451788, grad_norm=0.688738, stepped=True\n[PASS] actual main continuous, iter=5: train eval wiring\n[PASS] actual main continuous, iter=5: train eval preserves state\n[PASS] actual main continuous, iter=5: val eval wiring\n[PASS] actual main continuous, iter=5: val eval preserves state\neval iter 5: train loss=3.454199, val loss=3.466162\n[PASS] actual main continuous, next_iter=6: save order / wiring\n[PASS] actual main continuous, next_iter=6: persisted shard / RNG / complete\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000006\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 1,
+              "phase": "continuous",
+              "status": "passed",
+              "checks": [
+                "actual main continuous: DDP / config / shared weights",
+                "actual main continuous: real ZeRO-1 initial layout",
+                "actual main continuous: training batch 0",
+                "actual main continuous, iter=0: train wiring",
+                "actual main continuous, iter=0: live optimizer / cleared gradients",
+                "actual main continuous: training batch 1",
+                "actual main continuous, iter=1: train wiring",
+                "actual main continuous, iter=1: live optimizer / cleared gradients",
+                "actual main continuous, iter=1: train eval wiring",
+                "actual main continuous, iter=1: train eval preserves state",
+                "actual main continuous, iter=1: val eval wiring",
+                "actual main continuous, iter=1: val eval preserves state",
+                "actual main continuous, next_iter=2: save order / wiring",
+                "actual main continuous, next_iter=2: persisted shard / RNG / complete",
+                "actual main continuous: training batch 2",
+                "actual main continuous, iter=2: train wiring",
+                "actual main continuous, iter=2: live optimizer / cleared gradients",
+                "actual main continuous: training batch 3",
+                "actual main continuous, iter=3: train wiring",
+                "actual main continuous, iter=3: live optimizer / cleared gradients",
+                "actual main continuous, iter=3: train eval wiring",
+                "actual main continuous, iter=3: train eval preserves state",
+                "actual main continuous, iter=3: val eval wiring",
+                "actual main continuous, iter=3: val eval preserves state",
+                "actual main continuous, next_iter=4: save order / wiring",
+                "actual main continuous, next_iter=4: persisted shard / RNG / complete",
+                "actual main continuous: training batch 4",
+                "actual main continuous, iter=4: train wiring",
+                "actual main continuous, iter=4: live optimizer / cleared gradients",
+                "actual main continuous: training batch 5",
+                "actual main continuous, iter=5: train wiring",
+                "actual main continuous, iter=5: live optimizer / cleared gradients",
+                "actual main continuous, iter=5: train eval wiring",
+                "actual main continuous, iter=5: train eval preserves state",
+                "actual main continuous, iter=5: val eval wiring",
+                "actual main continuous, iter=5: val eval preserves state",
+                "actual main continuous, next_iter=6: save order / wiring",
+                "actual main continuous, next_iter=6: persisted shard / RNG / complete",
+                "actual main continuous: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4573520064353946,
+                  "grad_norm": 0.5953485478802232,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.467231249809265,
+                  "grad_norm": 0.6041121719945104,
+                  "stepped": true
+                },
+                {
+                  "event": 2,
+                  "loss": 3.4608576297760014,
+                  "grad_norm": 0.5741405674741857,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.447502231597901,
+                  "grad_norm": 0.5699462961087035,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4584398269653325,
+                  "grad_norm": 0.5994804380874048,
+                  "stepped": true
+                },
+                {
+                  "event": 5,
+                  "loss": 3.451787638664246,
+                  "grad_norm": 0.6887380901052798,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000002"
+                },
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 6,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000006"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.45827317237854
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4658399760723113
+                },
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.455996924638748
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.4660478115081785
+                },
+                {
+                  "event": 5,
+                  "split": "train",
+                  "loss": 3.4541992485523223
+                },
+                {
+                  "event": 5,
+                  "split": "val",
+                  "loss": 3.46616245508194
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=1/4, model_numels=6864, owned_numels=1792, partition=[1792, 1792, 1664, 1616]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 2,
+              "phase": "continuous",
+              "status": "passed",
+              "checks": [
+                "actual main continuous: DDP / config / shared weights",
+                "actual main continuous: real ZeRO-1 initial layout",
+                "actual main continuous: training batch 0",
+                "actual main continuous, iter=0: train wiring",
+                "actual main continuous, iter=0: live optimizer / cleared gradients",
+                "actual main continuous: training batch 1",
+                "actual main continuous, iter=1: train wiring",
+                "actual main continuous, iter=1: live optimizer / cleared gradients",
+                "actual main continuous, iter=1: train eval wiring",
+                "actual main continuous, iter=1: train eval preserves state",
+                "actual main continuous, iter=1: val eval wiring",
+                "actual main continuous, iter=1: val eval preserves state",
+                "actual main continuous, next_iter=2: save order / wiring",
+                "actual main continuous, next_iter=2: persisted shard / RNG / complete",
+                "actual main continuous: training batch 2",
+                "actual main continuous, iter=2: train wiring",
+                "actual main continuous, iter=2: live optimizer / cleared gradients",
+                "actual main continuous: training batch 3",
+                "actual main continuous, iter=3: train wiring",
+                "actual main continuous, iter=3: live optimizer / cleared gradients",
+                "actual main continuous, iter=3: train eval wiring",
+                "actual main continuous, iter=3: train eval preserves state",
+                "actual main continuous, iter=3: val eval wiring",
+                "actual main continuous, iter=3: val eval preserves state",
+                "actual main continuous, next_iter=4: save order / wiring",
+                "actual main continuous, next_iter=4: persisted shard / RNG / complete",
+                "actual main continuous: training batch 4",
+                "actual main continuous, iter=4: train wiring",
+                "actual main continuous, iter=4: live optimizer / cleared gradients",
+                "actual main continuous: training batch 5",
+                "actual main continuous, iter=5: train wiring",
+                "actual main continuous, iter=5: live optimizer / cleared gradients",
+                "actual main continuous, iter=5: train eval wiring",
+                "actual main continuous, iter=5: train eval preserves state",
+                "actual main continuous, iter=5: val eval wiring",
+                "actual main continuous, iter=5: val eval preserves state",
+                "actual main continuous, next_iter=6: save order / wiring",
+                "actual main continuous, next_iter=6: persisted shard / RNG / complete",
+                "actual main continuous: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4573520064353946,
+                  "grad_norm": 0.5953485478802232,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.467231249809265,
+                  "grad_norm": 0.6041121719945104,
+                  "stepped": true
+                },
+                {
+                  "event": 2,
+                  "loss": 3.4608576297760014,
+                  "grad_norm": 0.5741405674741857,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.447502231597901,
+                  "grad_norm": 0.5699462961087035,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4584398269653325,
+                  "grad_norm": 0.5994804380874048,
+                  "stepped": true
+                },
+                {
+                  "event": 5,
+                  "loss": 3.451787638664246,
+                  "grad_norm": 0.6887380901052798,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000002"
+                },
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 6,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000006"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.45827317237854
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4658399760723113
+                },
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.455996924638748
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.4660478115081785
+                },
+                {
+                  "event": 5,
+                  "split": "train",
+                  "loss": 3.4541992485523223
+                },
+                {
+                  "event": 5,
+                  "split": "val",
+                  "loss": 3.46616245508194
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=2/4, model_numels=6864, owned_numels=1664, partition=[1792, 1792, 1664, 1616]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 3,
+              "phase": "continuous",
+              "status": "passed",
+              "checks": [
+                "actual main continuous: DDP / config / shared weights",
+                "actual main continuous: real ZeRO-1 initial layout",
+                "actual main continuous: training batch 0",
+                "actual main continuous, iter=0: train wiring",
+                "actual main continuous, iter=0: live optimizer / cleared gradients",
+                "actual main continuous: training batch 1",
+                "actual main continuous, iter=1: train wiring",
+                "actual main continuous, iter=1: live optimizer / cleared gradients",
+                "actual main continuous, iter=1: train eval wiring",
+                "actual main continuous, iter=1: train eval preserves state",
+                "actual main continuous, iter=1: val eval wiring",
+                "actual main continuous, iter=1: val eval preserves state",
+                "actual main continuous, next_iter=2: save order / wiring",
+                "actual main continuous, next_iter=2: persisted shard / RNG / complete",
+                "actual main continuous: training batch 2",
+                "actual main continuous, iter=2: train wiring",
+                "actual main continuous, iter=2: live optimizer / cleared gradients",
+                "actual main continuous: training batch 3",
+                "actual main continuous, iter=3: train wiring",
+                "actual main continuous, iter=3: live optimizer / cleared gradients",
+                "actual main continuous, iter=3: train eval wiring",
+                "actual main continuous, iter=3: train eval preserves state",
+                "actual main continuous, iter=3: val eval wiring",
+                "actual main continuous, iter=3: val eval preserves state",
+                "actual main continuous, next_iter=4: save order / wiring",
+                "actual main continuous, next_iter=4: persisted shard / RNG / complete",
+                "actual main continuous: training batch 4",
+                "actual main continuous, iter=4: train wiring",
+                "actual main continuous, iter=4: live optimizer / cleared gradients",
+                "actual main continuous: training batch 5",
+                "actual main continuous, iter=5: train wiring",
+                "actual main continuous, iter=5: live optimizer / cleared gradients",
+                "actual main continuous, iter=5: train eval wiring",
+                "actual main continuous, iter=5: train eval preserves state",
+                "actual main continuous, iter=5: val eval wiring",
+                "actual main continuous, iter=5: val eval preserves state",
+                "actual main continuous, next_iter=6: save order / wiring",
+                "actual main continuous, next_iter=6: persisted shard / RNG / complete",
+                "actual main continuous: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4573520064353946,
+                  "grad_norm": 0.5953485478802232,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.467231249809265,
+                  "grad_norm": 0.6041121719945104,
+                  "stepped": true
+                },
+                {
+                  "event": 2,
+                  "loss": 3.4608576297760014,
+                  "grad_norm": 0.5741405674741857,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.447502231597901,
+                  "grad_norm": 0.5699462961087035,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4584398269653325,
+                  "grad_norm": 0.5994804380874048,
+                  "stepped": true
+                },
+                {
+                  "event": 5,
+                  "loss": 3.451787638664246,
+                  "grad_norm": 0.6887380901052798,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000002"
+                },
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 6,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\continuous\\out\\iter_00000006"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.45827317237854
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4658399760723113
+                },
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.455996924638748
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.4660478115081785
+                },
+                {
+                  "event": 5,
+                  "split": "train",
+                  "loss": 3.4541992485523223
+                },
+                {
+                  "event": 5,
+                  "split": "val",
+                  "loss": 3.46616245508194
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=3/4, model_numels=6864, owned_numels=1616, partition=[1792, 1792, 1664, 1616]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            }
+          ]
+        },
+        {
+          "phase": "interrupted",
+          "workers": [
+            {
+              "rank": 0,
+              "phase": "interrupted",
+              "status": "passed",
+              "checks": [
+                "actual main interrupted: DDP / config / shared weights",
+                "actual main interrupted: real ZeRO-1 initial layout",
+                "actual main interrupted: training batch 0",
+                "actual main interrupted, iter=0: train wiring",
+                "actual main interrupted, iter=0: live optimizer / cleared gradients",
+                "actual main interrupted: training batch 1",
+                "actual main interrupted, iter=1: train wiring",
+                "actual main interrupted, iter=1: live optimizer / cleared gradients",
+                "actual main interrupted, iter=1: train eval wiring",
+                "actual main interrupted, iter=1: train eval preserves state",
+                "actual main interrupted, iter=1: val eval wiring",
+                "actual main interrupted, iter=1: val eval preserves state",
+                "actual main interrupted, next_iter=2: save order / wiring",
+                "actual main interrupted, next_iter=2: persisted shard / RNG / complete",
+                "actual main interrupted: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4573520064353946,
+                  "grad_norm": 0.5953485478802232,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.467231249809265,
+                  "grad_norm": 0.6041121719945104,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\interrupted\\out\\iter_00000002"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.45827317237854
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4658399760723113
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\n[PASS] actual main interrupted: DDP / config / shared weights\n[PASS] actual main interrupted: real ZeRO-1 initial layout\nrank=0/4, model_numels=6864, owned_numels=1792, partition=[1792, 1792, 1664, 1616]\n[PASS] actual main interrupted: training batch 0\n[PASS] actual main interrupted, iter=0: train wiring\n[PASS] actual main interrupted, iter=0: live optimizer / cleared gradients\niter 0: loss=3.457352, grad_norm=0.595349, stepped=True\n[PASS] actual main interrupted: training batch 1\n[PASS] actual main interrupted, iter=1: train wiring\n[PASS] actual main interrupted, iter=1: live optimizer / cleared gradients\niter 1: loss=3.467231, grad_norm=0.604112, stepped=True\n[PASS] actual main interrupted, iter=1: train eval wiring\n[PASS] actual main interrupted, iter=1: train eval preserves state\n[PASS] actual main interrupted, iter=1: val eval wiring\n[PASS] actual main interrupted, iter=1: val eval preserves state\neval iter 1: train loss=3.458273, val loss=3.465840\n[PASS] actual main interrupted, next_iter=2: save order / wiring\n[PASS] actual main interrupted, next_iter=2: persisted shard / RNG / complete\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\interrupted\\out\\iter_00000002\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 1,
+              "phase": "interrupted",
+              "status": "passed",
+              "checks": [
+                "actual main interrupted: DDP / config / shared weights",
+                "actual main interrupted: real ZeRO-1 initial layout",
+                "actual main interrupted: training batch 0",
+                "actual main interrupted, iter=0: train wiring",
+                "actual main interrupted, iter=0: live optimizer / cleared gradients",
+                "actual main interrupted: training batch 1",
+                "actual main interrupted, iter=1: train wiring",
+                "actual main interrupted, iter=1: live optimizer / cleared gradients",
+                "actual main interrupted, iter=1: train eval wiring",
+                "actual main interrupted, iter=1: train eval preserves state",
+                "actual main interrupted, iter=1: val eval wiring",
+                "actual main interrupted, iter=1: val eval preserves state",
+                "actual main interrupted, next_iter=2: save order / wiring",
+                "actual main interrupted, next_iter=2: persisted shard / RNG / complete",
+                "actual main interrupted: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4573520064353946,
+                  "grad_norm": 0.5953485478802232,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.467231249809265,
+                  "grad_norm": 0.6041121719945104,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\interrupted\\out\\iter_00000002"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.45827317237854
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4658399760723113
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=1/4, model_numels=6864, owned_numels=1792, partition=[1792, 1792, 1664, 1616]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 2,
+              "phase": "interrupted",
+              "status": "passed",
+              "checks": [
+                "actual main interrupted: DDP / config / shared weights",
+                "actual main interrupted: real ZeRO-1 initial layout",
+                "actual main interrupted: training batch 0",
+                "actual main interrupted, iter=0: train wiring",
+                "actual main interrupted, iter=0: live optimizer / cleared gradients",
+                "actual main interrupted: training batch 1",
+                "actual main interrupted, iter=1: train wiring",
+                "actual main interrupted, iter=1: live optimizer / cleared gradients",
+                "actual main interrupted, iter=1: train eval wiring",
+                "actual main interrupted, iter=1: train eval preserves state",
+                "actual main interrupted, iter=1: val eval wiring",
+                "actual main interrupted, iter=1: val eval preserves state",
+                "actual main interrupted, next_iter=2: save order / wiring",
+                "actual main interrupted, next_iter=2: persisted shard / RNG / complete",
+                "actual main interrupted: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4573520064353946,
+                  "grad_norm": 0.5953485478802232,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.467231249809265,
+                  "grad_norm": 0.6041121719945104,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\interrupted\\out\\iter_00000002"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.45827317237854
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4658399760723113
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=2/4, model_numels=6864, owned_numels=1664, partition=[1792, 1792, 1664, 1616]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 3,
+              "phase": "interrupted",
+              "status": "passed",
+              "checks": [
+                "actual main interrupted: DDP / config / shared weights",
+                "actual main interrupted: real ZeRO-1 initial layout",
+                "actual main interrupted: training batch 0",
+                "actual main interrupted, iter=0: train wiring",
+                "actual main interrupted, iter=0: live optimizer / cleared gradients",
+                "actual main interrupted: training batch 1",
+                "actual main interrupted, iter=1: train wiring",
+                "actual main interrupted, iter=1: live optimizer / cleared gradients",
+                "actual main interrupted, iter=1: train eval wiring",
+                "actual main interrupted, iter=1: train eval preserves state",
+                "actual main interrupted, iter=1: val eval wiring",
+                "actual main interrupted, iter=1: val eval preserves state",
+                "actual main interrupted, next_iter=2: save order / wiring",
+                "actual main interrupted, next_iter=2: persisted shard / RNG / complete",
+                "actual main interrupted: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 0,
+                  "loss": 3.4573520064353946,
+                  "grad_norm": 0.5953485478802232,
+                  "stepped": true
+                },
+                {
+                  "event": 1,
+                  "loss": 3.467231249809265,
+                  "grad_norm": 0.6041121719945104,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 2,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\interrupted\\out\\iter_00000002"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 1,
+                  "split": "train",
+                  "loss": 3.45827317237854
+                },
+                {
+                  "event": 1,
+                  "split": "val",
+                  "loss": 3.4658399760723113
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=3/4, model_numels=6864, owned_numels=1616, partition=[1792, 1792, 1664, 1616]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            }
+          ]
+        },
+        {
+          "phase": "resumed",
+          "workers": [
+            {
+              "rank": 0,
+              "phase": "resumed",
+              "status": "passed",
+              "checks": [
+                "actual main resumed: DDP / config / shared weights",
+                "actual main resumed: real ZeRO-1 initial layout",
+                "actual main resumed: load before training",
+                "actual main resumed: loaded weights / moments / RNG / preserved references",
+                "actual main resumed: training batch 2",
+                "actual main resumed, iter=2: train wiring",
+                "actual main resumed, iter=2: live optimizer / cleared gradients",
+                "actual main resumed: training batch 3",
+                "actual main resumed, iter=3: train wiring",
+                "actual main resumed, iter=3: live optimizer / cleared gradients",
+                "actual main resumed, iter=3: train eval wiring",
+                "actual main resumed, iter=3: train eval preserves state",
+                "actual main resumed, iter=3: val eval wiring",
+                "actual main resumed, iter=3: val eval preserves state",
+                "actual main resumed, next_iter=4: save order / wiring",
+                "actual main resumed, next_iter=4: persisted shard / RNG / complete",
+                "actual main resumed: training batch 4",
+                "actual main resumed, iter=4: train wiring",
+                "actual main resumed, iter=4: live optimizer / cleared gradients",
+                "actual main resumed: training batch 5",
+                "actual main resumed, iter=5: train wiring",
+                "actual main resumed, iter=5: live optimizer / cleared gradients",
+                "actual main resumed, iter=5: train eval wiring",
+                "actual main resumed, iter=5: train eval preserves state",
+                "actual main resumed, iter=5: val eval wiring",
+                "actual main resumed, iter=5: val eval preserves state",
+                "actual main resumed, next_iter=6: save order / wiring",
+                "actual main resumed, next_iter=6: persisted shard / RNG / complete",
+                "actual main resumed: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 2,
+                  "loss": 3.4608576297760014,
+                  "grad_norm": 0.5741405643326987,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.447502231597901,
+                  "grad_norm": 0.5699463001659822,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4584398269653325,
+                  "grad_norm": 0.5994804382202287,
+                  "stepped": true
+                },
+                {
+                  "event": 5,
+                  "loss": 3.451787638664246,
+                  "grad_norm": 0.6887381028519826,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\resumed\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 6,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\resumed\\out\\iter_00000006"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.4559969127178194
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.4660478234291077
+                },
+                {
+                  "event": 5,
+                  "split": "train",
+                  "loss": 3.4541992843151093
+                },
+                {
+                  "event": 5,
+                  "split": "val",
+                  "loss": 3.466162461042404
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\n[PASS] actual main resumed: DDP / config / shared weights\n[PASS] actual main resumed: real ZeRO-1 initial layout\n[PASS] actual main resumed: load before training\n[PASS] actual main resumed: loaded weights / moments / RNG / preserved references\nresumed checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\interrupted\\out\\iter_00000002, next_iter=2\nrank=0/4, model_numels=6864, owned_numels=1792, partition=[1792, 1792, 1664, 1616]\n[PASS] actual main resumed: training batch 2\n[PASS] actual main resumed, iter=2: train wiring\n[PASS] actual main resumed, iter=2: live optimizer / cleared gradients\niter 2: loss=3.460858, grad_norm=0.574141, stepped=True\n[PASS] actual main resumed: training batch 3\n[PASS] actual main resumed, iter=3: train wiring\n[PASS] actual main resumed, iter=3: live optimizer / cleared gradients\n[PASS] actual main resumed, iter=3: train eval wiring\n[PASS] actual main resumed, iter=3: train eval preserves state\n[PASS] actual main resumed, iter=3: val eval wiring\n[PASS] actual main resumed, iter=3: val eval preserves state\neval iter 3: train loss=3.455997, val loss=3.466048\n[PASS] actual main resumed, next_iter=4: save order / wiring\n[PASS] actual main resumed, next_iter=4: persisted shard / RNG / complete\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\resumed\\out\\iter_00000004\n[PASS] actual main resumed: training batch 4\n[PASS] actual main resumed, iter=4: train wiring\n[PASS] actual main resumed, iter=4: live optimizer / cleared gradients\niter 4: loss=3.458440, grad_norm=0.599480, stepped=True\n[PASS] actual main resumed: training batch 5\n[PASS] actual main resumed, iter=5: train wiring\n[PASS] actual main resumed, iter=5: live optimizer / cleared gradients\niter 5: loss=3.451788, grad_norm=0.688738, stepped=True\n[PASS] actual main resumed, iter=5: train eval wiring\n[PASS] actual main resumed, iter=5: train eval preserves state\n[PASS] actual main resumed, iter=5: val eval wiring\n[PASS] actual main resumed, iter=5: val eval preserves state\neval iter 5: train loss=3.454199, val loss=3.466162\n[PASS] actual main resumed, next_iter=6: save order / wiring\n[PASS] actual main resumed, next_iter=6: persisted shard / RNG / complete\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\resumed\\out\\iter_00000006\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 1,
+              "phase": "resumed",
+              "status": "passed",
+              "checks": [
+                "actual main resumed: DDP / config / shared weights",
+                "actual main resumed: real ZeRO-1 initial layout",
+                "actual main resumed: load before training",
+                "actual main resumed: loaded weights / moments / RNG / preserved references",
+                "actual main resumed: training batch 2",
+                "actual main resumed, iter=2: train wiring",
+                "actual main resumed, iter=2: live optimizer / cleared gradients",
+                "actual main resumed: training batch 3",
+                "actual main resumed, iter=3: train wiring",
+                "actual main resumed, iter=3: live optimizer / cleared gradients",
+                "actual main resumed, iter=3: train eval wiring",
+                "actual main resumed, iter=3: train eval preserves state",
+                "actual main resumed, iter=3: val eval wiring",
+                "actual main resumed, iter=3: val eval preserves state",
+                "actual main resumed, next_iter=4: save order / wiring",
+                "actual main resumed, next_iter=4: persisted shard / RNG / complete",
+                "actual main resumed: training batch 4",
+                "actual main resumed, iter=4: train wiring",
+                "actual main resumed, iter=4: live optimizer / cleared gradients",
+                "actual main resumed: training batch 5",
+                "actual main resumed, iter=5: train wiring",
+                "actual main resumed, iter=5: live optimizer / cleared gradients",
+                "actual main resumed, iter=5: train eval wiring",
+                "actual main resumed, iter=5: train eval preserves state",
+                "actual main resumed, iter=5: val eval wiring",
+                "actual main resumed, iter=5: val eval preserves state",
+                "actual main resumed, next_iter=6: save order / wiring",
+                "actual main resumed, next_iter=6: persisted shard / RNG / complete",
+                "actual main resumed: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 2,
+                  "loss": 3.4608576297760014,
+                  "grad_norm": 0.5741405643326987,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.447502231597901,
+                  "grad_norm": 0.5699463001659822,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4584398269653325,
+                  "grad_norm": 0.5994804382202287,
+                  "stepped": true
+                },
+                {
+                  "event": 5,
+                  "loss": 3.451787638664246,
+                  "grad_norm": 0.6887381028519826,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\resumed\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 6,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\resumed\\out\\iter_00000006"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.4559969127178194
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.4660478234291077
+                },
+                {
+                  "event": 5,
+                  "split": "train",
+                  "loss": 3.4541992843151093
+                },
+                {
+                  "event": 5,
+                  "split": "val",
+                  "loss": 3.466162461042404
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=1/4, model_numels=6864, owned_numels=1792, partition=[1792, 1792, 1664, 1616]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 2,
+              "phase": "resumed",
+              "status": "passed",
+              "checks": [
+                "actual main resumed: DDP / config / shared weights",
+                "actual main resumed: real ZeRO-1 initial layout",
+                "actual main resumed: load before training",
+                "actual main resumed: loaded weights / moments / RNG / preserved references",
+                "actual main resumed: training batch 2",
+                "actual main resumed, iter=2: train wiring",
+                "actual main resumed, iter=2: live optimizer / cleared gradients",
+                "actual main resumed: training batch 3",
+                "actual main resumed, iter=3: train wiring",
+                "actual main resumed, iter=3: live optimizer / cleared gradients",
+                "actual main resumed, iter=3: train eval wiring",
+                "actual main resumed, iter=3: train eval preserves state",
+                "actual main resumed, iter=3: val eval wiring",
+                "actual main resumed, iter=3: val eval preserves state",
+                "actual main resumed, next_iter=4: save order / wiring",
+                "actual main resumed, next_iter=4: persisted shard / RNG / complete",
+                "actual main resumed: training batch 4",
+                "actual main resumed, iter=4: train wiring",
+                "actual main resumed, iter=4: live optimizer / cleared gradients",
+                "actual main resumed: training batch 5",
+                "actual main resumed, iter=5: train wiring",
+                "actual main resumed, iter=5: live optimizer / cleared gradients",
+                "actual main resumed, iter=5: train eval wiring",
+                "actual main resumed, iter=5: train eval preserves state",
+                "actual main resumed, iter=5: val eval wiring",
+                "actual main resumed, iter=5: val eval preserves state",
+                "actual main resumed, next_iter=6: save order / wiring",
+                "actual main resumed, next_iter=6: persisted shard / RNG / complete",
+                "actual main resumed: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 2,
+                  "loss": 3.4608576297760014,
+                  "grad_norm": 0.5741405643326987,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.447502231597901,
+                  "grad_norm": 0.5699463001659822,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4584398269653325,
+                  "grad_norm": 0.5994804382202287,
+                  "stepped": true
+                },
+                {
+                  "event": 5,
+                  "loss": 3.451787638664246,
+                  "grad_norm": 0.6887381028519826,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\resumed\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 6,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\resumed\\out\\iter_00000006"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.4559969127178194
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.4660478234291077
+                },
+                {
+                  "event": 5,
+                  "split": "train",
+                  "loss": 3.4541992843151093
+                },
+                {
+                  "event": 5,
+                  "split": "val",
+                  "loss": 3.466162461042404
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=2/4, model_numels=6864, owned_numels=1664, partition=[1792, 1792, 1664, 1616]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            },
+            {
+              "rank": 3,
+              "phase": "resumed",
+              "status": "passed",
+              "checks": [
+                "actual main resumed: DDP / config / shared weights",
+                "actual main resumed: real ZeRO-1 initial layout",
+                "actual main resumed: load before training",
+                "actual main resumed: loaded weights / moments / RNG / preserved references",
+                "actual main resumed: training batch 2",
+                "actual main resumed, iter=2: train wiring",
+                "actual main resumed, iter=2: live optimizer / cleared gradients",
+                "actual main resumed: training batch 3",
+                "actual main resumed, iter=3: train wiring",
+                "actual main resumed, iter=3: live optimizer / cleared gradients",
+                "actual main resumed, iter=3: train eval wiring",
+                "actual main resumed, iter=3: train eval preserves state",
+                "actual main resumed, iter=3: val eval wiring",
+                "actual main resumed, iter=3: val eval preserves state",
+                "actual main resumed, next_iter=4: save order / wiring",
+                "actual main resumed, next_iter=4: persisted shard / RNG / complete",
+                "actual main resumed: training batch 4",
+                "actual main resumed, iter=4: train wiring",
+                "actual main resumed, iter=4: live optimizer / cleared gradients",
+                "actual main resumed: training batch 5",
+                "actual main resumed, iter=5: train wiring",
+                "actual main resumed, iter=5: live optimizer / cleared gradients",
+                "actual main resumed, iter=5: train eval wiring",
+                "actual main resumed, iter=5: train eval preserves state",
+                "actual main resumed, iter=5: val eval wiring",
+                "actual main resumed, iter=5: val eval preserves state",
+                "actual main resumed, next_iter=6: save order / wiring",
+                "actual main resumed, next_iter=6: persisted shard / RNG / complete",
+                "actual main resumed: full logs / absolute iterations / save and eval schedule / cleanup"
+              ],
+              "steps": [
+                {
+                  "event": 2,
+                  "loss": 3.4608576297760014,
+                  "grad_norm": 0.5741405643326987,
+                  "stepped": true
+                },
+                {
+                  "event": 3,
+                  "loss": 3.447502231597901,
+                  "grad_norm": 0.5699463001659822,
+                  "stepped": true
+                },
+                {
+                  "event": 4,
+                  "loss": 3.4584398269653325,
+                  "grad_norm": 0.5994804382202287,
+                  "stepped": true
+                },
+                {
+                  "event": 5,
+                  "loss": 3.451787638664246,
+                  "grad_norm": 0.6887381028519826,
+                  "stepped": true
+                }
+              ],
+              "saves": [
+                {
+                  "next_iter": 4,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\resumed\\out\\iter_00000004"
+                },
+                {
+                  "next_iter": 6,
+                  "directory": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_zero1_checkpoint_sib595v5\\bias_False\\resumed\\out\\iter_00000006"
+                }
+              ],
+              "evaluations": [
+                {
+                  "event": 3,
+                  "split": "train",
+                  "loss": 3.4559969127178194
+                },
+                {
+                  "event": 3,
+                  "split": "val",
+                  "loss": 3.4660478234291077
+                },
+                {
+                  "event": 5,
+                  "split": "train",
+                  "loss": 3.4541992843151093
+                },
+                {
+                  "event": 5,
+                  "split": "val",
+                  "loss": 3.466162461042404
+                }
+              ],
+              "stdout": "number of parameters: 0.01M\nrank=3/4, model_numels=6864, owned_numels=1616, partition=[1792, 1792, 1664, 1616]\n",
+              "main_destroyed_group": true,
+              "init_calls": 1,
+              "destroy_calls": 1
+            }
+          ]
+        }
+      ],
+      "comparison": {
+        "status": "passed",
+        "bias": false,
+        "dropout": 0.25,
+        "total_iterations": 6,
+        "split_next_iter": 2,
+        "already_complete_checked": false,
+        "comparison": "exact serialized reload/data/RNG; tolerance for recomputed FP32 trajectory"
+      }
+    }
+  ],
+  "scope": "ZeRO-1 checkpoint with fixed DP/layout/data/device type; actual fresh-process main resume; no AMP/compile/multinode/performance/hard-crash guarantee",
+  "numeric_policy": "exact data/RNG/serialized reload; float64 and FP32 tolerances for recomputed training",
+  "source_sha256": {
+    "D:\\大学\\科研\\nanoGPT\\model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
+    "D:\\大学\\科研\\nanoGPT\\zero1.py": "b66dc9bad4eb0d1ff257217fb970cbefc787e16f015c0e98919615388227b9f8",
+    "D:\\大学\\科研\\nanoGPT\\train_zero.py": "dabb547e70dd0de546184135234aba8dd6030cada19291d5bd92e9a5fb579af1",
+    "D:\\大学\\科研\\nanoGPT\\verify_zero1_checkpoint.py": "290889535943eeeb02190b31991f45c24a571a209949f0e55099cb4813fff1a5"
+  },
+  "torch_version": "2.12.1+cpu",
+  "numpy_version": "2.4.4",
+  "serial": {
+    "status": "passed",
+    "atomic_save_checked": true,
+    "checkpoint_cli_checked": true
+  }
+}

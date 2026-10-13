@@ -237,4 +237,93 @@ class Zero1Optimizer:
 
         return float(total_norm.item())
 
+    def _checkpoint_layout(self):
+        name_by_id = {
+            id(param): name
+            for name, param in self.named_params
+        }
+
+        local_param_groups = []
+
+        if self.local_optimizer is not None:
+            local_param_groups = [
+                [
+                    name_by_id[id(param)]
+                    for param in group["params"]
+                ]
+                for group in self.local_optimizer.param_groups
+            ]
+
+        return {
+            "dp_size": self.dp_size,
+            "dp_rank": self.dp_rank,
+            "parameters": [
+                (name, tuple(param.shape), str(param.dtype))
+                for name, param in self.named_params
+            ],
+            "owners": dict(self.owners),
+            "local_param_groups": local_param_groups,
+        }
+
+    def state_dict(self):
+        local_state = None
+
+        if self.local_optimizer is not None:
+            local_state = self.local_optimizer.state_dict()
+
+        return {
+            "format_version": 1,
+            "zero_stage": 1,
+            "layout": self._checkpoint_layout(),
+            "local_optimizer": local_state,
+            "last_grad_norm": self.last_grad_norm,
+        }
+    
+    def load_state_dict(self, state):
+        if not isinstance(state, dict):
+            raise TypeError("优化器 checkpoint 必须是字典")
+
+        if state.get("format_version") != 1:
+            raise ValueError("不支持的优化器 checkpoint 版本")
+
+        if state.get("zero_stage") != 1:
+            raise ValueError("checkpoint 不是 ZeRO-1 状态")
+
+        saved_layout = state.get("layout")
+
+        if not isinstance(saved_layout, dict):
+            raise ValueError("checkpoint 缺少有效的 layout")
+
+        current_layout = self._checkpoint_layout()
+
+        for key, expected in current_layout.items():
+            if saved_layout.get(key) != expected:
+                raise ValueError(
+                    f"checkpoint 的 {key} 与当前优化器不一致"
+                )
+
+        if "local_optimizer" not in state:
+            raise ValueError("checkpoint 缺少 local_optimizer")
+
+        last_grad_norm = state.get("last_grad_norm")
+
+        if last_grad_norm is not None:
+            last_grad_norm = float(last_grad_norm)
+
+            if not math.isfinite(last_grad_norm) or last_grad_norm < 0:
+                raise ValueError("checkpoint 的 last_grad_norm 非法")
+
+        local_state = state["local_optimizer"]
+
+        if self.local_optimizer is None:
+            if local_state is not None:
+                raise ValueError("空分片 rank 的优化器状态应为 None")
+        else:
+            if not isinstance(local_state, dict):
+                raise ValueError("非空分片 rank 缺少 AdamW 状态")
+
+            self.local_optimizer.load_state_dict(local_state)
+
+        self.last_grad_norm = last_grad_norm
+
 
