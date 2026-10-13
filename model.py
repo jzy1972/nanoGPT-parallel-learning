@@ -114,6 +114,10 @@ class GPTConfig:
     n_embd: int = 768
     dropout: float = 0.0
     bias: bool = True # True: bias in Linears and LayerNorms, like GPT-2. False: a bit better and faster
+    use_moe: bool = False
+    n_experts: int = 4
+    moe_top_k: int = 1
+    moe_aux_loss_coef: float = 0.01
 
 class GPT(nn.Module):
 
