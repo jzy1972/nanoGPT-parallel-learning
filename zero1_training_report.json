@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "timestamp_utc": "2026-10-07T09:09:04.493926+00:00",
+  "timestamp_utc": "2026-10-07T10:07:14.403519+00:00",
   "project": "D:\\大学\\科研\\nanoGPT",
   "device": "cpu",
   "world_size": 4,
@@ -9866,7 +9866,7 @@
   "source_sha256": {
     "D:\\大学\\科研\\nanoGPT\\model.py": "63d46bccd28157de4ae3d4e714f3945370be708852d2f411e0d017a7da5f8d39",
     "D:\\大学\\科研\\nanoGPT\\zero1.py": "0041a734eddc56fb6c0193a153033351ec2f4202452a64d1ff3abdb147a5b738",
-    "D:\\大学\\科研\\nanoGPT\\train_zero.py": "b190a2319ec048647da76d6dd8021fb72c13eb1e189f2f7dd077fca3f21bcfc8",
+    "D:\\大学\\科研\\nanoGPT\\train_zero.py": "07dd4e60c31f33b5422f306c6f8bea99fc55ae0b478d36a5886bdb0c5a6f84f9",
     "D:\\大学\\科研\\nanoGPT\\verify_zero1_training.py": "413390683be566ae92881a849f10a2994304f57e427c6938f8df07fed981b621"
   },
   "torch_version": "2.12.1+cpu",
