@@ -217,6 +217,7 @@ elif init_from.startswith('gpt2'):
 if block_size < model.config.block_size:
     model.crop_block_size(block_size)
     model_args['block_size'] = block_size # so that the checkpoint will have the right value
+config.update(model_args)
 model.to(device)
 
 # initialize a GradScaler. If enabled=False scaler is a no-op
@@ -226,6 +227,8 @@ scaler = torch.cuda.amp.GradScaler(enabled=(dtype == 'float16'))
 optimizer = model.configure_optimizers(weight_decay, learning_rate, (beta1, beta2), device_type)
 if init_from == 'resume':
     optimizer.load_state_dict(checkpoint['optimizer'])
+    if "scaler" in checkpoint:
+        scaler.load_state_dict(checkpoint["scaler"])
 checkpoint = None # free up memory
 
 ddp_find_unused_parameters = model.config.use_moe
@@ -281,6 +284,29 @@ def estimate_loss():
         model.train(was_training)
 
     return out
+
+def save_checkpoint():
+    if not master_process:
+        return
+
+    checkpoint = {
+        "model": raw_model.state_dict(),
+        "optimizer": optimizer.state_dict(),
+        "scaler": scaler.state_dict(),
+        "model_args": model_args,
+        "iter_num": iter_num,
+        "best_val_loss": best_val_loss,
+        "config": config,
+    }
+
+    final_path = os.path.join(out_dir, "ckpt.pt")
+    temporary_path = final_path + ".tmp"
+
+    torch.save(checkpoint, temporary_path)
+    os.replace(temporary_path, final_path)
+
+    print(f"saving checkpoint to {out_dir}")
+
 # learning rate decay scheduler (cosine with warmup)
 def get_lr(it):
     # 1) linear warmup for warmup_iters steps
@@ -306,7 +332,7 @@ t0 = time.time()
 local_iter_num = 0 # number of iterations in the lifetime of this process
 raw_model = model.module if ddp else model # unwrap DDP container if needed
 running_mfu = -1.0
-while True:
+while iter_num < max_iters or eval_only:
 
     # determine and set the learning rate for this iteration
     lr = get_lr(iter_num) if decay_lr else learning_rate
@@ -314,7 +340,7 @@ while True:
         param_group['lr'] = lr
 
     # evaluate the loss on train/val sets and write checkpoints
-    if iter_num % eval_interval == 0:
+    if iter_num % eval_interval == 0 or eval_only:
         losses = estimate_loss()
 
         improved = losses["val"] < best_val_loss
@@ -345,24 +371,9 @@ while True:
 
                 wandb.log(log_data)
 
-            if should_save and iter_num > 0:
-                checkpoint = {
-                    "model": raw_model.state_dict(),
-                    "optimizer": optimizer.state_dict(),
-                    "model_args": model_args,
-                    "iter_num": iter_num,
-                    "best_val_loss": best_val_loss,
-                    "config": config,
-                }
-
-                print(f"saving checkpoint to {out_dir}")
-
-                torch.save(
-                    checkpoint,
-                    os.path.join(out_dir, "ckpt.pt"),
-                )
-    
-    if iter_num == 0 and eval_only:
+            if should_save and iter_num > 0 and not eval_only:
+                save_checkpoint()
+    if eval_only:
         break
 
     # forward backward update, with optional gradient accumulation to simulate larger batch size
@@ -425,9 +436,10 @@ while True:
     iter_num += 1
     local_iter_num += 1
 
-    # termination conditions
-    if iter_num > max_iters:
-        break
+
+if not eval_only:
+    save_checkpoint()
 
 if ddp:
+    dist.barrier()
     destroy_process_group()
