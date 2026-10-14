@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "created_at_utc": "2026-10-14T12:11:19.774994+00:00",
+  "project": "D:\\大学\\科研\\nanoGPT",
+  "scope": "single-process eager MoE model math",
+  "not_tested": [
+    "distributed DP",
+    "EP",
+    "AMP",
+    "torch.compile",
+    "fused CUDA optimizer",
+    "actual train.py loop/resume"
+  ],
+  "checks": [
+    {
+      "name": "Router invalid-configuration checks",
+      "status": "passed"
+    },
+    {
+      "name": "Router top_k=1: probabilities / indices / main-task gradients",
+      "status": "passed"
+    },
+    {
+      "name": "Router top_k=2: probabilities / indices / main-task gradients",
+      "status": "passed"
+    },
+    {
+      "name": "Router top_k=4: probabilities / indices / main-task gradients",
+      "status": "passed"
+    },
+    {
+      "name": "MoE bias=True, top_k=1, mixed: dispatch / gradients / 2 AdamW steps",
+      "status": "passed",
+      "optimizer_steps": 2,
+      "unused_expert_events": 0
+    },
+    {
+      "name": "MoE bias=True, top_k=2, mixed: dispatch / gradients / 2 AdamW steps",
+      "status": "passed",
+      "optimizer_steps": 2,
+      "unused_expert_events": 0
+    },
+    {
+      "name": "MoE bias=True, top_k=4, mixed: dispatch / gradients / 2 AdamW steps",
+      "status": "passed",
+      "optimizer_steps": 2,
+      "unused_expert_events": 0
+    },
+    {
+      "name": "MoE bias=True, top_k=1, sparse: dispatch / gradients / 2 AdamW steps",
+      "status": "passed",
+      "optimizer_steps": 2,
+      "unused_expert_events": 6
+    },
+    {
+      "name": "MoE bias=True, top_k=2, sparse: dispatch / gradients / 2 AdamW steps",
+      "status": "passed",
+      "optimizer_steps": 2,
+      "unused_expert_events": 4
+    },
+    {
+      "name": "MoE bias=False, top_k=1, mixed: dispatch / gradients / 2 AdamW steps",
+      "status": "passed",
+      "optimizer_steps": 2,
+      "unused_expert_events": 0
+    },
+    {
+      "name": "MoE bias=False, top_k=2, mixed: dispatch / gradients / 2 AdamW steps",
+      "status": "passed",
+      "optimizer_steps": 2,
+      "unused_expert_events": 0
+    },
+    {
+      "name": "MoE bias=False, top_k=4, mixed: dispatch / gradients / 2 AdamW steps",
+      "status": "passed",
+      "optimizer_steps": 2,
+      "unused_expert_events": 0
+    },
+    {
+      "name": "MoE bias=False, top_k=1, sparse: dispatch / gradients / 2 AdamW steps",
+      "status": "passed",
+      "optimizer_steps": 2,
+      "unused_expert_events": 6
+    },
+    {
+      "name": "MoE bias=False, top_k=2, sparse: dispatch / gradients / 2 AdamW steps",
+      "status": "passed",
+      "optimizer_steps": 2,
+      "unused_expert_events": 4
+    },
+    {
+      "name": "Auxiliary loss: uniform baseline / imbalanced value / Router-only gradients",
+      "status": "passed"
+    },
+    {
+      "name": "One-expert boundary: existing MLP equivalence / constant auxiliary / zero Router gradient",
+      "status": "passed"
+    },
+    {
+      "name": "Dense GPT bias=True: functional reference / gradients / eval / inference",
+      "status": "passed",
+      "parameters": 4152,
+      "training_auxiliary_sum": 0.0
+    },
+    {
+      "name": "MoE GPT bias=True, top_k=1: functional reference / total loss / all gradients / eval",
+      "status": "passed",
+      "parameters": 9072,
+      "training_auxiliary_sum": 2.0054123401641846
+    },
+    {
+      "name": "MoE GPT bias=True, top_k=2: functional reference / total loss / all gradients / eval",
+      "status": "passed",
+      "parameters": 9072,
+      "training_auxiliary_sum": 2.0118446350097656
+    },
+    {
+      "name": "MoE GPT bias=True, top_k=3: functional reference / total loss / all gradients / eval",
+      "status": "passed",
+      "parameters": 9072,
+      "training_auxiliary_sum": 2.0
+    },
+    {
+      "name": "Dense GPT bias=False: functional reference / gradients / eval / inference",
+      "status": "passed",
+      "parameters": 3876,
+      "training_auxiliary_sum": 0.0
+    },
+    {
+      "name": "MoE GPT bias=False, top_k=1: functional reference / total loss / all gradients / eval",
+      "status": "passed",
+      "parameters": 8556,
+      "training_auxiliary_sum": 2.0037455558776855
+    },
+    {
+      "name": "MoE GPT bias=False, top_k=2: functional reference / total loss / all gradients / eval",
+      "status": "passed",
+      "parameters": 8556,
+      "training_auxiliary_sum": 2.0019025802612305
+    },
+    {
+      "name": "MoE GPT bias=False, top_k=3: functional reference / total loss / all gradients / eval",
+      "status": "passed",
+      "parameters": 8556,
+      "training_auxiliary_sum": 2.0
+    },
+    {
+      "name": "MoE GPT auxiliary coefficient=0: CE-only objective",
+      "status": "passed",
+      "parameters": 9072,
+      "training_auxiliary_sum": 2.0054123401641846
+    },
+    {
+      "name": "MoE model / AdamW checkpoint round-trip and next update",
+      "status": "passed",
+      "scope": "in-memory model/unfused AdamW round-trip; actual train.py resume is pending"
+    }
+  ],
+  "source_sha256": {
+    "model.py": "a1b9b2b5e98adeaf0076e70f99166e3658194ca77458ca78cf4356ef2dfe4568",
+    "moe.py": "4fb8ff99d92456220e208d410740179c2a07e20a2e6378b4ffd32cc09440e1bf",
+    "train.py": "29e775a0e5f8a17a35c21060e95c56e4482a3054848a7e5de2e0153e0afd8d19"
+  },
+  "torch_version": "2.12.1+cpu",
+  "device": "cpu",
+  "dtype": "float64",
+  "threads": 1,
+  "rtol": 3e-05,
+  "atol": 3e-08,
+  "tensor_comparisons": 1430,
+  "max_abs_error": 1.1920928955078125e-07
+}

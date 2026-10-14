@@ -1,0 +1,1163 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "created_at_utc": "2026-10-14T12:49:22.740317+00:00",
+  "project": "D:\\大学\\科研\\nanoGPT",
+  "device": "cpu",
+  "dp_size": 2,
+  "dtype": "float64",
+  "threads": 1,
+  "scope": "real DDP + actual train.py update fragment and estimate_loss",
+  "auxiliary_objective": "mean of local per-worker/per-microbatch losses",
+  "not_tested": [
+    "EP",
+    "AMP/overflow",
+    "torch.compile",
+    "fused CUDA optimizer",
+    "production launcher/data loader",
+    "actual main-loop checkpoint/resume",
+    "multi-node launch"
+  ],
+  "workers": [
+    {
+      "rank": 0,
+      "status": "passed",
+      "checks": [
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.39136422376590563
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.6236542247177557,
+          "globally_unused_experts": 2
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.3996363142538463
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.6528268502920748,
+          "globally_unused_experts": 2
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.38711870027996925
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.6186717398098189,
+          "globally_unused_experts": 2
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.42711658214119236
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.4879659912589065,
+          "globally_unused_experts": 1
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.41739655942721343
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.468036383948902,
+          "globally_unused_experts": 1
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.42718479575843066
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.48856960908038605,
+          "globally_unused_experts": 1
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.33593788727788243
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.23928806119711632,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.3275229592944042
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.23397491052393785,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.32279368825336513
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.24524411762905204,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.37520148050167024
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.9719217267793144,
+          "globally_unused_experts": 3
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.40515844062979367
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 1.0867098682427931,
+          "globally_unused_experts": 3
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.3766810150997967
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.9559919018715913,
+          "globally_unused_experts": 3
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.3352345119243446
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.33228260060413806,
+          "globally_unused_experts": 1
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.3229748942025332
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.30340716923312305,
+          "globally_unused_experts": 1
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.3402921479446446
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.3327246833421295,
+          "globally_unused_experts": 1
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.27483412764226917
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.2164730305742777,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.2732832904400234
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.22934161883519186,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.2646868415329221
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.22275388253441794,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.394522281351402
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 1.3296381697514514,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.380606198270666
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 1.2161110396377874,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.3399744030522607
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 1.2035207793664673,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "GPT k=1, bias=True: actual estimate_loss / global CE mean / mode=True",
+          "status": "passed",
+          "losses": {
+            "train": 3.153959096927883,
+            "val": 3.1538800878520474
+          }
+        },
+        {
+          "name": "GPT k=1, bias=True: actual estimate_loss / global CE mean / mode=False",
+          "status": "passed",
+          "losses": {
+            "train": 3.153959096927883,
+            "val": 3.1538800878520474
+          }
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.3600729937609017
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 1.0287772778025588,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.3520663250850937
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.981176130418577,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.355313214585431
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.7945136178170611,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "GPT k=2, bias=True: actual estimate_loss / global CE mean / mode=True",
+          "status": "passed",
+          "losses": {
+            "train": 3.154087837674787,
+            "val": 3.1576261995846897
+          }
+        },
+        {
+          "name": "GPT k=2, bias=True: actual estimate_loss / global CE mean / mode=False",
+          "status": "passed",
+          "losses": {
+            "train": 3.154087837674787,
+            "val": 3.1576261995846897
+          }
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.382148021757468
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.6104702040179981,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.361762683194522
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.6062120670926922,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.342611247239759
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.6160175882900008,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "GPT k=1, bias=False: actual estimate_loss / global CE mean / mode=True",
+          "status": "passed",
+          "losses": {
+            "train": 3.1482200706826013,
+            "val": 3.162757733632926
+          }
+        },
+        {
+          "name": "GPT k=1, bias=False: actual estimate_loss / global CE mean / mode=False",
+          "status": "passed",
+          "losses": {
+            "train": 3.1482200706826013,
+            "val": 3.162757733632926
+          }
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.3613163295420367
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.849906046603979,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.34609116050572
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.7887558597357608,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.3510744998650326
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.7351139214397788,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "GPT k=3, bias=False: actual estimate_loss / global CE mean / mode=True",
+          "status": "passed",
+          "losses": {
+            "train": 3.1523570026737326,
+            "val": 3.1453317694299203
+          }
+        },
+        {
+          "name": "GPT k=3, bias=False: actual estimate_loss / global CE mean / mode=False",
+          "status": "passed",
+          "losses": {
+            "train": 3.1523570026737326,
+            "val": 3.1453317694299203
+          }
+        }
+      ],
+      "device": "cpu",
+      "dtype": "float64",
+      "rtol": 3e-05,
+      "atol": 3e-08,
+      "torch_version": "2.12.1+cpu",
+      "tensor_comparisons": 3467,
+      "max_abs_error": 1.574388972945225e-15
+    },
+    {
+      "rank": 1,
+      "status": "passed",
+      "checks": [
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.39136422376590563
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.6236542247177557,
+          "globally_unused_experts": 2
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.3996363142538463
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.6528268502920748,
+          "globally_unused_experts": 2
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.38711870027996925
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.6186717398098189,
+          "globally_unused_experts": 2
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=1, clip=0.0, rank_disjoint, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.42711658214119236
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.4879659912589065,
+          "globally_unused_experts": 1
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.41739655942721343
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.468036383948902,
+          "globally_unused_experts": 1
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.42718479575843066
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.48856960908038605,
+          "globally_unused_experts": 1
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=3, clip=0.0, earlier_only, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.33593788727788243
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.23928806119711632,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.3275229592944042
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.23397491052393785,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.32279368825336513
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.24524411762905204,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "probe, bias=True, k=2, microbatches=3, clip=0.01, earlier_only, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.37520148050167024
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.9719217267793144,
+          "globally_unused_experts": 3
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.40515844062979367
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 1.0867098682427931,
+          "globally_unused_experts": 3
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.3766810150997967
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.9559919018715913,
+          "globally_unused_experts": 3
+        },
+        {
+          "name": "probe, bias=True, k=1, microbatches=2, clip=0.0, globally_unused, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.3352345119243446
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.33228260060413806,
+          "globally_unused_experts": 1
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.3229748942025332
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.30340716923312305,
+          "globally_unused_experts": 1
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.3402921479446446
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.3327246833421295,
+          "globally_unused_experts": 1
+        },
+        {
+          "name": "probe, bias=False, k=2, microbatches=2, clip=0.01, rank_disjoint, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.27483412764226917
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.2164730305742777,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.2732832904400234
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.22934161883519186,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 0.2646868415329221
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.22275388253441794,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "probe, bias=False, k=4, microbatches=2, clip=0.0, mixed_tokens, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.394522281351402
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 1.3296381697514514,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.380606198270666
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 1.2161110396377874,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.3399744030522607
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 1.2035207793664673,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=True, k=1, microbatches=1, clip=0.0, random_tokens, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "GPT k=1, bias=True: actual estimate_loss / global CE mean / mode=True",
+          "status": "passed",
+          "losses": {
+            "train": 3.153959096927883,
+            "val": 3.1538800878520474
+          }
+        },
+        {
+          "name": "GPT k=1, bias=True: actual estimate_loss / global CE mean / mode=False",
+          "status": "passed",
+          "losses": {
+            "train": 3.153959096927883,
+            "val": 3.1538800878520474
+          }
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.3600729937609017
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 1.0287772778025588,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.3520663250850937
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.981176130418577,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.355313214585431
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.7945136178170611,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=True, k=2, microbatches=2, clip=0.01, random_tokens, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "GPT k=2, bias=True: actual estimate_loss / global CE mean / mode=True",
+          "status": "passed",
+          "losses": {
+            "train": 3.154087837674787,
+            "val": 3.1576261995846897
+          }
+        },
+        {
+          "name": "GPT k=2, bias=True: actual estimate_loss / global CE mean / mode=False",
+          "status": "passed",
+          "losses": {
+            "train": 3.154087837674787,
+            "val": 3.1576261995846897
+          }
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.382148021757468
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.6104702040179981,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.361762683194522
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.6062120670926922,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.342611247239759
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.6160175882900008,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=False, k=1, microbatches=3, clip=0.01, random_tokens, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "GPT k=1, bias=False: actual estimate_loss / global CE mean / mode=True",
+          "status": "passed",
+          "losses": {
+            "train": 3.1482200706826013,
+            "val": 3.162757733632926
+          }
+        },
+        {
+          "name": "GPT k=1, bias=False: actual estimate_loss / global CE mean / mode=False",
+          "status": "passed",
+          "losses": {
+            "train": 3.1482200706826013,
+            "val": 3.162757733632926
+          }
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens: initial replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=0: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.3613163295420367
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=0: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.849906046603979,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=0: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=1: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.34609116050572
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=1: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.7887558597357608,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=1: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=2: independent objective",
+          "status": "passed",
+          "reference_mean_loss": 3.3510744998650326
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=2: actual train.py accumulation / gradients / AdamW",
+          "status": "passed",
+          "gradient_norm": 0.7351139214397788,
+          "globally_unused_experts": 0
+        },
+        {
+          "name": "gpt, bias=False, k=3, microbatches=2, clip=0.0, random_tokens, step=2: updated replicas",
+          "status": "passed"
+        },
+        {
+          "name": "GPT k=3, bias=False: actual estimate_loss / global CE mean / mode=True",
+          "status": "passed",
+          "losses": {
+            "train": 3.1523570026737326,
+            "val": 3.1453317694299203
+          }
+        },
+        {
+          "name": "GPT k=3, bias=False: actual estimate_loss / global CE mean / mode=False",
+          "status": "passed",
+          "losses": {
+            "train": 3.1523570026737326,
+            "val": 3.1453317694299203
+          }
+        }
+      ],
+      "device": "cpu",
+      "dtype": "float64",
+      "rtol": 3e-05,
+      "atol": 3e-08,
+      "torch_version": "2.12.1+cpu",
+      "tensor_comparisons": 3467,
+      "max_abs_error": 1.574388972945225e-15
+    }
+  ],
+  "source_sha256": {
+    "model.py": "a1b9b2b5e98adeaf0076e70f99166e3658194ca77458ca78cf4356ef2dfe4568",
+    "moe.py": "4fb8ff99d92456220e208d410740179c2a07e20a2e6378b4ffd32cc09440e1bf",
+    "train.py": "29e775a0e5f8a17a35c21060e95c56e4482a3054848a7e5de2e0153e0afd8d19"
+  },
+  "reference_script_sha256": "11b0f7889088465c718c2ffb78527d463110dcb8a6fedc3beda6d9e36b780880"
+}

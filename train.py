@@ -26,6 +26,7 @@ import numpy as np
 import torch
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.distributed import init_process_group, destroy_process_group
+import torch.distributed as dist
 
 from model import GPTConfig, GPT
 
@@ -72,6 +73,11 @@ backend = 'nccl' # 'nccl', 'gloo', etc.
 device = 'cuda' # examples: 'cpu', 'cuda', 'cuda:0', 'cuda:1' etc., or try 'mps' on macbooks
 dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16' # 'float32', 'bfloat16', or 'float16', the latter will auto implement a GradScaler
 compile = True # use PyTorch 2.0 to compile the model to be faster
+
+use_moe = False
+n_experts = 4
+moe_top_k = 1
+moe_aux_loss_coef = 0.01
 # -----------------------------------------------------------------------------
 config_keys = [k for k,v in globals().items() if not k.startswith('_') and isinstance(v, (int, float, bool, str))]
 exec(open('configurator.py').read()) # overrides from command line or config file
@@ -145,7 +151,8 @@ if os.path.exists(meta_path):
 
 # model init
 model_args = dict(n_layer=n_layer, n_head=n_head, n_embd=n_embd, block_size=block_size,
-                  bias=bias, vocab_size=None, dropout=dropout) # start with model_args from command line
+                  bias=bias, vocab_size=None, dropout=dropout,
+                  use_moe=use_moe,n_experts=n_experts,moe_top_k=moe_top_k,moe_aux_loss_coef=moe_aux_loss_coef,) # start with model_args from command line
 if init_from == 'scratch':
     # init a new model from scratch
     print("Initializing a new model from scratch")
@@ -165,6 +172,18 @@ elif init_from == 'resume':
     # the rest of the attributes (e.g. dropout) can stay as desired from command line
     for k in ['n_layer', 'n_head', 'n_embd', 'block_size', 'bias', 'vocab_size']:
         model_args[k] = checkpoint_model_args[k]
+    defaults = GPTConfig()
+
+    for k in (
+        "use_moe",
+        "n_experts",
+        "moe_top_k",
+        "moe_aux_loss_coef",
+    ):
+        model_args[k] = checkpoint_model_args.get(
+            k,
+            getattr(defaults, k),
+        )
     # create the model
     gptconf = GPTConfig(**model_args)
     model = GPT(gptconf)
@@ -180,11 +199,19 @@ elif init_from == 'resume':
     best_val_loss = checkpoint['best_val_loss']
 elif init_from.startswith('gpt2'):
     print(f"Initializing from OpenAI GPT-2 weights: {init_from}")
+    if use_moe:
+        raise ValueError(
+            "GPT-2 到 MoE 专家的权重映射尚未实现，"
+            "请使用 scratch 或 resume"
+        )
+
+    # 后面的 GPT-2 初始化代码继续保留
     # initialize from OpenAI GPT-2 weights
     override_args = dict(dropout=dropout)
     model = GPT.from_pretrained(init_from, override_args)
     # read off the created config params, so we can store them into checkpoint correctly
-    for k in ['n_layer', 'n_head', 'n_embd', 'block_size', 'bias', 'vocab_size']:
+    for k in ['n_layer', 'n_head', 'n_embd', 'block_size', 'bias', 'vocab_size',"use_moe", "n_experts",
+        "moe_top_k", "moe_aux_loss_coef",]:
         model_args[k] = getattr(model.config, k)
 # crop down the model block size if desired, using model surgery
 if block_size < model.config.block_size:
@@ -201,6 +228,10 @@ if init_from == 'resume':
     optimizer.load_state_dict(checkpoint['optimizer'])
 checkpoint = None # free up memory
 
+ddp_find_unused_parameters = model.config.use_moe
+
+mfu_supported = not model.config.use_moe
+
 # compile the model
 if compile:
     print("compiling the model... (takes a ~minute)")
@@ -209,24 +240,47 @@ if compile:
 
 # wrap model into DDP container
 if ddp:
-    model = DDP(model, device_ids=[ddp_local_rank])
+    model = DDP(model, device_ids=[ddp_local_rank], find_unused_parameters=ddp_find_unused_parameters,)
 
 # helps estimate an arbitrarily accurate loss over either split using many batches
 @torch.no_grad()
 def estimate_loss():
     out = {}
+    was_training = model.training
     model.eval()
-    for split in ['train', 'val']:
-        losses = torch.zeros(eval_iters)
-        for k in range(eval_iters):
-            X, Y = get_batch(split)
-            with ctx:
-                logits, loss = model(X, Y)
-            losses[k] = loss.item()
-        out[split] = losses.mean()
-    model.train()
-    return out
 
+    try:
+        for split in ["train", "val"]:
+            loss_sum = torch.zeros(
+                (),
+                dtype=torch.float64,
+                device=device,
+            )
+
+            for _ in range(eval_iters):
+                X, Y = get_batch(split)
+
+                with ctx:
+                    _, loss = model(X, Y)
+
+                loss_sum.add_(
+                    loss.detach().to(dtype=torch.float64)
+                )
+
+            if ddp:
+                dist.all_reduce(
+                    loss_sum,
+                    op=dist.ReduceOp.SUM,
+                )
+
+            out[split] = (
+                loss_sum / (eval_iters * ddp_world_size)
+            ).item()
+
+    finally:
+        model.train(was_training)
+
+    return out
 # learning rate decay scheduler (cosine with warmup)
 def get_lr(it):
     # 1) linear warmup for warmup_iters steps
@@ -260,30 +314,54 @@ while True:
         param_group['lr'] = lr
 
     # evaluate the loss on train/val sets and write checkpoints
-    if iter_num % eval_interval == 0 and master_process:
+    if iter_num % eval_interval == 0:
         losses = estimate_loss()
-        print(f"step {iter_num}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
-        if wandb_log:
-            wandb.log({
-                "iter": iter_num,
-                "train/loss": losses['train'],
-                "val/loss": losses['val'],
-                "lr": lr,
-                "mfu": running_mfu*100, # convert to percentage
-            })
-        if losses['val'] < best_val_loss or always_save_checkpoint:
-            best_val_loss = losses['val']
-            if iter_num > 0:
-                checkpoint = {
-                    'model': raw_model.state_dict(),
-                    'optimizer': optimizer.state_dict(),
-                    'model_args': model_args,
-                    'iter_num': iter_num,
-                    'best_val_loss': best_val_loss,
-                    'config': config,
+
+        improved = losses["val"] < best_val_loss
+
+        if improved:
+            best_val_loss = losses["val"]
+
+        should_save = improved or always_save_checkpoint
+
+
+        if master_process:
+            print(
+                f"step {iter_num}: "
+                f"train loss {losses['train']:.4f}, "
+                f"val loss {losses['val']:.4f}"
+            )
+
+            if wandb_log:
+                log_data = {
+                    "iter": iter_num,
+                    "train/loss": losses["train"],
+                    "val/loss": losses["val"],
+                    "lr": lr,
                 }
+
+                if mfu_supported and running_mfu >= 0:
+                    log_data["mfu"] = running_mfu * 100
+
+                wandb.log(log_data)
+
+            if should_save and iter_num > 0:
+                checkpoint = {
+                    "model": raw_model.state_dict(),
+                    "optimizer": optimizer.state_dict(),
+                    "model_args": model_args,
+                    "iter_num": iter_num,
+                    "best_val_loss": best_val_loss,
+                    "config": config,
+                }
+
                 print(f"saving checkpoint to {out_dir}")
-                torch.save(checkpoint, os.path.join(out_dir, 'ckpt.pt'))
+
+                torch.save(
+                    checkpoint,
+                    os.path.join(out_dir, "ckpt.pt"),
+                )
+    
     if iter_num == 0 and eval_only:
         break
 
@@ -321,10 +399,29 @@ while True:
         # get loss as float. note: this is a CPU-GPU sync point
         # scale up to undo the division above, approximating the true total loss (exact would have been a sum)
         lossf = loss.item() * gradient_accumulation_steps
-        if local_iter_num >= 5: # let the training loop settle a bit
-            mfu = raw_model.estimate_mfu(batch_size * gradient_accumulation_steps, dt)
-            running_mfu = mfu if running_mfu == -1.0 else 0.9*running_mfu + 0.1*mfu
-        print(f"iter {iter_num}: loss {lossf:.4f}, time {dt*1000:.2f}ms, mfu {running_mfu*100:.2f}%")
+        if mfu_supported and local_iter_num >= 5:
+            mfu = raw_model.estimate_mfu(
+                batch_size * gradient_accumulation_steps,
+                dt,
+            )
+
+            running_mfu = (
+                mfu
+                if running_mfu == -1.0
+                else 0.9 * running_mfu + 0.1 * mfu
+            )
+
+        mfu_text = (
+            f"{running_mfu * 100:.2f}%"
+            if mfu_supported and running_mfu >= 0
+            else "n/a"
+        )
+
+        print(
+            f"iter {iter_num}: loss {lossf:.4f}, "
+            f"time {dt * 1000:.2f}ms, mfu {mfu_text}"
+        )
+        
     iter_num += 1
     local_iter_num += 1
 
