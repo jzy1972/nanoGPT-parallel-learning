@@ -16,6 +16,7 @@ import torch.nn as nn
 from torch.nn import functional as F
 
 from moe import MoE
+from moe_ep import MoEEP
 
 
 class LayerNorm(nn.Module):
@@ -96,7 +97,7 @@ class MLP(nn.Module):
 
 class Block(nn.Module):
 
-    def __init__(self, config):
+    def __init__(self, config,ep_group=None):
         super().__init__()
         self.ln_1 = LayerNorm(config.n_embd, bias=config.bias)
         self.attn = CausalSelfAttention(config)
@@ -105,7 +106,17 @@ class Block(nn.Module):
         self.use_moe = config.use_moe
 
         if self.use_moe:
-            self.mlp = MoE(config, expert_cls=MLP)
+            if ep_group is None:
+                self.mlp = MoE(
+                    config,
+                    expert_cls=MLP,
+                )
+            else:
+                self.mlp = MoEEP(
+                    config,
+                    expert_cls=MLP,
+                    ep_group=ep_group,
+                )
         else:
             self.mlp = MLP(config)
 
@@ -140,7 +151,7 @@ class GPTConfig:
 
 class GPT(nn.Module):
 
-    def __init__(self, config):
+    def __init__(self, config,ep_group=None):
         super().__init__()
         assert config.vocab_size is not None
         assert config.block_size is not None
@@ -150,7 +161,7 @@ class GPT(nn.Module):
             wte = nn.Embedding(config.vocab_size, config.n_embd),
             wpe = nn.Embedding(config.block_size, config.n_embd),
             drop = nn.Dropout(config.dropout),
-            h = nn.ModuleList([Block(config) for _ in range(config.n_layer)]),
+            h = nn.ModuleList([Block(config,ep_group=ep_group) for _ in range(config.n_layer)]),
             ln_f = LayerNorm(config.n_embd, bias=config.bias),
         ))
         self.lm_head = nn.Linear(config.n_embd, config.vocab_size, bias=False)
@@ -217,11 +228,10 @@ class GPT(nn.Module):
 
             loss = ce_loss
 
-            if self.config.use_moe and self.training:
-                loss = (
-                    ce_loss
-                    + self.config.moe_aux_loss_coef * aux_loss_sum
-                )   
+            if self.training and self.config.use_moe:
+                loss = (ce_loss+ self.config.moe_aux_loss_coef * aux_loss_sum)
+
+            
         else:
             # inference-time mini-optimization: only forward the lm_head on the very last position
             logits = self.lm_head(x[:, [-1], :]) # note: using list [-1] to preserve the time dim

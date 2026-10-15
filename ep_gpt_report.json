@@ -1,0 +1,4232 @@
+{
+  "status": "passed",
+  "started_at": "2026-10-15T09:36:59.257235+00:00",
+  "arguments": {
+    "project": "D:\\大学\\科研\\nanoGPT",
+    "device": "cpu",
+    "ep_size": 2,
+    "threads": 1,
+    "dtype": "float64",
+    "seed": 20261015,
+    "timeout": 90,
+    "rtol": null,
+    "atol": null,
+    "report": "ep_gpt_report.json",
+    "keep_workdir": false
+  },
+  "script_sha256": "06d86d4a6640dd6e54dbaed0f93b1a261b14741856b4998128b739f76a89cd0d",
+  "scope": {
+    "full_GPT_EP_wiring_and_global_expert_IDs": true,
+    "strict_dense_weight_loading_and_shared_broadcast": true,
+    "tied_embedding_head_parameter": true,
+    "functional_attention_and_all_expert_MLP_reference": true,
+    "train_loss_local_auxiliary_sum_eval_CE_last_token_inference": true,
+    "sample_weighted_microbatch_accumulation": true,
+    "two_global_AdamW_updates_and_moments": true,
+    "clipping_disabled_then_enabled": true,
+    "sparse_inactive_parameters": true,
+    "bias_topk_auxcoef_sequence_boundaries_plain_GPT": true,
+    "dropout_zero_for_numerical_comparison": true,
+    "one_EP_group_covers_WORLD": true,
+    "objective": "mean_ranks(sum_microbatches(local_sample_weight * local_loss))",
+    "production_training_data_AMP_compile_checkpoint_multinode_extra_expert_replicas": false
+  },
+  "tolerance_note": "Router probabilities remain FP32 in float64 tests. Parameters default to absolute tolerance 2e-6 (float64) or 3e-5 (float32); moments use tighter tolerances. CLI rtol/atol override defaults.",
+  "workers": [
+    {
+      "rank": 0,
+      "status": "passed",
+      "passed": [
+        {
+          "label": "WORLD EP / shared-DP mapping and expert ownership",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.4625229835510254,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4017021860479075,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.615593658430116,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                1,
+                0,
+                0,
+                8
+              ],
+              [
+                8,
+                0,
+                0,
+                1
+              ]
+            ],
+            "max_parameter_abs_error": 9.645062526431047e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.479318163302725,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.7528599583138036,
+            "clip_coefficient": 0.005704959057117503,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                0,
+                9
+              ],
+              [
+                9,
+                0,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 1.394717674685353e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.038484573364258,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0192856788635254,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.436872670493741,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1193734747159099,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                14,
+                0,
+                0,
+                49
+              ],
+              [
+                50,
+                0,
+                0,
+                13
+              ]
+            ],
+            "max_parameter_abs_error": 4.400600858780724e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.43902376764647,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.9963050534250913,
+            "clip_coefficient": 0.010037076424078823,
+            "global_routes_per_layer": [
+              [
+                11,
+                0,
+                0,
+                52
+              ],
+              [
+                53,
+                0,
+                0,
+                10
+              ]
+            ],
+            "max_parameter_abs_error": 6.356321757364403e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.2073111534118652,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.4625229835510254,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.55560479494917,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.81866636057323,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                1,
+                0,
+                0,
+                8
+              ],
+              [
+                8,
+                0,
+                0,
+                1
+              ]
+            ],
+            "max_parameter_abs_error": 2.1007501294079134e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.644184151910565,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 2.0490494382829194,
+            "clip_coefficient": 0.0048803093438636305,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                0,
+                9
+              ],
+              [
+                9,
+                0,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 3.0322966360074588e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1132192611694336,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0192856788635254,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.582640199057479,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1605103454466503,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                14,
+                0,
+                0,
+                49
+              ],
+              [
+                50,
+                0,
+                0,
+                13
+              ]
+            ],
+            "max_parameter_abs_error": 4.270898938732487e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.5897197776598833,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.0593599547051762,
+            "clip_coefficient": 0.009439653175421248,
+            "global_routes_per_layer": [
+              [
+                11,
+                0,
+                0,
+                52
+              ],
+              [
+                50,
+                2,
+                0,
+                11
+              ]
+            ],
+            "max_parameter_abs_error": 6.191401036680938e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1042752265930176,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.2897047996520996,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4024184862832954,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.636446517999626,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                1,
+                1,
+                8,
+                8
+              ],
+              [
+                8,
+                8,
+                1,
+                1
+              ]
+            ],
+            "max_parameter_abs_error": 2.6645352591003757e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4816332104048215,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.749773403872866,
+            "clip_coefficient": 0.005715022449674932,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 3.8528208401444886e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.033994197845459,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.009087562561035,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4369383430802953,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1286244162479182,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                14,
+                14,
+                49,
+                49
+              ],
+              [
+                51,
+                51,
+                12,
+                12
+              ]
+            ],
+            "max_parameter_abs_error": 2.474908299132661e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.436951746367361,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.0020740712296035,
+            "clip_coefficient": 0.009979292257744151,
+            "global_routes_per_layer": [
+              [
+                11,
+                11,
+                52,
+                52
+              ],
+              [
+                53,
+                53,
+                10,
+                10
+              ]
+            ],
+            "max_parameter_abs_error": 2.4834734962952965e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.128781795501709,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.2897047996520996,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.550940356657975,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.7021031130036772,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                1,
+                1,
+                8,
+                8
+              ],
+              [
+                8,
+                8,
+                1,
+                1
+              ]
+            ],
+            "max_parameter_abs_error": 1.824929096727601e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.637857025909812,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.8995468480732203,
+            "clip_coefficient": 0.0052644106912828545,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 2.6367796834847468e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0862350463867188,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.009087562561035,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.5802455073917043,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1266931771775333,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                14,
+                14,
+                49,
+                49
+              ],
+              [
+                51,
+                51,
+                12,
+                12
+              ]
+            ],
+            "max_parameter_abs_error": 2.474908299132661e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.5845530748954766,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.0162958788424779,
+            "clip_coefficient": 0.009839644505638557,
+            "global_routes_per_layer": [
+              [
+                11,
+                11,
+                52,
+                52
+              ],
+              [
+                52,
+                52,
+                11,
+                11
+              ]
+            ],
+            "max_parameter_abs_error": 2.4815219323848225e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0784592628479004,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 1.9999998807907104,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4024318821461783,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.6385817908309526,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 3.2127078775090467e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4796045457094396,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.749596554768218,
+            "clip_coefficient": 0.005715600123437972,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 4.642120021713936e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 1.9999998807907104,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.437597228380376,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1304286902055127,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 3.492687418442674e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4356141838097303,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.9729471446802496,
+            "clip_coefficient": 0.010278040052470018,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 5.046970077518614e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 1.9999998807907104,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.542431871566354,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.6385817907781404,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 3.840677775812651e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.619604546305485,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.7495965546988037,
+            "clip_coefficient": 0.005715600123664735,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 5.547645676173829e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 1.9999998807907104,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.5775972252511323,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1304286902295348,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 3.614861994916929e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.5756141844049663,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.9729471446907957,
+            "clip_coefficient": 0.010278040052358613,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 5.219139723321365e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.095057487487793,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.414763117758281,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.4102147332781256,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                5,
+                0,
+                0,
+                4
+              ],
+              [
+                3,
+                0,
+                0,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.2455314557513475e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.436206992093788,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.3715056172011935,
+            "clip_coefficient": 0.00729125173337246,
+            "global_routes_per_layer": [
+              [
+                6,
+                0,
+                0,
+                3
+              ],
+              [
+                3,
+                0,
+                0,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.797173521111972e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.2225937843322754,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0062155723571777,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4201743029936087,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.8712392385137776,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                16,
+                0,
+                0,
+                47
+              ],
+              [
+                46,
+                0,
+                0,
+                17
+              ]
+            ],
+            "max_parameter_abs_error": 2.7755575615628914e-17
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4039904962284147,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.887177545969258,
+            "clip_coefficient": 0.01127168825873131,
+            "global_routes_per_layer": [
+              [
+                15,
+                1,
+                1,
+                46
+              ],
+              [
+                47,
+                0,
+                0,
+                16
+              ]
+            ],
+            "max_parameter_abs_error": 3.8163916471489756e-17
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.031081199645996,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.095057487487793,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.5630428517141413,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.424160755379619,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                5,
+                0,
+                0,
+                4
+              ],
+              [
+                3,
+                0,
+                0,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.4814538484841933e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.583045049100268,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.4112697462418964,
+            "clip_coefficient": 0.00708581257468081,
+            "global_routes_per_layer": [
+              [
+                5,
+                0,
+                1,
+                3
+              ],
+              [
+                3,
+                0,
+                1,
+                5
+              ]
+            ],
+            "max_parameter_abs_error": 2.1337098754514727e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1197824478149414,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0062155723571777,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.5655875042958987,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.8690782806801312,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                16,
+                0,
+                0,
+                47
+              ],
+              [
+                46,
+                0,
+                0,
+                17
+              ]
+            ],
+            "max_parameter_abs_error": 2.0816681711721685e-17
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.5484861780304144,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.8829239538857747,
+            "clip_coefficient": 0.01132599090782263,
+            "global_routes_per_layer": [
+              [
+                18,
+                0,
+                0,
+                45
+              ],
+              [
+                45,
+                0,
+                0,
+                18
+              ]
+            ],
+            "max_parameter_abs_error": 4.85722573273506e-17
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.019360065460205,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.064053773880005,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4138942270867414,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.4161114293582715,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                5,
+                5,
+                4,
+                4
+              ],
+              [
+                4,
+                4,
+                5,
+                5
+              ]
+            ],
+            "max_parameter_abs_error": 1.1969591984239969e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.434216549645489,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.379578056222558,
+            "clip_coefficient": 0.007248587860837146,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                3,
+                3
+              ],
+              [
+                3,
+                3,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.7295193055488767e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1506295204162598,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0000720024108887,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4204115309937415,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.8727903609214758,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                16,
+                16,
+                47,
+                47
+              ],
+              [
+                46,
+                46,
+                17,
+                17
+              ]
+            ],
+            "max_parameter_abs_error": 2.0816681711721685e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4033935702482094,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.8880100049331231,
+            "clip_coefficient": 0.011261121702825191,
+            "global_routes_per_layer": [
+              [
+                16,
+                15,
+                48,
+                47
+              ],
+              [
+                47,
+                46,
+                17,
+                16
+              ]
+            ],
+            "max_parameter_abs_error": 2.498001805406602e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.008150577545166,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.064053773880005,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.5593101515762395,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.4142335845763347,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                5,
+                5,
+                4,
+                4
+              ],
+              [
+                4,
+                4,
+                5,
+                5
+              ]
+            ],
+            "max_parameter_abs_error": 1.115427195053087e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.579411427209291,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.4096891130516715,
+            "clip_coefficient": 0.007093757633266067,
+            "global_routes_per_layer": [
+              [
+                6,
+                5,
+                4,
+                3
+              ],
+              [
+                3,
+                4,
+                5,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.6124254709204422e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1181013584136963,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0000720024108887,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.5634741299970565,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.8677156192780521,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                16,
+                16,
+                47,
+                47
+              ],
+              [
+                46,
+                46,
+                17,
+                17
+              ]
+            ],
+            "max_parameter_abs_error": 2.5912431922403556e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.546094698081217,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.8827195883106391,
+            "clip_coefficient": 0.011328613076917257,
+            "global_routes_per_layer": [
+              [
+                16,
+                16,
+                47,
+                47
+              ],
+              [
+                46,
+                46,
+                17,
+                17
+              ]
+            ],
+            "max_parameter_abs_error": 2.7690523485279783e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.004566192626953,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4140851754868233,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.4183599400969378,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 1.231653667943533e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.434191348817799,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.390916752448537,
+            "clip_coefficient": 0.0071894977128563135,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 1.7832957333041577e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.420034051296485,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.8786795315049515,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 7.216449660063518e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4016404094108137,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.8927292121050129,
+            "clip_coefficient": 0.011201592445740694,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 7.355227538141662e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.55408517608287,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.418359940200814,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 8.98586760555986e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.5741913494137973,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.3909167521916281,
+            "clip_coefficient": 0.007189497714184247,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 1.2975731600306517e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.5600340518925315,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.8786795315232229,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 7.216449660063518e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.541640410083314,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.8927292120922914,
+            "clip_coefficient": 0.011201592445900318,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 7.355227538141662e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=False bias=True k=1 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=False bias=True k=1 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=False bias=True k=1 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 0.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=False bias=True k=1 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.442162638283107,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1875162705894495,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 1.771820872088334e-16
+          }
+        },
+        {
+          "label": "use_moe=False bias=True k=1 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4310923373366884,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.2749171334221394,
+            "clip_coefficient": 0.007843640887872516,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 2.5586174562976784e-16
+          }
+        },
+        {
+          "label": "use_moe=False bias=True k=1 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 0.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=False bias=False k=1 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=False bias=False k=1 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=False bias=False k=1 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 0.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=False bias=False k=1 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.4466310871599997,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.966356815803164,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 9.71445146547012e-17
+          }
+        },
+        {
+          "label": "use_moe=False bias=False k=1 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              1,
+              2,
+              1
+            ],
+            "local_loss": 3.444195740592353,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.9357048819262358,
+            "clip_coefficient": 0.010687118883354767,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 1.0755285551056204e-16
+          }
+        },
+        {
+          "label": "use_moe=False bias=False k=1 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 0.0,
+            "sequence_length": 7
+          }
+        }
+      ],
+      "active_phase": "complete",
+      "torch_version": "2.12.1+cpu",
+      "device": "cpu"
+    },
+    {
+      "rank": 1,
+      "status": "passed",
+      "passed": [
+        {
+          "label": "WORLD EP / shared-DP mapping and expert ownership",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.4403200149536133,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.3836389235878457,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.615593658430116,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                1,
+                0,
+                0,
+                8
+              ],
+              [
+                8,
+                0,
+                0,
+                1
+              ]
+            ],
+            "max_parameter_abs_error": 9.645062526431047e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.454104058604939,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.7528599583138036,
+            "clip_coefficient": 0.005704959057117503,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                0,
+                9
+              ],
+              [
+                9,
+                0,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 1.394717674685353e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.110184669494629,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.2065091133117676,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.4330124740575982,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1193734747159099,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                14,
+                0,
+                0,
+                49
+              ],
+              [
+                50,
+                0,
+                0,
+                13
+              ]
+            ],
+            "max_parameter_abs_error": 4.400600858780724e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.415896170299959,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.9963050534250913,
+            "clip_coefficient": 0.010037076424078823,
+            "global_routes_per_layer": [
+              [
+                11,
+                0,
+                0,
+                52
+              ],
+              [
+                53,
+                0,
+                0,
+                10
+              ]
+            ],
+            "max_parameter_abs_error": 6.356321757364403e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.0 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.225739002227783,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.4403200149536133,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5547111354494554,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.81866636057323,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                1,
+                0,
+                0,
+                8
+              ],
+              [
+                8,
+                0,
+                0,
+                1
+              ]
+            ],
+            "max_parameter_abs_error": 2.1007501294079134e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.615939729479763,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 2.0490494382829194,
+            "clip_coefficient": 0.0048803093438636305,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                0,
+                9
+              ],
+              [
+                9,
+                0,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 3.0322966360074588e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 1.9933652877807617,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.2065091133117676,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5872674738144115,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1605103454466503,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                14,
+                0,
+                0,
+                49
+              ],
+              [
+                50,
+                0,
+                0,
+                13
+              ]
+            ],
+            "max_parameter_abs_error": 4.270898938732487e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.566589166460034,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.0593599547051762,
+            "clip_coefficient": 0.009439653175421248,
+            "global_routes_per_layer": [
+              [
+                11,
+                0,
+                0,
+                52
+              ],
+              [
+                50,
+                2,
+                0,
+                11
+              ]
+            ],
+            "max_parameter_abs_error": 6.191401036680938e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=1 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.133737087249756,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.276611328125,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.3836573650601096,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.636446517999626,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                1,
+                1,
+                8,
+                8
+              ],
+              [
+                8,
+                8,
+                1,
+                1
+              ]
+            ],
+            "max_parameter_abs_error": 2.6645352591003757e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.452775722007799,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.749773403872866,
+            "clip_coefficient": 0.005715022449674932,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 3.8528208401444886e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0576963424682617,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.143429756164551,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.432961436076334,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1286244162479182,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                14,
+                14,
+                49,
+                49
+              ],
+              [
+                51,
+                51,
+                12,
+                12
+              ]
+            ],
+            "max_parameter_abs_error": 2.8997643553652894e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.414834301556538,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.0020740712296035,
+            "clip_coefficient": 0.009979292257744151,
+            "global_routes_per_layer": [
+              [
+                11,
+                11,
+                52,
+                52
+              ],
+              [
+                53,
+                53,
+                10,
+                10
+              ]
+            ],
+            "max_parameter_abs_error": 4.183283863699483e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.0 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1396450996398926,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.276611328125,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5431906302931497,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.7021031130036772,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                1,
+                1,
+                8,
+                8
+              ],
+              [
+                8,
+                8,
+                1,
+                1
+              ]
+            ],
+            "max_parameter_abs_error": 1.824929096727601e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.6067133543062355,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.8995468480732203,
+            "clip_coefficient": 0.0052644106912828545,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 2.6367796834847468e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.143429756164551,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5822616358234196,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1266931771775333,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                14,
+                14,
+                49,
+                49
+              ],
+              [
+                51,
+                51,
+                12,
+                12
+              ]
+            ],
+            "max_parameter_abs_error": 4.777547063920671e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.562091330651157,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.0162958788424779,
+            "clip_coefficient": 0.009839644505638557,
+            "global_routes_per_layer": [
+              [
+                11,
+                11,
+                52,
+                52
+              ],
+              [
+                52,
+                52,
+                11,
+                11
+              ]
+            ],
+            "max_parameter_abs_error": 6.905041435551207e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=2 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.101107597351074,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.3846207941066835,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.6385817908309526,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 3.2127078775090467e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.453360386017616,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.749596554768218,
+            "clip_coefficient": 0.005715600123437972,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 4.642120021713936e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.433819565079284,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1304286902055127,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 3.492687418442674e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.4165195026560156,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.9729471446802496,
+            "clip_coefficient": 0.010278040052470018,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 5.046970077518614e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.0 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.52462079470273,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.6385817907781404,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 3.840677775812651e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5933603806534746,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.7495965546988037,
+            "clip_coefficient": 0.005715600123664735,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 5.547645676173829e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.57381956567533,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1304286902295348,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 3.614861994916929e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.556519503250986,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.9729471446907957,
+            "clip_coefficient": 0.010278040052358613,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 5.219139723321365e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=True k=4 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1800167560577393,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.423934869786893,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.4102147332781256,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                5,
+                0,
+                0,
+                4
+              ],
+              [
+                3,
+                0,
+                0,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.2455314557513475e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.410382294861701,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.3715056172011935,
+            "clip_coefficient": 0.00729125173337246,
+            "global_routes_per_layer": [
+              [
+                6,
+                0,
+                0,
+                3
+              ],
+              [
+                3,
+                0,
+                0,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.797173521111972e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.188845157623291,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1089372634887695,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.4319016685346484,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.8712392385137776,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                16,
+                0,
+                0,
+                47
+              ],
+              [
+                46,
+                0,
+                0,
+                17
+              ]
+            ],
+            "max_parameter_abs_error": 9.194034422677078e-17
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.4194296498661316,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.887177545969258,
+            "clip_coefficient": 0.01127168825873131,
+            "global_routes_per_layer": [
+              [
+                15,
+                1,
+                1,
+                46
+              ],
+              [
+                47,
+                0,
+                0,
+                16
+              ]
+            ],
+            "max_parameter_abs_error": 9.540979117872439e-17
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.0 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1523361206054688,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1800167560577393,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5752414870468727,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.424160755379619,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                5,
+                0,
+                0,
+                4
+              ],
+              [
+                3,
+                0,
+                0,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.4814538484841933e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5505258302553324,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.4112697462418964,
+            "clip_coefficient": 0.00708581257468081,
+            "global_routes_per_layer": [
+              [
+                5,
+                0,
+                1,
+                3
+              ],
+              [
+                3,
+                0,
+                1,
+                5
+              ]
+            ],
+            "max_parameter_abs_error": 2.1337098754514727e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1888084411621094,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1089372634887695,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5812242438653823,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.8690782806801312,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                16,
+                0,
+                0,
+                47
+              ],
+              [
+                46,
+                0,
+                0,
+                17
+              ]
+            ],
+            "max_parameter_abs_error": 2.0816681711721685e-17
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5690838027987506,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.8829239538857747,
+            "clip_coefficient": 0.01132599090782263,
+            "global_routes_per_layer": [
+              [
+                18,
+                0,
+                0,
+                45
+              ],
+              [
+                45,
+                0,
+                0,
+                18
+              ]
+            ],
+            "max_parameter_abs_error": 4.85722573273506e-17
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=1 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1196281909942627,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.115471839904785,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.423419452630886,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.4161114293582715,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                5,
+                5,
+                4,
+                4
+              ],
+              [
+                4,
+                4,
+                5,
+                5
+              ]
+            ],
+            "max_parameter_abs_error": 1.1969591984239969e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.4103411375488104,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.379578056222558,
+            "clip_coefficient": 0.007248587860837146,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                3,
+                3
+              ],
+              [
+                3,
+                3,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.7295193055488767e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.120750665664673,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.056464195251465,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.43179978372709,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.8727903609214758,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                16,
+                16,
+                47,
+                47
+              ],
+              [
+                46,
+                46,
+                17,
+                17
+              ]
+            ],
+            "max_parameter_abs_error": 2.0816681711721685e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.418164251441585,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.8880100049331231,
+            "clip_coefficient": 0.011261121702825191,
+            "global_routes_per_layer": [
+              [
+                16,
+                15,
+                48,
+                47
+              ],
+              [
+                47,
+                46,
+                17,
+                16
+              ]
+            ],
+            "max_parameter_abs_error": 2.498001805406602e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.0 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0917959213256836,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.115471839904785,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.570805410467991,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.4142335845763347,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                5,
+                5,
+                4,
+                4
+              ],
+              [
+                4,
+                4,
+                5,
+                5
+              ]
+            ],
+            "max_parameter_abs_error": 1.115427195053087e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5511570842842684,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.4096891130516715,
+            "clip_coefficient": 0.007093757633266067,
+            "global_routes_per_layer": [
+              [
+                6,
+                5,
+                4,
+                3
+              ],
+              [
+                3,
+                4,
+                5,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.6124254709204422e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.1298911571502686,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.056464195251465,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.577551522275369,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.8677156192780521,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                16,
+                16,
+                47,
+                47
+              ],
+              [
+                46,
+                46,
+                17,
+                17
+              ]
+            ],
+            "max_parameter_abs_error": 2.5912431922403556e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5653089247499583,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.8827195883106391,
+            "clip_coefficient": 0.011328613076917257,
+            "global_routes_per_layer": [
+              [
+                16,
+                16,
+                47,
+                47
+              ],
+              [
+                46,
+                46,
+                17,
+                17
+              ]
+            ],
+            "max_parameter_abs_error": 2.7690523485279783e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=2 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.076620101928711,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.4242637134442653,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.4183599400969378,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 1.231653667943533e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.41168609600672,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.390916752448537,
+            "clip_coefficient": 0.0071894977128563135,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 1.7832957333041577e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.430324282630206,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.8786795315049515,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 1.5959455978986625e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.416275189996417,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.8927292121050129,
+            "clip_coefficient": 0.011201592445740694,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 2.220446049250313e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.0 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=1: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=1: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=1: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=1: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5642637140403117,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.418359940200814,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 8.98586760555986e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=1: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5516860936226013,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.3909167521916281,
+            "clip_coefficient": 0.007189497714184247,
+            "global_routes_per_layer": [
+              [
+                9,
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9,
+                9
+              ]
+            ],
+            "max_parameter_abs_error": 1.2975731600306517e-15
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=1: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 1
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.5703242832262525,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.8786795315232229,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 2.220446049250313e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.556275190559269,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.8927292120922914,
+            "clip_coefficient": 0.011201592445900318,
+            "global_routes_per_layer": [
+              [
+                63,
+                63,
+                63,
+                63
+              ],
+              [
+                63,
+                63,
+                63,
+                63
+              ]
+            ],
+            "max_parameter_abs_error": 3.122502256758253e-16
+          }
+        },
+        {
+          "label": "use_moe=True bias=False k=4 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 2.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=False bias=True k=1 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=False bias=True k=1 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=False bias=True k=1 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 0.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=False bias=True k=1 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.4456568685269326,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.1875162705894495,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 1.771820872088334e-16
+          }
+        },
+        {
+          "label": "use_moe=False bias=True k=1 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.433467051734144,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 1.2749171334221394,
+            "clip_coefficient": 0.007843640887872516,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 2.5586174562976784e-16
+          }
+        },
+        {
+          "label": "use_moe=False bias=True k=1 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 0.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=False bias=False k=1 aux_coef=0.07 T=7: expert ownership / complete shared state / tied head / strict loading",
+          "details": {}
+        },
+        {
+          "label": "use_moe=False bias=False k=1 aux_coef=0.07 T=7: default GPT(config) compatibility",
+          "details": {}
+        },
+        {
+          "label": "use_moe=False bias=False k=1 aux_coef=0.07 T=7: initial: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 0.0,
+            "sequence_length": 7
+          }
+        },
+        {
+          "label": "use_moe=False bias=False k=1 aux_coef=0.07 T=7: update 0: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.450027747811932,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 0.966356815803164,
+            "clip_coefficient": 1.0,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 9.71445146547012e-17
+          }
+        },
+        {
+          "label": "use_moe=False bias=False k=1 aux_coef=0.07 T=7: update 1: full-GPT gradients / norm / AdamW parameters and moments",
+          "details": {
+            "local_microbatch_sizes": [
+              2,
+              2,
+              1
+            ],
+            "local_loss": 3.44632920146024,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.9357048819262358,
+            "clip_coefficient": 0.010687118883354767,
+            "global_routes_per_layer": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "max_parameter_abs_error": 1.0755285551056204e-16
+          }
+        },
+        {
+          "label": "use_moe=False bias=False k=1 aux_coef=0.07 T=7: after updates: EP eval CE / last-token inference",
+          "details": {
+            "reference_auxiliary_sum": 0.0,
+            "sequence_length": 7
+          }
+        }
+      ],
+      "active_phase": "complete",
+      "torch_version": "2.12.1+cpu",
+      "device": "cpu"
+    }
+  ],
+  "source_sha256": {
+    "parallel_ep.py": "ba5ab2b84e61ca670a135215c6dfbdc864e0db52aa252fca6d6420daa7d6c6be",
+    "moe_ep.py": "ba23bc8b8ce44e8cf35810b3d6b82f30cb2bcdf33de080d3f5edabe2d7c51680",
+    "moe.py": "4fb8ff99d92456220e208d410740179c2a07e20a2e6378b4ffd32cc09440e1bf",
+    "model.py": "7430672530cd369edd0950c7675ed54771ea1b08d77dd0350f30e3a5fdbfe1d1"
+  },
+  "torch_version": "2.12.1+cpu",
+  "checks_per_worker": 157,
+  "finished_at": "2026-10-15T09:37:19.504374+00:00"
+}
