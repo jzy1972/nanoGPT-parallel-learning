@@ -15,6 +15,10 @@ from parallel_ep import (
     build_ep_optimizer,
     step_ep_optimizer,
 )
+from checkpoint_ep import (
+    save_ep_checkpoint,
+    load_ep_checkpoint,
+)
 
 def positive_int(value):
     value = int(value)
@@ -69,6 +73,12 @@ def parse_args():
     parser.add_argument("--eval-interval",type=int,default=0,)
     parser.add_argument("--eval-iters",type=positive_int,default=10,)
 
+    parser.add_argument("--out-dir",type=str,default="out_ep",)
+
+    parser.add_argument("--save-interval",type=int,default=0,)
+
+    parser.add_argument("--resume",type=str,default=None,)
+
     args = parser.parse_args()
 
     if args.n_embd % args.n_head != 0:
@@ -85,6 +95,9 @@ def parse_args():
 
     if args.eval_interval < 0:
         parser.error("eval_interval 必须大于等于 0")
+
+    if args.save_interval < 0:
+        parser.error("save_interval 必须大于等于 0")
 
     for name in (
         "moe_aux_loss_coef",
@@ -386,7 +399,36 @@ def main():
         eval_data_generator = torch.Generator(device="cpu")
         eval_data_generator.manual_seed(args.seed + 20_000 + parallel["ep_rank"])
 
-        for iter_num in range(args.max_iters):
+        start_iter = 0
+        best_val_loss = float("inf")
+
+        if args.resume is not None:
+            resume_state = load_ep_checkpoint(
+                model=model,
+                optimizer=optimizer,
+                parallel=parallel,
+                checkpoint_dir=args.resume,
+                train_data_generator=train_data_generator,
+                eval_data_generator=eval_data_generator,
+                device=device,
+                train_args=vars(args),
+            )
+
+            start_iter = resume_state["completed_iters"]
+            best_val_loss = resume_state["best_val_loss"]
+
+            if parallel["world_rank"] == 0:
+                print(
+                    f"resumed checkpoint: {args.resume}; "
+                    f"completed_iters={start_iter}",
+                    flush=True,
+                )
+
+        model.train()
+
+
+
+        for iter_num in range(start_iter,args.max_iters):
             token_ids, targets = get_ep_batch(
                 data_path=train_data_path,
                 batch_size=args.batch_size,
@@ -429,10 +471,45 @@ def main():
                     generator=eval_data_generator,
                 )
 
+                if not math.isfinite(val_loss):
+                    raise RuntimeError("验证 loss 不是有限数")
+
+                best_val_loss = min(best_val_loss, val_loss)
+
                 if parallel["world_rank"] == 0:
                     print(
                         f"eval after {completed_iters} steps: "
                         f"val_loss={val_loss:.6f}",
+                        flush=True,
+                    )
+
+            should_save = (
+                args.save_interval > 0
+                and (completed_iters % args.save_interval == 0 or completed_iters == args.max_iters)
+            )
+
+            if should_save:
+                checkpoint_dir = os.path.join(
+                    args.out_dir,
+                    f"iter_{completed_iters:08d}",
+                )
+
+                checkpoint_dir = save_ep_checkpoint(
+                    model=model,
+                    optimizer=optimizer,
+                    parallel=parallel,
+                    checkpoint_dir=checkpoint_dir,
+                    completed_iters=completed_iters,
+                    best_val_loss=best_val_loss,
+                    train_data_generator=train_data_generator,
+                    eval_data_generator=eval_data_generator,
+                    device=device,
+                    train_args=vars(args),
+                )
+
+                if parallel["world_rank"] == 0:
+                    print(
+                        f"saved checkpoint: {checkpoint_dir}",
                         flush=True,
                     )
 

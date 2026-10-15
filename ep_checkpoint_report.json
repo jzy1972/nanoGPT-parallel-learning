@@ -1,0 +1,2170 @@
+{
+  "status": "passed",
+  "started_at": "2026-10-15T12:07:48.385216+00:00",
+  "arguments": {
+    "project": "D:\\大学\\科研\\nanoGPT",
+    "device": "cpu",
+    "ep_size": 2,
+    "threads": 1,
+    "dtype": "float64",
+    "seed": 20261015,
+    "timeout": 120,
+    "rtol": null,
+    "atol": null,
+    "report": "ep_checkpoint_report.json",
+    "keep_workdir": false
+  },
+  "script_sha256": "1983a67b47c29f3fcbfb6e1bd25e2ade369628c14061170a30d79cab41c0d39e",
+  "scope": {
+    "original_save_load_and_actual_main": true,
+    "fresh_process_resume": true,
+    "model_buffers_local_experts_tied_head_AdamW": true,
+    "CPU_CUDA_default_and_train_eval_generator_RNG": true,
+    "nonzero_dropout": true,
+    "sample_windows_all_updates_and_validation_trajectory": true,
+    "collective_read_write_and_RNG_restore_failures": true,
+    "incomplete_checkpoint_and_overwrite_refusal": true,
+    "rank_config_optimizer_order_and_progress_validation": true,
+    "save_after_eval_and_best_loss_on_all_ranks": true,
+    "periodic_final_save_and_global_iteration_logs": true,
+    "increasing_max_iters_and_already_completed_resume": true,
+    "CPU_trajectory_comparison": "exact",
+    "CUDA_trajectory_comparison": "tolerance",
+    "save_load_roundtrip_and_RNG_comparison": "exact",
+    "temporary_data_and_checkpoints_only": true,
+    "rendezvous": "FileStore replaces env:// transport; original backend/collectives are retained",
+    "independent_model_gradient_AdamW_math": "covered by earlier verifiers, not repeated here",
+    "AMP_compile_EP_resize_multinode_OS_crash": false
+  },
+  "worker_phases": {
+    "functions": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "helper-roundtrip bias=True k=1 dropout=0.25: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "helper-roundtrip bias=True k=1 dropout=0.25: native round-trip and continued training",
+            "details": {
+              "completed_iters": 2,
+              "best_val_loss": 3.444747606834824
+            }
+          },
+          {
+            "label": "completed checkpoint is not overwritten",
+            "details": {}
+          },
+          {
+            "label": "pending gradients on one rank reject saving collectively",
+            "details": {}
+          },
+          {
+            "label": "rank-file write failure propagates to all ranks",
+            "details": {}
+          },
+          {
+            "label": "manifest write failure propagates to all ranks",
+            "details": {}
+          },
+          {
+            "label": "missing_manifest rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "missing_rank_file rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "wrong_rank rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "wrong_size rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "wrong_dtype rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "wrong_progress rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "wrong_optimizer_order rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "inconsistent_best_loss rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "changed training configuration rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "invalid RNG restoration fails collectively",
+            "details": {}
+          },
+          {
+            "label": "helper-roundtrip bias=False k=4 dropout=0.25: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "helper-roundtrip bias=False k=4 dropout=0.25: native round-trip and continued training",
+            "details": {
+              "completed_iters": 2,
+              "best_val_loss": 3.438420307516876
+            }
+          }
+        ],
+        "torch_version": "2.12.1+cpu"
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "helper-roundtrip bias=True k=1 dropout=0.25: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "helper-roundtrip bias=True k=1 dropout=0.25: native round-trip and continued training",
+            "details": {
+              "completed_iters": 2,
+              "best_val_loss": 3.444747606834824
+            }
+          },
+          {
+            "label": "completed checkpoint is not overwritten",
+            "details": {}
+          },
+          {
+            "label": "pending gradients on one rank reject saving collectively",
+            "details": {}
+          },
+          {
+            "label": "rank-file write failure propagates to all ranks",
+            "details": {}
+          },
+          {
+            "label": "manifest write failure propagates to all ranks",
+            "details": {}
+          },
+          {
+            "label": "missing_manifest rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "missing_rank_file rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "wrong_rank rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "wrong_size rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "wrong_dtype rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "wrong_progress rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "wrong_optimizer_order rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "inconsistent_best_loss rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "changed training configuration rejects loading collectively",
+            "details": {}
+          },
+          {
+            "label": "invalid RNG restoration fails collectively",
+            "details": {}
+          },
+          {
+            "label": "helper-roundtrip bias=False k=4 dropout=0.25: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "helper-roundtrip bias=False k=4 dropout=0.25: native round-trip and continued training",
+            "details": {
+              "completed_iters": 2,
+              "best_val_loss": 3.438420307516876
+            }
+          }
+        ],
+        "torch_version": "2.12.1+cpu"
+      }
+    ],
+    "sparse_dropout/baseline": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "sparse_dropout",
+          "bias": true,
+          "k": 1,
+          "coef": 0.17,
+          "dropout": 0.25,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 5,
+          "interrupted_target": 4,
+          "cut": 2,
+          "interval": 1,
+          "eval_interval": 2,
+          "eval_iters": 2,
+          "save_interval": 2
+        },
+        "run_phase": "baseline",
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6768\n[PASS] WORLD EP / shared-DP mapping and expert ownership\niter 0: loss=3.783775, grad_norm=0.609432, stepped=True\neval after 2 steps: val_loss=3.435931\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\baseline\\checkpoints\\iter_00000002\niter 1: loss=3.771560, grad_norm=0.753150, stepped=True\niter 2: loss=3.781341, grad_norm=0.664555, stepped=True\neval after 4 steps: val_loss=3.429933\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\baseline\\checkpoints\\iter_00000004\niter 3: loss=3.757154, grad_norm=0.559494, stepped=True\neval after 5 steps: val_loss=3.443451\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\baseline\\checkpoints\\iter_00000005\niter 4: loss=3.776011, grad_norm=0.682683, stepped=True\n",
+        "steps": [
+          {
+            "iter_num": 0,
+            "completed_iters": 1,
+            "result": {
+              "loss": 3.783775315019267,
+              "grad_norm": 0.609432342519524,
+              "stepped": true
+            },
+            "starts": [
+              3136,
+              3697,
+              387,
+              2100,
+              3679,
+              533,
+              1972
+            ]
+          },
+          {
+            "iter_num": 1,
+            "completed_iters": 2,
+            "result": {
+              "loss": 3.771559937845542,
+              "grad_norm": 0.753149565463031,
+              "stepped": true
+            },
+            "starts": [
+              2640,
+              1875,
+              432,
+              1553,
+              3424,
+              754,
+              745
+            ]
+          },
+          {
+            "iter_num": 2,
+            "completed_iters": 3,
+            "result": {
+              "loss": 3.781340579073346,
+              "grad_norm": 0.6645552946051257,
+              "stepped": true
+            },
+            "starts": [
+              3321,
+              2420,
+              184,
+              1510,
+              2578,
+              424,
+              274
+            ]
+          },
+          {
+            "iter_num": 3,
+            "completed_iters": 4,
+            "result": {
+              "loss": 3.757153581597037,
+              "grad_norm": 0.559494398623822,
+              "stepped": true
+            },
+            "starts": [
+              1874,
+              771,
+              1545,
+              4036,
+              4000,
+              3767,
+              954
+            ]
+          },
+          {
+            "iter_num": 4,
+            "completed_iters": 5,
+            "result": {
+              "loss": 3.7760114014540003,
+              "grad_norm": 0.6826833797731157,
+              "stepped": true
+            },
+            "starts": [
+              1393,
+              1981,
+              746,
+              1981,
+              4078,
+              1531,
+              1823
+            ]
+          }
+        ],
+        "evaluations": [
+          {
+            "completed_iters": 2,
+            "loss": 3.435931299787853
+          },
+          {
+            "completed_iters": 4,
+            "loss": 3.429932778975583
+          },
+          {
+            "completed_iters": 5,
+            "loss": 3.443450834925761
+          }
+        ],
+        "saves": [
+          {
+            "completed_iters": 2,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\baseline\\checkpoints\\iter_00000002",
+            "best_val_loss": 3.435931299787853
+          },
+          {
+            "completed_iters": 4,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\baseline\\checkpoints\\iter_00000004",
+            "best_val_loss": 3.429932778975583
+          },
+          {
+            "completed_iters": 5,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\baseline\\checkpoints\\iter_00000005",
+            "best_val_loss": 3.429932778975583
+          }
+        ],
+        "load_calls": [],
+        "data_calls": {
+          "train": [
+            [
+              3136,
+              3697,
+              387,
+              2100,
+              3679,
+              533,
+              1972
+            ],
+            [
+              2640,
+              1875,
+              432,
+              1553,
+              3424,
+              754,
+              745
+            ],
+            [
+              3321,
+              2420,
+              184,
+              1510,
+              2578,
+              424,
+              274
+            ],
+            [
+              1874,
+              771,
+              1545,
+              4036,
+              4000,
+              3767,
+              954
+            ],
+            [
+              1393,
+              1981,
+              746,
+              1981,
+              4078,
+              1531,
+              1823
+            ]
+          ],
+          "val": [
+            [
+              1882,
+              1305,
+              1732,
+              2012,
+              1572,
+              2277,
+              3210
+            ],
+            [
+              2974,
+              953,
+              1439,
+              3442,
+              930,
+              3184,
+              1537
+            ],
+            [
+              1412,
+              616,
+              1454,
+              2972,
+              1283,
+              1131,
+              1786
+            ],
+            [
+              1057,
+              3536,
+              2233,
+              1087,
+              2396,
+              2666,
+              1565
+            ],
+            [
+              810,
+              1984,
+              2835,
+              821,
+              1168,
+              83,
+              885
+            ],
+            [
+              1679,
+              775,
+              1842,
+              183,
+              1658,
+              1865,
+              3341
+            ]
+          ]
+        },
+        "logged": {
+          "train": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "eval": [
+            2,
+            4,
+            5
+          ],
+          "save": [
+            2,
+            4,
+            5
+          ]
+        },
+        "best_val_loss": 3.429932778975583,
+        "controlled_interruption": false
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "sparse_dropout",
+          "bias": true,
+          "k": 1,
+          "coef": 0.17,
+          "dropout": 0.25,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 5,
+          "interrupted_target": 4,
+          "cut": 2,
+          "interval": 1,
+          "eval_interval": 2,
+          "eval_iters": 2,
+          "save_interval": 2
+        },
+        "run_phase": "baseline",
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6768\n",
+        "steps": [
+          {
+            "iter_num": 0,
+            "completed_iters": 1,
+            "result": {
+              "loss": 3.783775315019267,
+              "grad_norm": 0.609432342519524,
+              "stepped": true
+            },
+            "starts": [
+              1478,
+              2609,
+              633,
+              1363,
+              2972,
+              2883,
+              3742
+            ]
+          },
+          {
+            "iter_num": 1,
+            "completed_iters": 2,
+            "result": {
+              "loss": 3.771559937845542,
+              "grad_norm": 0.753149565463031,
+              "stepped": true
+            },
+            "starts": [
+              3884,
+              2194,
+              908,
+              3631,
+              2846,
+              824,
+              3843
+            ]
+          },
+          {
+            "iter_num": 2,
+            "completed_iters": 3,
+            "result": {
+              "loss": 3.781340579073346,
+              "grad_norm": 0.6645552946051257,
+              "stepped": true
+            },
+            "starts": [
+              3707,
+              3248,
+              2780,
+              12,
+              73,
+              2548,
+              3634
+            ]
+          },
+          {
+            "iter_num": 3,
+            "completed_iters": 4,
+            "result": {
+              "loss": 3.757153581597037,
+              "grad_norm": 0.559494398623822,
+              "stepped": true
+            },
+            "starts": [
+              56,
+              1890,
+              3585,
+              2160,
+              797,
+              2417,
+              3206
+            ]
+          },
+          {
+            "iter_num": 4,
+            "completed_iters": 5,
+            "result": {
+              "loss": 3.7760114014540003,
+              "grad_norm": 0.6826833797731157,
+              "stepped": true
+            },
+            "starts": [
+              786,
+              894,
+              766,
+              2794,
+              390,
+              3875,
+              3316
+            ]
+          }
+        ],
+        "evaluations": [
+          {
+            "completed_iters": 2,
+            "loss": 3.435931299787853
+          },
+          {
+            "completed_iters": 4,
+            "loss": 3.429932778975583
+          },
+          {
+            "completed_iters": 5,
+            "loss": 3.443450834925761
+          }
+        ],
+        "saves": [
+          {
+            "completed_iters": 2,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\baseline\\checkpoints\\iter_00000002",
+            "best_val_loss": 3.435931299787853
+          },
+          {
+            "completed_iters": 4,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\baseline\\checkpoints\\iter_00000004",
+            "best_val_loss": 3.429932778975583
+          },
+          {
+            "completed_iters": 5,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\baseline\\checkpoints\\iter_00000005",
+            "best_val_loss": 3.429932778975583
+          }
+        ],
+        "load_calls": [],
+        "data_calls": {
+          "train": [
+            [
+              1478,
+              2609,
+              633,
+              1363,
+              2972,
+              2883,
+              3742
+            ],
+            [
+              3884,
+              2194,
+              908,
+              3631,
+              2846,
+              824,
+              3843
+            ],
+            [
+              3707,
+              3248,
+              2780,
+              12,
+              73,
+              2548,
+              3634
+            ],
+            [
+              56,
+              1890,
+              3585,
+              2160,
+              797,
+              2417,
+              3206
+            ],
+            [
+              786,
+              894,
+              766,
+              2794,
+              390,
+              3875,
+              3316
+            ]
+          ],
+          "val": [
+            [
+              1296,
+              2759,
+              2440,
+              2551,
+              3172,
+              1001,
+              414
+            ],
+            [
+              1811,
+              2352,
+              60,
+              351,
+              2074,
+              1262,
+              1766
+            ],
+            [
+              787,
+              3155,
+              1433,
+              1897,
+              2304,
+              1817,
+              1045
+            ],
+            [
+              903,
+              3042,
+              1451,
+              2820,
+              3099,
+              2590,
+              3518
+            ],
+            [
+              325,
+              230,
+              1187,
+              2852,
+              2696,
+              3402,
+              3517
+            ],
+            [
+              1263,
+              2650,
+              2629,
+              113,
+              769,
+              1396,
+              663
+            ]
+          ]
+        },
+        "logged": {},
+        "best_val_loss": 3.429932778975583,
+        "controlled_interruption": false
+      }
+    ],
+    "sparse_dropout/interrupted": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "sparse_dropout",
+          "bias": true,
+          "k": 1,
+          "coef": 0.17,
+          "dropout": 0.25,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 5,
+          "interrupted_target": 4,
+          "cut": 2,
+          "interval": 1,
+          "eval_interval": 2,
+          "eval_iters": 2,
+          "save_interval": 2
+        },
+        "run_phase": "interrupted",
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6768\n[PASS] WORLD EP / shared-DP mapping and expert ownership\niter 0: loss=3.783775, grad_norm=0.609432, stepped=True\neval after 2 steps: val_loss=3.435931\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\interrupted\\checkpoints\\iter_00000002\niter 1: loss=3.771560, grad_norm=0.753150, stepped=True\n",
+        "steps": [
+          {
+            "iter_num": 0,
+            "completed_iters": 1,
+            "result": {
+              "loss": 3.783775315019267,
+              "grad_norm": 0.609432342519524,
+              "stepped": true
+            },
+            "starts": [
+              3136,
+              3697,
+              387,
+              2100,
+              3679,
+              533,
+              1972
+            ]
+          },
+          {
+            "iter_num": 1,
+            "completed_iters": 2,
+            "result": {
+              "loss": 3.771559937845542,
+              "grad_norm": 0.753149565463031,
+              "stepped": true
+            },
+            "starts": [
+              2640,
+              1875,
+              432,
+              1553,
+              3424,
+              754,
+              745
+            ]
+          }
+        ],
+        "evaluations": [
+          {
+            "completed_iters": 2,
+            "loss": 3.435931299787853
+          }
+        ],
+        "saves": [
+          {
+            "completed_iters": 2,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\interrupted\\checkpoints\\iter_00000002",
+            "best_val_loss": 3.435931299787853
+          }
+        ],
+        "load_calls": [],
+        "data_calls": {
+          "train": [
+            [
+              3136,
+              3697,
+              387,
+              2100,
+              3679,
+              533,
+              1972
+            ],
+            [
+              2640,
+              1875,
+              432,
+              1553,
+              3424,
+              754,
+              745
+            ]
+          ],
+          "val": [
+            [
+              1882,
+              1305,
+              1732,
+              2012,
+              1572,
+              2277,
+              3210
+            ],
+            [
+              2974,
+              953,
+              1439,
+              3442,
+              930,
+              3184,
+              1537
+            ]
+          ]
+        },
+        "logged": {
+          "train": [
+            0,
+            1
+          ],
+          "eval": [
+            2
+          ],
+          "save": [
+            2
+          ]
+        },
+        "best_val_loss": 3.435931299787853,
+        "controlled_interruption": true
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "sparse_dropout",
+          "bias": true,
+          "k": 1,
+          "coef": 0.17,
+          "dropout": 0.25,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 5,
+          "interrupted_target": 4,
+          "cut": 2,
+          "interval": 1,
+          "eval_interval": 2,
+          "eval_iters": 2,
+          "save_interval": 2
+        },
+        "run_phase": "interrupted",
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6768\n",
+        "steps": [
+          {
+            "iter_num": 0,
+            "completed_iters": 1,
+            "result": {
+              "loss": 3.783775315019267,
+              "grad_norm": 0.609432342519524,
+              "stepped": true
+            },
+            "starts": [
+              1478,
+              2609,
+              633,
+              1363,
+              2972,
+              2883,
+              3742
+            ]
+          },
+          {
+            "iter_num": 1,
+            "completed_iters": 2,
+            "result": {
+              "loss": 3.771559937845542,
+              "grad_norm": 0.753149565463031,
+              "stepped": true
+            },
+            "starts": [
+              3884,
+              2194,
+              908,
+              3631,
+              2846,
+              824,
+              3843
+            ]
+          }
+        ],
+        "evaluations": [
+          {
+            "completed_iters": 2,
+            "loss": 3.435931299787853
+          }
+        ],
+        "saves": [
+          {
+            "completed_iters": 2,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\interrupted\\checkpoints\\iter_00000002",
+            "best_val_loss": 3.435931299787853
+          }
+        ],
+        "load_calls": [],
+        "data_calls": {
+          "train": [
+            [
+              1478,
+              2609,
+              633,
+              1363,
+              2972,
+              2883,
+              3742
+            ],
+            [
+              3884,
+              2194,
+              908,
+              3631,
+              2846,
+              824,
+              3843
+            ]
+          ],
+          "val": [
+            [
+              1296,
+              2759,
+              2440,
+              2551,
+              3172,
+              1001,
+              414
+            ],
+            [
+              1811,
+              2352,
+              60,
+              351,
+              2074,
+              1262,
+              1766
+            ]
+          ]
+        },
+        "logged": {},
+        "best_val_loss": 3.435931299787853,
+        "controlled_interruption": true
+      }
+    ],
+    "sparse_dropout/resume": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "sparse_dropout",
+          "bias": true,
+          "k": 1,
+          "coef": 0.17,
+          "dropout": 0.25,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 5,
+          "interrupted_target": 4,
+          "cut": 2,
+          "interval": 1,
+          "eval_interval": 2,
+          "eval_iters": 2,
+          "save_interval": 2
+        },
+        "run_phase": "resume",
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6768\n[PASS] WORLD EP / shared-DP mapping and expert ownership\nresumed checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\interrupted\\checkpoints\\iter_00000002; completed_iters=2\niter 2: loss=3.781341, grad_norm=0.664555, stepped=True\neval after 4 steps: val_loss=3.429933\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\resume\\checkpoints\\iter_00000004\niter 3: loss=3.757154, grad_norm=0.559494, stepped=True\neval after 5 steps: val_loss=3.443451\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\resume\\checkpoints\\iter_00000005\niter 4: loss=3.776011, grad_norm=0.682683, stepped=True\n",
+        "steps": [
+          {
+            "iter_num": 2,
+            "completed_iters": 3,
+            "result": {
+              "loss": 3.781340579073346,
+              "grad_norm": 0.6645552946051257,
+              "stepped": true
+            },
+            "starts": [
+              3321,
+              2420,
+              184,
+              1510,
+              2578,
+              424,
+              274
+            ]
+          },
+          {
+            "iter_num": 3,
+            "completed_iters": 4,
+            "result": {
+              "loss": 3.757153581597037,
+              "grad_norm": 0.559494398623822,
+              "stepped": true
+            },
+            "starts": [
+              1874,
+              771,
+              1545,
+              4036,
+              4000,
+              3767,
+              954
+            ]
+          },
+          {
+            "iter_num": 4,
+            "completed_iters": 5,
+            "result": {
+              "loss": 3.7760114014540003,
+              "grad_norm": 0.6826833797731157,
+              "stepped": true
+            },
+            "starts": [
+              1393,
+              1981,
+              746,
+              1981,
+              4078,
+              1531,
+              1823
+            ]
+          }
+        ],
+        "evaluations": [
+          {
+            "completed_iters": 4,
+            "loss": 3.429932778975583
+          },
+          {
+            "completed_iters": 5,
+            "loss": 3.443450834925761
+          }
+        ],
+        "saves": [
+          {
+            "completed_iters": 4,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\resume\\checkpoints\\iter_00000004",
+            "best_val_loss": 3.429932778975583
+          },
+          {
+            "completed_iters": 5,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\resume\\checkpoints\\iter_00000005",
+            "best_val_loss": 3.429932778975583
+          }
+        ],
+        "load_calls": [
+          {
+            "completed_iters": 2,
+            "best_val_loss": 3.435931299787853
+          }
+        ],
+        "data_calls": {
+          "train": [
+            [
+              3321,
+              2420,
+              184,
+              1510,
+              2578,
+              424,
+              274
+            ],
+            [
+              1874,
+              771,
+              1545,
+              4036,
+              4000,
+              3767,
+              954
+            ],
+            [
+              1393,
+              1981,
+              746,
+              1981,
+              4078,
+              1531,
+              1823
+            ]
+          ],
+          "val": [
+            [
+              1412,
+              616,
+              1454,
+              2972,
+              1283,
+              1131,
+              1786
+            ],
+            [
+              1057,
+              3536,
+              2233,
+              1087,
+              2396,
+              2666,
+              1565
+            ],
+            [
+              810,
+              1984,
+              2835,
+              821,
+              1168,
+              83,
+              885
+            ],
+            [
+              1679,
+              775,
+              1842,
+              183,
+              1658,
+              1865,
+              3341
+            ]
+          ]
+        },
+        "logged": {
+          "train": [
+            2,
+            3,
+            4
+          ],
+          "eval": [
+            4,
+            5
+          ],
+          "save": [
+            4,
+            5
+          ]
+        },
+        "best_val_loss": 3.429932778975583,
+        "controlled_interruption": false
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "sparse_dropout",
+          "bias": true,
+          "k": 1,
+          "coef": 0.17,
+          "dropout": 0.25,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 5,
+          "interrupted_target": 4,
+          "cut": 2,
+          "interval": 1,
+          "eval_interval": 2,
+          "eval_iters": 2,
+          "save_interval": 2
+        },
+        "run_phase": "resume",
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6768\n",
+        "steps": [
+          {
+            "iter_num": 2,
+            "completed_iters": 3,
+            "result": {
+              "loss": 3.781340579073346,
+              "grad_norm": 0.6645552946051257,
+              "stepped": true
+            },
+            "starts": [
+              3707,
+              3248,
+              2780,
+              12,
+              73,
+              2548,
+              3634
+            ]
+          },
+          {
+            "iter_num": 3,
+            "completed_iters": 4,
+            "result": {
+              "loss": 3.757153581597037,
+              "grad_norm": 0.559494398623822,
+              "stepped": true
+            },
+            "starts": [
+              56,
+              1890,
+              3585,
+              2160,
+              797,
+              2417,
+              3206
+            ]
+          },
+          {
+            "iter_num": 4,
+            "completed_iters": 5,
+            "result": {
+              "loss": 3.7760114014540003,
+              "grad_norm": 0.6826833797731157,
+              "stepped": true
+            },
+            "starts": [
+              786,
+              894,
+              766,
+              2794,
+              390,
+              3875,
+              3316
+            ]
+          }
+        ],
+        "evaluations": [
+          {
+            "completed_iters": 4,
+            "loss": 3.429932778975583
+          },
+          {
+            "completed_iters": 5,
+            "loss": 3.443450834925761
+          }
+        ],
+        "saves": [
+          {
+            "completed_iters": 4,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\resume\\checkpoints\\iter_00000004",
+            "best_val_loss": 3.429932778975583
+          },
+          {
+            "completed_iters": 5,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\resume\\checkpoints\\iter_00000005",
+            "best_val_loss": 3.429932778975583
+          }
+        ],
+        "load_calls": [
+          {
+            "completed_iters": 2,
+            "best_val_loss": 3.435931299787853
+          }
+        ],
+        "data_calls": {
+          "train": [
+            [
+              3707,
+              3248,
+              2780,
+              12,
+              73,
+              2548,
+              3634
+            ],
+            [
+              56,
+              1890,
+              3585,
+              2160,
+              797,
+              2417,
+              3206
+            ],
+            [
+              786,
+              894,
+              766,
+              2794,
+              390,
+              3875,
+              3316
+            ]
+          ],
+          "val": [
+            [
+              787,
+              3155,
+              1433,
+              1897,
+              2304,
+              1817,
+              1045
+            ],
+            [
+              903,
+              3042,
+              1451,
+              2820,
+              3099,
+              2590,
+              3518
+            ],
+            [
+              325,
+              230,
+              1187,
+              2852,
+              2696,
+              3402,
+              3517
+            ],
+            [
+              1263,
+              2650,
+              2629,
+              113,
+              769,
+              1396,
+              663
+            ]
+          ]
+        },
+        "logged": {},
+        "best_val_loss": 3.429932778975583,
+        "controlled_interruption": false
+      }
+    ],
+    "sparse_dropout/done": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "sparse_dropout",
+          "bias": true,
+          "k": 1,
+          "coef": 0.17,
+          "dropout": 0.25,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 5,
+          "interrupted_target": 4,
+          "cut": 2,
+          "interval": 1,
+          "eval_interval": 2,
+          "eval_iters": 2,
+          "save_interval": 2
+        },
+        "run_phase": "done",
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6768\n[PASS] WORLD EP / shared-DP mapping and expert ownership\nresumed checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\sparse_dropout\\interrupted\\checkpoints\\iter_00000002; completed_iters=2\n",
+        "steps": [],
+        "evaluations": [],
+        "saves": [],
+        "load_calls": [
+          {
+            "completed_iters": 2,
+            "best_val_loss": 3.435931299787853
+          }
+        ],
+        "data_calls": {
+          "train": [],
+          "val": []
+        },
+        "logged": {
+          "train": [],
+          "eval": [],
+          "save": []
+        },
+        "best_val_loss": 3.435931299787853,
+        "controlled_interruption": false
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "sparse_dropout",
+          "bias": true,
+          "k": 1,
+          "coef": 0.17,
+          "dropout": 0.25,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 5,
+          "interrupted_target": 4,
+          "cut": 2,
+          "interval": 1,
+          "eval_interval": 2,
+          "eval_iters": 2,
+          "save_interval": 2
+        },
+        "run_phase": "done",
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6768\n",
+        "steps": [],
+        "evaluations": [],
+        "saves": [],
+        "load_calls": [
+          {
+            "completed_iters": 2,
+            "best_val_loss": 3.435931299787853
+          }
+        ],
+        "data_calls": {
+          "train": [],
+          "val": []
+        },
+        "logged": {},
+        "best_val_loss": 3.435931299787853,
+        "controlled_interruption": false
+      }
+    ],
+    "full_topk_no_eval/baseline": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "full_topk_no_eval",
+          "bias": false,
+          "k": 4,
+          "coef": 0.0,
+          "dropout": 0.25,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 3,
+          "interrupted_target": 3,
+          "cut": 2,
+          "interval": 2,
+          "eval_interval": 0,
+          "eval_iters": 1,
+          "save_interval": 2
+        },
+        "run_phase": "baseline",
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6372\n[PASS] WORLD EP / shared-DP mapping and expert ownership\niter 0: loss=3.431026, grad_norm=2.136887, stepped=True\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\baseline\\checkpoints\\iter_00000002\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\baseline\\checkpoints\\iter_00000003\niter 2: loss=3.480203, grad_norm=1.788911, stepped=True\n",
+        "steps": [
+          {
+            "iter_num": 0,
+            "completed_iters": 1,
+            "result": {
+              "loss": 3.431026320740039,
+              "grad_norm": 2.1368868566231067,
+              "stepped": true
+            },
+            "starts": [
+              2425,
+              3118,
+              1446
+            ]
+          },
+          {
+            "iter_num": 1,
+            "completed_iters": 2,
+            "result": {
+              "loss": 3.4016156225463146,
+              "grad_norm": 1.805343366820105,
+              "stepped": true
+            },
+            "starts": [
+              2583,
+              1150,
+              311
+            ]
+          },
+          {
+            "iter_num": 2,
+            "completed_iters": 3,
+            "result": {
+              "loss": 3.480203362586734,
+              "grad_norm": 1.7889111097621815,
+              "stepped": true
+            },
+            "starts": [
+              1117,
+              2892,
+              4065
+            ]
+          }
+        ],
+        "evaluations": [],
+        "saves": [
+          {
+            "completed_iters": 2,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\baseline\\checkpoints\\iter_00000002",
+            "best_val_loss": "inf"
+          },
+          {
+            "completed_iters": 3,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\baseline\\checkpoints\\iter_00000003",
+            "best_val_loss": "inf"
+          }
+        ],
+        "load_calls": [],
+        "data_calls": {
+          "train": [
+            [
+              2425,
+              3118,
+              1446
+            ],
+            [
+              2583,
+              1150,
+              311
+            ],
+            [
+              1117,
+              2892,
+              4065
+            ]
+          ],
+          "val": []
+        },
+        "logged": {
+          "train": [
+            0,
+            2
+          ],
+          "eval": [],
+          "save": [
+            2,
+            3
+          ]
+        },
+        "best_val_loss": "inf",
+        "controlled_interruption": false
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "full_topk_no_eval",
+          "bias": false,
+          "k": 4,
+          "coef": 0.0,
+          "dropout": 0.25,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 3,
+          "interrupted_target": 3,
+          "cut": 2,
+          "interval": 2,
+          "eval_interval": 0,
+          "eval_iters": 1,
+          "save_interval": 2
+        },
+        "run_phase": "baseline",
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6372\n",
+        "steps": [
+          {
+            "iter_num": 0,
+            "completed_iters": 1,
+            "result": {
+              "loss": 3.431026320740039,
+              "grad_norm": 2.1368868566231067,
+              "stepped": true
+            },
+            "starts": [
+              926,
+              2624,
+              2013
+            ]
+          },
+          {
+            "iter_num": 1,
+            "completed_iters": 2,
+            "result": {
+              "loss": 3.4016156225463146,
+              "grad_norm": 1.805343366820105,
+              "stepped": true
+            },
+            "starts": [
+              577,
+              1982,
+              1347
+            ]
+          },
+          {
+            "iter_num": 2,
+            "completed_iters": 3,
+            "result": {
+              "loss": 3.480203362586734,
+              "grad_norm": 1.7889111097621815,
+              "stepped": true
+            },
+            "starts": [
+              2074,
+              3416,
+              3469
+            ]
+          }
+        ],
+        "evaluations": [],
+        "saves": [
+          {
+            "completed_iters": 2,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\baseline\\checkpoints\\iter_00000002",
+            "best_val_loss": "inf"
+          },
+          {
+            "completed_iters": 3,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\baseline\\checkpoints\\iter_00000003",
+            "best_val_loss": "inf"
+          }
+        ],
+        "load_calls": [],
+        "data_calls": {
+          "train": [
+            [
+              926,
+              2624,
+              2013
+            ],
+            [
+              577,
+              1982,
+              1347
+            ],
+            [
+              2074,
+              3416,
+              3469
+            ]
+          ],
+          "val": []
+        },
+        "logged": {},
+        "best_val_loss": "inf",
+        "controlled_interruption": false
+      }
+    ],
+    "full_topk_no_eval/interrupted": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "full_topk_no_eval",
+          "bias": false,
+          "k": 4,
+          "coef": 0.0,
+          "dropout": 0.25,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 3,
+          "interrupted_target": 3,
+          "cut": 2,
+          "interval": 2,
+          "eval_interval": 0,
+          "eval_iters": 1,
+          "save_interval": 2
+        },
+        "run_phase": "interrupted",
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6372\n[PASS] WORLD EP / shared-DP mapping and expert ownership\niter 0: loss=3.431026, grad_norm=2.136887, stepped=True\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\interrupted\\checkpoints\\iter_00000002\n",
+        "steps": [
+          {
+            "iter_num": 0,
+            "completed_iters": 1,
+            "result": {
+              "loss": 3.431026320740039,
+              "grad_norm": 2.1368868566231067,
+              "stepped": true
+            },
+            "starts": [
+              2425,
+              3118,
+              1446
+            ]
+          },
+          {
+            "iter_num": 1,
+            "completed_iters": 2,
+            "result": {
+              "loss": 3.4016156225463146,
+              "grad_norm": 1.805343366820105,
+              "stepped": true
+            },
+            "starts": [
+              2583,
+              1150,
+              311
+            ]
+          }
+        ],
+        "evaluations": [],
+        "saves": [
+          {
+            "completed_iters": 2,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\interrupted\\checkpoints\\iter_00000002",
+            "best_val_loss": "inf"
+          }
+        ],
+        "load_calls": [],
+        "data_calls": {
+          "train": [
+            [
+              2425,
+              3118,
+              1446
+            ],
+            [
+              2583,
+              1150,
+              311
+            ]
+          ],
+          "val": []
+        },
+        "logged": {
+          "train": [
+            0
+          ],
+          "eval": [],
+          "save": [
+            2
+          ]
+        },
+        "best_val_loss": "inf",
+        "controlled_interruption": true
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "full_topk_no_eval",
+          "bias": false,
+          "k": 4,
+          "coef": 0.0,
+          "dropout": 0.25,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 3,
+          "interrupted_target": 3,
+          "cut": 2,
+          "interval": 2,
+          "eval_interval": 0,
+          "eval_iters": 1,
+          "save_interval": 2
+        },
+        "run_phase": "interrupted",
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6372\n",
+        "steps": [
+          {
+            "iter_num": 0,
+            "completed_iters": 1,
+            "result": {
+              "loss": 3.431026320740039,
+              "grad_norm": 2.1368868566231067,
+              "stepped": true
+            },
+            "starts": [
+              926,
+              2624,
+              2013
+            ]
+          },
+          {
+            "iter_num": 1,
+            "completed_iters": 2,
+            "result": {
+              "loss": 3.4016156225463146,
+              "grad_norm": 1.805343366820105,
+              "stepped": true
+            },
+            "starts": [
+              577,
+              1982,
+              1347
+            ]
+          }
+        ],
+        "evaluations": [],
+        "saves": [
+          {
+            "completed_iters": 2,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\interrupted\\checkpoints\\iter_00000002",
+            "best_val_loss": "inf"
+          }
+        ],
+        "load_calls": [],
+        "data_calls": {
+          "train": [
+            [
+              926,
+              2624,
+              2013
+            ],
+            [
+              577,
+              1982,
+              1347
+            ]
+          ],
+          "val": []
+        },
+        "logged": {},
+        "best_val_loss": "inf",
+        "controlled_interruption": true
+      }
+    ],
+    "full_topk_no_eval/resume": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "full_topk_no_eval",
+          "bias": false,
+          "k": 4,
+          "coef": 0.0,
+          "dropout": 0.25,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 3,
+          "interrupted_target": 3,
+          "cut": 2,
+          "interval": 2,
+          "eval_interval": 0,
+          "eval_iters": 1,
+          "save_interval": 2
+        },
+        "run_phase": "resume",
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6372\n[PASS] WORLD EP / shared-DP mapping and expert ownership\nresumed checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\interrupted\\checkpoints\\iter_00000002; completed_iters=2\nsaved checkpoint: C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\resume\\checkpoints\\iter_00000003\niter 2: loss=3.480203, grad_norm=1.788911, stepped=True\n",
+        "steps": [
+          {
+            "iter_num": 2,
+            "completed_iters": 3,
+            "result": {
+              "loss": 3.480203362586734,
+              "grad_norm": 1.7889111097621815,
+              "stepped": true
+            },
+            "starts": [
+              1117,
+              2892,
+              4065
+            ]
+          }
+        ],
+        "evaluations": [],
+        "saves": [
+          {
+            "completed_iters": 3,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\resume\\checkpoints\\iter_00000003",
+            "best_val_loss": "inf"
+          }
+        ],
+        "load_calls": [
+          {
+            "completed_iters": 2,
+            "best_val_loss": "inf"
+          }
+        ],
+        "data_calls": {
+          "train": [
+            [
+              1117,
+              2892,
+              4065
+            ]
+          ],
+          "val": []
+        },
+        "logged": {
+          "train": [
+            2
+          ],
+          "eval": [],
+          "save": [
+            3
+          ]
+        },
+        "best_val_loss": "inf",
+        "controlled_interruption": false
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          }
+        ],
+        "case": {
+          "name": "full_topk_no_eval",
+          "bias": false,
+          "k": 4,
+          "coef": 0.0,
+          "dropout": 0.25,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 3,
+          "interrupted_target": 3,
+          "cut": 2,
+          "interval": 2,
+          "eval_interval": 0,
+          "eval_iters": 1,
+          "save_interval": 2
+        },
+        "run_phase": "resume",
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6372\n",
+        "steps": [
+          {
+            "iter_num": 2,
+            "completed_iters": 3,
+            "result": {
+              "loss": 3.480203362586734,
+              "grad_norm": 1.7889111097621815,
+              "stepped": true
+            },
+            "starts": [
+              2074,
+              3416,
+              3469
+            ]
+          }
+        ],
+        "evaluations": [],
+        "saves": [
+          {
+            "completed_iters": 3,
+            "path": "C:\\Users\\JZY\\AppData\\Local\\Temp\\nanogpt_ep_checkpoint_3ru62chf\\full_topk_no_eval\\resume\\checkpoints\\iter_00000003",
+            "best_val_loss": "inf"
+          }
+        ],
+        "load_calls": [
+          {
+            "completed_iters": 2,
+            "best_val_loss": "inf"
+          }
+        ],
+        "data_calls": {
+          "train": [
+            [
+              2074,
+              3416,
+              3469
+            ]
+          ],
+          "val": []
+        },
+        "logged": {},
+        "best_val_loss": "inf",
+        "controlled_interruption": false
+      }
+    ]
+  },
+  "helper_sha256": {
+    "verify_ep_eval.py": "7f0e87f56cc0e6dbd0fd2fdac40c15c6a16e1a1a20dd87195a348be511b7e05f",
+    "verify_ep_training.py": "77cb97ba2ffce4c61aa4513dc5b012850dccc3f5bf0e77eeedcda0123f4a314b",
+    "verify_ep_gpt.py": "06d86d4a6640dd6e54dbaed0f93b1a261b14741856b4998128b739f76a89cd0d"
+  },
+  "source_sha256": {
+    "parallel_ep.py": "ba5ab2b84e61ca670a135215c6dfbdc864e0db52aa252fca6d6420daa7d6c6be",
+    "moe_ep.py": "ba23bc8b8ce44e8cf35810b3d6b82f30cb2bcdf33de080d3f5edabe2d7c51680",
+    "moe.py": "4fb8ff99d92456220e208d410740179c2a07e20a2e6378b4ffd32cc09440e1bf",
+    "model.py": "7430672530cd369edd0950c7675ed54771ea1b08d77dd0350f30e3a5fdbfe1d1",
+    "train_ep.py": "781313a8bebbca45e19c729bfe9dcc09bc2358615729db88e3ec995660e768dd",
+    "checkpoint_ep.py": "27facc8eaeab0c554777c4f26a64ad0fc598da9ac6c90d643e7e78d9b0d82742"
+  },
+  "torch_version": "2.12.1+cpu",
+  "numpy_version": "2.4.4",
+  "temporary_data_sha256": {
+    "train.bin": "fa2c426529694c1e9122fb2dfc29c6da55f68bceff34c1a06ff2c42923bf5546",
+    "val.bin": "8a8a11b01802e42aca7e437c773b1b7a938c88efa9e61cdf04196c8c1229d4a1"
+  },
+  "trajectory_comparisons": [
+    {
+      "case": "sparse_dropout",
+      "rank": 0,
+      "CPU_exact": true,
+      "RNG_exact": true,
+      "direct_restore_exact": true,
+      "max_parameter_abs_error": 0.0,
+      "interrupted_target": 4,
+      "resumed_target": 5
+    },
+    {
+      "case": "sparse_dropout",
+      "rank": 1,
+      "CPU_exact": true,
+      "RNG_exact": true,
+      "direct_restore_exact": true,
+      "max_parameter_abs_error": 0.0,
+      "interrupted_target": 4,
+      "resumed_target": 5
+    },
+    {
+      "case": "full_topk_no_eval",
+      "rank": 0,
+      "CPU_exact": true,
+      "RNG_exact": true,
+      "direct_restore_exact": true,
+      "max_parameter_abs_error": 0.0,
+      "interrupted_target": 3,
+      "resumed_target": 3
+    },
+    {
+      "case": "full_topk_no_eval",
+      "rank": 1,
+      "CPU_exact": true,
+      "RNG_exact": true,
+      "direct_restore_exact": true,
+      "max_parameter_abs_error": 0.0,
+      "interrupted_target": 3,
+      "resumed_target": 3
+    }
+  ],
+  "finished_at": "2026-10-15T12:08:30.430922+00:00"
+}
