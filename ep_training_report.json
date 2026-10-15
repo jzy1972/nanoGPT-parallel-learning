@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "started_at": "2026-10-15T10:43:59.941885+00:00",
+  "started_at": "2026-10-15T10:57:16.249310+00:00",
   "arguments": {
     "project": "D:\\大学\\科研\\nanoGPT",
     "device": "cpu",
@@ -2090,10 +2090,10 @@
     "moe_ep.py": "ba23bc8b8ce44e8cf35810b3d6b82f30cb2bcdf33de080d3f5edabe2d7c51680",
     "moe.py": "4fb8ff99d92456220e208d410740179c2a07e20a2e6378b4ffd32cc09440e1bf",
     "model.py": "7430672530cd369edd0950c7675ed54771ea1b08d77dd0350f30e3a5fdbfe1d1",
-    "train_ep.py": "b922f6c470413855501919a186e44f37b0fcc341a3775f9b3927ce22e6ac7b42"
+    "train_ep.py": "96fb206279689f438fb107d3632affc132c9ec93c45f9f08dff40a56cc2b74a4"
   },
   "torch_version": "2.12.1+cpu",
   "numpy_version": "2.4.4",
   "temporary_data_sha256": "fa2c426529694c1e9122fb2dfc29c6da55f68bceff34c1a06ff2c42923bf5546",
-  "finished_at": "2026-10-15T10:44:22.560109+00:00"
+  "finished_at": "2026-10-15T10:57:30.192659+00:00"
 }
