@@ -1,0 +1,4678 @@
+{
+  "status": "passed",
+  "started_at": "2026-10-15T11:11:43.436516+00:00",
+  "arguments": {
+    "project": "D:\\大学\\科研\\nanoGPT",
+    "device": "cpu",
+    "ep_size": 2,
+    "threads": 1,
+    "dtype": "float64",
+    "seed": 20261015,
+    "timeout": 120,
+    "rtol": null,
+    "atol": null,
+    "report": "ep_eval_report.json",
+    "keep_workdir": false
+  },
+  "script_sha256": "7f0e87f56cc0e6dbd0fd2fdac40c15c6a16e1a1a20dd87195a348be511b7e05f",
+  "scope": {
+    "original_evaluate_ep_and_main": true,
+    "independent_functional_full_MoE_CE_reference": true,
+    "unequal_rank_token_counts": true,
+    "auxiliary_penalty_excluded": true,
+    "dropout_disabled_and_modes_restored": true,
+    "exception_mode_restoration": true,
+    "parameters_buffers_existing_gradients_AdamW_preserved": true,
+    "independent_train_eval_and_global_RNG": true,
+    "actual_training_updates_against_oracle": true,
+    "periodic_final_every_step_disabled_eval_schedule": true,
+    "rank_zero_logging": true,
+    "paired_training_trajectories_eval_enabled_disabled": true,
+    "CPU_trajectory_comparison": "exact",
+    "CUDA_trajectory_comparison": "tolerance",
+    "all_targets_valid": true,
+    "rendezvous": "FileStore replaces env:// transport only",
+    "AMP_compile_checkpoint_multinode_expert_replica_groups": false
+  },
+  "worker_phases": {
+    "functions": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "evaluation CLI / disabled default / invalid counts",
+            "details": {}
+          },
+          {
+            "label": "eval-function bias=True k=1 aux_coef=0.19: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "eval-function bias=True k=1 aux_coef=0.19 initial_training=True call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4459384662721457,
+              "reference_global_ce": 3.4459384662721457,
+              "global_tokens": 27,
+              "local_batch_size": 1,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  1882
+                ],
+                [
+                  1305
+                ],
+                [
+                  1732
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=1 aux_coef=0.19 initial_training=True call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.457088358145342,
+              "reference_global_ce": 3.457088358145342,
+              "global_tokens": 27,
+              "local_batch_size": 1,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  2012
+                ],
+                [
+                  1572
+                ],
+                [
+                  2277
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=1 aux_coef=0.19 initial_training=False call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4459384662721457,
+              "reference_global_ce": 3.4459384662721457,
+              "global_tokens": 27,
+              "local_batch_size": 1,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  1882
+                ],
+                [
+                  1305
+                ],
+                [
+                  1732
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=1 aux_coef=0.19 initial_training=False call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.457088358145342,
+              "reference_global_ce": 3.457088358145342,
+              "global_tokens": 27,
+              "local_batch_size": 1,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  2012
+                ],
+                [
+                  1572
+                ],
+                [
+                  2277
+                ]
+              ]
+            }
+          },
+          {
+            "label": "evaluation exception restores training=True",
+            "details": {}
+          },
+          {
+            "label": "evaluation exception restores training=False",
+            "details": {}
+          },
+          {
+            "label": "evaluate_ep rejects zero/negative batch counts",
+            "details": {}
+          },
+          {
+            "label": "eval-function bias=False k=4 aux_coef=0.19: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "eval-function bias=False k=4 aux_coef=0.19 initial_training=True call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4392625961966594,
+              "reference_global_ce": 3.4392625961966594,
+              "global_tokens": 45,
+              "local_batch_size": 1,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  2200
+                ],
+                [
+                  552
+                ],
+                [
+                  2179
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=4 aux_coef=0.19 initial_training=True call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4533849276435937,
+              "reference_global_ce": 3.4533849276435937,
+              "global_tokens": 45,
+              "local_batch_size": 1,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  3209
+                ],
+                [
+                  3450
+                ],
+                [
+                  2731
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=4 aux_coef=0.19 initial_training=False call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4392625961966594,
+              "reference_global_ce": 3.4392625961966594,
+              "global_tokens": 45,
+              "local_batch_size": 1,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  2200
+                ],
+                [
+                  552
+                ],
+                [
+                  2179
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=4 aux_coef=0.19 initial_training=False call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4533849276435937,
+              "reference_global_ce": 3.4533849276435937,
+              "global_tokens": 45,
+              "local_batch_size": 1,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  3209
+                ],
+                [
+                  3450
+                ],
+                [
+                  2731
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=4 aux_coef=0.0: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "eval-function bias=True k=4 aux_coef=0.0 initial_training=True call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.448428172521497,
+              "reference_global_ce": 3.448428172521497,
+              "global_tokens": 27,
+              "local_batch_size": 1,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  80
+                ],
+                [
+                  1327
+                ],
+                [
+                  1789
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=4 aux_coef=0.0 initial_training=True call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.455302607024885,
+              "reference_global_ce": 3.455302607024885,
+              "global_tokens": 27,
+              "local_batch_size": 1,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  906
+                ],
+                [
+                  2947
+                ],
+                [
+                  2263
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=4 aux_coef=0.0 initial_training=False call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.448428172521497,
+              "reference_global_ce": 3.448428172521497,
+              "global_tokens": 27,
+              "local_batch_size": 1,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  80
+                ],
+                [
+                  1327
+                ],
+                [
+                  1789
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=4 aux_coef=0.0 initial_training=False call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.455302607024885,
+              "reference_global_ce": 3.455302607024885,
+              "global_tokens": 27,
+              "local_batch_size": 1,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  906
+                ],
+                [
+                  2947
+                ],
+                [
+                  2263
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=1 aux_coef=0.0: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "eval-function bias=False k=1 aux_coef=0.0 initial_training=True call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4539070015957787,
+              "reference_global_ce": 3.4539070015957787,
+              "global_tokens": 45,
+              "local_batch_size": 1,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  835
+                ],
+                [
+                  2828
+                ],
+                [
+                  3029
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=1 aux_coef=0.0 initial_training=True call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4305344770020376,
+              "reference_global_ce": 3.4305344770020376,
+              "global_tokens": 45,
+              "local_batch_size": 1,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  372
+                ],
+                [
+                  1204
+                ],
+                [
+                  2675
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=1 aux_coef=0.0 initial_training=False call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4539070015957787,
+              "reference_global_ce": 3.4539070015957787,
+              "global_tokens": 45,
+              "local_batch_size": 1,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  835
+                ],
+                [
+                  2828
+                ],
+                [
+                  3029
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=1 aux_coef=0.0 initial_training=False call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4305344770020376,
+              "reference_global_ce": 3.4305344770020376,
+              "global_tokens": 45,
+              "local_batch_size": 1,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  372
+                ],
+                [
+                  1204
+                ],
+                [
+                  2675
+                ]
+              ]
+            }
+          }
+        ],
+        "torch_version": "2.12.1+cpu"
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "evaluation CLI / disabled default / invalid counts",
+            "details": {}
+          },
+          {
+            "label": "eval-function bias=True k=1 aux_coef=0.19: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "eval-function bias=True k=1 aux_coef=0.19 initial_training=True call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4459384662721457,
+              "reference_global_ce": 3.4459384662721457,
+              "global_tokens": 27,
+              "local_batch_size": 2,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  640,
+                  1831
+                ],
+                [
+                  930,
+                  2927
+                ],
+                [
+                  2712,
+                  2621
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=1 aux_coef=0.19 initial_training=True call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.457088358145342,
+              "reference_global_ce": 3.457088358145342,
+              "global_tokens": 27,
+              "local_batch_size": 2,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  2978,
+                  2895
+                ],
+                [
+                  1238,
+                  3386
+                ],
+                [
+                  2565,
+                  2346
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=1 aux_coef=0.19 initial_training=False call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4459384662721457,
+              "reference_global_ce": 3.4459384662721457,
+              "global_tokens": 27,
+              "local_batch_size": 2,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  640,
+                  1831
+                ],
+                [
+                  930,
+                  2927
+                ],
+                [
+                  2712,
+                  2621
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=1 aux_coef=0.19 initial_training=False call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.457088358145342,
+              "reference_global_ce": 3.457088358145342,
+              "global_tokens": 27,
+              "local_batch_size": 2,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  2978,
+                  2895
+                ],
+                [
+                  1238,
+                  3386
+                ],
+                [
+                  2565,
+                  2346
+                ]
+              ]
+            }
+          },
+          {
+            "label": "evaluation exception restores training=True",
+            "details": {}
+          },
+          {
+            "label": "evaluation exception restores training=False",
+            "details": {}
+          },
+          {
+            "label": "evaluate_ep rejects zero/negative batch counts",
+            "details": {}
+          },
+          {
+            "label": "eval-function bias=False k=4 aux_coef=0.19: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "eval-function bias=False k=4 aux_coef=0.19 initial_training=True call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4392625961966594,
+              "reference_global_ce": 3.4392625961966594,
+              "global_tokens": 45,
+              "local_batch_size": 2,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  2901,
+                  3128
+                ],
+                [
+                  1045,
+                  3091
+                ],
+                [
+                  3405,
+                  164
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=4 aux_coef=0.19 initial_training=True call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4533849276435937,
+              "reference_global_ce": 3.4533849276435937,
+              "global_tokens": 45,
+              "local_batch_size": 2,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  1978,
+                  2731
+                ],
+                [
+                  353,
+                  1972
+                ],
+                [
+                  3372,
+                  797
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=4 aux_coef=0.19 initial_training=False call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4392625961966594,
+              "reference_global_ce": 3.4392625961966594,
+              "global_tokens": 45,
+              "local_batch_size": 2,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  2901,
+                  3128
+                ],
+                [
+                  1045,
+                  3091
+                ],
+                [
+                  3405,
+                  164
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=4 aux_coef=0.19 initial_training=False call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4533849276435937,
+              "reference_global_ce": 3.4533849276435937,
+              "global_tokens": 45,
+              "local_batch_size": 2,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  1978,
+                  2731
+                ],
+                [
+                  353,
+                  1972
+                ],
+                [
+                  3372,
+                  797
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=4 aux_coef=0.0: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "eval-function bias=True k=4 aux_coef=0.0 initial_training=True call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.448428172521497,
+              "reference_global_ce": 3.448428172521497,
+              "global_tokens": 27,
+              "local_batch_size": 2,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  3128,
+                  2675
+                ],
+                [
+                  2922,
+                  1289
+                ],
+                [
+                  3150,
+                  2584
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=4 aux_coef=0.0 initial_training=True call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.455302607024885,
+              "reference_global_ce": 3.455302607024885,
+              "global_tokens": 27,
+              "local_batch_size": 2,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  1240,
+                  3456
+                ],
+                [
+                  3477,
+                  2113
+                ],
+                [
+                  2656,
+                  3045
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=4 aux_coef=0.0 initial_training=False call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.448428172521497,
+              "reference_global_ce": 3.448428172521497,
+              "global_tokens": 27,
+              "local_batch_size": 2,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  3128,
+                  2675
+                ],
+                [
+                  2922,
+                  1289
+                ],
+                [
+                  3150,
+                  2584
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=True k=4 aux_coef=0.0 initial_training=False call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.455302607024885,
+              "reference_global_ce": 3.455302607024885,
+              "global_tokens": 27,
+              "local_batch_size": 2,
+              "local_sequence_length": 1,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  1240,
+                  3456
+                ],
+                [
+                  3477,
+                  2113
+                ],
+                [
+                  2656,
+                  3045
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=1 aux_coef=0.0: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "eval-function bias=False k=1 aux_coef=0.0 initial_training=True call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4539070015957787,
+              "reference_global_ce": 3.4539070015957787,
+              "global_tokens": 45,
+              "local_batch_size": 2,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  2705,
+                  2685
+                ],
+                [
+                  576,
+                  1914
+                ],
+                [
+                  1604,
+                  1771
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=1 aux_coef=0.0 initial_training=True call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4305344770020376,
+              "reference_global_ce": 3.4305344770020376,
+              "global_tokens": 45,
+              "local_batch_size": 2,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  517,
+                  666
+                ],
+                [
+                  3337,
+                  1585
+                ],
+                [
+                  2,
+                  2060
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=1 aux_coef=0.0 initial_training=False call=0: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4539070015957787,
+              "reference_global_ce": 3.4539070015957787,
+              "global_tokens": 45,
+              "local_batch_size": 2,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  2705,
+                  2685
+                ],
+                [
+                  576,
+                  1914
+                ],
+                [
+                  1604,
+                  1771
+                ]
+              ]
+            }
+          },
+          {
+            "label": "eval-function bias=False k=1 aux_coef=0.0 initial_training=False call=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4305344770020376,
+              "reference_global_ce": 3.4305344770020376,
+              "global_tokens": 45,
+              "local_batch_size": 2,
+              "local_sequence_length": 7,
+              "eval_iters": 3,
+              "initial_training_mode": false,
+              "sampled_starts": [
+                [
+                  517,
+                  666
+                ],
+                [
+                  3337,
+                  1585
+                ],
+                [
+                  2,
+                  2060
+                ]
+              ]
+            }
+          }
+        ],
+        "torch_version": "2.12.1+cpu"
+      }
+    ],
+    "baseline_tail": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "baseline_tail: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "baseline_tail step=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.796953154169082,
+              "global_loss": 3.7842721846526226,
+              "returned_loss": 3.7842721846526226,
+              "returned_grad_norm": 0.6720540212048675,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.6720540212048675,
+              "clip_coefficient": 0.014879734076046173,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  30,
+                  19,
+                  21,
+                  28
+                ],
+                [
+                  14,
+                  16,
+                  44,
+                  24
+                ]
+              ],
+              "max_parameter_abs_error": 2.3201926491189795e-17
+            }
+          },
+          {
+            "label": "baseline_tail step=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.7732955776444164,
+              "global_loss": 3.768143522337823,
+              "returned_loss": 3.768143522337823,
+              "returned_grad_norm": 0.7836766491724231,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.7836766491724231,
+              "clip_coefficient": 0.012760348608334268,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  18,
+                  14,
+                  38,
+                  28
+                ],
+                [
+                  13,
+                  12,
+                  31,
+                  42
+                ]
+              ],
+              "max_parameter_abs_error": 3.426078865054194e-17
+            }
+          },
+          {
+            "label": "baseline_tail step=2: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.774979562024186,
+              "global_loss": 3.7763528282690872,
+              "returned_loss": 3.7763528282690872,
+              "returned_grad_norm": 0.7267387595652498,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.7267387595652497,
+              "clip_coefficient": 0.013760083810444334,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  16,
+                  31,
+                  23,
+                  28
+                ],
+                [
+                  19,
+                  14,
+                  36,
+                  29
+                ]
+              ],
+              "max_parameter_abs_error": 3.447762908503904e-17
+            }
+          },
+          {
+            "label": "baseline_tail step=3: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.7644429251228373,
+              "global_loss": 3.761343900090892,
+              "returned_loss": 3.761343900090892,
+              "returned_grad_norm": 0.5873257065872065,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.5873257065872065,
+              "clip_coefficient": 0.01702629880072582,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  22,
+                  24,
+                  27,
+                  25
+                ],
+                [
+                  20,
+                  22,
+                  29,
+                  27
+                ]
+              ],
+              "max_parameter_abs_error": 3.447762908503904e-17
+            }
+          },
+          {
+            "label": "baseline_tail step=4: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.768054301458149,
+              "global_loss": 3.775827139667978,
+              "returned_loss": 3.775827139667978,
+              "returned_grad_norm": 0.6741908713840103,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.6741908713840103,
+              "clip_coefficient": 0.014832572780018195,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  25,
+                  28,
+                  23,
+                  22
+                ],
+                [
+                  22,
+                  29,
+                  22,
+                  25
+                ]
+              ],
+              "max_parameter_abs_error": 3.469446951953614e-17
+            }
+          }
+        ],
+        "case": {
+          "bias": true,
+          "k": 1,
+          "coef": 0.17,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 5,
+          "interval": 2,
+          "eval_iters": 2,
+          "name": "baseline_tail",
+          "eval_interval": 0
+        },
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6768\n[PASS] WORLD EP / shared-DP mapping and expert ownership\n[PASS] baseline_tail: global expert IDs / initial shared synchronization\n[PASS] baseline_tail step=0: loss / microbatches / gradients / AdamW / cleanup\niter 0: loss=3.784272, grad_norm=0.672054, stepped=True\n[PASS] baseline_tail step=1: loss / microbatches / gradients / AdamW / cleanup\n[PASS] baseline_tail step=2: loss / microbatches / gradients / AdamW / cleanup\niter 2: loss=3.776353, grad_norm=0.726739, stepped=True\n[PASS] baseline_tail step=3: loss / microbatches / gradients / AdamW / cleanup\n[PASS] baseline_tail step=4: loss / microbatches / gradients / AdamW / cleanup\niter 4: loss=3.775827, grad_norm=0.674191, stepped=True\n",
+        "steps": [
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.796953154169082,
+            "global_loss": 3.7842721846526226,
+            "returned_loss": 3.7842721846526226,
+            "returned_grad_norm": 0.6720540212048675,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.6720540212048675,
+            "clip_coefficient": 0.014879734076046173,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                30,
+                19,
+                21,
+                28
+              ],
+              [
+                14,
+                16,
+                44,
+                24
+              ]
+            ],
+            "max_parameter_abs_error": 2.3201926491189795e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.7732955776444164,
+            "global_loss": 3.768143522337823,
+            "returned_loss": 3.768143522337823,
+            "returned_grad_norm": 0.7836766491724231,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.7836766491724231,
+            "clip_coefficient": 0.012760348608334268,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                18,
+                14,
+                38,
+                28
+              ],
+              [
+                13,
+                12,
+                31,
+                42
+              ]
+            ],
+            "max_parameter_abs_error": 3.426078865054194e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.774979562024186,
+            "global_loss": 3.7763528282690872,
+            "returned_loss": 3.7763528282690872,
+            "returned_grad_norm": 0.7267387595652498,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.7267387595652497,
+            "clip_coefficient": 0.013760083810444334,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                16,
+                31,
+                23,
+                28
+              ],
+              [
+                19,
+                14,
+                36,
+                29
+              ]
+            ],
+            "max_parameter_abs_error": 3.447762908503904e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.7644429251228373,
+            "global_loss": 3.761343900090892,
+            "returned_loss": 3.761343900090892,
+            "returned_grad_norm": 0.5873257065872065,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.5873257065872065,
+            "clip_coefficient": 0.01702629880072582,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                22,
+                24,
+                27,
+                25
+              ],
+              [
+                20,
+                22,
+                29,
+                27
+              ]
+            ],
+            "max_parameter_abs_error": 3.447762908503904e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.768054301458149,
+            "global_loss": 3.775827139667978,
+            "returned_loss": 3.775827139667978,
+            "returned_grad_norm": 0.6741908713840103,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.6741908713840103,
+            "clip_coefficient": 0.014832572780018195,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                25,
+                28,
+                23,
+                22
+              ],
+              [
+                22,
+                29,
+                22,
+                25
+              ]
+            ],
+            "max_parameter_abs_error": 3.469446951953614e-17
+          }
+        ],
+        "evaluations": [],
+        "data_calls": {
+          "train": [
+            [
+              3136,
+              3697,
+              387,
+              2100,
+              3679,
+              533,
+              1972
+            ],
+            [
+              2640,
+              1875,
+              432,
+              1553,
+              3424,
+              754,
+              745
+            ],
+            [
+              3321,
+              2420,
+              184,
+              1510,
+              2578,
+              424,
+              274
+            ],
+            [
+              1874,
+              771,
+              1545,
+              4036,
+              4000,
+              3767,
+              954
+            ],
+            [
+              1393,
+              1981,
+              746,
+              1981,
+              4078,
+              1531,
+              1823
+            ]
+          ],
+          "val": []
+        },
+        "logged_evaluations": []
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "baseline_tail: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "baseline_tail step=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.771591215136163,
+              "global_loss": 3.7842721846526226,
+              "returned_loss": 3.7842721846526226,
+              "returned_grad_norm": 0.6720540212048675,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.6720540212048675,
+              "clip_coefficient": 0.014879734076046173,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  30,
+                  19,
+                  21,
+                  28
+                ],
+                [
+                  14,
+                  16,
+                  44,
+                  24
+                ]
+              ],
+              "max_parameter_abs_error": 2.862293735361732e-17
+            }
+          },
+          {
+            "label": "baseline_tail step=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.76299146703123,
+              "global_loss": 3.768143522337823,
+              "returned_loss": 3.768143522337823,
+              "returned_grad_norm": 0.7836766491724231,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.7836766491724231,
+              "clip_coefficient": 0.012760348608334268,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  18,
+                  14,
+                  38,
+                  28
+                ],
+                [
+                  13,
+                  12,
+                  31,
+                  42
+                ]
+              ],
+              "max_parameter_abs_error": 2.862293735361732e-17
+            }
+          },
+          {
+            "label": "baseline_tail step=2: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.7777260945139886,
+              "global_loss": 3.7763528282690872,
+              "returned_loss": 3.7763528282690872,
+              "returned_grad_norm": 0.7267387595652498,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.7267387595652497,
+              "clip_coefficient": 0.013760083810444334,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  16,
+                  31,
+                  23,
+                  28
+                ],
+                [
+                  19,
+                  14,
+                  36,
+                  29
+                ]
+              ],
+              "max_parameter_abs_error": 2.7755575615628914e-17
+            }
+          },
+          {
+            "label": "baseline_tail step=3: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.758244875058947,
+              "global_loss": 3.761343900090892,
+              "returned_loss": 3.761343900090892,
+              "returned_grad_norm": 0.5873257065872065,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.5873257065872065,
+              "clip_coefficient": 0.01702629880072582,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  22,
+                  24,
+                  27,
+                  25
+                ],
+                [
+                  20,
+                  22,
+                  29,
+                  27
+                ]
+              ],
+              "max_parameter_abs_error": 2.7755575615628914e-17
+            }
+          },
+          {
+            "label": "baseline_tail step=4: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.783599977877807,
+              "global_loss": 3.775827139667978,
+              "returned_loss": 3.775827139667978,
+              "returned_grad_norm": 0.6741908713840103,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.6741908713840103,
+              "clip_coefficient": 0.014832572780018195,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  25,
+                  28,
+                  23,
+                  22
+                ],
+                [
+                  22,
+                  29,
+                  22,
+                  25
+                ]
+              ],
+              "max_parameter_abs_error": 2.7755575615628914e-17
+            }
+          }
+        ],
+        "case": {
+          "bias": true,
+          "k": 1,
+          "coef": 0.17,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 5,
+          "interval": 2,
+          "eval_iters": 2,
+          "name": "baseline_tail",
+          "eval_interval": 0
+        },
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6768\n",
+        "steps": [
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.771591215136163,
+            "global_loss": 3.7842721846526226,
+            "returned_loss": 3.7842721846526226,
+            "returned_grad_norm": 0.6720540212048675,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.6720540212048675,
+            "clip_coefficient": 0.014879734076046173,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                30,
+                19,
+                21,
+                28
+              ],
+              [
+                14,
+                16,
+                44,
+                24
+              ]
+            ],
+            "max_parameter_abs_error": 2.862293735361732e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.76299146703123,
+            "global_loss": 3.768143522337823,
+            "returned_loss": 3.768143522337823,
+            "returned_grad_norm": 0.7836766491724231,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.7836766491724231,
+            "clip_coefficient": 0.012760348608334268,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                18,
+                14,
+                38,
+                28
+              ],
+              [
+                13,
+                12,
+                31,
+                42
+              ]
+            ],
+            "max_parameter_abs_error": 2.862293735361732e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.7777260945139886,
+            "global_loss": 3.7763528282690872,
+            "returned_loss": 3.7763528282690872,
+            "returned_grad_norm": 0.7267387595652498,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.7267387595652497,
+            "clip_coefficient": 0.013760083810444334,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                16,
+                31,
+                23,
+                28
+              ],
+              [
+                19,
+                14,
+                36,
+                29
+              ]
+            ],
+            "max_parameter_abs_error": 2.7755575615628914e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.758244875058947,
+            "global_loss": 3.761343900090892,
+            "returned_loss": 3.761343900090892,
+            "returned_grad_norm": 0.5873257065872065,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.5873257065872065,
+            "clip_coefficient": 0.01702629880072582,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                22,
+                24,
+                27,
+                25
+              ],
+              [
+                20,
+                22,
+                29,
+                27
+              ]
+            ],
+            "max_parameter_abs_error": 2.7755575615628914e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.783599977877807,
+            "global_loss": 3.775827139667978,
+            "returned_loss": 3.775827139667978,
+            "returned_grad_norm": 0.6741908713840103,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.6741908713840103,
+            "clip_coefficient": 0.014832572780018195,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                25,
+                28,
+                23,
+                22
+              ],
+              [
+                22,
+                29,
+                22,
+                25
+              ]
+            ],
+            "max_parameter_abs_error": 2.7755575615628914e-17
+          }
+        ],
+        "evaluations": [],
+        "data_calls": {
+          "train": [
+            [
+              1478,
+              2609,
+              633,
+              1363,
+              2972,
+              2883,
+              3742
+            ],
+            [
+              3884,
+              2194,
+              908,
+              3631,
+              2846,
+              824,
+              3843
+            ],
+            [
+              3707,
+              3248,
+              2780,
+              12,
+              73,
+              2548,
+              3634
+            ],
+            [
+              56,
+              1890,
+              3585,
+              2160,
+              797,
+              2417,
+              3206
+            ],
+            [
+              786,
+              894,
+              766,
+              2794,
+              390,
+              3875,
+              3316
+            ]
+          ],
+          "val": []
+        },
+        "logged_evaluations": []
+      }
+    ],
+    "eval_tail": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "eval_tail: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "eval_tail step=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.796953154169082,
+              "global_loss": 3.7842721846526226,
+              "returned_loss": 3.7842721846526226,
+              "returned_grad_norm": 0.6720540212048675,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.6720540212048675,
+              "clip_coefficient": 0.014879734076046173,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  30,
+                  19,
+                  21,
+                  28
+                ],
+                [
+                  14,
+                  16,
+                  44,
+                  24
+                ]
+              ],
+              "max_parameter_abs_error": 2.3201926491189795e-17
+            }
+          },
+          {
+            "label": "eval_tail step=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.7732955776444164,
+              "global_loss": 3.768143522337823,
+              "returned_loss": 3.768143522337823,
+              "returned_grad_norm": 0.7836766491724231,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.7836766491724231,
+              "clip_coefficient": 0.012760348608334268,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  18,
+                  14,
+                  38,
+                  28
+                ],
+                [
+                  13,
+                  12,
+                  31,
+                  42
+                ]
+              ],
+              "max_parameter_abs_error": 3.426078865054194e-17
+            }
+          },
+          {
+            "label": "eval_tail eval_after=2: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4352436386676217,
+              "reference_global_ce": 3.4352436386676217,
+              "global_tokens": 196,
+              "local_batch_size": 7,
+              "local_sequence_length": 7,
+              "eval_iters": 2,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  1882,
+                  1305,
+                  1732,
+                  2012,
+                  1572,
+                  2277,
+                  3210
+                ],
+                [
+                  2974,
+                  953,
+                  1439,
+                  3442,
+                  930,
+                  3184,
+                  1537
+                ]
+              ],
+              "completed_iters": 2
+            }
+          },
+          {
+            "label": "eval_tail step=2: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.774979562024186,
+              "global_loss": 3.7763528282690872,
+              "returned_loss": 3.7763528282690872,
+              "returned_grad_norm": 0.7267387595652498,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.7267387595652497,
+              "clip_coefficient": 0.013760083810444334,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  16,
+                  31,
+                  23,
+                  28
+                ],
+                [
+                  19,
+                  14,
+                  36,
+                  29
+                ]
+              ],
+              "max_parameter_abs_error": 3.447762908503904e-17
+            }
+          },
+          {
+            "label": "eval_tail step=3: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.7644429251228373,
+              "global_loss": 3.761343900090892,
+              "returned_loss": 3.761343900090892,
+              "returned_grad_norm": 0.5873257065872065,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.5873257065872065,
+              "clip_coefficient": 0.01702629880072582,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  22,
+                  24,
+                  27,
+                  25
+                ],
+                [
+                  20,
+                  22,
+                  29,
+                  27
+                ]
+              ],
+              "max_parameter_abs_error": 3.447762908503904e-17
+            }
+          },
+          {
+            "label": "eval_tail eval_after=4: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4300694012234922,
+              "reference_global_ce": 3.4300694012234922,
+              "global_tokens": 196,
+              "local_batch_size": 7,
+              "local_sequence_length": 7,
+              "eval_iters": 2,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  1412,
+                  616,
+                  1454,
+                  2972,
+                  1283,
+                  1131,
+                  1786
+                ],
+                [
+                  1057,
+                  3536,
+                  2233,
+                  1087,
+                  2396,
+                  2666,
+                  1565
+                ]
+              ],
+              "completed_iters": 4
+            }
+          },
+          {
+            "label": "eval_tail step=4: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.768054301458149,
+              "global_loss": 3.775827139667978,
+              "returned_loss": 3.775827139667978,
+              "returned_grad_norm": 0.6741908713840103,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.6741908713840103,
+              "clip_coefficient": 0.014832572780018195,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  25,
+                  28,
+                  23,
+                  22
+                ],
+                [
+                  22,
+                  29,
+                  22,
+                  25
+                ]
+              ],
+              "max_parameter_abs_error": 3.469446951953614e-17
+            }
+          },
+          {
+            "label": "eval_tail eval_after=5: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4447722284413596,
+              "reference_global_ce": 3.4447722284413596,
+              "global_tokens": 196,
+              "local_batch_size": 7,
+              "local_sequence_length": 7,
+              "eval_iters": 2,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  810,
+                  1984,
+                  2835,
+                  821,
+                  1168,
+                  83,
+                  885
+                ],
+                [
+                  1679,
+                  775,
+                  1842,
+                  183,
+                  1658,
+                  1865,
+                  3341
+                ]
+              ],
+              "completed_iters": 5
+            }
+          }
+        ],
+        "case": {
+          "bias": true,
+          "k": 1,
+          "coef": 0.17,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 5,
+          "interval": 2,
+          "eval_iters": 2,
+          "name": "eval_tail",
+          "eval_interval": 2
+        },
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6768\n[PASS] WORLD EP / shared-DP mapping and expert ownership\n[PASS] eval_tail: global expert IDs / initial shared synchronization\n[PASS] eval_tail step=0: loss / microbatches / gradients / AdamW / cleanup\niter 0: loss=3.784272, grad_norm=0.672054, stepped=True\n[PASS] eval_tail step=1: loss / microbatches / gradients / AdamW / cleanup\n[PASS] eval_tail eval_after=2: CE / token weighting / modes / gradients / AdamW / RNG\neval after 2 steps: val_loss=3.435244\n[PASS] eval_tail step=2: loss / microbatches / gradients / AdamW / cleanup\niter 2: loss=3.776353, grad_norm=0.726739, stepped=True\n[PASS] eval_tail step=3: loss / microbatches / gradients / AdamW / cleanup\n[PASS] eval_tail eval_after=4: CE / token weighting / modes / gradients / AdamW / RNG\neval after 4 steps: val_loss=3.430069\n[PASS] eval_tail step=4: loss / microbatches / gradients / AdamW / cleanup\n[PASS] eval_tail eval_after=5: CE / token weighting / modes / gradients / AdamW / RNG\neval after 5 steps: val_loss=3.444772\niter 4: loss=3.775827, grad_norm=0.674191, stepped=True\n",
+        "steps": [
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.796953154169082,
+            "global_loss": 3.7842721846526226,
+            "returned_loss": 3.7842721846526226,
+            "returned_grad_norm": 0.6720540212048675,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.6720540212048675,
+            "clip_coefficient": 0.014879734076046173,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                30,
+                19,
+                21,
+                28
+              ],
+              [
+                14,
+                16,
+                44,
+                24
+              ]
+            ],
+            "max_parameter_abs_error": 2.3201926491189795e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.7732955776444164,
+            "global_loss": 3.768143522337823,
+            "returned_loss": 3.768143522337823,
+            "returned_grad_norm": 0.7836766491724231,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.7836766491724231,
+            "clip_coefficient": 0.012760348608334268,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                18,
+                14,
+                38,
+                28
+              ],
+              [
+                13,
+                12,
+                31,
+                42
+              ]
+            ],
+            "max_parameter_abs_error": 3.426078865054194e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.774979562024186,
+            "global_loss": 3.7763528282690872,
+            "returned_loss": 3.7763528282690872,
+            "returned_grad_norm": 0.7267387595652498,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.7267387595652497,
+            "clip_coefficient": 0.013760083810444334,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                16,
+                31,
+                23,
+                28
+              ],
+              [
+                19,
+                14,
+                36,
+                29
+              ]
+            ],
+            "max_parameter_abs_error": 3.447762908503904e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.7644429251228373,
+            "global_loss": 3.761343900090892,
+            "returned_loss": 3.761343900090892,
+            "returned_grad_norm": 0.5873257065872065,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.5873257065872065,
+            "clip_coefficient": 0.01702629880072582,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                22,
+                24,
+                27,
+                25
+              ],
+              [
+                20,
+                22,
+                29,
+                27
+              ]
+            ],
+            "max_parameter_abs_error": 3.447762908503904e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.768054301458149,
+            "global_loss": 3.775827139667978,
+            "returned_loss": 3.775827139667978,
+            "returned_grad_norm": 0.6741908713840103,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.6741908713840103,
+            "clip_coefficient": 0.014832572780018195,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                25,
+                28,
+                23,
+                22
+              ],
+              [
+                22,
+                29,
+                22,
+                25
+              ]
+            ],
+            "max_parameter_abs_error": 3.469446951953614e-17
+          }
+        ],
+        "evaluations": [
+          {
+            "loss": 3.4352436386676217,
+            "reference_global_ce": 3.4352436386676217,
+            "global_tokens": 196,
+            "local_batch_size": 7,
+            "local_sequence_length": 7,
+            "eval_iters": 2,
+            "initial_training_mode": true,
+            "sampled_starts": [
+              [
+                1882,
+                1305,
+                1732,
+                2012,
+                1572,
+                2277,
+                3210
+              ],
+              [
+                2974,
+                953,
+                1439,
+                3442,
+                930,
+                3184,
+                1537
+              ]
+            ],
+            "completed_iters": 2
+          },
+          {
+            "loss": 3.4300694012234922,
+            "reference_global_ce": 3.4300694012234922,
+            "global_tokens": 196,
+            "local_batch_size": 7,
+            "local_sequence_length": 7,
+            "eval_iters": 2,
+            "initial_training_mode": true,
+            "sampled_starts": [
+              [
+                1412,
+                616,
+                1454,
+                2972,
+                1283,
+                1131,
+                1786
+              ],
+              [
+                1057,
+                3536,
+                2233,
+                1087,
+                2396,
+                2666,
+                1565
+              ]
+            ],
+            "completed_iters": 4
+          },
+          {
+            "loss": 3.4447722284413596,
+            "reference_global_ce": 3.4447722284413596,
+            "global_tokens": 196,
+            "local_batch_size": 7,
+            "local_sequence_length": 7,
+            "eval_iters": 2,
+            "initial_training_mode": true,
+            "sampled_starts": [
+              [
+                810,
+                1984,
+                2835,
+                821,
+                1168,
+                83,
+                885
+              ],
+              [
+                1679,
+                775,
+                1842,
+                183,
+                1658,
+                1865,
+                3341
+              ]
+            ],
+            "completed_iters": 5
+          }
+        ],
+        "data_calls": {
+          "train": [
+            [
+              3136,
+              3697,
+              387,
+              2100,
+              3679,
+              533,
+              1972
+            ],
+            [
+              2640,
+              1875,
+              432,
+              1553,
+              3424,
+              754,
+              745
+            ],
+            [
+              3321,
+              2420,
+              184,
+              1510,
+              2578,
+              424,
+              274
+            ],
+            [
+              1874,
+              771,
+              1545,
+              4036,
+              4000,
+              3767,
+              954
+            ],
+            [
+              1393,
+              1981,
+              746,
+              1981,
+              4078,
+              1531,
+              1823
+            ]
+          ],
+          "val": [
+            [
+              1882,
+              1305,
+              1732,
+              2012,
+              1572,
+              2277,
+              3210
+            ],
+            [
+              2974,
+              953,
+              1439,
+              3442,
+              930,
+              3184,
+              1537
+            ],
+            [
+              1412,
+              616,
+              1454,
+              2972,
+              1283,
+              1131,
+              1786
+            ],
+            [
+              1057,
+              3536,
+              2233,
+              1087,
+              2396,
+              2666,
+              1565
+            ],
+            [
+              810,
+              1984,
+              2835,
+              821,
+              1168,
+              83,
+              885
+            ],
+            [
+              1679,
+              775,
+              1842,
+              183,
+              1658,
+              1865,
+              3341
+            ]
+          ]
+        },
+        "logged_evaluations": [
+          2,
+          4,
+          5
+        ]
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "eval_tail: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "eval_tail step=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.771591215136163,
+              "global_loss": 3.7842721846526226,
+              "returned_loss": 3.7842721846526226,
+              "returned_grad_norm": 0.6720540212048675,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.6720540212048675,
+              "clip_coefficient": 0.014879734076046173,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  30,
+                  19,
+                  21,
+                  28
+                ],
+                [
+                  14,
+                  16,
+                  44,
+                  24
+                ]
+              ],
+              "max_parameter_abs_error": 2.862293735361732e-17
+            }
+          },
+          {
+            "label": "eval_tail step=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.76299146703123,
+              "global_loss": 3.768143522337823,
+              "returned_loss": 3.768143522337823,
+              "returned_grad_norm": 0.7836766491724231,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.7836766491724231,
+              "clip_coefficient": 0.012760348608334268,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  18,
+                  14,
+                  38,
+                  28
+                ],
+                [
+                  13,
+                  12,
+                  31,
+                  42
+                ]
+              ],
+              "max_parameter_abs_error": 2.862293735361732e-17
+            }
+          },
+          {
+            "label": "eval_tail eval_after=2: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4352436386676217,
+              "reference_global_ce": 3.4352436386676217,
+              "global_tokens": 196,
+              "local_batch_size": 7,
+              "local_sequence_length": 7,
+              "eval_iters": 2,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  1296,
+                  2759,
+                  2440,
+                  2551,
+                  3172,
+                  1001,
+                  414
+                ],
+                [
+                  1811,
+                  2352,
+                  60,
+                  351,
+                  2074,
+                  1262,
+                  1766
+                ]
+              ],
+              "completed_iters": 2
+            }
+          },
+          {
+            "label": "eval_tail step=2: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.7777260945139886,
+              "global_loss": 3.7763528282690872,
+              "returned_loss": 3.7763528282690872,
+              "returned_grad_norm": 0.7267387595652498,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.7267387595652497,
+              "clip_coefficient": 0.013760083810444334,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  16,
+                  31,
+                  23,
+                  28
+                ],
+                [
+                  19,
+                  14,
+                  36,
+                  29
+                ]
+              ],
+              "max_parameter_abs_error": 2.7755575615628914e-17
+            }
+          },
+          {
+            "label": "eval_tail step=3: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.758244875058947,
+              "global_loss": 3.761343900090892,
+              "returned_loss": 3.761343900090892,
+              "returned_grad_norm": 0.5873257065872065,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.5873257065872065,
+              "clip_coefficient": 0.01702629880072582,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  22,
+                  24,
+                  27,
+                  25
+                ],
+                [
+                  20,
+                  22,
+                  29,
+                  27
+                ]
+              ],
+              "max_parameter_abs_error": 2.7755575615628914e-17
+            }
+          },
+          {
+            "label": "eval_tail eval_after=4: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4300694012234922,
+              "reference_global_ce": 3.4300694012234922,
+              "global_tokens": 196,
+              "local_batch_size": 7,
+              "local_sequence_length": 7,
+              "eval_iters": 2,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  787,
+                  3155,
+                  1433,
+                  1897,
+                  2304,
+                  1817,
+                  1045
+                ],
+                [
+                  903,
+                  3042,
+                  1451,
+                  2820,
+                  3099,
+                  2590,
+                  3518
+                ]
+              ],
+              "completed_iters": 4
+            }
+          },
+          {
+            "label": "eval_tail step=4: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.783599977877807,
+              "global_loss": 3.775827139667978,
+              "returned_loss": 3.775827139667978,
+              "returned_grad_norm": 0.6741908713840103,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.6741908713840103,
+              "clip_coefficient": 0.014832572780018195,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  25,
+                  28,
+                  23,
+                  22
+                ],
+                [
+                  22,
+                  29,
+                  22,
+                  25
+                ]
+              ],
+              "max_parameter_abs_error": 2.7755575615628914e-17
+            }
+          },
+          {
+            "label": "eval_tail eval_after=5: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4447722284413596,
+              "reference_global_ce": 3.4447722284413596,
+              "global_tokens": 196,
+              "local_batch_size": 7,
+              "local_sequence_length": 7,
+              "eval_iters": 2,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  325,
+                  230,
+                  1187,
+                  2852,
+                  2696,
+                  3402,
+                  3517
+                ],
+                [
+                  1263,
+                  2650,
+                  2629,
+                  113,
+                  769,
+                  1396,
+                  663
+                ]
+              ],
+              "completed_iters": 5
+            }
+          }
+        ],
+        "case": {
+          "bias": true,
+          "k": 1,
+          "coef": 0.17,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 5,
+          "interval": 2,
+          "eval_iters": 2,
+          "name": "eval_tail",
+          "eval_interval": 2
+        },
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6768\n",
+        "steps": [
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.771591215136163,
+            "global_loss": 3.7842721846526226,
+            "returned_loss": 3.7842721846526226,
+            "returned_grad_norm": 0.6720540212048675,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.6720540212048675,
+            "clip_coefficient": 0.014879734076046173,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                30,
+                19,
+                21,
+                28
+              ],
+              [
+                14,
+                16,
+                44,
+                24
+              ]
+            ],
+            "max_parameter_abs_error": 2.862293735361732e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.76299146703123,
+            "global_loss": 3.768143522337823,
+            "returned_loss": 3.768143522337823,
+            "returned_grad_norm": 0.7836766491724231,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.7836766491724231,
+            "clip_coefficient": 0.012760348608334268,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                18,
+                14,
+                38,
+                28
+              ],
+              [
+                13,
+                12,
+                31,
+                42
+              ]
+            ],
+            "max_parameter_abs_error": 2.862293735361732e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.7777260945139886,
+            "global_loss": 3.7763528282690872,
+            "returned_loss": 3.7763528282690872,
+            "returned_grad_norm": 0.7267387595652498,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.7267387595652497,
+            "clip_coefficient": 0.013760083810444334,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                16,
+                31,
+                23,
+                28
+              ],
+              [
+                19,
+                14,
+                36,
+                29
+              ]
+            ],
+            "max_parameter_abs_error": 2.7755575615628914e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.758244875058947,
+            "global_loss": 3.761343900090892,
+            "returned_loss": 3.761343900090892,
+            "returned_grad_norm": 0.5873257065872065,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.5873257065872065,
+            "clip_coefficient": 0.01702629880072582,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                22,
+                24,
+                27,
+                25
+              ],
+              [
+                20,
+                22,
+                29,
+                27
+              ]
+            ],
+            "max_parameter_abs_error": 2.7755575615628914e-17
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.783599977877807,
+            "global_loss": 3.775827139667978,
+            "returned_loss": 3.775827139667978,
+            "returned_grad_norm": 0.6741908713840103,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.6741908713840103,
+            "clip_coefficient": 0.014832572780018195,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                25,
+                28,
+                23,
+                22
+              ],
+              [
+                22,
+                29,
+                22,
+                25
+              ]
+            ],
+            "max_parameter_abs_error": 2.7755575615628914e-17
+          }
+        ],
+        "evaluations": [
+          {
+            "loss": 3.4352436386676217,
+            "reference_global_ce": 3.4352436386676217,
+            "global_tokens": 196,
+            "local_batch_size": 7,
+            "local_sequence_length": 7,
+            "eval_iters": 2,
+            "initial_training_mode": true,
+            "sampled_starts": [
+              [
+                1296,
+                2759,
+                2440,
+                2551,
+                3172,
+                1001,
+                414
+              ],
+              [
+                1811,
+                2352,
+                60,
+                351,
+                2074,
+                1262,
+                1766
+              ]
+            ],
+            "completed_iters": 2
+          },
+          {
+            "loss": 3.4300694012234922,
+            "reference_global_ce": 3.4300694012234922,
+            "global_tokens": 196,
+            "local_batch_size": 7,
+            "local_sequence_length": 7,
+            "eval_iters": 2,
+            "initial_training_mode": true,
+            "sampled_starts": [
+              [
+                787,
+                3155,
+                1433,
+                1897,
+                2304,
+                1817,
+                1045
+              ],
+              [
+                903,
+                3042,
+                1451,
+                2820,
+                3099,
+                2590,
+                3518
+              ]
+            ],
+            "completed_iters": 4
+          },
+          {
+            "loss": 3.4447722284413596,
+            "reference_global_ce": 3.4447722284413596,
+            "global_tokens": 196,
+            "local_batch_size": 7,
+            "local_sequence_length": 7,
+            "eval_iters": 2,
+            "initial_training_mode": true,
+            "sampled_starts": [
+              [
+                325,
+                230,
+                1187,
+                2852,
+                2696,
+                3402,
+                3517
+              ],
+              [
+                1263,
+                2650,
+                2629,
+                113,
+                769,
+                1396,
+                663
+              ]
+            ],
+            "completed_iters": 5
+          }
+        ],
+        "data_calls": {
+          "train": [
+            [
+              1478,
+              2609,
+              633,
+              1363,
+              2972,
+              2883,
+              3742
+            ],
+            [
+              3884,
+              2194,
+              908,
+              3631,
+              2846,
+              824,
+              3843
+            ],
+            [
+              3707,
+              3248,
+              2780,
+              12,
+              73,
+              2548,
+              3634
+            ],
+            [
+              56,
+              1890,
+              3585,
+              2160,
+              797,
+              2417,
+              3206
+            ],
+            [
+              786,
+              894,
+              766,
+              2794,
+              390,
+              3875,
+              3316
+            ]
+          ],
+          "val": [
+            [
+              1296,
+              2759,
+              2440,
+              2551,
+              3172,
+              1001,
+              414
+            ],
+            [
+              1811,
+              2352,
+              60,
+              351,
+              2074,
+              1262,
+              1766
+            ],
+            [
+              787,
+              3155,
+              1433,
+              1897,
+              2304,
+              1817,
+              1045
+            ],
+            [
+              903,
+              3042,
+              1451,
+              2820,
+              3099,
+              2590,
+              3518
+            ],
+            [
+              325,
+              230,
+              1187,
+              2852,
+              2696,
+              3402,
+              3517
+            ],
+            [
+              1263,
+              2650,
+              2629,
+              113,
+              769,
+              1396,
+              663
+            ]
+          ]
+        },
+        "logged_evaluations": []
+      }
+    ],
+    "baseline_full": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "baseline_full: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "baseline_full step=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.774461122427674,
+              "global_loss": 3.7531805722782865,
+              "returned_loss": 3.7531805722782865,
+              "returned_grad_norm": 2.1101150220208167,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 2.1101150220208167,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 1.582067810090848e-15
+            }
+          },
+          {
+            "label": "baseline_full step=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.740498439203014,
+              "global_loss": 3.727713601569949,
+              "returned_loss": 3.727713601569949,
+              "returned_grad_norm": 1.7923502864246892,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 1.7923502864246894,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 2.067790383364354e-15
+            }
+          }
+        ],
+        "case": {
+          "bias": false,
+          "k": 4,
+          "coef": 0.17,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 2,
+          "interval": 5,
+          "eval_iters": 1,
+          "name": "baseline_full",
+          "eval_interval": 0
+        },
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6372\n[PASS] WORLD EP / shared-DP mapping and expert ownership\n[PASS] baseline_full: global expert IDs / initial shared synchronization\n[PASS] baseline_full step=0: loss / microbatches / gradients / AdamW / cleanup\niter 0: loss=3.753181, grad_norm=2.110115, stepped=True\n[PASS] baseline_full step=1: loss / microbatches / gradients / AdamW / cleanup\niter 1: loss=3.727714, grad_norm=1.792350, stepped=True\n",
+        "steps": [
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.774461122427674,
+            "global_loss": 3.7531805722782865,
+            "returned_loss": 3.7531805722782865,
+            "returned_grad_norm": 2.1101150220208167,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 2.1101150220208167,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.582067810090848e-15
+          },
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.740498439203014,
+            "global_loss": 3.727713601569949,
+            "returned_loss": 3.727713601569949,
+            "returned_grad_norm": 1.7923502864246892,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.7923502864246894,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 2.067790383364354e-15
+          }
+        ],
+        "evaluations": [],
+        "data_calls": {
+          "train": [
+            [
+              2425,
+              3118,
+              1446
+            ],
+            [
+              2583,
+              1150,
+              311
+            ]
+          ],
+          "val": []
+        },
+        "logged_evaluations": []
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "baseline_full: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "baseline_full step=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.7319000221288996,
+              "global_loss": 3.7531805722782865,
+              "returned_loss": 3.7531805722782865,
+              "returned_grad_norm": 2.1101150220208167,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 2.1101150220208167,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 1.582067810090848e-15
+            }
+          },
+          {
+            "label": "baseline_full step=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.714928763936884,
+              "global_loss": 3.727713601569949,
+              "returned_loss": 3.727713601569949,
+              "returned_grad_norm": 1.7923502864246892,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 1.7923502864246894,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 2.067790383364354e-15
+            }
+          }
+        ],
+        "case": {
+          "bias": false,
+          "k": 4,
+          "coef": 0.17,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 2,
+          "interval": 5,
+          "eval_iters": 1,
+          "name": "baseline_full",
+          "eval_interval": 0
+        },
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6372\n",
+        "steps": [
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.7319000221288996,
+            "global_loss": 3.7531805722782865,
+            "returned_loss": 3.7531805722782865,
+            "returned_grad_norm": 2.1101150220208167,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 2.1101150220208167,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.582067810090848e-15
+          },
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.714928763936884,
+            "global_loss": 3.727713601569949,
+            "returned_loss": 3.727713601569949,
+            "returned_grad_norm": 1.7923502864246892,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.7923502864246894,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 2.067790383364354e-15
+          }
+        ],
+        "evaluations": [],
+        "data_calls": {
+          "train": [
+            [
+              926,
+              2624,
+              2013
+            ],
+            [
+              577,
+              1982,
+              1347
+            ]
+          ],
+          "val": []
+        },
+        "logged_evaluations": []
+      }
+    ],
+    "eval_every": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "eval_every: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "eval_every step=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.774461122427674,
+              "global_loss": 3.7531805722782865,
+              "returned_loss": 3.7531805722782865,
+              "returned_grad_norm": 2.1101150220208167,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 2.1101150220208167,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 1.582067810090848e-15
+            }
+          },
+          {
+            "label": "eval_every eval_after=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.419940688900018,
+              "reference_global_ce": 3.419940688900018,
+              "global_tokens": 6,
+              "local_batch_size": 3,
+              "local_sequence_length": 1,
+              "eval_iters": 1,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  3532,
+                  17,
+                  3282
+                ]
+              ],
+              "completed_iters": 1
+            }
+          },
+          {
+            "label": "eval_every step=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.740498439203014,
+              "global_loss": 3.727713601569949,
+              "returned_loss": 3.727713601569949,
+              "returned_grad_norm": 1.7923502864246892,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 1.7923502864246894,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 2.067790383364354e-15
+            }
+          },
+          {
+            "label": "eval_every eval_after=2: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.407329290982419,
+              "reference_global_ce": 3.407329290982419,
+              "global_tokens": 6,
+              "local_batch_size": 3,
+              "local_sequence_length": 1,
+              "eval_iters": 1,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  430,
+                  2620,
+                  2287
+                ]
+              ],
+              "completed_iters": 2
+            }
+          }
+        ],
+        "case": {
+          "bias": false,
+          "k": 4,
+          "coef": 0.17,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 2,
+          "interval": 5,
+          "eval_iters": 1,
+          "name": "eval_every",
+          "eval_interval": 1
+        },
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6372\n[PASS] WORLD EP / shared-DP mapping and expert ownership\n[PASS] eval_every: global expert IDs / initial shared synchronization\n[PASS] eval_every step=0: loss / microbatches / gradients / AdamW / cleanup\n[PASS] eval_every eval_after=1: CE / token weighting / modes / gradients / AdamW / RNG\neval after 1 steps: val_loss=3.419941\niter 0: loss=3.753181, grad_norm=2.110115, stepped=True\n[PASS] eval_every step=1: loss / microbatches / gradients / AdamW / cleanup\n[PASS] eval_every eval_after=2: CE / token weighting / modes / gradients / AdamW / RNG\neval after 2 steps: val_loss=3.407329\niter 1: loss=3.727714, grad_norm=1.792350, stepped=True\n",
+        "steps": [
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.774461122427674,
+            "global_loss": 3.7531805722782865,
+            "returned_loss": 3.7531805722782865,
+            "returned_grad_norm": 2.1101150220208167,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 2.1101150220208167,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.582067810090848e-15
+          },
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.740498439203014,
+            "global_loss": 3.727713601569949,
+            "returned_loss": 3.727713601569949,
+            "returned_grad_norm": 1.7923502864246892,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.7923502864246894,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 2.067790383364354e-15
+          }
+        ],
+        "evaluations": [
+          {
+            "loss": 3.419940688900018,
+            "reference_global_ce": 3.419940688900018,
+            "global_tokens": 6,
+            "local_batch_size": 3,
+            "local_sequence_length": 1,
+            "eval_iters": 1,
+            "initial_training_mode": true,
+            "sampled_starts": [
+              [
+                3532,
+                17,
+                3282
+              ]
+            ],
+            "completed_iters": 1
+          },
+          {
+            "loss": 3.407329290982419,
+            "reference_global_ce": 3.407329290982419,
+            "global_tokens": 6,
+            "local_batch_size": 3,
+            "local_sequence_length": 1,
+            "eval_iters": 1,
+            "initial_training_mode": true,
+            "sampled_starts": [
+              [
+                430,
+                2620,
+                2287
+              ]
+            ],
+            "completed_iters": 2
+          }
+        ],
+        "data_calls": {
+          "train": [
+            [
+              2425,
+              3118,
+              1446
+            ],
+            [
+              2583,
+              1150,
+              311
+            ]
+          ],
+          "val": [
+            [
+              3532,
+              17,
+              3282
+            ],
+            [
+              430,
+              2620,
+              2287
+            ]
+          ]
+        },
+        "logged_evaluations": [
+          1,
+          2
+        ]
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "eval_every: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "eval_every step=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.7319000221288996,
+              "global_loss": 3.7531805722782865,
+              "returned_loss": 3.7531805722782865,
+              "returned_grad_norm": 2.1101150220208167,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 2.1101150220208167,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 1.582067810090848e-15
+            }
+          },
+          {
+            "label": "eval_every eval_after=1: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.419940688900018,
+              "reference_global_ce": 3.419940688900018,
+              "global_tokens": 6,
+              "local_batch_size": 3,
+              "local_sequence_length": 1,
+              "eval_iters": 1,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  640,
+                  1831,
+                  930
+                ]
+              ],
+              "completed_iters": 1
+            }
+          },
+          {
+            "label": "eval_every step=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.714928763936884,
+              "global_loss": 3.727713601569949,
+              "returned_loss": 3.727713601569949,
+              "returned_grad_norm": 1.7923502864246892,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 1.7923502864246894,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 2.067790383364354e-15
+            }
+          },
+          {
+            "label": "eval_every eval_after=2: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.407329290982419,
+              "reference_global_ce": 3.407329290982419,
+              "global_tokens": 6,
+              "local_batch_size": 3,
+              "local_sequence_length": 1,
+              "eval_iters": 1,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  2927,
+                  2712,
+                  2621
+                ]
+              ],
+              "completed_iters": 2
+            }
+          }
+        ],
+        "case": {
+          "bias": false,
+          "k": 4,
+          "coef": 0.17,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 2,
+          "interval": 5,
+          "eval_iters": 1,
+          "name": "eval_every",
+          "eval_interval": 1
+        },
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6372\n",
+        "steps": [
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.7319000221288996,
+            "global_loss": 3.7531805722782865,
+            "returned_loss": 3.7531805722782865,
+            "returned_grad_norm": 2.1101150220208167,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 2.1101150220208167,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.582067810090848e-15
+          },
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.714928763936884,
+            "global_loss": 3.727713601569949,
+            "returned_loss": 3.727713601569949,
+            "returned_grad_norm": 1.7923502864246892,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.7923502864246894,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 2.067790383364354e-15
+          }
+        ],
+        "evaluations": [
+          {
+            "loss": 3.419940688900018,
+            "reference_global_ce": 3.419940688900018,
+            "global_tokens": 6,
+            "local_batch_size": 3,
+            "local_sequence_length": 1,
+            "eval_iters": 1,
+            "initial_training_mode": true,
+            "sampled_starts": [
+              [
+                640,
+                1831,
+                930
+              ]
+            ],
+            "completed_iters": 1
+          },
+          {
+            "loss": 3.407329290982419,
+            "reference_global_ce": 3.407329290982419,
+            "global_tokens": 6,
+            "local_batch_size": 3,
+            "local_sequence_length": 1,
+            "eval_iters": 1,
+            "initial_training_mode": true,
+            "sampled_starts": [
+              [
+                2927,
+                2712,
+                2621
+              ]
+            ],
+            "completed_iters": 2
+          }
+        ],
+        "data_calls": {
+          "train": [
+            [
+              926,
+              2624,
+              2013
+            ],
+            [
+              577,
+              1982,
+              1347
+            ]
+          ],
+          "val": [
+            [
+              640,
+              1831,
+              930
+            ],
+            [
+              2927,
+              2712,
+              2621
+            ]
+          ]
+        },
+        "logged_evaluations": []
+      }
+    ],
+    "eval_final": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "eval_final: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "eval_final step=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.774461122427674,
+              "global_loss": 3.7531805722782865,
+              "returned_loss": 3.7531805722782865,
+              "returned_grad_norm": 2.1101150220208167,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 2.1101150220208167,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 1.582067810090848e-15
+            }
+          },
+          {
+            "label": "eval_final step=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.740498439203014,
+              "global_loss": 3.727713601569949,
+              "returned_loss": 3.727713601569949,
+              "returned_grad_norm": 1.7923502864246892,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 1.7923502864246894,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 2.067790383364354e-15
+            }
+          },
+          {
+            "label": "eval_final eval_after=2: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4219528119989087,
+              "reference_global_ce": 3.4219528119989087,
+              "global_tokens": 6,
+              "local_batch_size": 3,
+              "local_sequence_length": 1,
+              "eval_iters": 1,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  3532,
+                  17,
+                  3282
+                ]
+              ],
+              "completed_iters": 2
+            }
+          }
+        ],
+        "case": {
+          "bias": false,
+          "k": 4,
+          "coef": 0.17,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 2,
+          "interval": 5,
+          "eval_iters": 1,
+          "name": "eval_final",
+          "eval_interval": 10
+        },
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6372\n[PASS] WORLD EP / shared-DP mapping and expert ownership\n[PASS] eval_final: global expert IDs / initial shared synchronization\n[PASS] eval_final step=0: loss / microbatches / gradients / AdamW / cleanup\niter 0: loss=3.753181, grad_norm=2.110115, stepped=True\n[PASS] eval_final step=1: loss / microbatches / gradients / AdamW / cleanup\n[PASS] eval_final eval_after=2: CE / token weighting / modes / gradients / AdamW / RNG\neval after 2 steps: val_loss=3.421953\niter 1: loss=3.727714, grad_norm=1.792350, stepped=True\n",
+        "steps": [
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.774461122427674,
+            "global_loss": 3.7531805722782865,
+            "returned_loss": 3.7531805722782865,
+            "returned_grad_norm": 2.1101150220208167,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 2.1101150220208167,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.582067810090848e-15
+          },
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.740498439203014,
+            "global_loss": 3.727713601569949,
+            "returned_loss": 3.727713601569949,
+            "returned_grad_norm": 1.7923502864246892,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.7923502864246894,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 2.067790383364354e-15
+          }
+        ],
+        "evaluations": [
+          {
+            "loss": 3.4219528119989087,
+            "reference_global_ce": 3.4219528119989087,
+            "global_tokens": 6,
+            "local_batch_size": 3,
+            "local_sequence_length": 1,
+            "eval_iters": 1,
+            "initial_training_mode": true,
+            "sampled_starts": [
+              [
+                3532,
+                17,
+                3282
+              ]
+            ],
+            "completed_iters": 2
+          }
+        ],
+        "data_calls": {
+          "train": [
+            [
+              2425,
+              3118,
+              1446
+            ],
+            [
+              2583,
+              1150,
+              311
+            ]
+          ],
+          "val": [
+            [
+              3532,
+              17,
+              3282
+            ]
+          ]
+        },
+        "logged_evaluations": [
+          2
+        ]
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "eval_final: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "eval_final step=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.7319000221288996,
+              "global_loss": 3.7531805722782865,
+              "returned_loss": 3.7531805722782865,
+              "returned_grad_norm": 2.1101150220208167,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 2.1101150220208167,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 1.582067810090848e-15
+            }
+          },
+          {
+            "label": "eval_final step=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.714928763936884,
+              "global_loss": 3.727713601569949,
+              "returned_loss": 3.727713601569949,
+              "returned_grad_norm": 1.7923502864246892,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 1.7923502864246894,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 2.067790383364354e-15
+            }
+          },
+          {
+            "label": "eval_final eval_after=2: CE / token weighting / modes / gradients / AdamW / RNG",
+            "details": {
+              "loss": 3.4219528119989087,
+              "reference_global_ce": 3.4219528119989087,
+              "global_tokens": 6,
+              "local_batch_size": 3,
+              "local_sequence_length": 1,
+              "eval_iters": 1,
+              "initial_training_mode": true,
+              "sampled_starts": [
+                [
+                  640,
+                  1831,
+                  930
+                ]
+              ],
+              "completed_iters": 2
+            }
+          }
+        ],
+        "case": {
+          "bias": false,
+          "k": 4,
+          "coef": 0.17,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 2,
+          "interval": 5,
+          "eval_iters": 1,
+          "name": "eval_final",
+          "eval_interval": 10
+        },
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6372\n",
+        "steps": [
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.7319000221288996,
+            "global_loss": 3.7531805722782865,
+            "returned_loss": 3.7531805722782865,
+            "returned_grad_norm": 2.1101150220208167,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 2.1101150220208167,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.582067810090848e-15
+          },
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.714928763936884,
+            "global_loss": 3.727713601569949,
+            "returned_loss": 3.727713601569949,
+            "returned_grad_norm": 1.7923502864246892,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.7923502864246894,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 2.067790383364354e-15
+          }
+        ],
+        "evaluations": [
+          {
+            "loss": 3.4219528119989087,
+            "reference_global_ce": 3.4219528119989087,
+            "global_tokens": 6,
+            "local_batch_size": 3,
+            "local_sequence_length": 1,
+            "eval_iters": 1,
+            "initial_training_mode": true,
+            "sampled_starts": [
+              [
+                640,
+                1831,
+                930
+              ]
+            ],
+            "completed_iters": 2
+          }
+        ],
+        "data_calls": {
+          "train": [
+            [
+              926,
+              2624,
+              2013
+            ],
+            [
+              577,
+              1982,
+              1347
+            ]
+          ],
+          "val": [
+            [
+              640,
+              1831,
+              930
+            ]
+          ]
+        },
+        "logged_evaluations": []
+      }
+    ]
+  },
+  "helper_sha256": {
+    "verify_ep_training.py": "77cb97ba2ffce4c61aa4513dc5b012850dccc3f5bf0e77eeedcda0123f4a314b",
+    "verify_ep_gpt.py": "06d86d4a6640dd6e54dbaed0f93b1a261b14741856b4998128b739f76a89cd0d"
+  },
+  "source_sha256": {
+    "parallel_ep.py": "ba5ab2b84e61ca670a135215c6dfbdc864e0db52aa252fca6d6420daa7d6c6be",
+    "moe_ep.py": "ba23bc8b8ce44e8cf35810b3d6b82f30cb2bcdf33de080d3f5edabe2d7c51680",
+    "moe.py": "4fb8ff99d92456220e208d410740179c2a07e20a2e6378b4ffd32cc09440e1bf",
+    "model.py": "7430672530cd369edd0950c7675ed54771ea1b08d77dd0350f30e3a5fdbfe1d1",
+    "train_ep.py": "96fb206279689f438fb107d3632affc132c9ec93c45f9f08dff40a56cc2b74a4"
+  },
+  "torch_version": "2.12.1+cpu",
+  "numpy_version": "2.4.4",
+  "temporary_data_sha256": {
+    "train.bin": "fa2c426529694c1e9122fb2dfc29c6da55f68bceff34c1a06ff2c42923bf5546",
+    "val.bin": "8a8a11b01802e42aca7e437c773b1b7a938c88efa9e61cdf04196c8c1229d4a1"
+  },
+  "trajectory_comparisons": [
+    {
+      "baseline": "baseline_tail",
+      "enabled": "eval_tail",
+      "rank": 0,
+      "exact_CPU_comparison": true,
+      "max_parameter_abs_error": 0.0
+    },
+    {
+      "baseline": "baseline_tail",
+      "enabled": "eval_tail",
+      "rank": 1,
+      "exact_CPU_comparison": true,
+      "max_parameter_abs_error": 0.0
+    },
+    {
+      "baseline": "baseline_full",
+      "enabled": "eval_every",
+      "rank": 0,
+      "exact_CPU_comparison": true,
+      "max_parameter_abs_error": 0.0
+    },
+    {
+      "baseline": "baseline_full",
+      "enabled": "eval_every",
+      "rank": 1,
+      "exact_CPU_comparison": true,
+      "max_parameter_abs_error": 0.0
+    },
+    {
+      "baseline": "baseline_full",
+      "enabled": "eval_final",
+      "rank": 0,
+      "exact_CPU_comparison": true,
+      "max_parameter_abs_error": 0.0
+    },
+    {
+      "baseline": "baseline_full",
+      "enabled": "eval_final",
+      "rank": 1,
+      "exact_CPU_comparison": true,
+      "max_parameter_abs_error": 0.0
+    }
+  ],
+  "finished_at": "2026-10-15T11:12:15.011253+00:00"
+}

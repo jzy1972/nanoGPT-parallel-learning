@@ -66,6 +66,9 @@ def parse_args():
     parser.add_argument("--max-iters", type=positive_int, default=100)
     parser.add_argument("--log-interval", type=positive_int, default=10)
 
+    parser.add_argument("--eval-interval",type=int,default=0,)
+    parser.add_argument("--eval-iters",type=positive_int,default=10,)
+
     args = parser.parse_args()
 
     if args.n_embd % args.n_head != 0:
@@ -79,6 +82,9 @@ def parse_args():
 
     if args.seq_length > args.block_size:
         parser.error("seq_length 不能超过 block_size")
+
+    if args.eval_interval < 0:
+        parser.error("eval_interval 必须大于等于 0")
 
     for name in (
         "moe_aux_loss_coef",
@@ -251,6 +257,61 @@ def train_ep_step(
         "stepped": step_result["stepped"],
     }
 
+@torch.no_grad()
+def evaluate_ep(
+    model,
+    parallel,
+    data_path,
+    batch_size,
+    seq_length,
+    eval_iters,
+    device,
+    generator,
+):
+    if eval_iters <= 0:
+        raise ValueError("eval_iters 必须大于 0")
+
+    was_training = model.training
+    model.eval()
+
+    # stats[0]：交叉熵总和
+    # stats[1]：参与统计的 token 数
+    stats = torch.zeros(
+        2,
+        dtype=torch.float64,
+        device=device,
+    )
+
+    try:
+        for _ in range(eval_iters):
+            token_ids, targets = get_ep_batch(
+                data_path=data_path,
+                batch_size=batch_size,
+                seq_length=seq_length,
+                device=device,
+                generator=generator,
+            )
+
+            _, loss = model(token_ids, targets)
+
+            token_count = targets.numel()
+
+            stats[0].add_(
+                loss.to(dtype=torch.float64) * token_count
+            )
+            stats[1].add_(token_count)
+
+        dist.all_reduce(
+            stats,
+            op=dist.ReduceOp.SUM,
+            group=parallel["shared_dp_group"],
+        )
+
+        return float((stats[0] / stats[1]).item())
+
+    finally:
+        model.train(was_training)
+
 def main():
     args = parse_args()
 
@@ -311,7 +372,6 @@ def main():
             flush=True,
         )
 
-        # 后续在这里加入数据读取和训练循环
         train_data_path = os.path.abspath(
             os.path.join(args.data_dir, "train.bin")
         )
@@ -320,6 +380,11 @@ def main():
         train_data_generator.manual_seed(
             args.seed + 10_000 + parallel["ep_rank"]
         )
+
+        val_data_path = os.path.abspath(os.path.join(args.data_dir, "val.bin"))
+
+        eval_data_generator = torch.Generator(device="cpu")
+        eval_data_generator.manual_seed(args.seed + 20_000 + parallel["ep_rank"])
 
         for iter_num in range(args.max_iters):
             token_ids, targets = get_ep_batch(
@@ -344,6 +409,32 @@ def main():
                 iter_num % args.log_interval == 0
                 or iter_num == args.max_iters - 1
             )
+
+            completed_iters = iter_num + 1
+
+            should_eval = (
+                args.eval_interval > 0
+                and (completed_iters % args.eval_interval == 0 or completed_iters == args.max_iters)
+            )
+
+            if should_eval:
+                val_loss = evaluate_ep(
+                    model=model,
+                    parallel=parallel,
+                    data_path=val_data_path,
+                    batch_size=args.batch_size,
+                    seq_length=args.seq_length,
+                    eval_iters=args.eval_iters,
+                    device=device,
+                    generator=eval_data_generator,
+                )
+
+                if parallel["world_rank"] == 0:
+                    print(
+                        f"eval after {completed_iters} steps: "
+                        f"val_loss={val_loss:.6f}",
+                        flush=True,
+                    )
 
             if parallel["world_rank"] == 0 and should_log:
                 grad_norm = result["grad_norm"]
