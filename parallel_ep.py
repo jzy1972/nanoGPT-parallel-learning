@@ -100,3 +100,92 @@ class AllToAll(Function):
         )
 
         return grad_input, None, None, None
+
+def split_ep_parameters(model):
+    from moe_ep import MoEEP
+
+    expert_param_ids = set()
+
+    for module in model.modules():
+        if isinstance(module, MoEEP):
+            for param in module.experts.parameters():
+                expert_param_ids.add(id(param))
+
+    shared_named_params = []
+    expert_named_params = []
+
+    for name, param in sorted(model.named_parameters()):
+        if id(param) in expert_param_ids:
+            expert_named_params.append((name, param))
+        else:
+            shared_named_params.append((name, param))
+
+    return shared_named_params, expert_named_params
+
+@torch.no_grad()
+def sync_shared_parameters(model, parallel):
+    shared_named_params, _ = split_ep_parameters(model)
+
+    group = parallel["shared_dp_group"]
+    src_rank = dist.get_global_rank(group, 0)
+
+    for name, param in shared_named_params:
+        dist.broadcast(
+            param,
+            src=src_rank,
+            group=group,
+        )
+
+@torch.no_grad()
+def sync_ep_gradients(model, parallel):
+    shared_named_params, expert_named_params = (
+        split_ep_parameters(model)
+    )
+
+    shared_group = parallel["shared_dp_group"]
+
+    dp_size = dist.get_world_size(group=shared_group)
+    ep_size = dist.get_world_size(
+        group=parallel["ep_group"]
+    )
+
+    if dp_size != ep_size:
+        raise ValueError(
+            "当前版本要求一个 EP 组覆盖所有数据并行进程"
+        )
+
+    for name, param in shared_named_params:
+        has_grad = torch.tensor(
+            int(param.grad is not None),
+            dtype=torch.int32,
+            device=param.device,
+        )
+
+        dist.all_reduce(
+            has_grad,
+            op=dist.ReduceOp.MAX,
+            group=shared_group,
+        )
+
+        if has_grad.item() == 0:
+            continue
+
+        if param.grad is None:
+            grad = torch.zeros_like(param)
+        else:
+            grad = param.grad.detach()
+
+        grad = grad.contiguous()
+
+        dist.all_reduce(
+            grad,
+            op=dist.ReduceOp.SUM,
+            group=shared_group,
+        )
+
+        grad.div_(dp_size)
+        param.grad = grad
+
+    for name, param in expert_named_params:
+        if param.grad is not None:
+            param.grad.div_(ep_size)
