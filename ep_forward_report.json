@@ -1,0 +1,1511 @@
+{
+  "status": "passed",
+  "started_at": "2026-10-15T04:47:45.726454+00:00",
+  "arguments": {
+    "project": "D:\\大学\\科研\\nanoGPT",
+    "device": "cpu",
+    "ep_size": 2,
+    "threads": 1,
+    "dtype": "float64",
+    "seed": 20261015,
+    "timeout": 90,
+    "rtol": null,
+    "atol": null,
+    "report": "ep_forward_report.json",
+    "keep_workdir": false
+  },
+  "scope": {
+    "EP_forward_and_raw_backward": true,
+    "one_EP_group_covers_WORLD": true,
+    "nonexpert_DP_gradient_averaging": false,
+    "expert_gradient_scaling": false,
+    "optimizer_training_checkpoint": false,
+    "AMP_compile_multinode": false,
+    "expert_gradient_reference": "SUM of per-rank local objectives",
+    "Router_and_input_gradient_reference": "this rank's LOCAL objective",
+    "auxiliary_definition": "E * sum((local_route_counts / (N*k)) * local_mean_probs)"
+  },
+  "workers": [
+    {
+      "rank": 0,
+      "status": "passed",
+      "passed": [
+        {
+          "label": "WORLD EP / shared-DP mapping and expert ownership",
+          "details": {}
+        },
+        {
+          "label": "AllToAll self_only: counts / values / inverse / backward",
+          "details": {}
+        },
+        {
+          "label": "AllToAll uneven: counts / values / inverse / backward",
+          "details": {}
+        },
+        {
+          "label": "AllToAll one_owner: counts / values / inverse / backward",
+          "details": {}
+        },
+        {
+          "label": "AllToAll empty_source: counts / values / inverse / backward",
+          "details": {}
+        },
+        {
+          "label": "AllToAll all_empty: counts / values / inverse / backward",
+          "details": {}
+        },
+        {
+          "label": "toy bias=True k=1 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "global_routes": [
+              2,
+              0,
+              3,
+              0
+            ],
+            "loss": 0.8010999697849213,
+            "auxiliary": 1.975097894668579
+          }
+        },
+        {
+          "label": "toy bias=True k=1 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              0,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              0,
+              0,
+              0
+            ],
+            "loss": 0.15700873167513074,
+            "auxiliary": 3.92529034614563
+          }
+        },
+        {
+          "label": "toy bias=True k=1 local_experts=2 cross_rank input_grad=True objective=main",
+          "details": {
+            "local_routes": [
+              0,
+              0,
+              2,
+              0
+            ],
+            "global_routes": [
+              3,
+              0,
+              2,
+              0
+            ],
+            "loss": 0.025725345704916504,
+            "auxiliary": 3.9237802028656006
+          }
+        },
+        {
+          "label": "toy bias=True k=1 local_experts=2 rank_disjoint input_grad=True objective=aux",
+          "details": {
+            "local_routes": [
+              2,
+              0,
+              0,
+              0
+            ],
+            "global_routes": [
+              2,
+              0,
+              3,
+              0
+            ],
+            "loss": 0.2747703194618225,
+            "auxiliary": 3.92529034614563
+          }
+        },
+        {
+          "label": "toy bias=True k=2 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "global_routes": [
+              2,
+              2,
+              3,
+              3
+            ],
+            "loss": 0.10085757971561307,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=True k=2 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              5,
+              0,
+              0
+            ],
+            "loss": -0.533205133260097,
+            "auxiliary": 1.9860466718673706
+          }
+        },
+        {
+          "label": "toy bias=True k=2 local_experts=2 cross_rank input_grad=True objective=main",
+          "details": {
+            "local_routes": [
+              0,
+              0,
+              2,
+              2
+            ],
+            "global_routes": [
+              3,
+              3,
+              2,
+              2
+            ],
+            "loss": -0.3496527861285464,
+            "auxiliary": 1.9851902723312378
+          }
+        },
+        {
+          "label": "toy bias=True k=2 local_experts=2 rank_disjoint input_grad=True objective=aux",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              0,
+              0
+            ],
+            "global_routes": [
+              2,
+              2,
+              3,
+              3
+            ],
+            "loss": 0.13902327418327332,
+            "auxiliary": 1.9860466718673706
+          }
+        },
+        {
+          "label": "toy bias=True k=4 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.4825291800725864,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=True k=4 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.27851504996087867,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=True k=4 local_experts=2 cross_rank input_grad=True objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.26359982017595207,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=True k=4 local_experts=2 rank_disjoint input_grad=True objective=aux",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.07000000029802322,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=False k=1 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "global_routes": [
+              2,
+              0,
+              3,
+              0
+            ],
+            "loss": 0.41525918402365913,
+            "auxiliary": 1.975097894668579
+          }
+        },
+        {
+          "label": "toy bias=False k=1 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              0,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              0,
+              0,
+              0
+            ],
+            "loss": 0.19601115066760091,
+            "auxiliary": 3.92529034614563
+          }
+        },
+        {
+          "label": "toy bias=False k=1 local_experts=2 cross_rank input_grad=True objective=main",
+          "details": {
+            "local_routes": [
+              0,
+              0,
+              2,
+              0
+            ],
+            "global_routes": [
+              3,
+              0,
+              2,
+              0
+            ],
+            "loss": -0.7176707927862672,
+            "auxiliary": 3.9237802028656006
+          }
+        },
+        {
+          "label": "toy bias=False k=1 local_experts=2 rank_disjoint input_grad=True objective=aux",
+          "details": {
+            "local_routes": [
+              2,
+              0,
+              0,
+              0
+            ],
+            "global_routes": [
+              2,
+              0,
+              3,
+              0
+            ],
+            "loss": 0.2747703194618225,
+            "auxiliary": 3.92529034614563
+          }
+        },
+        {
+          "label": "toy bias=False k=2 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "global_routes": [
+              2,
+              2,
+              3,
+              3
+            ],
+            "loss": 0.2299468067716619,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=False k=2 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              5,
+              0,
+              0
+            ],
+            "loss": -0.18887351130662935,
+            "auxiliary": 1.9860466718673706
+          }
+        },
+        {
+          "label": "toy bias=False k=2 local_experts=2 cross_rank input_grad=True objective=main",
+          "details": {
+            "local_routes": [
+              0,
+              0,
+              2,
+              2
+            ],
+            "global_routes": [
+              3,
+              3,
+              2,
+              2
+            ],
+            "loss": -0.9269197575248946,
+            "auxiliary": 1.9851902723312378
+          }
+        },
+        {
+          "label": "toy bias=False k=2 local_experts=2 rank_disjoint input_grad=True objective=aux",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              0,
+              0
+            ],
+            "global_routes": [
+              2,
+              2,
+              3,
+              3
+            ],
+            "loss": 0.13902327418327332,
+            "auxiliary": 1.9860466718673706
+          }
+        },
+        {
+          "label": "toy bias=False k=4 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.04119176335854187,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=False k=4 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": -0.10892044469646235,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=False k=4 local_experts=2 cross_rank input_grad=True objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": -0.20687082083330852,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=False k=4 local_experts=2 rank_disjoint input_grad=True objective=aux",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.07000000029802322,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "MLP bias=True k=1 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "global_routes": [
+              2,
+              0,
+              3,
+              0
+            ],
+            "loss": -0.08101052444058177,
+            "auxiliary": 1.975097894668579
+          }
+        },
+        {
+          "label": "MLP bias=True k=1 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              0,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              0,
+              0,
+              0
+            ],
+            "loss": -0.09453930165915386,
+            "auxiliary": 3.92529034614563
+          }
+        },
+        {
+          "label": "MLP bias=True k=2 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "global_routes": [
+              2,
+              2,
+              3,
+              3
+            ],
+            "loss": -0.3941675478650376,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "MLP bias=True k=2 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              5,
+              0,
+              0
+            ],
+            "loss": -0.16404509705101164,
+            "auxiliary": 1.9860466718673706
+          }
+        },
+        {
+          "label": "MLP bias=True k=4 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": -0.08074545378469541,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "MLP bias=True k=4 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": -0.19290885648825823,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "MLP bias=False k=1 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "global_routes": [
+              2,
+              0,
+              3,
+              0
+            ],
+            "loss": -0.4775109660916377,
+            "auxiliary": 1.975097894668579
+          }
+        },
+        {
+          "label": "MLP bias=False k=1 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              0,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              0,
+              0,
+              0
+            ],
+            "loss": -0.30393275925510016,
+            "auxiliary": 3.92529034614563
+          }
+        },
+        {
+          "label": "MLP bias=False k=2 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "global_routes": [
+              2,
+              2,
+              3,
+              3
+            ],
+            "loss": -0.5278527847318766,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "MLP bias=False k=2 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              5,
+              0,
+              0
+            ],
+            "loss": -0.19803571754672467,
+            "auxiliary": 1.9860466718673706
+          }
+        },
+        {
+          "label": "MLP bias=False k=4 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.09125462333411712,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "MLP bias=False k=4 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.027978584066951865,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=False k=1 local_experts=1 one_owner input_grad=False objective=mixed",
+          "details": {
+            "local_routes": [
+              2,
+              0
+            ],
+            "global_routes": [
+              5,
+              0
+            ],
+            "loss": -0.16479211177258724,
+            "auxiliary": 1.9870136976242065
+          }
+        },
+        {
+          "label": "MoEEP no-grad evaluation",
+          "details": {}
+        }
+      ],
+      "active_phase": "complete",
+      "torch_version": "2.12.1+cpu",
+      "device": "cpu"
+    },
+    {
+      "rank": 1,
+      "status": "passed",
+      "passed": [
+        {
+          "label": "WORLD EP / shared-DP mapping and expert ownership",
+          "details": {}
+        },
+        {
+          "label": "AllToAll self_only: counts / values / inverse / backward",
+          "details": {}
+        },
+        {
+          "label": "AllToAll uneven: counts / values / inverse / backward",
+          "details": {}
+        },
+        {
+          "label": "AllToAll one_owner: counts / values / inverse / backward",
+          "details": {}
+        },
+        {
+          "label": "AllToAll empty_source: counts / values / inverse / backward",
+          "details": {}
+        },
+        {
+          "label": "AllToAll all_empty: counts / values / inverse / backward",
+          "details": {}
+        },
+        {
+          "label": "toy bias=True k=1 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              0,
+              2,
+              0
+            ],
+            "global_routes": [
+              2,
+              0,
+              3,
+              0
+            ],
+            "loss": 0.28772718259818997,
+            "auxiliary": 2.191465377807617
+          }
+        },
+        {
+          "label": "toy bias=True k=1 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              0,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              0,
+              0,
+              0
+            ],
+            "loss": -0.15218714767181893,
+            "auxiliary": 3.9253270626068115
+          }
+        },
+        {
+          "label": "toy bias=True k=1 local_experts=2 cross_rank input_grad=True objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              0,
+              0,
+              0
+            ],
+            "global_routes": [
+              3,
+              0,
+              2,
+              0
+            ],
+            "loss": -0.15218714767181887,
+            "auxiliary": 3.9253270626068115
+          }
+        },
+        {
+          "label": "toy bias=True k=1 local_experts=2 rank_disjoint input_grad=True objective=aux",
+          "details": {
+            "local_routes": [
+              0,
+              0,
+              3,
+              0
+            ],
+            "global_routes": [
+              2,
+              0,
+              3,
+              0
+            ],
+            "loss": 0.27466723322868347,
+            "auxiliary": 3.9238176345825195
+          }
+        },
+        {
+          "label": "toy bias=True k=2 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              1,
+              2,
+              2
+            ],
+            "global_routes": [
+              2,
+              2,
+              3,
+              3
+            ],
+            "loss": 0.40946737955338675,
+            "auxiliary": 1.109371304512024
+          }
+        },
+        {
+          "label": "toy bias=True k=2 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              5,
+              0,
+              0
+            ],
+            "loss": 0.11435565554868289,
+            "auxiliary": 1.9860535860061646
+          }
+        },
+        {
+          "label": "toy bias=True k=2 local_experts=2 cross_rank input_grad=True objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              0,
+              0
+            ],
+            "global_routes": [
+              3,
+              3,
+              2,
+              2
+            ],
+            "loss": 0.11435565554868297,
+            "auxiliary": 1.9860535860061646
+          }
+        },
+        {
+          "label": "toy bias=True k=2 local_experts=2 rank_disjoint input_grad=True objective=aux",
+          "details": {
+            "local_routes": [
+              0,
+              0,
+              3,
+              3
+            ],
+            "global_routes": [
+              2,
+              2,
+              3,
+              3
+            ],
+            "loss": 0.13896383345127106,
+            "auxiliary": 1.98519766330719
+          }
+        },
+        {
+          "label": "toy bias=True k=4 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.35423249699474435,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=True k=4 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.21856972924285648,
+            "auxiliary": 1.0000001192092896
+          }
+        },
+        {
+          "label": "toy bias=True k=4 local_experts=2 cross_rank input_grad=True objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.21856972924285648,
+            "auxiliary": 1.0000001192092896
+          }
+        },
+        {
+          "label": "toy bias=True k=4 local_experts=2 rank_disjoint input_grad=True objective=aux",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.07000000029802322,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=False k=1 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              0,
+              2,
+              0
+            ],
+            "global_routes": [
+              2,
+              0,
+              3,
+              0
+            ],
+            "loss": 0.30913200898146487,
+            "auxiliary": 2.191465377807617
+          }
+        },
+        {
+          "label": "toy bias=False k=1 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              0,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              0,
+              0,
+              0
+            ],
+            "loss": -0.12489426481167332,
+            "auxiliary": 3.9253270626068115
+          }
+        },
+        {
+          "label": "toy bias=False k=1 local_experts=2 cross_rank input_grad=True objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              0,
+              0,
+              0
+            ],
+            "global_routes": [
+              3,
+              0,
+              2,
+              0
+            ],
+            "loss": -0.1248942648116732,
+            "auxiliary": 3.9253270626068115
+          }
+        },
+        {
+          "label": "toy bias=False k=1 local_experts=2 rank_disjoint input_grad=True objective=aux",
+          "details": {
+            "local_routes": [
+              0,
+              0,
+              3,
+              0
+            ],
+            "global_routes": [
+              2,
+              0,
+              3,
+              0
+            ],
+            "loss": 0.27466723322868347,
+            "auxiliary": 3.9238176345825195
+          }
+        },
+        {
+          "label": "toy bias=False k=2 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              1,
+              2,
+              2
+            ],
+            "global_routes": [
+              2,
+              2,
+              3,
+              3
+            ],
+            "loss": 0.509459974911181,
+            "auxiliary": 1.109371304512024
+          }
+        },
+        {
+          "label": "toy bias=False k=2 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              5,
+              0,
+              0
+            ],
+            "loss": 0.07858306741973126,
+            "auxiliary": 1.9860535860061646
+          }
+        },
+        {
+          "label": "toy bias=False k=2 local_experts=2 cross_rank input_grad=True objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              0,
+              0
+            ],
+            "global_routes": [
+              3,
+              3,
+              2,
+              2
+            ],
+            "loss": 0.07858306741973126,
+            "auxiliary": 1.9860535860061646
+          }
+        },
+        {
+          "label": "toy bias=False k=2 local_experts=2 rank_disjoint input_grad=True objective=aux",
+          "details": {
+            "local_routes": [
+              0,
+              0,
+              3,
+              3
+            ],
+            "global_routes": [
+              2,
+              2,
+              3,
+              3
+            ],
+            "loss": 0.13896383345127106,
+            "auxiliary": 1.98519766330719
+          }
+        },
+        {
+          "label": "toy bias=False k=4 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.029766560297301,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "toy bias=False k=4 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": -0.1044976871837019,
+            "auxiliary": 1.0000001192092896
+          }
+        },
+        {
+          "label": "toy bias=False k=4 local_experts=2 cross_rank input_grad=True objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": -0.1044976871837019,
+            "auxiliary": 1.0000001192092896
+          }
+        },
+        {
+          "label": "toy bias=False k=4 local_experts=2 rank_disjoint input_grad=True objective=aux",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.07000000029802322,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "MLP bias=True k=1 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              0,
+              2,
+              0
+            ],
+            "global_routes": [
+              2,
+              0,
+              3,
+              0
+            ],
+            "loss": 0.42937461134722676,
+            "auxiliary": 2.191465377807617
+          }
+        },
+        {
+          "label": "MLP bias=True k=1 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              0,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              0,
+              0,
+              0
+            ],
+            "loss": 0.4069118361355796,
+            "auxiliary": 3.9253270626068115
+          }
+        },
+        {
+          "label": "MLP bias=True k=2 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              1,
+              2,
+              2
+            ],
+            "global_routes": [
+              2,
+              2,
+              3,
+              3
+            ],
+            "loss": 0.12830202150454698,
+            "auxiliary": 1.109371304512024
+          }
+        },
+        {
+          "label": "MLP bias=True k=2 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              5,
+              0,
+              0
+            ],
+            "loss": 0.27686353470819114,
+            "auxiliary": 1.9860535860061646
+          }
+        },
+        {
+          "label": "MLP bias=True k=4 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.2898705835285825,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "MLP bias=True k=4 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": 0.20695159374995412,
+            "auxiliary": 1.0000001192092896
+          }
+        },
+        {
+          "label": "MLP bias=False k=1 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              0,
+              2,
+              0
+            ],
+            "global_routes": [
+              2,
+              0,
+              3,
+              0
+            ],
+            "loss": 0.8529215780498448,
+            "auxiliary": 2.191465377807617
+          }
+        },
+        {
+          "label": "MLP bias=False k=1 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              0,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              0,
+              0,
+              0
+            ],
+            "loss": 0.7402917899822096,
+            "auxiliary": 3.9253270626068115
+          }
+        },
+        {
+          "label": "MLP bias=False k=2 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              1,
+              1,
+              2,
+              2
+            ],
+            "global_routes": [
+              2,
+              2,
+              3,
+              3
+            ],
+            "loss": 0.5141888549966142,
+            "auxiliary": 1.109371304512024
+          }
+        },
+        {
+          "label": "MLP bias=False k=2 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              0,
+              0
+            ],
+            "global_routes": [
+              5,
+              5,
+              0,
+              0
+            ],
+            "loss": 0.630848583158532,
+            "auxiliary": 1.9860535860061646
+          }
+        },
+        {
+          "label": "MLP bias=False k=4 local_experts=2 rotating input_grad=True objective=mixed",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": -0.07936893022998681,
+            "auxiliary": 1.0
+          }
+        },
+        {
+          "label": "MLP bias=False k=4 local_experts=2 one_owner input_grad=False objective=main",
+          "details": {
+            "local_routes": [
+              3,
+              3,
+              3,
+              3
+            ],
+            "global_routes": [
+              5,
+              5,
+              5,
+              5
+            ],
+            "loss": -0.13633426122641953,
+            "auxiliary": 1.0000001192092896
+          }
+        },
+        {
+          "label": "toy bias=False k=1 local_experts=1 one_owner input_grad=False objective=mixed",
+          "details": {
+            "local_routes": [
+              3,
+              0
+            ],
+            "global_routes": [
+              5,
+              0
+            ],
+            "loss": -0.014491194198436391,
+            "auxiliary": 1.9870201349258423
+          }
+        },
+        {
+          "label": "MoEEP no-grad evaluation",
+          "details": {}
+        }
+      ],
+      "active_phase": "complete",
+      "torch_version": "2.12.1+cpu",
+      "device": "cpu"
+    }
+  ],
+  "source_sha256": {
+    "parallel_ep.py": "fabbc854d202327f0dfa0532df5d794c09740f04b1400abfb696047845f9bcd0",
+    "moe_ep.py": "ba23bc8b8ce44e8cf35810b3d6b82f30cb2bcdf33de080d3f5edabe2d7c51680",
+    "moe.py": "4fb8ff99d92456220e208d410740179c2a07e20a2e6378b4ffd32cc09440e1bf",
+    "model.py": "a1b9b2b5e98adeaf0076e70f99166e3658194ca77458ca78cf4356ef2dfe4568"
+  },
+  "torch_version": "2.12.1+cpu",
+  "checks_per_worker": 44,
+  "finished_at": "2026-10-15T04:47:55.076356+00:00"
+}
