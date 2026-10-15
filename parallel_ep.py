@@ -2,6 +2,8 @@ import torch.distributed as dist
 import torch
 from torch.autograd import Function
 
+import math
+
 def get_expert_range(n_experts, ep_size, ep_rank):
     if n_experts <= 0:
         raise ValueError("n_experts 必须大于 0")
@@ -189,3 +191,192 @@ def sync_ep_gradients(model, parallel):
     for name, param in expert_named_params:
         if param.grad is not None:
             param.grad.div_(ep_size)
+
+@torch.no_grad()
+def clip_ep_gradients(model, max_norm, parallel):
+    max_norm = float(max_norm)
+
+    if not math.isfinite(max_norm) or max_norm < 0:
+        raise ValueError("max_norm 必须是有限的非负数")
+
+    shared_named_params, expert_named_params = (
+        split_ep_parameters(model)
+    )
+
+    all_named_params = (
+        shared_named_params + expert_named_params
+    )
+
+    device = all_named_params[0][1].device
+    ep_group = parallel["ep_group"]
+    ep_rank = parallel["ep_rank"]
+
+    # 1. 任意进程存在非有限梯度，所有进程统一返回 None
+    bad = torch.zeros(
+        (),
+        dtype=torch.int32,
+        device=device,
+    )
+
+    for name, param in all_named_params:
+        if param.grad is None:
+            continue
+
+        param_bad = (
+            ~torch.isfinite(param.grad)
+        ).any().to(dtype=torch.int32)
+
+        bad = torch.maximum(bad, param_bad)
+
+    dist.all_reduce(
+        bad,
+        op=dist.ReduceOp.MAX,
+        group=ep_group,
+    )
+
+    if bad.item():
+        return None
+
+    # 2. 专家各自统计；共享参数只在 rank 0 统计
+    norm_named_params = list(expert_named_params)
+
+    if ep_rank == 0:
+        norm_named_params.extend(shared_named_params)
+
+    squared_norm = torch.zeros(
+        (),
+        dtype=torch.float64,
+        device=device,
+    )
+
+    for name, param in norm_named_params:
+        if param.grad is None:
+            continue
+
+        grad = param.grad.detach().to(dtype=torch.float64)
+        squared_norm.add_(grad.square().sum())
+
+    # 3. 汇总整个模型的梯度平方和
+    dist.all_reduce(
+        squared_norm,
+        op=dist.ReduceOp.SUM,
+        group=ep_group,
+    )
+
+    total_norm = squared_norm.sqrt()
+
+    if not torch.isfinite(total_norm).item():
+        return None
+
+    # 4. 所有参数使用同一个裁剪系数
+    # max_norm == 0 表示关闭裁剪，但仍检查并返回范数
+    if max_norm > 0:
+        clip_coef = (
+            max_norm / (total_norm + 1e-6)
+        ).clamp(max=1.0)
+
+        for name, param in all_named_params:
+            if param.grad is not None:
+                param.grad.mul_(
+                    clip_coef.to(dtype=param.grad.dtype)
+                )
+
+    return float(total_norm.item())
+
+def build_ep_optimizer(
+    model,
+    learning_rate,
+    weight_decay,
+    beta1=0.9,
+    beta2=0.95,
+):
+    learning_rate = float(learning_rate)
+    weight_decay = float(weight_decay)
+    beta1 = float(beta1)
+    beta2 = float(beta2)
+
+    if not math.isfinite(learning_rate) or learning_rate < 0:
+        raise ValueError("learning_rate 必须是有限的非负数")
+
+    if not math.isfinite(weight_decay) or weight_decay < 0:
+        raise ValueError("weight_decay 必须是有限的非负数")
+
+    if not (0 <= beta1 < 1 and 0 <= beta2 < 1):
+        raise ValueError("beta1、beta2 必须在 [0, 1) 内")
+
+    params = [
+        param
+        for param in model.parameters()
+        if param.requires_grad
+    ]
+
+    if not params:
+        raise ValueError("模型至少需要一个可训练参数")
+
+    decay_params = [
+        param
+        for param in params
+        if param.dim() >= 2
+    ]
+
+    nodecay_params = [
+        param
+        for param in params
+        if param.dim() < 2
+    ]
+
+    param_groups = []
+
+    if decay_params:
+        param_groups.append({
+            "params": decay_params,
+            "weight_decay": weight_decay,
+        })
+
+    if nodecay_params:
+        param_groups.append({
+            "params": nodecay_params,
+            "weight_decay": 0.0,
+        })
+
+    return torch.optim.AdamW(
+        param_groups,
+        lr=learning_rate,
+        betas=(beta1, beta2),
+        eps=1e-8,
+        weight_decay=weight_decay,
+        foreach=False,
+        fused=False,
+    )
+
+@torch.no_grad()
+def step_ep_optimizer(
+    model,
+    optimizer,
+    parallel,
+    grad_clip=0.0,
+):
+    grad_clip = float(grad_clip)
+
+    if not math.isfinite(grad_clip) or grad_clip < 0:
+        raise ValueError("grad_clip 必须是有限的非负数")
+
+    sync_ep_gradients(model, parallel)
+
+    grad_norm = clip_ep_gradients(
+        model,
+        max_norm=grad_clip,
+        parallel=parallel,
+    )
+
+    stepped = grad_norm is not None
+
+    if stepped:
+        optimizer.step()
+
+    optimizer.zero_grad(set_to_none=True)
+
+    return {
+        "stepped": stepped,
+        "grad_norm": grad_norm,
+    }
