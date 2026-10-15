@@ -1,0 +1,2099 @@
+{
+  "status": "passed",
+  "started_at": "2026-10-15T10:43:59.941885+00:00",
+  "arguments": {
+    "project": "D:\\大学\\科研\\nanoGPT",
+    "device": "cpu",
+    "ep_size": 2,
+    "threads": 1,
+    "dtype": "float64",
+    "seed": 20261015,
+    "timeout": 120,
+    "rtol": null,
+    "atol": null,
+    "report": "ep_training_report.json",
+    "keep_workdir": false
+  },
+  "script_sha256": "77cb97ba2ffce4c61aa4513dc5b012850dccc3f5bf0e77eeedcda0123f4a314b",
+  "scope": {
+    "actual_get_ep_batch": true,
+    "independent_rank_data_rng": true,
+    "actual_train_ep_step": true,
+    "tail_microbatch_sample_weighting": true,
+    "independent_functional_full_MoE_reference": true,
+    "every_local_gradient_parameter_AdamW_moment": true,
+    "nonfinite_skip_then_recovery": true,
+    "actual_training_main": true,
+    "main_config_data_calls_logs_group_cleanup": true,
+    "main_initial_shared_broadcast_and_expert_ownership": true,
+    "dropout_zero_for_comparison": true,
+    "rendezvous": "FileStore replaces env:// transport; real backend/collectives are retained",
+    "objective": "mean_ranks(sum_microbatches(samples/local_batch * local_micro_loss))",
+    "AMP_compile_eval_checkpoint_multinode_env_TCP_rendezvous": false
+  },
+  "worker_phases": {
+    "functions": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "train_ep CLI options / validation / nondivisible microbatches",
+            "details": {}
+          },
+          {
+            "label": "uint16 data / independent rank RNG / shifted targets / boundaries",
+            "details": {
+              "generator_seed": 20261092,
+              "sampled_starts": [
+                [
+                  2744,
+                  4055,
+                  1500,
+                  3158,
+                  2322,
+                  1650,
+                  2967
+                ],
+                [
+                  3276,
+                  2452,
+                  2431
+                ],
+                [
+                  2282
+                ],
+                [
+                  2741,
+                  746,
+                  2902,
+                  504,
+                  1791,
+                  2605,
+                  2717
+                ]
+              ]
+            }
+          },
+          {
+            "label": "direct bias=True k=1 B=7 micro=3 T=7: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "direct bias=True k=1 B=7 micro=3 T=7 event=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.6034855375029125,
+              "global_loss": 3.6032717133189953,
+              "returned_loss": 3.6032717133189953,
+              "returned_grad_norm": 0.8849474616374824,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 0.8849474616374824,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  33,
+                  0,
+                  0,
+                  65
+                ],
+                [
+                  65,
+                  0,
+                  0,
+                  33
+                ]
+              ],
+              "max_parameter_abs_error": 6.9692515647368225e-16
+            }
+          },
+          {
+            "label": "direct bias=True k=1 B=7 micro=3 T=7 event=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.6017938275113326,
+              "global_loss": 3.5970520742381664,
+              "returned_loss": 3.5970520742381664,
+              "returned_grad_norm": 0.8755860474413734,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.8755860474413734,
+              "clip_coefficient": 0.011420909010956526,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  35,
+                  3,
+                  0,
+                  60
+                ],
+                [
+                  56,
+                  4,
+                  0,
+                  38
+                ]
+              ],
+              "max_parameter_abs_error": 1.1130419502736189e-15
+            }
+          },
+          {
+            "label": "direct bias=True k=1 B=7 micro=3 T=7 event=2: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.5922200886981726,
+              "global_loss": 3.590114265480591,
+              "returned_loss": 3.590114265480591,
+              "returned_grad_norm": null,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": null,
+              "clip_coefficient": null,
+              "injected_nonfinite_on_rank": 1,
+              "stepped": false,
+              "global_routes_per_layer": [
+                [
+                  30,
+                  9,
+                  4,
+                  55
+                ],
+                [
+                  51,
+                  4,
+                  8,
+                  35
+                ]
+              ],
+              "max_parameter_abs_error": 1.1130419502736189e-15
+            }
+          },
+          {
+            "label": "direct bias=True k=1 B=7 micro=3 T=7 event=3: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.5802839347570528,
+              "global_loss": 3.585313230003175,
+              "returned_loss": 3.585313230003175,
+              "returned_grad_norm": 0.8274897247376674,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.8274897247376674,
+              "clip_coefficient": 0.012084727600022608,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  37,
+                  6,
+                  5,
+                  50
+                ],
+                [
+                  49,
+                  1,
+                  7,
+                  41
+                ]
+              ],
+              "max_parameter_abs_error": 1.126269216777942e-15
+            }
+          },
+          {
+            "label": "direct bias=False k=2 B=5 micro=2 T=7: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "direct bias=False k=2 B=5 micro=2 T=7 event=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "sample_weights": [
+                0.4,
+                0.4,
+                0.2
+              ],
+              "local_loss": 3.445271687090888,
+              "global_loss": 3.447872189727712,
+              "returned_loss": 3.447872189727712,
+              "returned_grad_norm": 0.933226517505772,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 0.933226517505772,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  35,
+                  35,
+                  35,
+                  35
+                ],
+                [
+                  37,
+                  37,
+                  33,
+                  33
+                ]
+              ],
+              "max_parameter_abs_error": 1.6479873021779667e-17
+            }
+          },
+          {
+            "label": "direct bias=False k=2 B=5 micro=2 T=7 event=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "sample_weights": [
+                0.4,
+                0.4,
+                0.2
+              ],
+              "local_loss": 3.4370794333084396,
+              "global_loss": 3.4397130311641817,
+              "returned_loss": 3.4397130311641817,
+              "returned_grad_norm": 0.9009271585535088,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.9009271585535088,
+              "clip_coefficient": 0.01109966416862313,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  38,
+                  38,
+                  32,
+                  32
+                ],
+                [
+                  32,
+                  33,
+                  37,
+                  38
+                ]
+              ],
+              "max_parameter_abs_error": 4.163336342344337e-17
+            }
+          },
+          {
+            "label": "direct bias=True k=4 B=3 micro=8 T=7: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "direct bias=True k=4 B=3 micro=8 T=7 event=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.6176626981614013,
+              "global_loss": 3.614007313226092,
+              "returned_loss": 3.614007313226092,
+              "returned_grad_norm": 1.1593013336169893,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 1.1593013336169893,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  42,
+                  42,
+                  42,
+                  42
+                ],
+                [
+                  42,
+                  42,
+                  42,
+                  42
+                ]
+              ],
+              "max_parameter_abs_error": 8.743006318923108e-16
+            }
+          },
+          {
+            "label": "direct bias=True k=4 B=3 micro=8 T=7 event=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.5896070429122733,
+              "global_loss": 3.5895544092568645,
+              "returned_loss": 3.5895544092568645,
+              "returned_grad_norm": 1.234362028431662,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 1.234362028431662,
+              "clip_coefficient": 0.008101344393557903,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  42,
+                  42,
+                  42,
+                  42
+                ],
+                [
+                  42,
+                  42,
+                  42,
+                  42
+                ]
+              ],
+              "max_parameter_abs_error": 8.8557633448616e-16
+            }
+          },
+          {
+            "label": "direct bias=False k=1 B=1 micro=1 T=1: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "direct bias=False k=1 B=1 micro=1 T=1 event=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                1
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.523304849668574,
+              "global_loss": 3.57461371169128,
+              "returned_loss": 3.57461371169128,
+              "returned_grad_norm": 3.080061844632729,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 3.080061844632729,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  0,
+                  0,
+                  0,
+                  2
+                ],
+                [
+                  2,
+                  0,
+                  0,
+                  0
+                ]
+              ],
+              "max_parameter_abs_error": 6.885117476151947e-15
+            }
+          },
+          {
+            "label": "direct bias=False k=1 B=1 micro=1 T=1 event=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                1
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.5681932409878763,
+              "global_loss": 3.6001634301685694,
+              "returned_loss": 3.6001634301685694,
+              "returned_grad_norm": 3.1987767974123167,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 3.1987767974123167,
+              "clip_coefficient": 0.003126194013253937,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  1,
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  1
+                ]
+              ],
+              "max_parameter_abs_error": 9.943434964299058e-15
+            }
+          }
+        ],
+        "torch_version": "2.12.1+cpu",
+        "device": "cpu"
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "train_ep CLI options / validation / nondivisible microbatches",
+            "details": {}
+          },
+          {
+            "label": "uint16 data / independent rank RNG / shifted targets / boundaries",
+            "details": {
+              "generator_seed": 20261093,
+              "sampled_starts": [
+                [
+                  3540,
+                  1370,
+                  2720,
+                  111,
+                  3874,
+                  2621,
+                  2695
+                ],
+                [
+                  1401,
+                  1151,
+                  4070
+                ],
+                [
+                  2825
+                ],
+                [
+                  2934,
+                  3526,
+                  2917,
+                  3232,
+                  1435,
+                  3703,
+                  176
+                ]
+              ]
+            }
+          },
+          {
+            "label": "direct bias=True k=1 B=7 micro=3 T=7: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "direct bias=True k=1 B=7 micro=3 T=7 event=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.6030578891350777,
+              "global_loss": 3.6032717133189953,
+              "returned_loss": 3.6032717133189953,
+              "returned_grad_norm": 0.8849474616374824,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 0.8849474616374824,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  33,
+                  0,
+                  0,
+                  65
+                ],
+                [
+                  65,
+                  0,
+                  0,
+                  33
+                ]
+              ],
+              "max_parameter_abs_error": 3.5853316470462745e-16
+            }
+          },
+          {
+            "label": "direct bias=True k=1 B=7 micro=3 T=7 event=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.592310320965,
+              "global_loss": 3.5970520742381664,
+              "returned_loss": 3.5970520742381664,
+              "returned_grad_norm": 0.8755860474413734,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.8755860474413734,
+              "clip_coefficient": 0.011420909010956526,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  35,
+                  3,
+                  0,
+                  60
+                ],
+                [
+                  56,
+                  4,
+                  0,
+                  38
+                ]
+              ],
+              "max_parameter_abs_error": 5.183518636539849e-16
+            }
+          },
+          {
+            "label": "direct bias=True k=1 B=7 micro=3 T=7 event=2: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.5880084422630096,
+              "global_loss": 3.590114265480591,
+              "returned_loss": 3.590114265480591,
+              "returned_grad_norm": null,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": null,
+              "clip_coefficient": null,
+              "injected_nonfinite_on_rank": 1,
+              "stepped": false,
+              "global_routes_per_layer": [
+                [
+                  30,
+                  9,
+                  4,
+                  55
+                ],
+                [
+                  51,
+                  4,
+                  8,
+                  35
+                ]
+              ],
+              "max_parameter_abs_error": 5.183518636539849e-16
+            }
+          },
+          {
+            "label": "direct bias=True k=1 B=7 micro=3 T=7 event=3: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.5903425252492966,
+              "global_loss": 3.585313230003175,
+              "returned_loss": 3.585313230003175,
+              "returned_grad_norm": 0.8274897247376674,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.8274897247376674,
+              "clip_coefficient": 0.012084727600022608,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  37,
+                  6,
+                  5,
+                  50
+                ],
+                [
+                  49,
+                  1,
+                  7,
+                  41
+                ]
+              ],
+              "max_parameter_abs_error": 6.129429611109349e-16
+            }
+          },
+          {
+            "label": "direct bias=False k=2 B=5 micro=2 T=7: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "direct bias=False k=2 B=5 micro=2 T=7 event=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "sample_weights": [
+                0.4,
+                0.4,
+                0.2
+              ],
+              "local_loss": 3.4504726923645364,
+              "global_loss": 3.447872189727712,
+              "returned_loss": 3.447872189727712,
+              "returned_grad_norm": 0.933226517505772,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 0.933226517505772,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  35,
+                  35,
+                  35,
+                  35
+                ],
+                [
+                  37,
+                  37,
+                  33,
+                  33
+                ]
+              ],
+              "max_parameter_abs_error": 1.7312540290248535e-15
+            }
+          },
+          {
+            "label": "direct bias=False k=2 B=5 micro=2 T=7 event=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                2,
+                2,
+                1
+              ],
+              "sample_weights": [
+                0.4,
+                0.4,
+                0.2
+              ],
+              "local_loss": 3.442346629019924,
+              "global_loss": 3.4397130311641817,
+              "returned_loss": 3.4397130311641817,
+              "returned_grad_norm": 0.9009271585535088,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.9009271585535088,
+              "clip_coefficient": 0.01109966416862313,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  38,
+                  38,
+                  32,
+                  32
+                ],
+                [
+                  32,
+                  33,
+                  37,
+                  38
+                ]
+              ],
+              "max_parameter_abs_error": 1.7746221159242737e-15
+            }
+          },
+          {
+            "label": "direct bias=True k=4 B=3 micro=8 T=7: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "direct bias=True k=4 B=3 micro=8 T=7 event=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.6103519282907834,
+              "global_loss": 3.614007313226092,
+              "returned_loss": 3.614007313226092,
+              "returned_grad_norm": 1.1593013336169893,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 1.1593013336169893,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  42,
+                  42,
+                  42,
+                  42
+                ],
+                [
+                  42,
+                  42,
+                  42,
+                  42
+                ]
+              ],
+              "max_parameter_abs_error": 5.151019110488314e-16
+            }
+          },
+          {
+            "label": "direct bias=True k=4 B=3 micro=8 T=7 event=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.5895017756014553,
+              "global_loss": 3.5895544092568645,
+              "returned_loss": 3.5895544092568645,
+              "returned_grad_norm": 1.234362028431662,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 1.234362028431662,
+              "clip_coefficient": 0.008101344393557903,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  42,
+                  42,
+                  42,
+                  42
+                ],
+                [
+                  42,
+                  42,
+                  42,
+                  42
+                ]
+              ],
+              "max_parameter_abs_error": 7.4330222966414825e-16
+            }
+          },
+          {
+            "label": "direct bias=False k=1 B=1 micro=1 T=1: expert ownership / complete shared state / tied head / strict loading",
+            "details": {}
+          },
+          {
+            "label": "direct bias=False k=1 B=1 micro=1 T=1 event=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                1
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.6259225737139857,
+              "global_loss": 3.57461371169128,
+              "returned_loss": 3.57461371169128,
+              "returned_grad_norm": 3.080061844632729,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 3.080061844632729,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  0,
+                  0,
+                  0,
+                  2
+                ],
+                [
+                  2,
+                  0,
+                  0,
+                  0
+                ]
+              ],
+              "max_parameter_abs_error": 6.885117476151947e-15
+            }
+          },
+          {
+            "label": "direct bias=False k=1 B=1 micro=1 T=1 event=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                1
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.632133619349262,
+              "global_loss": 3.6001634301685694,
+              "returned_loss": 3.6001634301685694,
+              "returned_grad_norm": 3.1987767974123167,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 3.1987767974123167,
+              "clip_coefficient": 0.003126194013253937,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  1,
+                  0,
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0,
+                  0,
+                  1
+                ]
+              ],
+              "max_parameter_abs_error": 9.943434964299058e-15
+            }
+          }
+        ],
+        "torch_version": "2.12.1+cpu",
+        "device": "cpu"
+      }
+    ],
+    "main_tail_clip": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "main_tail_clip: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "main_tail_clip iter=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.594964985043934,
+              "global_loss": 3.5825721741826415,
+              "returned_loss": 3.5825721741826415,
+              "returned_grad_norm": 0.6264611464585236,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.6264611464585236,
+              "clip_coefficient": 0.015962656413530125,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  30,
+                  19,
+                  21,
+                  28
+                ],
+                [
+                  14,
+                  16,
+                  44,
+                  24
+                ]
+              ],
+              "max_parameter_abs_error": 1.6653345369377348e-16
+            }
+          },
+          {
+            "label": "main_tail_clip iter=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.570600904449159,
+              "global_loss": 3.5660942118740504,
+              "returned_loss": 3.5660942118740504,
+              "returned_grad_norm": 0.7503689397183819,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.7503689397183819,
+              "clip_coefficient": 0.01332675986960919,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  18,
+                  13,
+                  38,
+                  29
+                ],
+                [
+                  12,
+                  13,
+                  31,
+                  42
+                ]
+              ],
+              "max_parameter_abs_error": 1.6653345369377348e-16
+            }
+          },
+          {
+            "label": "main_tail_clip iter=2: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.574588358401255,
+              "global_loss": 3.575126096638905,
+              "returned_loss": 3.575126096638905,
+              "returned_grad_norm": 0.72665018989809,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.72665018989809,
+              "clip_coefficient": 0.013761760992096443,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  16,
+                  29,
+                  23,
+                  30
+                ],
+                [
+                  19,
+                  13,
+                  39,
+                  27
+                ]
+              ],
+              "max_parameter_abs_error": 1.6653345369377348e-16
+            }
+          },
+          {
+            "label": "main_tail_clip iter=3: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.5639740927527326,
+              "global_loss": 3.560513062535141,
+              "returned_loss": 3.560513062535141,
+              "returned_grad_norm": 0.5836923345563771,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.5836923345563773,
+              "clip_coefficient": 0.017132284040214833,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  22,
+                  22,
+                  27,
+                  27
+                ],
+                [
+                  17,
+                  23,
+                  32,
+                  26
+                ]
+              ],
+              "max_parameter_abs_error": 1.6653345369377348e-16
+            }
+          }
+        ],
+        "case": {
+          "name": "main_tail_clip",
+          "bias": true,
+          "k": 1,
+          "coef": 0.07,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 4,
+          "interval": 2
+        },
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6768\n[PASS] WORLD EP / shared-DP mapping and expert ownership\n[PASS] main_tail_clip: global expert IDs / initial shared synchronization\n[PASS] main_tail_clip iter=0: loss / microbatches / gradients / AdamW / cleanup\niter 0: loss=3.582572, grad_norm=0.626461, stepped=True\n[PASS] main_tail_clip iter=1: loss / microbatches / gradients / AdamW / cleanup\n[PASS] main_tail_clip iter=2: loss / microbatches / gradients / AdamW / cleanup\niter 2: loss=3.575126, grad_norm=0.726650, stepped=True\n[PASS] main_tail_clip iter=3: loss / microbatches / gradients / AdamW / cleanup\niter 3: loss=3.560513, grad_norm=0.583692, stepped=True\n",
+        "updates": [
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.594964985043934,
+            "global_loss": 3.5825721741826415,
+            "returned_loss": 3.5825721741826415,
+            "returned_grad_norm": 0.6264611464585236,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.6264611464585236,
+            "clip_coefficient": 0.015962656413530125,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                30,
+                19,
+                21,
+                28
+              ],
+              [
+                14,
+                16,
+                44,
+                24
+              ]
+            ],
+            "max_parameter_abs_error": 1.6653345369377348e-16
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.570600904449159,
+            "global_loss": 3.5660942118740504,
+            "returned_loss": 3.5660942118740504,
+            "returned_grad_norm": 0.7503689397183819,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.7503689397183819,
+            "clip_coefficient": 0.01332675986960919,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                18,
+                13,
+                38,
+                29
+              ],
+              [
+                12,
+                13,
+                31,
+                42
+              ]
+            ],
+            "max_parameter_abs_error": 1.6653345369377348e-16
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.574588358401255,
+            "global_loss": 3.575126096638905,
+            "returned_loss": 3.575126096638905,
+            "returned_grad_norm": 0.72665018989809,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.72665018989809,
+            "clip_coefficient": 0.013761760992096443,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                16,
+                29,
+                23,
+                30
+              ],
+              [
+                19,
+                13,
+                39,
+                27
+              ]
+            ],
+            "max_parameter_abs_error": 1.6653345369377348e-16
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.5639740927527326,
+            "global_loss": 3.560513062535141,
+            "returned_loss": 3.560513062535141,
+            "returned_grad_norm": 0.5836923345563771,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.5836923345563773,
+            "clip_coefficient": 0.017132284040214833,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                22,
+                22,
+                27,
+                27
+              ],
+              [
+                17,
+                23,
+                32,
+                26
+              ]
+            ],
+            "max_parameter_abs_error": 1.6653345369377348e-16
+          }
+        ],
+        "data_calls": [
+          {
+            "starts": [
+              3136,
+              3697,
+              387,
+              2100,
+              3679,
+              533,
+              1972
+            ],
+            "generator_seed": 20271015
+          },
+          {
+            "starts": [
+              2640,
+              1875,
+              432,
+              1553,
+              3424,
+              754,
+              745
+            ],
+            "generator_seed": 20271015
+          },
+          {
+            "starts": [
+              3321,
+              2420,
+              184,
+              1510,
+              2578,
+              424,
+              274
+            ],
+            "generator_seed": 20271015
+          },
+          {
+            "starts": [
+              1874,
+              771,
+              1545,
+              4036,
+              4000,
+              3767,
+              954
+            ],
+            "generator_seed": 20271015
+          }
+        ],
+        "init_calls": [
+          {
+            "backend": "gloo",
+            "requested_init_method": "env://"
+          }
+        ],
+        "destroy_calls": 1,
+        "logged_iterations": [
+          0,
+          2,
+          3
+        ]
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "main_tail_clip: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "main_tail_clip iter=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.5701793633213486,
+              "global_loss": 3.5825721741826415,
+              "returned_loss": 3.5825721741826415,
+              "returned_grad_norm": 0.6264611464585236,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.6264611464585236,
+              "clip_coefficient": 0.015962656413530125,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  30,
+                  19,
+                  21,
+                  28
+                ],
+                [
+                  14,
+                  16,
+                  44,
+                  24
+                ]
+              ],
+              "max_parameter_abs_error": 1.6653345369377348e-16
+            }
+          },
+          {
+            "label": "main_tail_clip iter=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.561587519298942,
+              "global_loss": 3.5660942118740504,
+              "returned_loss": 3.5660942118740504,
+              "returned_grad_norm": 0.7503689397183819,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.7503689397183819,
+              "clip_coefficient": 0.01332675986960919,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  18,
+                  13,
+                  38,
+                  29
+                ],
+                [
+                  12,
+                  13,
+                  31,
+                  42
+                ]
+              ],
+              "max_parameter_abs_error": 1.6653345369377348e-16
+            }
+          },
+          {
+            "label": "main_tail_clip iter=2: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.575663834876554,
+              "global_loss": 3.575126096638905,
+              "returned_loss": 3.575126096638905,
+              "returned_grad_norm": 0.72665018989809,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.72665018989809,
+              "clip_coefficient": 0.013761760992096443,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  16,
+                  29,
+                  23,
+                  30
+                ],
+                [
+                  19,
+                  13,
+                  39,
+                  27
+                ]
+              ],
+              "max_parameter_abs_error": 1.6653345369377348e-16
+            }
+          },
+          {
+            "label": "main_tail_clip iter=3: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3,
+                3,
+                1
+              ],
+              "sample_weights": [
+                0.42857142857142855,
+                0.42857142857142855,
+                0.14285714285714285
+              ],
+              "local_loss": 3.557052032317549,
+              "global_loss": 3.560513062535141,
+              "returned_loss": 3.560513062535141,
+              "returned_grad_norm": 0.5836923345563771,
+              "grad_clip": 0.01,
+              "expected_preclip_norm": 0.5836923345563773,
+              "clip_coefficient": 0.017132284040214833,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  22,
+                  22,
+                  27,
+                  27
+                ],
+                [
+                  17,
+                  23,
+                  32,
+                  26
+                ]
+              ],
+              "max_parameter_abs_error": 1.6653345369377348e-16
+            }
+          }
+        ],
+        "case": {
+          "name": "main_tail_clip",
+          "bias": true,
+          "k": 1,
+          "coef": 0.07,
+          "batch": 7,
+          "micro": 3,
+          "sequence": 7,
+          "clip": 0.01,
+          "iters": 4,
+          "interval": 2
+        },
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6768\n",
+        "updates": [
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.5701793633213486,
+            "global_loss": 3.5825721741826415,
+            "returned_loss": 3.5825721741826415,
+            "returned_grad_norm": 0.6264611464585236,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.6264611464585236,
+            "clip_coefficient": 0.015962656413530125,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                30,
+                19,
+                21,
+                28
+              ],
+              [
+                14,
+                16,
+                44,
+                24
+              ]
+            ],
+            "max_parameter_abs_error": 1.6653345369377348e-16
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.561587519298942,
+            "global_loss": 3.5660942118740504,
+            "returned_loss": 3.5660942118740504,
+            "returned_grad_norm": 0.7503689397183819,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.7503689397183819,
+            "clip_coefficient": 0.01332675986960919,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                18,
+                13,
+                38,
+                29
+              ],
+              [
+                12,
+                13,
+                31,
+                42
+              ]
+            ],
+            "max_parameter_abs_error": 1.6653345369377348e-16
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.575663834876554,
+            "global_loss": 3.575126096638905,
+            "returned_loss": 3.575126096638905,
+            "returned_grad_norm": 0.72665018989809,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.72665018989809,
+            "clip_coefficient": 0.013761760992096443,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                16,
+                29,
+                23,
+                30
+              ],
+              [
+                19,
+                13,
+                39,
+                27
+              ]
+            ],
+            "max_parameter_abs_error": 1.6653345369377348e-16
+          },
+          {
+            "microbatch_sizes": [
+              3,
+              3,
+              1
+            ],
+            "sample_weights": [
+              0.42857142857142855,
+              0.42857142857142855,
+              0.14285714285714285
+            ],
+            "local_loss": 3.557052032317549,
+            "global_loss": 3.560513062535141,
+            "returned_loss": 3.560513062535141,
+            "returned_grad_norm": 0.5836923345563771,
+            "grad_clip": 0.01,
+            "expected_preclip_norm": 0.5836923345563773,
+            "clip_coefficient": 0.017132284040214833,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                22,
+                22,
+                27,
+                27
+              ],
+              [
+                17,
+                23,
+                32,
+                26
+              ]
+            ],
+            "max_parameter_abs_error": 1.6653345369377348e-16
+          }
+        ],
+        "data_calls": [
+          {
+            "starts": [
+              1478,
+              2609,
+              633,
+              1363,
+              2972,
+              2883,
+              3742
+            ],
+            "generator_seed": 20271016
+          },
+          {
+            "starts": [
+              3884,
+              2194,
+              908,
+              3631,
+              2846,
+              824,
+              3843
+            ],
+            "generator_seed": 20271016
+          },
+          {
+            "starts": [
+              3707,
+              3248,
+              2780,
+              12,
+              73,
+              2548,
+              3634
+            ],
+            "generator_seed": 20271016
+          },
+          {
+            "starts": [
+              56,
+              1890,
+              3585,
+              2160,
+              797,
+              2417,
+              3206
+            ],
+            "generator_seed": 20271016
+          }
+        ],
+        "init_calls": [
+          {
+            "backend": "gloo",
+            "requested_init_method": "env://"
+          }
+        ],
+        "destroy_calls": 1,
+        "logged_iterations": []
+      }
+    ],
+    "main_full_topk_no_clip": [
+      {
+        "rank": 0,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "main_full_topk_no_clip: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "main_full_topk_no_clip iter=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.5744611194474416,
+              "global_loss": 3.5531805692980543,
+              "returned_loss": 3.5531805692980543,
+              "returned_grad_norm": 2.1101150226228245,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 2.1101150226228245,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 1.9463597400459776e-15
+            }
+          },
+          {
+            "label": "main_full_topk_no_clip iter=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.540498436224695,
+              "global_loss": 3.5277135985815846,
+              "returned_loss": 3.5277135985815846,
+              "returned_grad_norm": 1.7923502866671057,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 1.792350286667106,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 3.3688329903469594e-15
+            }
+          }
+        ],
+        "case": {
+          "name": "main_full_topk_no_clip",
+          "bias": false,
+          "k": 4,
+          "coef": 0.07,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 2,
+          "interval": 5
+        },
+        "stdout": "number of parameters: 0.01M\nrank=0 ep_size=2 experts=[0, 2) local_params=6372\n[PASS] WORLD EP / shared-DP mapping and expert ownership\n[PASS] main_full_topk_no_clip: global expert IDs / initial shared synchronization\n[PASS] main_full_topk_no_clip iter=0: loss / microbatches / gradients / AdamW / cleanup\niter 0: loss=3.553181, grad_norm=2.110115, stepped=True\n[PASS] main_full_topk_no_clip iter=1: loss / microbatches / gradients / AdamW / cleanup\niter 1: loss=3.527714, grad_norm=1.792350, stepped=True\n",
+        "updates": [
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.5744611194474416,
+            "global_loss": 3.5531805692980543,
+            "returned_loss": 3.5531805692980543,
+            "returned_grad_norm": 2.1101150226228245,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 2.1101150226228245,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.9463597400459776e-15
+          },
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.540498436224695,
+            "global_loss": 3.5277135985815846,
+            "returned_loss": 3.5277135985815846,
+            "returned_grad_norm": 1.7923502866671057,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.792350286667106,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 3.3688329903469594e-15
+          }
+        ],
+        "data_calls": [
+          {
+            "starts": [
+              2425,
+              3118,
+              1446
+            ],
+            "generator_seed": 20271015
+          },
+          {
+            "starts": [
+              2583,
+              1150,
+              311
+            ],
+            "generator_seed": 20271015
+          }
+        ],
+        "init_calls": [
+          {
+            "backend": "gloo",
+            "requested_init_method": "env://"
+          }
+        ],
+        "destroy_calls": 1,
+        "logged_iterations": [
+          0,
+          1
+        ]
+      },
+      {
+        "rank": 1,
+        "status": "passed",
+        "active_phase": "complete",
+        "passed": [
+          {
+            "label": "WORLD EP / shared-DP mapping and expert ownership",
+            "details": {}
+          },
+          {
+            "label": "main_full_topk_no_clip: global expert IDs / initial shared synchronization",
+            "details": {}
+          },
+          {
+            "label": "main_full_topk_no_clip iter=0: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.5319000191486674,
+              "global_loss": 3.5531805692980543,
+              "returned_loss": 3.5531805692980543,
+              "returned_grad_norm": 2.1101150226228245,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 2.1101150226228245,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 1.9463597400459776e-15
+            }
+          },
+          {
+            "label": "main_full_topk_no_clip iter=1: loss / microbatches / gradients / AdamW / cleanup",
+            "details": {
+              "microbatch_sizes": [
+                3
+              ],
+              "sample_weights": [
+                1.0
+              ],
+              "local_loss": 3.5149287609384747,
+              "global_loss": 3.5277135985815846,
+              "returned_loss": 3.5277135985815846,
+              "returned_grad_norm": 1.7923502866671057,
+              "grad_clip": 0.0,
+              "expected_preclip_norm": 1.792350286667106,
+              "clip_coefficient": 1.0,
+              "injected_nonfinite_on_rank": null,
+              "stepped": true,
+              "global_routes_per_layer": [
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ],
+                [
+                  6,
+                  6,
+                  6,
+                  6
+                ]
+              ],
+              "max_parameter_abs_error": 3.3688329903469594e-15
+            }
+          }
+        ],
+        "case": {
+          "name": "main_full_topk_no_clip",
+          "bias": false,
+          "k": 4,
+          "coef": 0.07,
+          "batch": 3,
+          "micro": 8,
+          "sequence": 1,
+          "clip": 0.0,
+          "iters": 2,
+          "interval": 5
+        },
+        "stdout": "number of parameters: 0.01M\nrank=1 ep_size=2 experts=[2, 4) local_params=6372\n",
+        "updates": [
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.5319000191486674,
+            "global_loss": 3.5531805692980543,
+            "returned_loss": 3.5531805692980543,
+            "returned_grad_norm": 2.1101150226228245,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 2.1101150226228245,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 1.9463597400459776e-15
+          },
+          {
+            "microbatch_sizes": [
+              3
+            ],
+            "sample_weights": [
+              1.0
+            ],
+            "local_loss": 3.5149287609384747,
+            "global_loss": 3.5277135985815846,
+            "returned_loss": 3.5277135985815846,
+            "returned_grad_norm": 1.7923502866671057,
+            "grad_clip": 0.0,
+            "expected_preclip_norm": 1.792350286667106,
+            "clip_coefficient": 1.0,
+            "injected_nonfinite_on_rank": null,
+            "stepped": true,
+            "global_routes_per_layer": [
+              [
+                6,
+                6,
+                6,
+                6
+              ],
+              [
+                6,
+                6,
+                6,
+                6
+              ]
+            ],
+            "max_parameter_abs_error": 3.3688329903469594e-15
+          }
+        ],
+        "data_calls": [
+          {
+            "starts": [
+              926,
+              2624,
+              2013
+            ],
+            "generator_seed": 20271016
+          },
+          {
+            "starts": [
+              577,
+              1982,
+              1347
+            ],
+            "generator_seed": 20271016
+          }
+        ],
+        "init_calls": [
+          {
+            "backend": "gloo",
+            "requested_init_method": "env://"
+          }
+        ],
+        "destroy_calls": 1,
+        "logged_iterations": []
+      }
+    ]
+  },
+  "oracle_sha256": "06d86d4a6640dd6e54dbaed0f93b1a261b14741856b4998128b739f76a89cd0d",
+  "source_sha256": {
+    "parallel_ep.py": "ba5ab2b84e61ca670a135215c6dfbdc864e0db52aa252fca6d6420daa7d6c6be",
+    "moe_ep.py": "ba23bc8b8ce44e8cf35810b3d6b82f30cb2bcdf33de080d3f5edabe2d7c51680",
+    "moe.py": "4fb8ff99d92456220e208d410740179c2a07e20a2e6378b4ffd32cc09440e1bf",
+    "model.py": "7430672530cd369edd0950c7675ed54771ea1b08d77dd0350f30e3a5fdbfe1d1",
+    "train_ep.py": "b922f6c470413855501919a186e44f37b0fcc341a3775f9b3927ce22e6ac7b42"
+  },
+  "torch_version": "2.12.1+cpu",
+  "numpy_version": "2.4.4",
+  "temporary_data_sha256": "fa2c426529694c1e9122fb2dfc29c6da55f68bceff34c1a06ff2c42923bf5546",
+  "finished_at": "2026-10-15T10:44:22.560109+00:00"
+}
